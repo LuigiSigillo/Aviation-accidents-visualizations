@@ -1,4 +1,4 @@
-d3.csv("Aviation cleaned.csv", function (err, data) {
+d3.csv("AviationCrashLocation.csv", function (err, data) {
 
     var config = { "color1": "#d3e5ff", "color2": "#08306B", "stateDataColumn": "state_or_territory", "valueDataColumn": "population_estimate_for_july_1_2013_number" }
 
@@ -107,7 +107,7 @@ d3.csv("Aviation cleaned.csv", function (err, data) {
         data.forEach(function (d) {
             var id = name_id_map[d['Crash.Country']];
             valueById.set(id, +d["Total.Fatal.Injuries"]);
-            console.log(id,d["Total.Fatal.Injuries"])
+            //console.log(id,d["Total.Fatal.Injuries"])
         });
 
         quantize.domain([d3.min(data, function (d) { return +d[MAP_VALUE] }),
