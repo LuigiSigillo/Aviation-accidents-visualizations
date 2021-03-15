@@ -4,43 +4,52 @@
 <meta charset="utf-8">
 <script src="https://d3js.org/d3.v3.min.js"></script>
 
-<style type="text/css">
+<style>
 
-/* On mouse hover, lighten state color */
-path:hover {
-	fill-opacity: .7;
-}
-
-/* Style for Custom Tooltip */
-div.tooltip {   
- 	position: absolute;           
-	text-align: center;           
-	width: 60px;                  
-	height: 28px;                 
-	padding: 2px;             
-	font: 12px sans-serif;        
-	background: white;   
-	border: 0px;      
-	border-radius: 8px;           
-	pointer-events: none;         
-}
-        
-/* Legend Font Style */
-body {
-	font: 11px sans-serif;
-}
-        
-/* Legend Position Style */
-.legend {
-	position:absolute;
-	left:800px;
-	top:350px;
-}
-
-</style>
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      width: 960px;
+      height: 500px;
+      position: relative;
+    }
+    
+    /* stylesheet for your custom graph */
+    
+    .states {
+      fill: none;
+      stroke: #fff;
+      stroke-linejoin: round;
+    }
+    
+    .states-choropleth {
+      fill: #ccc;
+    }
+    
+    #tooltip-container {
+      position: absolute;
+      background-color: #fff;
+      color: #000;
+      padding: 10px;
+      border: 1px solid;
+      display: none;
+    }
+    
+    .tooltip_key {
+      font-weight: bold;
+    }
+    
+    .tooltip_value {
+      margin-left: 20px;
+      float: right;
+    }
+    
+    </style>
 </head>
 <body>
-    Bella pe santucci
+    Bella pe michellechandra poi ti insegno
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="text/javascript" src="map.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js"></script>
+
 </body>
 </html>
