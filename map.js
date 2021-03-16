@@ -141,6 +141,19 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
             valueById.set(id, +d["values"]["Fatalities"]);
         });
 
+        var e = d3.nest()
+        .key(function (d) { return d[MAP_STATE]; })
+        .rollup(function (v) {
+            return {
+                Fatalities: d3.sum(v, function (d) { return d[MAP_VALUE]; }),
+                Serious_Injuries: d3.sum(v, function (d) { return d[config.serious] }),
+                Minor_Injuries: d3.sum(v, function (d) { return d[config.minor] })
+            };
+        })
+        .map(data);
+        console.log(e["Illinois"])
+
+
         /*
         data.forEach(function (d) {
             var id = name_id_map[d[MAP_STATE]];
@@ -183,17 +196,17 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
                     html += "</span><br>";
                     html += "<span class=\"tooltip_value\">";
                     html += "<a>Fatalities: "
-                    html += (valueById.get(d.id) ? valueFormat(valueById.get(d.id)) : "");
+                    html += (e[id_name_map[d.id]]["Fatalities"] ? valueFormat(e[id_name_map[d.id]]["Fatalities"]) : "");
                     html += "</a>";
                     html += "</span><br>";
                     html += "<span class=\"tooltip_value\">";
                     html += "<a>Serious Injuries: "
-                    html += (valueById.get(d.id) ? valueFormat(valueById.get(d.id)) : "");
+                    html += (e[id_name_map[d.id]]["Serious_Injuries"] ? valueFormat(e[id_name_map[d.id]]["Serious_Injuries"]) : "");
                     html += "</a>";
                     html += "</span><br>";
                     html += "<span class=\"tooltip_value\">";
                     html += "<a>Minor Injuries: "
-                    html += (valueById.get(d.id) ? valueFormat(valueById.get(d.id)) : "");
+                    html += (e[id_name_map[d.id]]["Minor_Injuries"]  ? valueFormat(e[id_name_map[d.id]]["Minor_Injuries"]) : "");
                     html += "</a>";
                     html += "</span>";
                     html += "</div>";
