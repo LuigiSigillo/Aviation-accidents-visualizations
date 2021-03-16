@@ -1,13 +1,33 @@
 
 d3.csv("AviationCrashLocation.csv", function (err, data) {
 
-    var config = { "color1": "#d3e5ff", "color2": "#08306B", "stateDataColumn": "Crash.Country", "valueDataColumn": "Total.Fatal.Injuries" }
+    
+    var config = {
+        "color1": "#d3e5ff",
+        "color2": "#08306B",
+        "crashCountry": "Crash.Country",
+        "fatal": "Total.Fatal.Injuries",
+        "serious":"Total.Serious.Injuries",
+        "minor":"Total.Minor.Injuries",
+        "uninjured":"Total.Uninjured",
+        "weather":"Weather.Condition",
+        "phase":"Broad.Phase.of.Flight"
+    }
 
     var WIDTH = 800, HEIGHT = 500;
 
     var COLOR_COUNTS = 200;
 
     var SCALE = 0.7;
+
+
+    function tooltipHtml(n, d){	/* function to create html content string in tooltip div. */
+		return "<h4>"+n+"</h4><table>"+
+			"<tr><td>Low</td><td>"+(d.low)+"</td></tr>"+
+			"<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
+			"<tr><td>High</td><td>"+(d.high)+"</td></tr>"+
+			"</table>";
+	}
 
     function Interpolate(start, end, steps, count) {
         var s = start,
@@ -65,8 +85,8 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
     rgb = hexToRgb(COLOR_LAST);
     var COLOR_END = new Color(rgb.r, rgb.g, rgb.b);
 
-    var MAP_STATE = config.stateDataColumn;
-    var MAP_VALUE = config.valueDataColumn;
+    var MAP_STATE = config.crashCountry;
+    var MAP_VALUE = config.fatal;
 
     var width = WIDTH,
         height = HEIGHT;
@@ -107,13 +127,19 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
 
         var e = d3.nest()
             .key(function (d) { return d[MAP_STATE]; })
-            .rollup(function (v) { return d3.sum(v, function (d) { return d[MAP_VALUE]; }); })
+            .rollup(function (v) {
+                return {
+                    Fatalities: d3.sum(v, function (d) { return d[MAP_VALUE]; }),
+                    Serious_Injuries: d3.sum(v, function (d) { return d[config.serious] }),
+                    Minor_Injuries: d3.sum(v, function (d) { return d[config.minor] })
+                };
+            })
             .entries(data);
         console.log(JSON.stringify(e))
 
         e.forEach(function (d) {
             var id = name_id_map[d["key"]];
-            valueById.set(id, +d["values"]);
+            valueById.set(id, +d["values"]["Fatalities"]);
         });
 
         /*
@@ -126,8 +152,8 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
 
 
         d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json", function (error, us) {
-        quantize.domain([d3.min(topojson.feature(us, us.objects.states).features, function (d) { return +valueById.get(d.id)}),
-            d3.max(topojson.feature(us, us.objects.states).features, function (d) { return +valueById.get(d.id)})]);
+            quantize.domain([d3.min(topojson.feature(us, us.objects.states).features, function (d) { return +valueById.get(d.id) }),
+            d3.max(topojson.feature(us, us.objects.states).features, function (d) { return +valueById.get(d.id) })]);
         })
 
 
@@ -152,10 +178,17 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
                 .attr("d", path)
                 .on("mousemove", function (d) {
                     var html = "";
-
                     html += "<div class=\"tooltip_kv\">";
                     html += "<span class=\"tooltip_key\">";
                     html += id_name_map[d.id];
+                    html += "</span><br>";
+                    html += "<span class=\"tooltip_value\">";
+                    html += (valueById.get(d.id) ? valueFormat(valueById.get(d.id)) : "");
+                    html += "";
+                    html += "</span><br>";
+                    html += "<span class=\"tooltip_value\">";
+                    html += (valueById.get(d.id) ? valueFormat(valueById.get(d.id)) : "");
+                    html += "";
                     html += "</span>";
                     html += "<span class=\"tooltip_value\">";
                     html += (valueById.get(d.id) ? valueFormat(valueById.get(d.id)) : "");
@@ -192,6 +225,10 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
                 .attr("class", "states")
                 .attr("transform", "scale(" + SCALE + ")")
                 .attr("d", path);
+
+
+
+
         });
 
     });
