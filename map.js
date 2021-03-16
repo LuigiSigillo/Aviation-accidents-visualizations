@@ -1,7 +1,6 @@
 
 d3.csv("AviationCrashLocation.csv", function (err, data) {
 
-    
     var config = {
         "color1": "#d3e5ff",
         "color2": "#08306B",
@@ -183,16 +182,19 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
                     html += id_name_map[d.id];
                     html += "</span><br>";
                     html += "<span class=\"tooltip_value\">";
+                    html += "<a>Fatalities: "
                     html += (valueById.get(d.id) ? valueFormat(valueById.get(d.id)) : "");
-                    html += "";
+                    html += "</a>";
                     html += "</span><br>";
                     html += "<span class=\"tooltip_value\">";
+                    html += "<a>Serious Injuries: "
                     html += (valueById.get(d.id) ? valueFormat(valueById.get(d.id)) : "");
-                    html += "";
-                    html += "</span>";
+                    html += "</a>";
+                    html += "</span><br>";
                     html += "<span class=\"tooltip_value\">";
+                    html += "<a>Minor Injuries: "
                     html += (valueById.get(d.id) ? valueFormat(valueById.get(d.id)) : "");
-                    html += "";
+                    html += "</a>";
                     html += "</span>";
                     html += "</div>";
 
