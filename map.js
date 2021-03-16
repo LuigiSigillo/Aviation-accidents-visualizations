@@ -151,7 +151,6 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
             };
         })
         .map(data);
-        console.log(e["Illinois"])
 
 
         /*
