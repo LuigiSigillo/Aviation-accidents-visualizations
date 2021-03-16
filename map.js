@@ -1,39 +1,22 @@
-
 d3.csv("AviationCrashLocation.csv", function (err, data) {
 
-    var config = {
-        "color1": "#d3e5ff",
-        "color2": "#08306B",
+    var dbNames = {
         "crashCountry": "Crash.Country",
         "fatal": "Total.Fatal.Injuries",
-        "serious":"Total.Serious.Injuries",
-        "minor":"Total.Minor.Injuries",
-        "uninjured":"Total.Uninjured",
-        "weather":"Weather.Condition",
-        "phase":"Broad.Phase.of.Flight"
+        "serious": "Total.Serious.Injuries",
+        "minor": "Total.Minor.Injuries",
+        "uninjured": "Total.Uninjured",
+        "weather": "Weather.Condition",
+        "phase": "Broad.Phase.of.Flight"
     }
 
-    var WIDTH = 800, HEIGHT = 500;
-
-    var COLOR_COUNTS = 200;
-
-    var SCALE = 0.7;
-
-
-    function tooltipHtml(n, d){	/* function to create html content string in tooltip div. */
-		return "<h4>"+n+"</h4><table>"+
-			"<tr><td>Low</td><td>"+(d.low)+"</td></tr>"+
-			"<tr><td>Average</td><td>"+(d.avg)+"</td></tr>"+
-			"<tr><td>High</td><td>"+(d.high)+"</td></tr>"+
-			"</table>";
-	}
-
-    function Interpolate(start, end, steps, count) {
-        var s = start,
-            e = end,
-            final = s + (((e - s) / steps) * count);
-        return Math.floor(final);
+    var params = {
+        "WIDTH": 1000,
+        "HEIGHT": 700,
+        "SCALE": 1
     }
+
+
 
     function Color(_r, _g, _b) {
         var r, g, b;
@@ -63,58 +46,34 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
         } : null;
     }
 
-    function valueFormat(d) {
-        if (d > 1000000000) {
-            return Math.round(d / 1000000000 * 10) / 10 + "B";
-        } else if (d > 1000000) {
-            return Math.round(d / 1000000 * 10) / 10 + "M";
-        } else if (d > 1000) {
-            return Math.round(d / 1000 * 10) / 10 + "K";
-        } else {
-            return d;
-        }
+
+    var colors_hex = ['#fff7ec','#fee8c8','#fdd49e','#fdbb84','#fc8d59','#ef6548','#d7301f','#b30000','#7f0000']
+    var colors = []
+    
+    for (var i = 0; i < colors_hex.length; i++) {
+        colors.push(new Color(hexToRgb(colors_hex[i])));
     }
 
-    var COLOR_FIRST = config.color1, COLOR_LAST = config.color2;
 
-    var rgb = hexToRgb(COLOR_FIRST);
+    //var a = new Color(hexToRgb(colors_hex[1]))
+    //console.log(a)
 
-    var COLOR_START = new Color(rgb.r, rgb.g, rgb.b);
 
-    rgb = hexToRgb(COLOR_LAST);
-    var COLOR_END = new Color(rgb.r, rgb.g, rgb.b);
 
-    var MAP_STATE = config.crashCountry;
-    var MAP_VALUE = config.fatal;
-
-    var width = WIDTH,
-        height = HEIGHT;
-
-    var valueById = d3.map();
-
-    var startColors = COLOR_START.getColors(),
-        endColors = COLOR_END.getColors();
-
-    var colors = [];
-
-    for (var i = 0; i < COLOR_COUNTS; i++) {
-        var r = Interpolate(startColors.r, endColors.r, COLOR_COUNTS, i);
-        var g = Interpolate(startColors.g, endColors.g, COLOR_COUNTS, i);
-        var b = Interpolate(startColors.b, endColors.b, COLOR_COUNTS, i);
-        colors.push(new Color(r, g, b));
+    // from 35 to 315
+    function colorMapping(numero) {
+        var a = colors[Math.floor(numero/35)]
+        //console.log(a.r,a.g,a.b)
+        return colors[Math.floor(numero/35)].getColors().r
     }
-
-    var quantize = d3.scale.quantize()
-        .domain([0, 1.0])
-        .range(d3.range(COLOR_COUNTS).map(function (i) { return i }));
 
     var path = d3.geo.path();
 
     var svg = d3.select("#canvas-svg").append("svg")
-        .attr("width", width)
-        .attr("height", height);
+        .attr("width", params.WIDTH)
+        .attr("height", params.HEIGHT);
 
-    d3.tsv("https://gist.githubusercontent.com/amartone/5e9a82772cf1337d688fe47729e99532/raw/65a04d5b4934beda724630f18c475d350628f64d/us-state-names.tsv", function (error, names) {
+    d3.tsv("code-states.tsv", function (error, names) {
 
         name_id_map = {};
         id_name_map = {};
@@ -124,48 +83,24 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
             id_name_map[names[i].id] = names[i].name;
         }
 
+
         var e = d3.nest()
-            .key(function (d) { return d[MAP_STATE]; })
+            .key(function (d) { return d[dbNames.crashCountry]; })
             .rollup(function (v) {
                 return {
-                    Fatalities: d3.sum(v, function (d) { return d[MAP_VALUE]; }),
-                    Serious_Injuries: d3.sum(v, function (d) { return d[config.serious] }),
-                    Minor_Injuries: d3.sum(v, function (d) { return d[config.minor] })
+                    Fatalities: d3.sum(v, function (d) { return d[dbNames.fatal]; }),
+                    Serious_Injuries: d3.sum(v, function (d) { return d[dbNames.serious] }),
+                    Minor_Injuries: d3.sum(v, function (d) { return d[dbNames.minor] })
                 };
             })
-            .entries(data);
-        console.log(JSON.stringify(e))
-
-        e.forEach(function (d) {
-            var id = name_id_map[d["key"]];
-            valueById.set(id, +d["values"]["Fatalities"]);
-        });
-
-        var e = d3.nest()
-        .key(function (d) { return d[MAP_STATE]; })
-        .rollup(function (v) {
-            return {
-                Fatalities: d3.sum(v, function (d) { return d[MAP_VALUE]; }),
-                Serious_Injuries: d3.sum(v, function (d) { return d[config.serious] }),
-                Minor_Injuries: d3.sum(v, function (d) { return d[config.minor] })
-            };
-        })
-        .map(data);
+            .map(data);
 
 
-        /*
-        data.forEach(function (d) {
-            var id = name_id_map[d[MAP_STATE]];
-            valueById.set(id,  +d[MAP_VALUE]);
-        });
-        console.log(data)
-        */
 
-
-        d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json", function (error, us) {
-            quantize.domain([d3.min(topojson.feature(us, us.objects.states).features, function (d) { return +valueById.get(d.id) }),
-            d3.max(topojson.feature(us, us.objects.states).features, function (d) { return +valueById.get(d.id) })]);
-        })
+       /* d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json", function (error, us) {
+            quantize.domain([d3.min(topojson.feature(us, us.objects.states).features, function (d) { return +e[id_name_map[d.id]]["Fatalities"] }),
+            d3.max(topojson.feature(us, us.objects.states).features, function (d) { return +e[id_name_map[d.id]]["Fatalities"] })]);
+        })*/
 
 
         d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json", function (error, us) {
@@ -174,14 +109,13 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
                 .selectAll("path")
                 .data(topojson.feature(us, us.objects.states).features)
                 .enter().append("path")
-                .attr("transform", "scale(" + SCALE + ")")
+                .attr("transform", "scale(" + params.SCALE + ")")
                 .style("fill", function (d) {
-                    if (valueById.get(d.id)) {
-                        var i = quantize(valueById.get(d.id));
-                        console.log(i, valueById.get(d.id))
-                        var color = colors[i].getColors();
-                        return "rgb(" + color.r + "," + color.g +
-                            "," + color.b + ")";
+                    if (e[id_name_map[d.id]] != undefined) {
+                        var color = colorMapping(e[id_name_map[d.id]]["Fatalities"]);
+                        
+                        //console.log(i, valueById.get(d.id))
+                        return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
                     } else {
                         return "";
                     }
@@ -195,17 +129,17 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
                     html += "</span><br>";
                     html += "<span class=\"tooltip_value\">";
                     html += "<a>Fatalities: "
-                    html += (e[id_name_map[d.id]]["Fatalities"] ? valueFormat(e[id_name_map[d.id]]["Fatalities"]) : "");
+                    html += (e[id_name_map[d.id]]["Fatalities"]);
                     html += "</a>";
                     html += "</span><br>";
                     html += "<span class=\"tooltip_value\">";
                     html += "<a>Serious Injuries: "
-                    html += (e[id_name_map[d.id]]["Serious_Injuries"] ? valueFormat(e[id_name_map[d.id]]["Serious_Injuries"]) : "");
+                    html += (e[id_name_map[d.id]]["Serious_Injuries"]);
                     html += "</a>";
                     html += "</span><br>";
                     html += "<span class=\"tooltip_value\">";
                     html += "<a>Minor Injuries: "
-                    html += (e[id_name_map[d.id]]["Minor_Injuries"]  ? valueFormat(e[id_name_map[d.id]]["Minor_Injuries"]) : "");
+                    html += (e[id_name_map[d.id]]["Minor_Injuries"]);
                     html += "</a>";
                     html += "</span>";
                     html += "</div>";
@@ -237,13 +171,42 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
             svg.append("path")
                 .datum(topojson.mesh(us, us.objects.states, function (a, b) { return a !== b; }))
                 .attr("class", "states")
-                .attr("transform", "scale(" + SCALE + ")")
+                .attr("transform", "scale(" + params.SCALE + ")")
                 .attr("d", path);
 
+            
+            var legendText = ["0-35", "36-70","71-105","106-140","141-175","176-210","211-245","246-280","281-315"];
+            var legend = d3.select("body").append("svg")
+                .attr("class", "legend")
+                .attr("width", 82)
+                .attr("height", 178)
+                .selectAll("g")
+                .data(legendText)
+                .enter()
+                .append("g")
+                .attr("transform", function (d, i) {
+                     return "translate(0," + i * 20 + ")"; });
 
+            legend.append("rect")
+                .attr("width", 18)
+                .attr("height", 18)
+                .style("fill", function (d,i) {
+                        var color = colors[i].getColors().r;
+                        //console.log(i, valueById.get(d.id))
+                        return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
+                   });
 
+            legend.append("text")
+                .data(legendText)
+                .attr("x", 24)
+                .attr("y", 9)
+                .attr("dy", ".35em")
+                .text(function (d) { console.log(d)
+                    return d; });
 
         });
 
     });
+
+
 });
