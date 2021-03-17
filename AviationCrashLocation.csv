@@ -2627,3 +2627,9 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20010119X00328,2001-01-14,"Troy, AL",Destroyed,Learjet,Executive/Corporate,0.0,2.0,0.0,0.0,VMC,LANDING,"31.866667,-86.016667",Alabama
 20001212X20873,2000-04-05,"MARIANNA, FL",Destroyed,LEARJET,Instructional,3.0,0.0,0.0,0.0,VMC,APPROACH,"1.483333,-75.533333",Caquetá
 20001208X08803,1997-09-14,"St. Ignaces, MI",Destroyed,Piper,Personal,2.0,0.0,0.0,0.0,IMC,UNKNOWN,"45.928334,-84.825556",Michigan
+20200502X81549,2020-05-02,"PALMYRA, IL",Destroyed,Yakovlev,Personal,1.0,0.0,0.0,0.0,VMC,MANEUVERING,"39.408889,-89.990277",District of Columbia
+20200502X81549,2020-05-02,"PALMYRA, IL",Destroyed,Yakovlev,Personal,1.0,0.0,0.0,0.0,VMC,MANEUVERING,"39.408889,-89.990277",America Samoa
+20200502X81549,2020-05-02,"PALMYRA, IL",Destroyed,Yakovlev,Personal,1.0,0.0,0.0,0.0,VMC,MANEUVERING,"39.408889,-89.990277",Guam
+20200502X81549,2020-05-02,"PALMYRA, IL",Destroyed,Yakovlev,Personal,1.0,0.0,0.0,0.0,VMC,MANEUVERING,"39.408889,-89.990277",Northern Mariana Islands
+20200502X81549,2020-05-02,"PALMYRA, IL",Destroyed,Yakovlev,Personal,1.0,0.0,0.0,0.0,VMC,MANEUVERING,"39.408889,-89.990277",Puerto Rico
+20200502X81549,2020-05-02,"PALMYRA, IL",Destroyed,Yakovlev,Personal,1.0,0.0,0.0,0.0,VMC,MANEUVERING,"39.408889,-89.990277",Virgin Islands of the United States
