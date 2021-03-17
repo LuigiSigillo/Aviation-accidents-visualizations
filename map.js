@@ -134,7 +134,6 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
                 };
             })
             .entries(data);
-        console.log(JSON.stringify(e))
 
         e.forEach(function (d) {
             var id = name_id_map[d["key"]];
@@ -151,6 +150,7 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
             };
         })
         .map(data);
+        console.log(JSON.stringify(e))
 
 
         /*
