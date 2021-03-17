@@ -47,9 +47,9 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
     }
 
 
-    var colors_hex = ['#fff7ec','#fee8c8','#fdd49e','#fdbb84','#fc8d59','#ef6548','#d7301f','#b30000','#7f0000']
+    var colors_hex = ['#fff7ec', '#fee8c8', '#fdd49e', '#fdbb84', '#fc8d59', '#ef6548', '#d7301f', '#b30000', '#7f0000']
     var colors = []
-    
+
     for (var i = 0; i < colors_hex.length; i++) {
         colors.push(new Color(hexToRgb(colors_hex[i])));
     }
@@ -62,9 +62,9 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
 
     // from 35 to 315
     function colorMapping(numero) {
-        var a = colors[Math.floor(numero/35)]
+        var a = colors[Math.floor(numero / 35)]
         //console.log(a.r,a.g,a.b)
-        return colors[Math.floor(numero/35)].getColors().r
+        return colors[Math.floor(numero / 35)].getColors().r
     }
 
     var path = d3.geo.path();
@@ -88,19 +88,13 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
             .key(function (d) { return d[dbNames.crashCountry]; })
             .rollup(function (v) {
                 return {
+                    Total_Accidents:d3.sum(v, function (d) { return 1;}),
                     Fatalities: d3.sum(v, function (d) { return d[dbNames.fatal]; }),
                     Serious_Injuries: d3.sum(v, function (d) { return d[dbNames.serious] }),
                     Minor_Injuries: d3.sum(v, function (d) { return d[dbNames.minor] })
                 };
             })
             .map(data);
-
-
-
-       /* d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json", function (error, us) {
-            quantize.domain([d3.min(topojson.feature(us, us.objects.states).features, function (d) { return +e[id_name_map[d.id]]["Fatalities"] }),
-            d3.max(topojson.feature(us, us.objects.states).features, function (d) { return +e[id_name_map[d.id]]["Fatalities"] })]);
-        })*/
 
 
         d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json", function (error, us) {
@@ -113,7 +107,7 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
                 .style("fill", function (d) {
                     if (e[id_name_map[d.id]] != undefined) {
                         var color = colorMapping(e[id_name_map[d.id]]["Fatalities"]);
-                        
+
                         //console.log(i, valueById.get(d.id))
                         return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
                     } else {
@@ -126,6 +120,11 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
                     html += "<div class=\"tooltip_kv\">";
                     html += "<span class=\"tooltip_key\">";
                     html += id_name_map[d.id];
+                    html += "</span><br>";
+                    html += "<span class=\"tooltip_value\">";
+                    html += "<a>Total Accidents: "
+                    html += (e[id_name_map[d.id]]["Total_Accidents"]);
+                    html += "</a>";
                     html += "</span><br>";
                     html += "<span class=\"tooltip_value\">";
                     html += "<a>Fatalities: "
@@ -174,8 +173,8 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
                 .attr("transform", "scale(" + params.SCALE + ")")
                 .attr("d", path);
 
-            
-            var legendText = ["0-35", "36-70","71-105","106-140","141-175","176-210","211-245","246-280","281-315"];
+
+            var legendText = ["0-35", "36-70", "71-105", "106-140", "141-175", "176-210", "211-245", "246-280", "281-315"];
             var legend = d3.select("body").append("svg")
                 .attr("class", "legend")
                 .attr("width", 82)
@@ -185,28 +184,71 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
                 .enter()
                 .append("g")
                 .attr("transform", function (d, i) {
-                     return "translate(0," + i * 20 + ")"; });
+                    return "translate(0," + i * 20 + ")";
+                });
 
             legend.append("rect")
                 .attr("width", 18)
                 .attr("height", 18)
-                .style("fill", function (d,i) {
-                        var color = colors[i].getColors().r;
-                        //console.log(i, valueById.get(d.id))
-                        return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
-                   });
+                .style("fill", function (d, i) {
+                    var color = colors[i].getColors().r;
+                    //console.log(i, valueById.get(d.id))
+                    return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
+                });
 
             legend.append("text")
                 .data(legendText)
                 .attr("x", 24)
                 .attr("y", 9)
                 .attr("dy", ".35em")
-                .text(function (d) { console.log(d)
-                    return d; });
+                .text(function (d) {
+                    console.log(d)
+                    return d;
+                });
 
         });
+        /////////////////////////////////////////////////////////
+        function processData(year) {
+            var newData = {};
+            data.forEach(function (d) {
+                if (!(d['Crash.Country'] in newData)) {
+                    //2020-05-02
+                    if (+d["Event.Date"].split("-")[0] <= +year) {
+                        newData[d['Crash.Country']] = { count: 1, coord: [+d["Crash.Location"].split(",")[0], +d["Crash.Location"].split(",")[1]] };
+                    }
+                    else {
+                        newData[d['Crash.Country']] = { count: 0, coord: [+d["Crash.Location"].split(",")[0], +d["Crash.Location"].split(",")[1]] };
+                    }
+                }
+                else if (d['Crash.Country'] in newData && +d["Event.Date"].split("-")[0] <= +year) {
+                    newData[d['Crash.Country']].count = newData[d['Crash.Country']].count + 1;
+                }
+            })
+            return newData;
+        }
 
+        d3.select("input")
+            .on("change", function () {
+                var yearInput = +d3.select(this).node().value;
+                newData = processData(yearInput);
+                //cambia colore
+                svg.selectAll("g")
+                    .data(d3.keys(newData))
+                    .transition()
+                    .duration(500)
+                    .style("fill", function (d) {
+                        if (e[id_name_map[d.id]] != undefined) {
+                            var color = colorMapping(e[id_name_map[d.id]]["Fatalities"]);
+
+                            //console.log(i, valueById.get(d.id))
+                            return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
+                        } else {
+                            return "";
+                        }
+                    });
+            });
     });
+
 
 
 });
