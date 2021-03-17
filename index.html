@@ -51,8 +51,8 @@
     float: right;
   }
 
-  
-.slider {
+
+  .slider {
     -webkit-appearance: none;
     width: 65%;
     height: 25px;
@@ -61,28 +61,27 @@
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
-}
+  }
 
-.slider:hover {
+  .slider:hover {
     opacity: 1;
-}
+  }
 
-.slider::-webkit-slider-thumb {
+  .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 25px;
     height: 25px;
     background: #838383;
     cursor: pointer;
-}
+  }
 
-.slider::-moz-range-thumb {
+  .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
     background: #838383;
     cursor: pointer;
-}
-
+  }
 </style>
 
 
@@ -108,11 +107,11 @@
     var slider = document.getElementById("slider");
     var output = document.getElementById("demo");
     output.innerHTML = slider.value;
-    
-    slider.oninput = function() {
+
+    slider.oninput = function () {
       output.innerHTML = this.value;
     }
-    </script>
+  </script>
 </body>
 
 </html>

@@ -83,7 +83,7 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
             id_name_map[names[i].id] = names[i].name;
         }
 
-        
+
 
         function change(year) {
 
@@ -191,8 +191,8 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
                 .attr("transform", "scale(" + params.SCALE + ")")
                 .attr("d", path);
 
-
             var legendText = ["0-35", "36-70", "71-105", "106-140", "141-175", "176-210", "211-245", "246-280", "281-315"];
+            //var legendText = ["Fatalities:", "0-35", "36-70", "71-105", "106-140", "141-175", "176-210", "211-245", "246-280", "281-315"];
             var legend = d3.select("body").append("svg")
                 .attr("class", "legend")
                 .attr("width", 82)
@@ -204,11 +204,14 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
                 .attr("transform", function (d, i) {
                     return "translate(0," + i * 20 + ")";
                 });
-
+            
             legend.append("rect")
                 .attr("width", 18)
                 .attr("height", 18)
                 .style("fill", function (d, i) {
+                    //if (i == 0) return;
+                    console.log(i)
+                    //var color = colors[i - 1].getColors().r;
                     var color = colors[i].getColors().r;
                     //console.log(i, valueById.get(d.id))
                     return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
@@ -223,86 +226,86 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
                     console.log(d)
                     return d;
                 });
-                d3.select("input")
+            d3.select("input")
                 .on("change", function () {
                     var yearInput = +d3.select(this).node().value;
                     e = change(yearInput);
                     //cambia colore
                     svg.append("g")
-                    .attr("class", "states-choropleth")
-                    .selectAll("path")
-                    .data(topojson.feature(us, us.objects.states).features)
-                    .enter().append("path")
-                    .attr("transform", "scale(" + params.SCALE + ")")
-                    .style("fill", function (d) {
-                        if (e[id_name_map[d.id]] != undefined) {
-                            var color = colorMapping(e[id_name_map[d.id]]["Fatalities"]);
-    
-                            //console.log(i, valueById.get(d.id))
-                            return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
-                        } else {
-                            return "";
-                        }
-                    })
-                    .style('stroke', 'black')
-                    .attr("d", path)
-                    .on("mousemove", function (d) {
-                        var html = "";
-                        html += "<div class=\"tooltip_kv\">";
-                        html += "<span class=\"tooltip_key\">";
-                        html += id_name_map[d.id];
-                        html += "</span><br>";
-                        html += "<span class=\"tooltip_value\">";
-                        html += "<a>Total Accidents: "
-                        html += (e[id_name_map[d.id]]["Total_Accidents"]);
-                        html += "</a>";
-                        html += "</span><br>";
-                        html += "<span class=\"tooltip_value\">";
-                        html += "<a>Fatalities: "
-                        html += (e[id_name_map[d.id]]["Fatalities"]);
-                        html += "</a>";
-                        html += "</span><br>";
-                        html += "<span class=\"tooltip_value\">";
-                        html += "<a>Serious Injuries: "
-                        html += (e[id_name_map[d.id]]["Serious_Injuries"]);
-                        html += "</a>";
-                        html += "</span><br>";
-                        html += "<span class=\"tooltip_value\">";
-                        html += "<a>Minor Injuries: "
-                        html += (e[id_name_map[d.id]]["Minor_Injuries"]);
-                        html += "</a>";
-                        html += "</span>";
-                        html += "</div>";
-    
-                        $("#tooltip-container").html(html);
-                        $(this).attr("fill-opacity", "0.8");
-                        $("#tooltip-container").show();
-    
-                        var coordinates = d3.mouse(this);
-    
-                        var map_width = $('.states-choropleth')[0].getBoundingClientRect().width;
-    
-                        if (d3.event.layerX < map_width / 2) {
-                            d3.select("#tooltip-container")
-                                .style("top", (d3.event.layerY + 15) + "px")
-                                .style("left", (d3.event.layerX + 15) + "px");
-                        } else {
-                            var tooltip_width = $("#tooltip-container").width();
-                            d3.select("#tooltip-container")
-                                .style("top", (d3.event.layerY + 15) + "px")
-                                .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
-                        }
-                    })
-                    .on("mouseout", function () {
-                        $(this).attr("fill-opacity", "1.0");
-                        $("#tooltip-container").hide();
-                    });
-    
+                        .attr("class", "states-choropleth")
+                        .selectAll("path")
+                        .data(topojson.feature(us, us.objects.states).features)
+                        .enter().append("path")
+                        .attr("transform", "scale(" + params.SCALE + ")")
+                        .style("fill", function (d) {
+                            if (e[id_name_map[d.id]] != undefined) {
+                                var color = colorMapping(e[id_name_map[d.id]]["Fatalities"]);
+
+                                //console.log(i, valueById.get(d.id))
+                                return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
+                            } else {
+                                return "";
+                            }
+                        })
+                        .style('stroke', 'black')
+                        .attr("d", path)
+                        .on("mousemove", function (d) {
+                            var html = "";
+                            html += "<div class=\"tooltip_kv\">";
+                            html += "<span class=\"tooltip_key\">";
+                            html += id_name_map[d.id];
+                            html += "</span><br>";
+                            html += "<span class=\"tooltip_value\">";
+                            html += "<a>Total Accidents: "
+                            html += (e[id_name_map[d.id]]["Total_Accidents"]);
+                            html += "</a>";
+                            html += "</span><br>";
+                            html += "<span class=\"tooltip_value\">";
+                            html += "<a>Fatalities: "
+                            html += (e[id_name_map[d.id]]["Fatalities"]);
+                            html += "</a>";
+                            html += "</span><br>";
+                            html += "<span class=\"tooltip_value\">";
+                            html += "<a>Serious Injuries: "
+                            html += (e[id_name_map[d.id]]["Serious_Injuries"]);
+                            html += "</a>";
+                            html += "</span><br>";
+                            html += "<span class=\"tooltip_value\">";
+                            html += "<a>Minor Injuries: "
+                            html += (e[id_name_map[d.id]]["Minor_Injuries"]);
+                            html += "</a>";
+                            html += "</span>";
+                            html += "</div>";
+
+                            $("#tooltip-container").html(html);
+                            $(this).attr("fill-opacity", "0.8");
+                            $("#tooltip-container").show();
+
+                            var coordinates = d3.mouse(this);
+
+                            var map_width = $('.states-choropleth')[0].getBoundingClientRect().width;
+
+                            if (d3.event.layerX < map_width / 2) {
+                                d3.select("#tooltip-container")
+                                    .style("top", (d3.event.layerY + 15) + "px")
+                                    .style("left", (d3.event.layerX + 15) + "px");
+                            } else {
+                                var tooltip_width = $("#tooltip-container").width();
+                                d3.select("#tooltip-container")
+                                    .style("top", (d3.event.layerY + 15) + "px")
+                                    .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
+                            }
+                        })
+                        .on("mouseout", function () {
+                            $(this).attr("fill-opacity", "1.0");
+                            $("#tooltip-container").hide();
+                        });
+
                 });
         });
         /////////////////////////////////////////////////////////
 
-        
+
     });
 
 
