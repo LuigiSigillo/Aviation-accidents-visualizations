@@ -131,6 +131,7 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
                         return "";
                     }
                 })
+                .style('stroke', 'black')
                 .attr("d", path)
                 .on("mousemove", function (d) {
                     var html = "";
@@ -243,6 +244,7 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
                             return "";
                         }
                     })
+                    .style('stroke', 'black')
                     .attr("d", path)
                     .on("mousemove", function (d) {
                         var html = "";
