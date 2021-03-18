@@ -97,12 +97,23 @@
   <div id="canvas-svg"></div>
   <div class="slidecontainer">
 
-    <input type="range" min="1997" max="2021" step="1" value="1997" class="slider" id="slider">
+    <input type="range" min="2000" max="2021" step="1" value="1997" class="slider" id="slider">
     <br>
     <p>
       Year: <span id="demo"></span>
     </p>
   </div>
+
+<!-- Button -->
+<div>
+  <p>Do your bet:</p>
+  <input type="radio" class="checkbox" value="Total_Accidents" name="gender"><label for="Accidents">Accidents</label>
+  <input type="radio" class="checkbox" value="Fatalities" name="gender" checked><label for="Fatalities">Fatalities</label>
+  <input type="radio" class="checkbox" value="Serious_Injuries" name="gender"><label for="Serious injuries">Serious injuries</label>
+  <input type="radio" class="checkbox" value="Minor_Injuries" name="gender"><label for="Minor injuries">Minor injuries</label>
+</div>
+
+
   <script>
     var slider = document.getElementById("slider");
     var output = document.getElementById("demo");
