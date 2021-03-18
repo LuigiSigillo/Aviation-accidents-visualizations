@@ -1,4 +1,4 @@
-d3.csv("AviationCrashLocation.csv", function (err, data) {
+d3.csv("datasets/AviationCrashLocation.csv", function (err, data) {
 
     var dbNames = {
         "crashCountry": "Crash.Country",
@@ -70,13 +70,13 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
     }
 
     var path = d3.geo.path();
-    var projection = d3.geoEqualEarth(),
+    var projection = d3.geoEqualEarth()
     
     var mapSvg = d3.select("#canvas-svg").append("svg")
         .attr("width", params.WIDTH)
         .attr("height", params.HEIGHT);
 
-    d3.tsv("code-states.tsv", function (error, names) {
+    d3.tsv("datasets/code-states.tsv", function (error, names) {
 
         name_id_map = {};
         id_name_map = {};
@@ -162,7 +162,7 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
 
 
         e = change(2000)
-        d3.json("us-states.json", function (error, us) {
+        d3.json("datasets/us-states.json", function (error, us) {
             function updateMapColors(type ="Fatalities"){
                 //cambia colore
                 mapSvg.selectAll("g").remove();
