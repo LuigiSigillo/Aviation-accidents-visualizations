@@ -83,46 +83,6 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
             id_name_map[names[i].id] = names[i].name;
         }
 
-<<<<<<< HEAD
-        var e = d3.nest()
-            .key(function (d) { return d[MAP_STATE]; })
-            .rollup(function (v) {
-                return {
-                    Fatalities: d3.sum(v, function (d) { return d[MAP_VALUE]; }),
-                    Serious_Injuries: d3.sum(v, function (d) { return d[config.serious] }),
-                    Minor_Injuries: d3.sum(v, function (d) { return d[config.minor] })
-                };
-            })
-            .entries(data);
-
-        e.forEach(function (d) {
-            var id = name_id_map[d["key"]];
-            valueById.set(id, +d["values"]["Fatalities"]);
-        });
-
-        var e = d3.nest()
-        .key(function (d) { return d[MAP_STATE]; })
-        .rollup(function (v) {
-            return {
-                Fatalities: d3.sum(v, function (d) { return d[MAP_VALUE]; }),
-                Serious_Injuries: d3.sum(v, function (d) { return d[config.serious] }),
-                Minor_Injuries: d3.sum(v, function (d) { return d[config.minor] })
-            };
-        })
-        .map(data);
-        console.log(JSON.stringify(e))
-
-
-        /*
-        data.forEach(function (d) {
-            var id = name_id_map[d[MAP_STATE]];
-            valueById.set(id,  +d[MAP_VALUE]);
-        });
-        console.log(data)
-        */
-
-=======
->>>>>>> c04f79bc67325e4fcb4688dd0ca935619d162ff4
 
 
         function change(year) {
