@@ -70,7 +70,8 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
     }
 
     var path = d3.geo.path();
-
+    var projection = d3.geoEqualEarth(),
+    
     var mapSvg = d3.select("#canvas-svg").append("svg")
         .attr("width", params.WIDTH)
         .attr("height", params.HEIGHT);
@@ -258,5 +259,6 @@ d3.csv("AviationCrashLocation.csv", function (err, data) {
         });
 
     });
+
 
 });
