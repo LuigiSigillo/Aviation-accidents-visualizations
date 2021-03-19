@@ -1,7 +1,7 @@
 
-var margin = { top: 30, right: 50, bottom: 40, left: 50 };
-var width = 960 - margin.left - margin.right;
-var height = 500 - margin.top - margin.bottom;
+var margin = { top: 30, right: 150, bottom: 40, left: 50 };
+var width = 1560 - margin.left - margin.right;
+var height = 1000 - margin.top - margin.bottom;
 
 var dbNames = {
     "crashCountry": "Crash.Country",
@@ -42,9 +42,9 @@ var color = d3.scaleCategory20();
 
 
 
-d3.csv("datasets/AviationCrashLocation_3k.csv", function (error, data) {
+d3.json("datasets/aggregated_state.json", function (error, data) {
 
-
+    /*
     function change(year,country) {
 
         var e = d3.nest()
@@ -72,61 +72,90 @@ d3.csv("datasets/AviationCrashLocation_3k.csv", function (error, data) {
             .map(data);
         return e
     }
+    */
 
 
 
 
-    console.log(data);
+    //console.log(data);
     // data pre-processing
-    data.forEach(function (d) {
-        //console.log(d['Crash.Country'])
-        //console.log(change(d["Event.Date"].split('-')[0])['$Alabama']['Total_Accidents'])
-        d.x = +d["Event.Date"].split('-')[0];
-        d.y = +change(d["Event.Date"].split('-')[0])['$' + d["Crash.Country"]]['Total_Accidents'];
-        d.r = +change(d["Event.Date"].split('-')[0])['$' + d["Crash.Country"]]['Fatalities'];
+    var i
+    keys = Object.keys(data),
+        i, len = keys.length;
+    keys.sort(function (a, b) {
+        return a - b;
     });
 
-    data.sort(function (a, b) { return b.r - a.r; });
+    for (i = 0; i < len; i++) {
+        var a = keys[i];
+        console.log(a + ':' + data[a]);
+    }
+    var xmax = -1
+    var ymax = -1
+    var rmax = -1
+    var come_vuole_lui = []
+    for (var key in data) {
+        //console.log(data[key])
+        //var d=data[key]
 
-    yscale.domain(d3.extent(data, function (d) {
+        data[key].x = +data[key]["Incidents"];
+        data[key].y = +data[key]["Total.Fatal.Injuries"];
+        data[key].r = +data[key]["Total.Serious.Injuries"];
+        if (data[key]["x"] > xmax)
+            xmax = data[key]["x"]
+        if (data[key]["y"] > ymax)
+            ymax = data[key]["y"]
+        if (data[key]["r"] > rmax)
+            rmax = data[key]["r"]
+        come_vuole_lui.push(data[key])
+    }
+    console.log(data)
+    console.log(keys)
+    console.log(come_vuole_lui)
+    //data.sort(function (a, b) { console.log(a); return b.r - a.r; });
+    /*yscale.domain(d3.extent(d3.values(data, function (d) {
+        console.log('aaa')
         return d.y;
-    })).nice();
+    }))).nice();
+    */
+    yscale.domain([0, ymax]).nice();
+    xscale.domain([0, xmax]).nice();
+    radius.domain([0, rmax]).nice();
 
-    radius.domain(d3.extent(data, function (d) {
-        return d.r;
-    })).nice();
 
     svg.append("g")
         .attr("transform", "translate(0," + height + ")")
         .attr("class", "x axis")
         .call(xAxis);
-
     svg.append("g")
         .attr("transform", "translate(0,0)")
         .attr("class", "y axis")
         .call(yAxis);
-
     var group = svg.selectAll("g.bubble")
-        .data(data)
+        .data(come_vuole_lui)
         .enter().append("g")
         .attr("class", "bubble")
         .attr("transform", function (d) {
+            console.log('diomrda')
             return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")"
         });
-
+    var j = -1
     group
         .append("circle")
         .attr("r", function (d) { return radius(d.r); })
         .style("fill", function (d) {
-            return color(d["team86"]);
+            //console.log(d)
+            j++
+            return color(keys[j]);
         })
-
+        j = -1
     group
         .append("text")
         .attr("x", function (d) { return radius(d.r); })
         .attr("alignment-baseline", "middle")
         .text(function (d) {
-            return d["name1"] + " " + d["name2"];
+            j++
+            return keys[j];
         });
 
     svg.append("text")
@@ -140,7 +169,7 @@ d3.csv("datasets/AviationCrashLocation_3k.csv", function (error, data) {
         .attr("y", height - 6)
         .attr("text-anchor", "end")
         .attr("class", "label")
-        .text("Year");
+        .text("Incidents");
 
     var legend = svg.selectAll(".legend")
         .data(color.domain())
@@ -160,15 +189,16 @@ d3.csv("datasets/AviationCrashLocation_3k.csv", function (error, data) {
         .attr("dy", ".35em")
         .style("text-anchor", "start")
         .text(function (d) { return d; });
-
+        
     legend.on("mouseover", function (type) {
+        j=-1
         d3.selectAll(".legend")
             .style("opacity", 0.1);
         d3.select(this)
             .style("opacity", 1);
         d3.selectAll(".bubble")
             .style("opacity", 0.1)
-            .filter(function (d) { return d["team86"] == type; })
+            .filter(function (d) { j++; console.log(type); console.log(keys[j]); return keys[j] == type; })
             .style("opacity", 1);
     })
         .on("mouseout", function (type) {

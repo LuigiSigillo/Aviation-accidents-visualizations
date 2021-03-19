@@ -827,28 +827,6 @@
             "01": 1
         }
     },
-    "H\u00c3\u00b6vsg\u00c3\u00b6l": {
-        "Incidents": 1,
-        "Total.Fatal.Injuries": 0.0,
-        "Total.Serious.Injuries": 3.0,
-        "Total.Minor.Injuries": 0.0,
-        "Total.Uninjured": 0.0,
-        "Weather.Condition": {
-            "IMC": 1
-        },
-        "Aircraft.Damage": {
-            "Substantial": 1
-        },
-        "Broad.Phase.of.Flight": {
-            "CRUISE": 1
-        },
-        "Make": {
-            "piper": 1
-        },
-        "Month": {
-            "11": 1
-        }
-    },
     "Idaho": {
         "Incidents": 45,
         "Total.Fatal.Injuries": 46.0,
