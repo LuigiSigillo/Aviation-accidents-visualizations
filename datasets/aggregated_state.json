@@ -1,0 +1,3407 @@
+{
+    "Adjuntas": {
+        "Incidents": 1,
+        "Total.Fatal.Injuries": 2.0,
+        "Total.Serious.Injuries": 0.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "IMC": 1
+        },
+        "Aircraft.Damage": {
+            "Substantial": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "DESCENT": 1
+        },
+        "Make": {
+            "partenavia": 1
+        },
+        "Month": {
+            "01": 1
+        }
+    },
+    "Alabama": {
+        "Incidents": 43,
+        "Total.Fatal.Injuries": 45.0,
+        "Total.Serious.Injuries": 22.0,
+        "Total.Minor.Injuries": 9.0,
+        "Total.Uninjured": 6.0,
+        "Weather.Condition": {
+            "VMC": 31,
+            "IMC": 12
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 13,
+            "Substantial": 29,
+            "Minor": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 12,
+            "CLIMB": 1,
+            "MANEUVERING": 6,
+            "APPROACH": 11,
+            "GO-AROUND": 2,
+            "DESCENT": 1,
+            "CRUISE": 6,
+            "LANDING": 3,
+            "UNKNOWN": 1
+        },
+        "Make": {
+            "piper": 11,
+            "champion": 2,
+            "cessna": 10,
+            "grob aircraft ag": 1,
+            "cirrus design corp": 2,
+            "beech": 7,
+            "israel aircraft industries": 1,
+            "republic": 1,
+            "aviat aircraft inc": 1,
+            "aero vodochody": 1,
+            "aero adventure": 1,
+            "nanchang china": 1,
+            "colyaer sl": 1,
+            "raytheon aircraft company": 1,
+            "socata": 1,
+            "learjet": 1
+        },
+        "Month": {
+            "05": 3,
+            "08": 4,
+            "03": 4,
+            "01": 6,
+            "12": 3,
+            "02": 2,
+            "04": 5,
+            "11": 4,
+            "07": 2,
+            "06": 4,
+            "10": 2,
+            "09": 4
+        }
+    },
+    "Alaska": {
+        "Incidents": 103,
+        "Total.Fatal.Injuries": 105.0,
+        "Total.Serious.Injuries": 68.0,
+        "Total.Minor.Injuries": 24.0,
+        "Total.Uninjured": 33.0,
+        "Weather.Condition": {
+            "VMC": 93,
+            "UNK": 5,
+            "IMC": 5
+        },
+        "Aircraft.Damage": {
+            "Substantial": 82,
+            "Destroyed": 17,
+            "Minor": 4
+        },
+        "Broad.Phase.of.Flight": {
+            "MANEUVERING": 30,
+            "TAKEOFF": 32,
+            "APPROACH": 6,
+            "UNKNOWN": 5,
+            "CRUISE": 15,
+            "LANDING": 8,
+            "TAXI": 1,
+            "DESCENT": 3,
+            "STANDING": 2,
+            "GO-AROUND": 1
+        },
+        "Make": {
+            "cessna": 37,
+            "stinson": 2,
+            "piper": 38,
+            "helio": 2,
+            "dehavilland": 4,
+            "arctic aircraft co inc": 1,
+            "bellanca": 4,
+            "fairchild heli-porter": 1,
+            "champion": 3,
+            "de havilland": 1,
+            "beech": 2,
+            "grumman aircraft eng corp": 1,
+            "grumman": 1,
+            "taylorcraft aviation corp.": 1,
+            "aviat aircraft inc": 1,
+            "fairchild": 1,
+            "consolidated aeronautics inc.": 1,
+            "taylorcraft": 1,
+            "antonovich anton b": 1
+        },
+        "Month": {
+            "04": 8,
+            "09": 17,
+            "08": 18,
+            "07": 12,
+            "06": 17,
+            "11": 2,
+            "10": 12,
+            "05": 6,
+            "02": 3,
+            "12": 5,
+            "01": 2,
+            "03": 1
+        }
+    },
+    "Arecibo": {
+        "Incidents": 3,
+        "Total.Fatal.Injuries": 0.0,
+        "Total.Serious.Injuries": 4.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 3
+        },
+        "Aircraft.Damage": {
+            "Substantial": 3
+        },
+        "Broad.Phase.of.Flight": {
+            "GO-AROUND": 2,
+            "APPROACH": 1
+        },
+        "Make": {
+            "quicksilver": 2,
+            "beech": 1
+        },
+        "Month": {
+            "07": 1,
+            "04": 1,
+            "08": 1
+        }
+    },
+    "Arizona": {
+        "Incidents": 79,
+        "Total.Fatal.Injuries": 111.0,
+        "Total.Serious.Injuries": 51.0,
+        "Total.Minor.Injuries": 13.0,
+        "Total.Uninjured": 22.0,
+        "Weather.Condition": {
+            "VMC": 73,
+            "UNK": 1,
+            "IMC": 5
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 20,
+            "Substantial": 59
+        },
+        "Broad.Phase.of.Flight": {
+            "MANEUVERING": 22,
+            "TAKEOFF": 24,
+            "UNKNOWN": 2,
+            "LANDING": 7,
+            "APPROACH": 10,
+            "CRUISE": 3,
+            "CLIMB": 3,
+            "GO-AROUND": 3,
+            "STANDING": 1,
+            "OTHER": 1,
+            "DESCENT": 3
+        },
+        "Make": {
+            "piper": 21,
+            "ercoupe": 1,
+            "luscombe": 1,
+            "cessna": 21,
+            "grumman": 1,
+            "beech": 8,
+            "north american": 2,
+            "north wing": 1,
+            "aerostar acft corp of texas": 1,
+            "bae systems": 1,
+            "air tractor inc": 1,
+            "mooney": 3,
+            "aero commander": 1,
+            "sabrena": 1,
+            "raytheon aircraft company": 2,
+            "cirrus design corp.": 1,
+            "rockwell": 1,
+            "cirrus": 1,
+            "hawker beechcraft": 1,
+            "ayres": 1,
+            "remos aircraft gmbh": 1,
+            "grumman acft eng cor-schweizer": 1,
+            "cirrus design corp": 1,
+            "diamond": 1,
+            "nichols rans, inc.": 1,
+            "air creation": 1,
+            "rajhamsa": 1,
+            "wsk pzl mielec": 1
+        },
+        "Month": {
+            "01": 8,
+            "09": 8,
+            "11": 6,
+            "08": 11,
+            "04": 4,
+            "05": 9,
+            "03": 4,
+            "12": 3,
+            "07": 9,
+            "06": 4,
+            "02": 8,
+            "10": 5
+        }
+    },
+    "Arkansas": {
+        "Incidents": 42,
+        "Total.Fatal.Injuries": 42.0,
+        "Total.Serious.Injuries": 22.0,
+        "Total.Minor.Injuries": 9.0,
+        "Total.Uninjured": 5.0,
+        "Weather.Condition": {
+            "VMC": 36,
+            "IMC": 6
+        },
+        "Aircraft.Damage": {
+            "Substantial": 28,
+            "Destroyed": 13,
+            "Minor": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "CRUISE": 5,
+            "TAKEOFF": 13,
+            "MANEUVERING": 15,
+            "APPROACH": 3,
+            "OTHER": 1,
+            "LANDING": 3,
+            "DESCENT": 1,
+            "GO-AROUND": 1
+        },
+        "Make": {
+            "cessna": 11,
+            "stinson": 1,
+            "air tractor": 2,
+            "aeronca": 1,
+            "beech": 4,
+            "air tractor inc": 5,
+            "raytheon aircraft company": 1,
+            "cgs aviation llc": 1,
+            "hughes aero corp": 1,
+            "piper": 6,
+            "alon": 1,
+            "grumman": 3,
+            "rans": 1,
+            "hawker-beechcraft": 1,
+            "aero commander": 1,
+            "grumman-schweizer": 1,
+            "ayres": 1
+        },
+        "Month": {
+            "09": 4,
+            "07": 9,
+            "06": 8,
+            "08": 3,
+            "05": 6,
+            "10": 4,
+            "04": 4,
+            "01": 1,
+            "02": 1,
+            "12": 1,
+            "11": 1
+        }
+    },
+    "California": {
+        "Incidents": 270,
+        "Total.Fatal.Injuries": 304.0,
+        "Total.Serious.Injuries": 150.0,
+        "Total.Minor.Injuries": 49.0,
+        "Total.Uninjured": 59.0,
+        "Weather.Condition": {
+            "IMC": 33,
+            "VMC": 234,
+            "UNK": 3
+        },
+        "Aircraft.Damage": {
+            "Substantial": 201,
+            "Destroyed": 65,
+            "Minor": 4
+        },
+        "Broad.Phase.of.Flight": {
+            "APPROACH": 43,
+            "TAKEOFF": 78,
+            "UNKNOWN": 5,
+            "MANEUVERING": 65,
+            "CRUISE": 12,
+            "LANDING": 19,
+            "DESCENT": 19,
+            "CLIMB": 15,
+            "GO-AROUND": 11,
+            "TAXI": 2,
+            "STANDING": 1
+        },
+        "Make": {
+            "mooney": 17,
+            "beech": 29,
+            "cessna": 86,
+            "piper": 44,
+            "north american": 3,
+            "ryan": 2,
+            "schweizer aircraft corp": 4,
+            "cubcrafters inc": 1,
+            "cirrus design corp": 3,
+            "raytheon aircraft company": 4,
+            "boeing": 2,
+            "rockwell international": 2,
+            "grumman acft eng cor-schweizer": 3,
+            "icon aircraft inc": 1,
+            "nanchang": 1,
+            "appleby": 1,
+            "socata": 2,
+            "challenger": 1,
+            "arion aircraft llc": 1,
+            "flight design gmbh": 1,
+            "aero vodochody": 1,
+            "silvaire": 1,
+            "north american rockwell": 1,
+            "aviat inc": 1,
+            "ryan aeronautical": 3,
+            "short brothers plc": 1,
+            "ayres corporation": 2,
+            "quicksilver enterprises inc": 1,
+            "farthing james w ii": 1,
+            "hawker aircraft ltd": 2,
+            "sonex": 1,
+            "marsh aviation": 1,
+            "cessna aircraft co": 1,
+            "travel air": 1,
+            "luscombe": 2,
+            "american aviation": 3,
+            "airplane factory (pty) ltd the": 1,
+            "champion": 3,
+            "luy wayman": 1,
+            "chicco": 1,
+            "american": 1,
+            "quicksilver mfg": 1,
+            "aeropro cz": 1,
+            "aeronca": 3,
+            "tl ultralight sro": 1,
+            "consolidated aeronautics inc.": 1,
+            "tomei": 1,
+            "eagle": 1,
+            "aero commander": 2,
+            "rans": 1,
+            "czech aircraft works": 1,
+            "luscombe silvaire aircraft co.": 1,
+            "quad city": 1,
+            "taylorcraft": 1,
+            "valentin": 1,
+            "siai-marchetti": 1,
+            "universal": 1,
+            "extra flugzeugproduktions-und": 1,
+            "thrush aircraft, inc.": 1,
+            "moravan": 1,
+            "maule": 1,
+            "beechcraft": 1,
+            "cirrus design corp.": 1,
+            "air tractor": 1,
+            "grumman american": 1,
+            "bellanca": 1,
+            "dassault-breguet": 1,
+            "navion": 1,
+            "aircraft mfg & dev. co. (amd)": 1,
+            "lockheed": 1
+        },
+        "Month": {
+            "03": 23,
+            "01": 20,
+            "10": 19,
+            "09": 22,
+            "08": 29,
+            "06": 24,
+            "05": 21,
+            "02": 22,
+            "11": 21,
+            "07": 28,
+            "04": 27,
+            "12": 14
+        }
+    },
+    "Caquet\u00c3\u00a1": {
+        "Incidents": 1,
+        "Total.Fatal.Injuries": 3.0,
+        "Total.Serious.Injuries": 0.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 1
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "APPROACH": 1
+        },
+        "Make": {
+            "learjet": 1
+        },
+        "Month": {
+            "04": 1
+        }
+    },
+    "Colorado": {
+        "Incidents": 75,
+        "Total.Fatal.Injuries": 111.0,
+        "Total.Serious.Injuries": 36.0,
+        "Total.Minor.Injuries": 8.0,
+        "Total.Uninjured": 26.0,
+        "Weather.Condition": {
+            "VMC": 61,
+            "IMC": 14
+        },
+        "Aircraft.Damage": {
+            "Substantial": 52,
+            "Destroyed": 23
+        },
+        "Broad.Phase.of.Flight": {
+            "UNKNOWN": 2,
+            "APPROACH": 13,
+            "LANDING": 4,
+            "TAKEOFF": 14,
+            "MANEUVERING": 20,
+            "CRUISE": 14,
+            "GO-AROUND": 4,
+            "CLIMB": 1,
+            "DESCENT": 3
+        },
+        "Make": {
+            "piper": 14,
+            "beech": 12,
+            "cessna": 16,
+            "tecnam": 1,
+            "champion": 1,
+            "cirrus design corp": 5,
+            "bellanca": 1,
+            "aero commander": 1,
+            "mooney": 5,
+            "north american/aero classics": 1,
+            "socata": 2,
+            "canadair ltd": 1,
+            "glasair aviation usa llc": 1,
+            "mooney aircraft corp.": 1,
+            "nanchang china": 2,
+            "ferguson aircraft": 1,
+            "pipistrel": 1,
+            "boeing": 1,
+            "fairchild": 1,
+            "gulfstream aerospace corp": 1,
+            "hawker beechcraft": 1,
+            "piper aerostar": 1,
+            "gulfstream american corp": 1,
+            "air tractor": 1,
+            "raytheon aircraft company": 1,
+            "cirrus design corp.": 1
+        },
+        "Month": {
+            "02": 8,
+            "05": 4,
+            "03": 3,
+            "08": 12,
+            "01": 7,
+            "09": 8,
+            "06": 8,
+            "11": 3,
+            "10": 5,
+            "12": 9,
+            "07": 7,
+            "04": 1
+        }
+    },
+    "Connecticut": {
+        "Incidents": 19,
+        "Total.Fatal.Injuries": 25.0,
+        "Total.Serious.Injuries": 22.0,
+        "Total.Minor.Injuries": 2.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 18,
+            "IMC": 1
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 5,
+            "Substantial": 14
+        },
+        "Broad.Phase.of.Flight": {
+            "LANDING": 2,
+            "APPROACH": 8,
+            "CRUISE": 1,
+            "TAKEOFF": 6,
+            "OTHER": 1,
+            "CLIMB": 1
+        },
+        "Make": {
+            "boeing": 1,
+            "piper": 8,
+            "mooney": 1,
+            "cessna": 3,
+            "cirrus design corp": 2,
+            "luscombe": 1,
+            "quicksilver eipper acft inc": 1,
+            "rockwell international": 1,
+            "mooney aircraft corp.": 1
+        },
+        "Month": {
+            "10": 4,
+            "04": 3,
+            "01": 2,
+            "09": 2,
+            "08": 2,
+            "07": 2,
+            "02": 1,
+            "11": 1,
+            "06": 1,
+            "12": 1
+        }
+    },
+    "Delaware": {
+        "Incidents": 4,
+        "Total.Fatal.Injuries": 4.0,
+        "Total.Serious.Injuries": 1.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 3,
+            "IMC": 1
+        },
+        "Aircraft.Damage": {
+            "Substantial": 3,
+            "Destroyed": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 1,
+            "APPROACH": 2,
+            "TAXI": 1
+        },
+        "Make": {
+            "beech": 2,
+            "mooney aircraft corp.": 1,
+            "piper": 1
+        },
+        "Month": {
+            "08": 1,
+            "05": 1,
+            "01": 1,
+            "12": 1
+        }
+    },
+    "Dorado": {
+        "Incidents": 1,
+        "Total.Fatal.Injuries": 0.0,
+        "Total.Serious.Injuries": 1.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 1
+        },
+        "Aircraft.Damage": {
+            "Substantial": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "CRUISE": 1
+        },
+        "Make": {
+            "cessna": 1
+        },
+        "Month": {
+            "08": 1
+        }
+    },
+    "Florida": {
+        "Incidents": 185,
+        "Total.Fatal.Injuries": 229.0,
+        "Total.Serious.Injuries": 106.0,
+        "Total.Minor.Injuries": 43.0,
+        "Total.Uninjured": 15.0,
+        "Weather.Condition": {
+            "VMC": 165,
+            "IMC": 20
+        },
+        "Aircraft.Damage": {
+            "Substantial": 123,
+            "Destroyed": 62
+        },
+        "Broad.Phase.of.Flight": {
+            "APPROACH": 33,
+            "TAKEOFF": 73,
+            "CRUISE": 10,
+            "MANEUVERING": 35,
+            "LANDING": 8,
+            "DESCENT": 10,
+            "GO-AROUND": 9,
+            "CLIMB": 5,
+            "UNKNOWN": 1,
+            "OTHER": 1
+        },
+        "Make": {
+            "mooney": 8,
+            "piper": 52,
+            "grumman": 2,
+            "beech": 16,
+            "higgins john h/williams john d": 1,
+            "champion": 2,
+            "cessna": 49,
+            "stol aircraft corp": 1,
+            "brm aero": 1,
+            "vans": 1,
+            "globe": 1,
+            "quest aircraft company llc": 1,
+            "vans aircraft inc": 1,
+            "smith": 1,
+            "progressive aerodyne inc": 1,
+            "cirrus design corp": 7,
+            "grumman american avn. corp.": 1,
+            "cirrus": 1,
+            "american legend aircraft co": 1,
+            "republic": 1,
+            "zenith": 1,
+            "bedecorp llc": 1,
+            "lanshe aerospace": 1,
+            "bombardier canadair": 1,
+            "christen industries inc": 1,
+            "liberty aerospace incorporated": 1,
+            "cessna aircraft co": 1,
+            "mcnulty john s": 1,
+            "lawson j/bowie r/smith m": 1,
+            "quad city ultralights": 1,
+            "phillips william l": 1,
+            "pilatus aircraft ltd": 1,
+            "ercoupe": 3,
+            "gulfstream": 1,
+            "interplane s r o": 1,
+            "air tractor inc": 1,
+            "tl ultralight sro": 1,
+            "potez-air fouga": 1,
+            "piper aircraft inc": 1,
+            "interstate": 1,
+            "maule": 2,
+            "aero commander": 2,
+            "luscombe": 1,
+            "remos aircraft gmbh": 1,
+            "american general acft corp": 1,
+            "taylorcraft": 1,
+            "temco": 1,
+            "liberty aerospace inc.": 1,
+            "aero vodochody aero. works": 1,
+            "airborne windsports ltd": 1,
+            "mitsubishi": 2
+        },
+        "Month": {
+            "02": 14,
+            "01": 12,
+            "11": 21,
+            "10": 16,
+            "09": 13,
+            "08": 15,
+            "07": 18,
+            "06": 16,
+            "05": 9,
+            "03": 18,
+            "12": 18,
+            "04": 15
+        }
+    },
+    "Gansu": {
+        "Incidents": 1,
+        "Total.Fatal.Injuries": 1.0,
+        "Total.Serious.Injuries": 0.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 1
+        },
+        "Aircraft.Damage": {
+            "Substantial": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "MANEUVERING": 1
+        },
+        "Make": {
+            "yakovlev": 1
+        },
+        "Month": {
+            "05": 1
+        }
+    },
+    "Georgia": {
+        "Incidents": 94,
+        "Total.Fatal.Injuries": 113.0,
+        "Total.Serious.Injuries": 46.0,
+        "Total.Minor.Injuries": 12.0,
+        "Total.Uninjured": 6.0,
+        "Weather.Condition": {
+            "IMC": 11,
+            "VMC": 83
+        },
+        "Aircraft.Damage": {
+            "Substantial": 70,
+            "Destroyed": 23,
+            "Minor": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "CLIMB": 6,
+            "MANEUVERING": 18,
+            "TAKEOFF": 25,
+            "APPROACH": 17,
+            "CRUISE": 13,
+            "STANDING": 1,
+            "UNKNOWN": 2,
+            "DESCENT": 4,
+            "GO-AROUND": 3,
+            "LANDING": 5
+        },
+        "Make": {
+            "cessna": 25,
+            "piper": 21,
+            "taylorcraft": 1,
+            "beech": 17,
+            "aircraft mfg & development co": 1,
+            "nanchang": 2,
+            "diamond aircraft ind inc": 2,
+            "kolb": 1,
+            "luscombe": 3,
+            "dehavilland": 2,
+            "rockwell international": 1,
+            "bellanca": 3,
+            "ryan aeronautical": 1,
+            "raytheon aircraft company": 1,
+            "moyes b/bailey b": 1,
+            "champion": 1,
+            "mooney aircraft corp.": 1,
+            "engineering & research": 1,
+            "globe": 1,
+            "liberty aerospace incorporated": 1,
+            "fuji": 1,
+            "air tractor inc": 1,
+            "quicksilver": 1,
+            "evektor-aerotechnik as": 1,
+            "socata": 1,
+            "grumman": 1,
+            "piper aircraft": 1
+        },
+        "Month": {
+            "02": 9,
+            "01": 5,
+            "10": 15,
+            "05": 8,
+            "12": 7,
+            "11": 5,
+            "08": 7,
+            "09": 13,
+            "03": 9,
+            "07": 10,
+            "06": 3,
+            "04": 3
+        }
+    },
+    "Hawaii": {
+        "Incidents": 8,
+        "Total.Fatal.Injuries": 15.0,
+        "Total.Serious.Injuries": 9.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 6,
+            "IMC": 2
+        },
+        "Aircraft.Damage": {
+            "Substantial": 6,
+            "Destroyed": 2
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 5,
+            "APPROACH": 2,
+            "MANEUVERING": 1
+        },
+        "Make": {
+            "cessna": 4,
+            "beech": 1,
+            "piper": 3
+        },
+        "Month": {
+            "02": 1,
+            "12": 2,
+            "07": 1,
+            "06": 1,
+            "05": 1,
+            "04": 1,
+            "01": 1
+        }
+    },
+    "H\u00c3\u00b6vsg\u00c3\u00b6l": {
+        "Incidents": 1,
+        "Total.Fatal.Injuries": 0.0,
+        "Total.Serious.Injuries": 3.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "IMC": 1
+        },
+        "Aircraft.Damage": {
+            "Substantial": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "CRUISE": 1
+        },
+        "Make": {
+            "piper": 1
+        },
+        "Month": {
+            "11": 1
+        }
+    },
+    "Idaho": {
+        "Incidents": 45,
+        "Total.Fatal.Injuries": 46.0,
+        "Total.Serious.Injuries": 35.0,
+        "Total.Minor.Injuries": 9.0,
+        "Total.Uninjured": 12.0,
+        "Weather.Condition": {
+            "VMC": 44,
+            "IMC": 1
+        },
+        "Aircraft.Damage": {
+            "Substantial": 38,
+            "Destroyed": 7
+        },
+        "Broad.Phase.of.Flight": {
+            "MANEUVERING": 13,
+            "TAKEOFF": 17,
+            "CLIMB": 1,
+            "LANDING": 4,
+            "CRUISE": 2,
+            "APPROACH": 6,
+            "GO-AROUND": 1,
+            "DESCENT": 1
+        },
+        "Make": {
+            "mooney": 3,
+            "beech": 2,
+            "piper": 9,
+            "cessna": 16,
+            "rockwell": 1,
+            "aerostar s a": 1,
+            "aviat": 2,
+            "aero commander": 1,
+            "skykits usa corp": 1,
+            "stinson": 1,
+            "m squared": 1,
+            "american champion aircraft": 1,
+            "smithwick/treidel": 1,
+            "republic": 1,
+            "boeing": 1,
+            "snow": 1,
+            "hawker beechcraft corporation": 1,
+            "skykits": 1
+        },
+        "Month": {
+            "10": 2,
+            "05": 5,
+            "12": 2,
+            "08": 6,
+            "06": 12,
+            "09": 7,
+            "03": 1,
+            "01": 1,
+            "07": 6,
+            "04": 1,
+            "02": 2
+        }
+    },
+    "Illinois": {
+        "Incidents": 45,
+        "Total.Fatal.Injuries": 62.0,
+        "Total.Serious.Injuries": 21.0,
+        "Total.Minor.Injuries": 8.0,
+        "Total.Uninjured": 14.0,
+        "Weather.Condition": {
+            "VMC": 37,
+            "IMC": 8
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 14,
+            "Substantial": 30,
+            "Minor": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "MANEUVERING": 11,
+            "APPROACH": 8,
+            "TAKEOFF": 10,
+            "UNKNOWN": 1,
+            "GO-AROUND": 4,
+            "CRUISE": 5,
+            "DESCENT": 3,
+            "CLIMB": 2,
+            "LANDING": 1
+        },
+        "Make": {
+            "yakovlev": 2,
+            "cessna": 10,
+            "piper": 9,
+            "air tractor": 1,
+            "ercoupe": 1,
+            "beech": 6,
+            "cirrus design corp": 3,
+            "grumman american avn. corp.": 1,
+            "raytheon aircraft company": 1,
+            "evektor-aerotechnik as": 1,
+            "skykits": 1,
+            "wsk pzl mielec": 1,
+            "mooney aircraft corp.": 1,
+            "luscombe": 1,
+            "smith": 1,
+            "gates learjet corp.": 1,
+            "aero commander": 1,
+            "t bird": 1,
+            "engineering and research": 1,
+            "czech aircraft works": 1
+        },
+        "Month": {
+            "05": 4,
+            "03": 1,
+            "01": 4,
+            "08": 7,
+            "07": 5,
+            "06": 4,
+            "12": 5,
+            "04": 3,
+            "10": 2,
+            "09": 4,
+            "11": 4,
+            "02": 2
+        }
+    },
+    "Indiana": {
+        "Incidents": 38,
+        "Total.Fatal.Injuries": 34.0,
+        "Total.Serious.Injuries": 22.0,
+        "Total.Minor.Injuries": 9.0,
+        "Total.Uninjured": 5.0,
+        "Weather.Condition": {
+            "VMC": 34,
+            "IMC": 4
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 15,
+            "Substantial": 23
+        },
+        "Broad.Phase.of.Flight": {
+            "MANEUVERING": 10,
+            "UNKNOWN": 1,
+            "TAKEOFF": 12,
+            "APPROACH": 6,
+            "GO-AROUND": 2,
+            "CLIMB": 3,
+            "LANDING": 2,
+            "DESCENT": 1,
+            "CRUISE": 1
+        },
+        "Make": {
+            "piper": 7,
+            "cessna": 14,
+            "rans": 1,
+            "vans aircraft inc": 1,
+            "temco": 1,
+            "cirrus design corp": 3,
+            "s c aerostar s a": 1,
+            "raytheon aircraft company": 1,
+            "mooney": 2,
+            "air tractor inc": 1,
+            "hawker beechcraft corporation": 1,
+            "jabiru usa sport aircraft llc": 1,
+            "fields mike": 1,
+            "taylorcraft": 1,
+            "beech": 1,
+            "cirrus": 1
+        },
+        "Month": {
+            "10": 2,
+            "07": 7,
+            "05": 3,
+            "02": 3,
+            "12": 2,
+            "11": 1,
+            "06": 4,
+            "04": 4,
+            "01": 3,
+            "08": 3,
+            "03": 4,
+            "09": 2
+        }
+    },
+    "Inner Mongolia": {
+        "Incidents": 4,
+        "Total.Fatal.Injuries": 2.0,
+        "Total.Serious.Injuries": 2.0,
+        "Total.Minor.Injuries": 2.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 3,
+            "IMC": 1
+        },
+        "Aircraft.Damage": {
+            "Substantial": 2,
+            "Destroyed": 2
+        },
+        "Broad.Phase.of.Flight": {
+            "CLIMB": 1,
+            "TAKEOFF": 1,
+            "CRUISE": 1,
+            "APPROACH": 1
+        },
+        "Make": {
+            "waco": 1,
+            "cessna": 2,
+            "beech": 1
+        },
+        "Month": {
+            "06": 1,
+            "11": 2,
+            "09": 1
+        }
+    },
+    "Iowa": {
+        "Incidents": 26,
+        "Total.Fatal.Injuries": 23.0,
+        "Total.Serious.Injuries": 10.0,
+        "Total.Minor.Injuries": 6.0,
+        "Total.Uninjured": 1.0,
+        "Weather.Condition": {
+            "VMC": 23,
+            "IMC": 3
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 5,
+            "Substantial": 20,
+            "Minor": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "MANEUVERING": 11,
+            "TAKEOFF": 3,
+            "LANDING": 1,
+            "DESCENT": 2,
+            "CLIMB": 2,
+            "APPROACH": 6,
+            "GO-AROUND": 1
+        },
+        "Make": {
+            "air tractor": 1,
+            "x-air llc": 1,
+            "cirrus design corp": 1,
+            "flight design gmbh": 1,
+            "piper": 7,
+            "cessna": 7,
+            "beech": 1,
+            "taylorcraft": 2,
+            "air tractor inc": 2,
+            "quicksilver": 1,
+            "fairchild": 1,
+            "socata": 1
+        },
+        "Month": {
+            "08": 6,
+            "12": 3,
+            "07": 4,
+            "04": 1,
+            "09": 2,
+            "10": 2,
+            "11": 1,
+            "06": 5,
+            "02": 1,
+            "01": 1
+        }
+    },
+    "Kansas": {
+        "Incidents": 24,
+        "Total.Fatal.Injuries": 21.0,
+        "Total.Serious.Injuries": 11.0,
+        "Total.Minor.Injuries": 3.0,
+        "Total.Uninjured": 2.0,
+        "Weather.Condition": {
+            "VMC": 23,
+            "IMC": 1
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 9,
+            "Substantial": 15
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 6,
+            "MANEUVERING": 10,
+            "APPROACH": 3,
+            "LANDING": 1,
+            "CLIMB": 3,
+            "GO-AROUND": 1
+        },
+        "Make": {
+            "mooney": 1,
+            "grumman": 1,
+            "beechcraft": 1,
+            "maule": 1,
+            "piper": 2,
+            "north american/aero classics": 1,
+            "aircraft mfg & dvlpmt co": 1,
+            "cessna": 5,
+            "air tractor inc": 2,
+            "mason robert": 1,
+            "ayres corporation": 1,
+            "quicksilver": 1,
+            "dehavilland": 1,
+            "beech": 2,
+            "boeing": 1,
+            "aero commander": 1,
+            "hawker beechcraft corp": 1
+        },
+        "Month": {
+            "12": 1,
+            "08": 6,
+            "06": 3,
+            "04": 5,
+            "07": 5,
+            "03": 1,
+            "01": 1,
+            "10": 1,
+            "05": 1
+        }
+    },
+    "Kentucky": {
+        "Incidents": 31,
+        "Total.Fatal.Injuries": 26.0,
+        "Total.Serious.Injuries": 25.0,
+        "Total.Minor.Injuries": 3.0,
+        "Total.Uninjured": 2.0,
+        "Weather.Condition": {
+            "VMC": 23,
+            "IMC": 8
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 5,
+            "Substantial": 26
+        },
+        "Broad.Phase.of.Flight": {
+            "APPROACH": 9,
+            "UNKNOWN": 1,
+            "MANEUVERING": 4,
+            "LANDING": 4,
+            "TAKEOFF": 7,
+            "CRUISE": 3,
+            "DESCENT": 3
+        },
+        "Make": {
+            "piper": 6,
+            "bellanca": 1,
+            "beech": 8,
+            "kessinger roger l": 1,
+            "gulfstream american corp": 1,
+            "cessna": 9,
+            "diamond aircraft ind inc": 1,
+            "grumman acft eng cor-schweizer": 1,
+            "grumman": 1,
+            "mooney": 1,
+            "taylorcraft": 1
+        },
+        "Month": {
+            "10": 1,
+            "06": 5,
+            "04": 5,
+            "05": 5,
+            "08": 6,
+            "02": 1,
+            "03": 1,
+            "01": 1,
+            "12": 2,
+            "09": 1,
+            "07": 2,
+            "11": 1
+        }
+    },
+    "Lajas": {
+        "Incidents": 1,
+        "Total.Fatal.Injuries": 1.0,
+        "Total.Serious.Injuries": 0.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 1
+        },
+        "Aircraft.Damage": {
+            "Substantial": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "MANEUVERING": 1
+        },
+        "Make": {
+            "carlo robert": 1
+        },
+        "Month": {
+            "11": 1
+        }
+    },
+    "Louisiana": {
+        "Incidents": 33,
+        "Total.Fatal.Injuries": 41.0,
+        "Total.Serious.Injuries": 16.0,
+        "Total.Minor.Injuries": 3.0,
+        "Total.Uninjured": 5.0,
+        "Weather.Condition": {
+            "VMC": 29,
+            "IMC": 4
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 11,
+            "Substantial": 21,
+            "Minor": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "APPROACH": 6,
+            "TAKEOFF": 13,
+            "MANEUVERING": 9,
+            "CLIMB": 1,
+            "GO-AROUND": 1,
+            "LANDING": 2,
+            "CRUISE": 1
+        },
+        "Make": {
+            "cessna": 11,
+            "piper": 4,
+            "pitts": 1,
+            "temco": 1,
+            "champion": 1,
+            "drake": 1,
+            "beech": 3,
+            "air tractor inc": 3,
+            "hawker beechcraft": 1,
+            "pzl mielec": 1,
+            "raytheon aircraft company": 1,
+            "schweizer, n36289": 1,
+            "quicksilver": 1,
+            "schweizer aircraft corp": 1,
+            "grumman": 1,
+            "mooney": 1
+        },
+        "Month": {
+            "02": 4,
+            "12": 3,
+            "08": 4,
+            "11": 2,
+            "07": 4,
+            "04": 3,
+            "10": 2,
+            "06": 4,
+            "05": 1,
+            "01": 2,
+            "09": 2,
+            "03": 2
+        }
+    },
+    "Maine": {
+        "Incidents": 15,
+        "Total.Fatal.Injuries": 18.0,
+        "Total.Serious.Injuries": 4.0,
+        "Total.Minor.Injuries": 1.0,
+        "Total.Uninjured": 4.0,
+        "Weather.Condition": {
+            "VMC": 12,
+            "IMC": 3
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 3,
+            "Substantial": 12
+        },
+        "Broad.Phase.of.Flight": {
+            "MANEUVERING": 3,
+            "TAKEOFF": 6,
+            "APPROACH": 2,
+            "GO-AROUND": 1,
+            "LANDING": 2,
+            "CLIMB": 1
+        },
+        "Make": {
+            "piper": 3,
+            "beech": 1,
+            "culver": 1,
+            "cessna": 7,
+            "taylorcraft": 1,
+            "s.c. aerostar s.a.": 1,
+            "classic aircraft corp.": 1
+        },
+        "Month": {
+            "07": 3,
+            "08": 6,
+            "11": 1,
+            "09": 2,
+            "04": 1,
+            "02": 2
+        }
+    },
+    "Maryland": {
+        "Incidents": 25,
+        "Total.Fatal.Injuries": 27.0,
+        "Total.Serious.Injuries": 17.0,
+        "Total.Minor.Injuries": 3.0,
+        "Total.Uninjured": 6.0,
+        "Weather.Condition": {
+            "IMC": 4,
+            "VMC": 21
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 5,
+            "Substantial": 20
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 9,
+            "APPROACH": 10,
+            "CLIMB": 2,
+            "DESCENT": 2,
+            "MANEUVERING": 2
+        },
+        "Make": {
+            "american aviation": 1,
+            "quicksilver": 1,
+            "beech": 6,
+            "piper": 6,
+            "cessna": 1,
+            "vans": 1,
+            "american": 1,
+            "aerotek": 1,
+            "embraer": 1,
+            "cirrus design corp": 1,
+            "mooney aircraft corp.": 1,
+            "pitcairn": 1,
+            "moyes": 1,
+            "kociemba robert h": 1,
+            "moravan": 1
+        },
+        "Month": {
+            "12": 4,
+            "08": 3,
+            "06": 1,
+            "02": 4,
+            "09": 3,
+            "04": 2,
+            "10": 1,
+            "07": 5,
+            "11": 1,
+            "03": 1
+        }
+    },
+    "Massachusetts": {
+        "Incidents": 29,
+        "Total.Fatal.Injuries": 33.0,
+        "Total.Serious.Injuries": 20.0,
+        "Total.Minor.Injuries": 1.0,
+        "Total.Uninjured": 2.0,
+        "Weather.Condition": {
+            "VMC": 23,
+            "IMC": 6
+        },
+        "Aircraft.Damage": {
+            "Substantial": 19,
+            "Destroyed": 9,
+            "Minor": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 14,
+            "MANEUVERING": 1,
+            "APPROACH": 8,
+            "LANDING": 4,
+            "DESCENT": 1,
+            "STANDING": 1
+        },
+        "Make": {
+            "cessna": 11,
+            "columbia aircraft mfg": 1,
+            "aeronca": 2,
+            "piper": 5,
+            "beech": 3,
+            "mooney": 1,
+            "gulfstream aerospace": 1,
+            "maule": 1,
+            "cirrus design corp": 1,
+            "american champion aircraft": 1,
+            "north american/schwamm": 1,
+            "navion": 1
+        },
+        "Month": {
+            "03": 2,
+            "11": 3,
+            "02": 2,
+            "09": 5,
+            "08": 6,
+            "07": 1,
+            "10": 2,
+            "06": 3,
+            "05": 2,
+            "01": 2,
+            "12": 1
+        }
+    },
+    "Michigan": {
+        "Incidents": 61,
+        "Total.Fatal.Injuries": 59.0,
+        "Total.Serious.Injuries": 41.0,
+        "Total.Minor.Injuries": 3.0,
+        "Total.Uninjured": 3.0,
+        "Weather.Condition": {
+            "IMC": 9,
+            "VMC": 52
+        },
+        "Aircraft.Damage": {
+            "Substantial": 44,
+            "Destroyed": 17
+        },
+        "Broad.Phase.of.Flight": {
+            "APPROACH": 17,
+            "TAKEOFF": 20,
+            "MANEUVERING": 13,
+            "LANDING": 3,
+            "GO-AROUND": 1,
+            "DESCENT": 3,
+            "CLIMB": 1,
+            "UNKNOWN": 2,
+            "CRUISE": 1
+        },
+        "Make": {
+            "socata": 2,
+            "icon": 1,
+            "piper": 12,
+            "cessna": 16,
+            "beech": 5,
+            "air tractor": 1,
+            "best off": 1,
+            "navion": 1,
+            "textron aviation inc": 1,
+            "aeronca": 5,
+            "nanchang": 1,
+            "mooney": 1,
+            "taylorcraft": 3,
+            "north american": 2,
+            "aeros ltd/skyranger aircraft": 1,
+            "remos acft gmbh flugzeugbau": 1,
+            "aero commander": 1,
+            "american champion aircraft": 1,
+            "ca tecnam srl": 1,
+            "czech aircraft works spol sro": 1,
+            "commander aircraft company": 1,
+            "ryan": 1,
+            "luscombe": 1
+        },
+        "Month": {
+            "10": 6,
+            "07": 12,
+            "06": 6,
+            "12": 4,
+            "09": 8,
+            "08": 7,
+            "05": 4,
+            "01": 5,
+            "11": 4,
+            "04": 4,
+            "03": 1
+        }
+    },
+    "Minnesota": {
+        "Incidents": 29,
+        "Total.Fatal.Injuries": 31.0,
+        "Total.Serious.Injuries": 13.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 6.0,
+        "Weather.Condition": {
+            "VMC": 24,
+            "IMC": 5
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 9,
+            "Substantial": 20
+        },
+        "Broad.Phase.of.Flight": {
+            "MANEUVERING": 8,
+            "TAKEOFF": 7,
+            "CRUISE": 5,
+            "APPROACH": 1,
+            "LANDING": 2,
+            "UNKNOWN": 1,
+            "CLIMB": 1,
+            "DESCENT": 1,
+            "GO-AROUND": 3
+        },
+        "Make": {
+            "beech": 5,
+            "piper": 7,
+            "mooney": 2,
+            "north american": 2,
+            "aeronca": 2,
+            "cessna": 4,
+            "unregistered": 1,
+            "luscombe": 1,
+            "champion": 1,
+            "cirrus design corporation": 1,
+            "evektor-aerotechnik as": 2,
+            "cirrus design corp.": 1
+        },
+        "Month": {
+            "02": 3,
+            "10": 5,
+            "05": 2,
+            "08": 3,
+            "07": 3,
+            "09": 2,
+            "06": 4,
+            "03": 3,
+            "11": 2,
+            "12": 1,
+            "04": 1
+        }
+    },
+    "Mississippi": {
+        "Incidents": 30,
+        "Total.Fatal.Injuries": 30.0,
+        "Total.Serious.Injuries": 12.0,
+        "Total.Minor.Injuries": 7.0,
+        "Total.Uninjured": 1.0,
+        "Weather.Condition": {
+            "VMC": 26,
+            "IMC": 4
+        },
+        "Aircraft.Damage": {
+            "Substantial": 26,
+            "Destroyed": 4
+        },
+        "Broad.Phase.of.Flight": {
+            "CRUISE": 2,
+            "GO-AROUND": 3,
+            "TAKEOFF": 9,
+            "MANEUVERING": 12,
+            "APPROACH": 2,
+            "STANDING": 1,
+            "LANDING": 1
+        },
+        "Make": {
+            "cessna": 6,
+            "beech": 2,
+            "champion": 1,
+            "air tractor inc": 6,
+            "air tractor": 2,
+            "mooney": 1,
+            "piper aircraft inc": 1,
+            "bellanca": 2,
+            "quicksilver": 1,
+            "piper": 3,
+            "aerostar aircraft corporation": 1,
+            "diamond aircraft ind inc": 1,
+            "christen industries inc": 1,
+            "ayres": 1,
+            "curtiss-wright": 1
+        },
+        "Month": {
+            "12": 3,
+            "07": 8,
+            "05": 2,
+            "06": 2,
+            "02": 2,
+            "08": 4,
+            "03": 4,
+            "11": 1,
+            "01": 3,
+            "04": 1
+        }
+    },
+    "Missouri": {
+        "Incidents": 44,
+        "Total.Fatal.Injuries": 54.0,
+        "Total.Serious.Injuries": 29.0,
+        "Total.Minor.Injuries": 6.0,
+        "Total.Uninjured": 8.0,
+        "Weather.Condition": {
+            "VMC": 38,
+            "IMC": 6
+        },
+        "Aircraft.Damage": {
+            "Substantial": 30,
+            "Destroyed": 13,
+            "Minor": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "GO-AROUND": 1,
+            "LANDING": 4,
+            "APPROACH": 8,
+            "TAXI": 1,
+            "TAKEOFF": 11,
+            "MANEUVERING": 15,
+            "CLIMB": 2,
+            "DESCENT": 1,
+            "CRUISE": 1
+        },
+        "Make": {
+            "cessna": 12,
+            "raytheon aircraft company": 1,
+            "piper": 11,
+            "bellanca": 2,
+            "beech": 4,
+            "air tractor inc": 3,
+            "north american": 1,
+            "new piper aircraft inc": 1,
+            "cirrus design corp": 2,
+            "jdt mini-max llc": 1,
+            "grumman acft eng cor-schweizer": 1,
+            "grumman american aviation corp": 1,
+            "air tractor": 1,
+            "grumman": 1,
+            "wrb associates, llc.": 1,
+            "de havilland": 1
+        },
+        "Month": {
+            "09": 8,
+            "12": 4,
+            "06": 6,
+            "04": 4,
+            "01": 1,
+            "10": 5,
+            "07": 4,
+            "03": 2,
+            "11": 5,
+            "08": 2,
+            "05": 2,
+            "02": 1
+        }
+    },
+    "Montana": {
+        "Incidents": 40,
+        "Total.Fatal.Injuries": 57.0,
+        "Total.Serious.Injuries": 21.0,
+        "Total.Minor.Injuries": 4.0,
+        "Total.Uninjured": 5.0,
+        "Weather.Condition": {
+            "VMC": 33,
+            "IMC": 7
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 13,
+            "Substantial": 27
+        },
+        "Broad.Phase.of.Flight": {
+            "CRUISE": 5,
+            "MANEUVERING": 20,
+            "APPROACH": 6,
+            "LANDING": 3,
+            "TAKEOFF": 5,
+            "GO-AROUND": 1
+        },
+        "Make": {
+            "cessna": 18,
+            "beech": 5,
+            "piper": 5,
+            "bucker jungmeister": 1,
+            "champion": 1,
+            "grumman": 1,
+            "north wing": 1,
+            "aero commander": 1,
+            "bellanca": 1,
+            "air tractor inc": 2,
+            "maule": 2,
+            "pilatus": 1,
+            "aviat": 1
+        },
+        "Month": {
+            "01": 2,
+            "08": 7,
+            "07": 4,
+            "10": 3,
+            "12": 4,
+            "11": 2,
+            "09": 1,
+            "06": 8,
+            "04": 2,
+            "03": 4,
+            "05": 3
+        }
+    },
+    "Morovis": {
+        "Incidents": 1,
+        "Total.Fatal.Injuries": 0.0,
+        "Total.Serious.Injuries": 1.0,
+        "Total.Minor.Injuries": 4.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 1
+        },
+        "Aircraft.Damage": {
+            "Substantial": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 1
+        },
+        "Make": {
+            "cessna": 1
+        },
+        "Month": {
+            "06": 1
+        }
+    },
+    "Nebraska": {
+        "Incidents": 27,
+        "Total.Fatal.Injuries": 26.0,
+        "Total.Serious.Injuries": 13.0,
+        "Total.Minor.Injuries": 5.0,
+        "Total.Uninjured": 5.0,
+        "Weather.Condition": {
+            "VMC": 24,
+            "IMC": 2,
+            "UNK": 1
+        },
+        "Aircraft.Damage": {
+            "Substantial": 20,
+            "Destroyed": 7
+        },
+        "Broad.Phase.of.Flight": {
+            "GO-AROUND": 1,
+            "APPROACH": 5,
+            "TAKEOFF": 7,
+            "MANEUVERING": 9,
+            "DESCENT": 1,
+            "CLIMB": 1,
+            "LANDING": 2,
+            "TAXI": 1
+        },
+        "Make": {
+            "cirrus": 1,
+            "beech": 5,
+            "cessna": 6,
+            "champion": 1,
+            "mitsubishi": 1,
+            "piper": 3,
+            "air tractor": 2,
+            "aeronca": 1,
+            "raytheon aircraft company": 1,
+            "ercoupe": 1,
+            "harold h. smith": 1,
+            "aero commander": 1,
+            "ayres corp": 1,
+            "luscombe": 1,
+            "cirrus design corp.": 1
+        },
+        "Month": {
+            "09": 4,
+            "07": 6,
+            "06": 3,
+            "05": 3,
+            "03": 2,
+            "01": 2,
+            "08": 2,
+            "04": 1,
+            "11": 2,
+            "10": 2
+        }
+    },
+    "Nevada": {
+        "Incidents": 38,
+        "Total.Fatal.Injuries": 69.0,
+        "Total.Serious.Injuries": 81.0,
+        "Total.Minor.Injuries": 2.0,
+        "Total.Uninjured": 4.0,
+        "Weather.Condition": {
+            "VMC": 34,
+            "UNK": 2,
+            "IMC": 2
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 18,
+            "Substantial": 20
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 8,
+            "MANEUVERING": 7,
+            "APPROACH": 6,
+            "DESCENT": 6,
+            "CRUISE": 4,
+            "STANDING": 1,
+            "CLIMB": 4,
+            "LANDING": 1,
+            "UNKNOWN": 1
+        },
+        "Make": {
+            "grumman": 1,
+            "beech": 7,
+            "cirrus": 1,
+            "commander": 1,
+            "piper": 10,
+            "bellanca": 1,
+            "extra flugzeugproduktions-und": 1,
+            "rockwell commander": 1,
+            "cessna": 7,
+            "mikoyan gurevich": 1,
+            "urban air sro": 1,
+            "aero vodochody": 1,
+            "israel aircraft industries": 1,
+            "north american/aero classics": 1,
+            "air tractor": 1,
+            "lockheed": 1,
+            "hawker": 1
+        },
+        "Month": {
+            "11": 4,
+            "09": 7,
+            "02": 3,
+            "01": 2,
+            "03": 4,
+            "08": 6,
+            "04": 2,
+            "07": 1,
+            "05": 5,
+            "06": 2,
+            "10": 2
+        }
+    },
+    "New Hampshire": {
+        "Incidents": 11,
+        "Total.Fatal.Injuries": 13.0,
+        "Total.Serious.Injuries": 8.0,
+        "Total.Minor.Injuries": 1.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 11
+        },
+        "Aircraft.Damage": {
+            "Substantial": 10,
+            "Destroyed": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "MANEUVERING": 1,
+            "TAKEOFF": 7,
+            "CRUISE": 1,
+            "APPROACH": 1,
+            "GO-AROUND": 1
+        },
+        "Make": {
+            "american champion aircraft": 1,
+            "piper": 3,
+            "cessna": 4,
+            "beech": 1,
+            "aero at sp zoo": 1,
+            "beechcraft": 1
+        },
+        "Month": {
+            "05": 2,
+            "06": 3,
+            "09": 2,
+            "10": 2,
+            "02": 1,
+            "08": 1
+        }
+    },
+    "New Jersey": {
+        "Incidents": 45,
+        "Total.Fatal.Injuries": 38.0,
+        "Total.Serious.Injuries": 36.0,
+        "Total.Minor.Injuries": 7.0,
+        "Total.Uninjured": 3.0,
+        "Weather.Condition": {
+            "IMC": 4,
+            "VMC": 41
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 12,
+            "Substantial": 33
+        },
+        "Broad.Phase.of.Flight": {
+            "APPROACH": 8,
+            "TAKEOFF": 15,
+            "CLIMB": 2,
+            "MANEUVERING": 5,
+            "STANDING": 2,
+            "CRUISE": 2,
+            "UNKNOWN": 1,
+            "GO-AROUND": 5,
+            "LANDING": 4,
+            "DESCENT": 1
+        },
+        "Make": {
+            "cessna": 13,
+            "mooney": 4,
+            "raytheon aircraft company": 2,
+            "piper": 7,
+            "bellanca": 2,
+            "learjet": 1,
+            "hawker beechcraft corp": 1,
+            "north american": 1,
+            "ercoupe": 1,
+            "aerofab inc.": 1,
+            "navion": 1,
+            "diamond aircraft ind inc": 1,
+            "beech": 4,
+            "american champion aircraft": 1,
+            "socata": 1,
+            "aero vodochody": 1,
+            "cirrus design corp": 1,
+            "grumman": 1,
+            "aero vodochody aero. works": 1
+        },
+        "Month": {
+            "10": 3,
+            "11": 3,
+            "06": 3,
+            "05": 6,
+            "04": 4,
+            "08": 6,
+            "02": 4,
+            "01": 1,
+            "09": 5,
+            "03": 3,
+            "12": 5,
+            "07": 2
+        }
+    },
+    "New Mexico": {
+        "Incidents": 42,
+        "Total.Fatal.Injuries": 61.0,
+        "Total.Serious.Injuries": 19.0,
+        "Total.Minor.Injuries": 8.0,
+        "Total.Uninjured": 2.0,
+        "Weather.Condition": {
+            "VMC": 38,
+            "IMC": 4
+        },
+        "Aircraft.Damage": {
+            "Substantial": 29,
+            "Destroyed": 12,
+            "Minor": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 12,
+            "CLIMB": 2,
+            "CRUISE": 5,
+            "UNKNOWN": 1,
+            "DESCENT": 2,
+            "MANEUVERING": 7,
+            "GO-AROUND": 2,
+            "LANDING": 3,
+            "APPROACH": 8
+        },
+        "Make": {
+            "piper": 4,
+            "american aviation": 1,
+            "beech": 4,
+            "mooney": 2,
+            "cessna": 16,
+            "grumman acft eng cor-schweizer": 1,
+            "cirrus design corp": 1,
+            "north american": 1,
+            "aeros ltd": 1,
+            "cub crafters": 1,
+            "raytheon aircraft company": 1,
+            "aviat aircraft inc": 1,
+            "flight design gmbh": 1,
+            "gulfstream": 1,
+            "american": 1,
+            "grumman american avn. corp.": 1,
+            "maule": 1,
+            "pilatus": 1,
+            "liberty aerospace inc.": 1,
+            "taylorcraft": 1
+        },
+        "Month": {
+            "10": 5,
+            "09": 3,
+            "05": 4,
+            "11": 4,
+            "06": 6,
+            "08": 6,
+            "03": 3,
+            "07": 4,
+            "12": 5,
+            "02": 1,
+            "04": 1
+        }
+    },
+    "New York": {
+        "Incidents": 61,
+        "Total.Fatal.Injuries": 58.0,
+        "Total.Serious.Injuries": 47.0,
+        "Total.Minor.Injuries": 19.0,
+        "Total.Uninjured": 7.0,
+        "Weather.Condition": {
+            "VMC": 54,
+            "IMC": 7
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 13,
+            "Substantial": 48
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 30,
+            "CRUISE": 4,
+            "APPROACH": 10,
+            "GO-AROUND": 2,
+            "MANEUVERING": 7,
+            "LANDING": 4,
+            "CLIMB": 1,
+            "DESCENT": 3
+        },
+        "Make": {
+            "cessna": 16,
+            "piper": 10,
+            "trella": 1,
+            "north american": 1,
+            "aeronca": 4,
+            "luscombe": 1,
+            "ryan": 1,
+            "beech": 7,
+            "cessna aircraft co": 1,
+            "flight design gmbh": 1,
+            "columbia aircraft mfg": 1,
+            "fpna llc": 1,
+            "grumman": 1,
+            "mooney": 4,
+            "socata": 1,
+            "ryan aeronautical": 1,
+            "diamond aircraft ind inc": 1,
+            "british aircraft corp": 1,
+            "siai-marchetti": 1,
+            "maxair": 1,
+            "czech aircraft works spol sro": 1,
+            "de havilland": 1,
+            "aerofab": 1,
+            "cirrus design corp": 1,
+            "taylorcraft": 1
+        },
+        "Month": {
+            "08": 8,
+            "07": 12,
+            "06": 11,
+            "04": 8,
+            "05": 6,
+            "02": 2,
+            "11": 6,
+            "09": 4,
+            "12": 1,
+            "10": 2,
+            "03": 1
+        }
+    },
+    "North Carolina": {
+        "Incidents": 69,
+        "Total.Fatal.Injuries": 62.0,
+        "Total.Serious.Injuries": 43.0,
+        "Total.Minor.Injuries": 16.0,
+        "Total.Uninjured": 18.0,
+        "Weather.Condition": {
+            "VMC": 53,
+            "IMC": 16
+        },
+        "Aircraft.Damage": {
+            "Substantial": 51,
+            "Destroyed": 16,
+            "Minor": 2
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 19,
+            "APPROACH": 21,
+            "LANDING": 6,
+            "MANEUVERING": 8,
+            "CRUISE": 5,
+            "CLIMB": 2,
+            "DESCENT": 4,
+            "STANDING": 1,
+            "GO-AROUND": 3
+        },
+        "Make": {
+            "cessna": 12,
+            "piper": 13,
+            "vans": 1,
+            "fantasy air": 1,
+            "beech": 13,
+            "barrows": 1,
+            "shell john": 1,
+            "culver": 1,
+            "wsk pzl mielec": 1,
+            "phantom aeronautics": 1,
+            "dehavilland": 1,
+            "czech sport aircraft as": 1,
+            "czech sport aircraft a s": 1,
+            "champion": 1,
+            "fantasy air sro": 1,
+            "focke-wulf": 1,
+            "pilatus": 1,
+            "socata": 1,
+            "cessna aircraft co": 1,
+            "mooney airplane co inc": 1,
+            "aviat inc": 1,
+            "taylorcraft": 1,
+            "navion": 1,
+            "kolb aircraft inc": 1,
+            "cirrus": 2,
+            "mooney": 1,
+            "ayres corporation": 1,
+            "moses tim c": 1,
+            "airborne": 1,
+            "raytheon aircraft company": 1,
+            "north american": 1,
+            "grumman": 1,
+            "cirrus design corp.": 1
+        },
+        "Month": {
+            "02": 6,
+            "10": 10,
+            "09": 6,
+            "08": 3,
+            "06": 10,
+            "04": 3,
+            "03": 7,
+            "07": 8,
+            "12": 4,
+            "11": 3,
+            "01": 4,
+            "05": 5
+        }
+    },
+    "North Dakota": {
+        "Incidents": 19,
+        "Total.Fatal.Injuries": 11.0,
+        "Total.Serious.Injuries": 14.0,
+        "Total.Minor.Injuries": 2.0,
+        "Total.Uninjured": 1.0,
+        "Weather.Condition": {
+            "VMC": 18,
+            "IMC": 1
+        },
+        "Aircraft.Damage": {
+            "Substantial": 16,
+            "Destroyed": 3
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 5,
+            "MANEUVERING": 10,
+            "APPROACH": 1,
+            "LANDING": 1,
+            "GO-AROUND": 1,
+            "DESCENT": 1
+        },
+        "Make": {
+            "cessna": 7,
+            "beech": 3,
+            "air tractor": 2,
+            "piper": 2,
+            "air tractor inc": 2,
+            "air tractor, inc.": 1,
+            "champion": 1,
+            "rockwell": 1
+        },
+        "Month": {
+            "09": 1,
+            "08": 4,
+            "07": 4,
+            "11": 1,
+            "06": 4,
+            "12": 1,
+            "04": 2,
+            "05": 1,
+            "02": 1
+        }
+    },
+    "Ohio": {
+        "Incidents": 59,
+        "Total.Fatal.Injuries": 69.0,
+        "Total.Serious.Injuries": 25.0,
+        "Total.Minor.Injuries": 12.0,
+        "Total.Uninjured": 5.0,
+        "Weather.Condition": {
+            "IMC": 10,
+            "VMC": 49
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 18,
+            "Substantial": 39,
+            "Minor": 2
+        },
+        "Broad.Phase.of.Flight": {
+            "CRUISE": 5,
+            "DESCENT": 3,
+            "TAKEOFF": 16,
+            "APPROACH": 11,
+            "STANDING": 3,
+            "MANEUVERING": 10,
+            "CLIMB": 2,
+            "GO-AROUND": 6,
+            "TAXI": 1,
+            "LANDING": 2
+        },
+        "Make": {
+            "beech": 5,
+            "piper": 12,
+            "luscombe": 2,
+            "flightstar": 1,
+            "grumman american avn. corp.": 1,
+            "cessna": 13,
+            "diamond aircraft ind inc": 1,
+            "aeronca": 1,
+            "varga aircraft corp.": 1,
+            "cirrus design corp": 5,
+            "cub crafters": 1,
+            "franke roland": 1,
+            "dehavilland": 1,
+            "bellanca": 1,
+            "boeing-stearman": 1,
+            "dean leslie n": 1,
+            "mooney": 1,
+            "central ohio dragonfly club": 1,
+            "chamberlain gerald": 1,
+            "aero sp z o o": 1,
+            "mitsubishi": 1,
+            "fisher michael h": 1,
+            "flight design gmbh": 1,
+            "convair": 1,
+            "helton": 1,
+            "boeing": 1,
+            "hawker beechcraft corp.": 1
+        },
+        "Month": {
+            "06": 12,
+            "05": 4,
+            "03": 3,
+            "08": 6,
+            "07": 7,
+            "10": 2,
+            "12": 5,
+            "09": 4,
+            "04": 9,
+            "01": 3,
+            "11": 3,
+            "02": 1
+        }
+    },
+    "Oklahoma": {
+        "Incidents": 50,
+        "Total.Fatal.Injuries": 59.0,
+        "Total.Serious.Injuries": 29.0,
+        "Total.Minor.Injuries": 13.0,
+        "Total.Uninjured": 6.0,
+        "Weather.Condition": {
+            "VMC": 44,
+            "IMC": 6
+        },
+        "Aircraft.Damage": {
+            "Substantial": 33,
+            "Destroyed": 17
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 9,
+            "CRUISE": 4,
+            "UNKNOWN": 1,
+            "MANEUVERING": 20,
+            "APPROACH": 6,
+            "CLIMB": 4,
+            "LANDING": 4,
+            "DESCENT": 2
+        },
+        "Make": {
+            "cessna": 20,
+            "beech": 6,
+            "extra": 1,
+            "air tractor inc": 2,
+            "ayres corporation": 1,
+            "piper": 11,
+            "aero commander": 1,
+            "bellanca": 1,
+            "mitsubishi": 1,
+            "mooney": 2,
+            "maule": 1,
+            "pitts aerobatics": 1,
+            "cirrus design corp": 1,
+            "grumman": 1
+        },
+        "Month": {
+            "08": 3,
+            "11": 7,
+            "06": 7,
+            "05": 4,
+            "01": 3,
+            "04": 4,
+            "03": 3,
+            "10": 4,
+            "09": 4,
+            "07": 5,
+            "12": 4,
+            "02": 2
+        }
+    },
+    "Ontario": {
+        "Incidents": 1,
+        "Total.Fatal.Injuries": 0.0,
+        "Total.Serious.Injuries": 1.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 1
+        },
+        "Aircraft.Damage": {
+            "Substantial": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "STANDING": 1
+        },
+        "Make": {
+            "piper": 1
+        },
+        "Month": {
+            "07": 1
+        }
+    },
+    "Oregon": {
+        "Incidents": 40,
+        "Total.Fatal.Injuries": 47.0,
+        "Total.Serious.Injuries": 20.0,
+        "Total.Minor.Injuries": 3.0,
+        "Total.Uninjured": 3.0,
+        "Weather.Condition": {
+            "VMC": 32,
+            "IMC": 8
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 11,
+            "Substantial": 29
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 9,
+            "GO-AROUND": 2,
+            "APPROACH": 6,
+            "DESCENT": 3,
+            "LANDING": 6,
+            "CRUISE": 2,
+            "MANEUVERING": 10,
+            "STANDING": 1,
+            "CLIMB": 1
+        },
+        "Make": {
+            "piper": 11,
+            "cessna": 10,
+            "maule": 1,
+            "mooney": 2,
+            "yakovlev": 1,
+            "cirrus design corp": 1,
+            "champion": 3,
+            "north american": 1,
+            "silvaire": 1,
+            "bellanca": 1,
+            "grumman american avn. corp.": 1,
+            "extra": 1,
+            "gulfstream american corp": 1,
+            "beechcraft corporation": 1,
+            "beech": 1,
+            "diamond": 1,
+            "lancair": 1,
+            "quicksilver manufacturing": 1
+        },
+        "Month": {
+            "03": 4,
+            "08": 7,
+            "06": 5,
+            "02": 2,
+            "04": 6,
+            "10": 4,
+            "05": 5,
+            "09": 3,
+            "07": 2,
+            "11": 1,
+            "01": 1
+        }
+    },
+    "Pennsylvania": {
+        "Incidents": 52,
+        "Total.Fatal.Injuries": 48.0,
+        "Total.Serious.Injuries": 37.0,
+        "Total.Minor.Injuries": 5.0,
+        "Total.Uninjured": 3.0,
+        "Weather.Condition": {
+            "IMC": 8,
+            "VMC": 44
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 11,
+            "Substantial": 40,
+            "Minor": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 20,
+            "MANEUVERING": 7,
+            "APPROACH": 14,
+            "GO-AROUND": 3,
+            "LANDING": 5,
+            "STANDING": 1,
+            "CRUISE": 2
+        },
+        "Make": {
+            "beech": 6,
+            "cessna": 11,
+            "stinson": 2,
+            "cirrus design corp": 1,
+            "piper": 12,
+            "aircraft mfg & dvlpmt co": 1,
+            "morrisey": 1,
+            "slip stream": 1,
+            "howard aircraft": 1,
+            "yakovlev": 1,
+            "aeronca": 1,
+            "mooney": 3,
+            "barger jerry l": 1,
+            "siler ronald e": 1,
+            "diamond aircraft ind inc": 1,
+            "thompson david": 1,
+            "ayres corporation": 1,
+            "grumman american": 2,
+            "bellanca": 1,
+            "boeing stearman": 1,
+            "socata": 1,
+            "champion": 1
+        },
+        "Month": {
+            "08": 6,
+            "05": 12,
+            "09": 5,
+            "04": 2,
+            "11": 1,
+            "07": 8,
+            "10": 5,
+            "03": 4,
+            "12": 4,
+            "06": 2,
+            "01": 2,
+            "02": 1
+        }
+    },
+    "Qinghai": {
+        "Incidents": 6,
+        "Total.Fatal.Injuries": 9.0,
+        "Total.Serious.Injuries": 2.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 6
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 3,
+            "Substantial": 3
+        },
+        "Broad.Phase.of.Flight": {
+            "MANEUVERING": 1,
+            "CRUISE": 1,
+            "TAKEOFF": 3,
+            "DESCENT": 1
+        },
+        "Make": {
+            "bellanca": 1,
+            "columbia aircraft mfg": 1,
+            "ercoupe": 1,
+            "beech": 1,
+            "mooney": 1,
+            "piper": 1
+        },
+        "Month": {
+            "01": 2,
+            "04": 1,
+            "11": 1,
+            "08": 1,
+            "07": 1
+        }
+    },
+    "Rhode Island": {
+        "Incidents": 3,
+        "Total.Fatal.Injuries": 4.0,
+        "Total.Serious.Injuries": 1.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 4.0,
+        "Weather.Condition": {
+            "VMC": 3
+        },
+        "Aircraft.Damage": {
+            "Substantial": 3
+        },
+        "Broad.Phase.of.Flight": {
+            "APPROACH": 1,
+            "LANDING": 1,
+            "TAKEOFF": 1
+        },
+        "Make": {
+            "piper": 3
+        },
+        "Month": {
+            "11": 1,
+            "08": 1,
+            "07": 1
+        }
+    },
+    "Saint Croix Island": {
+        "Incidents": 2,
+        "Total.Fatal.Injuries": 5.0,
+        "Total.Serious.Injuries": 2.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 2
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 2
+        },
+        "Broad.Phase.of.Flight": {
+            "APPROACH": 1,
+            "LANDING": 1
+        },
+        "Make": {
+            "beech": 1,
+            "diamond": 1
+        },
+        "Month": {
+            "12": 1,
+            "08": 1
+        }
+    },
+    "San Juan": {
+        "Incidents": 2,
+        "Total.Fatal.Injuries": 2.0,
+        "Total.Serious.Injuries": 1.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 2
+        },
+        "Aircraft.Damage": {
+            "Substantial": 2
+        },
+        "Broad.Phase.of.Flight": {
+            "APPROACH": 2
+        },
+        "Make": {
+            "cessna": 2
+        },
+        "Month": {
+            "10": 1,
+            "07": 1
+        }
+    },
+    "Sonora": {
+        "Incidents": 1,
+        "Total.Fatal.Injuries": 2.0,
+        "Total.Serious.Injuries": 0.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 1
+        },
+        "Aircraft.Damage": {
+            "Substantial": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 1
+        },
+        "Make": {
+            "mooney": 1
+        },
+        "Month": {
+            "07": 1
+        }
+    },
+    "South Carolina": {
+        "Incidents": 26,
+        "Total.Fatal.Injuries": 35.0,
+        "Total.Serious.Injuries": 12.0,
+        "Total.Minor.Injuries": 1.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 23,
+            "IMC": 3
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 7,
+            "Substantial": 19
+        },
+        "Broad.Phase.of.Flight": {
+            "MANEUVERING": 6,
+            "DESCENT": 1,
+            "CLIMB": 1,
+            "TAKEOFF": 7,
+            "APPROACH": 4,
+            "GO-AROUND": 2,
+            "CRUISE": 4,
+            "LANDING": 1
+        },
+        "Make": {
+            "cessna": 9,
+            "piper": 6,
+            "beech": 1,
+            "folland aircraft co ltd": 1,
+            "rockwell international": 1,
+            "globe": 1,
+            "cirrus design corp": 2,
+            "stinson": 1,
+            "hawker beechcraft corporation": 1,
+            "cirrus": 1,
+            "grumman": 1,
+            "aeronca": 1
+        },
+        "Month": {
+            "10": 7,
+            "07": 4,
+            "08": 3,
+            "11": 3,
+            "06": 2,
+            "04": 2,
+            "02": 2,
+            "01": 2,
+            "09": 1
+        }
+    },
+    "South Dakota": {
+        "Incidents": 21,
+        "Total.Fatal.Injuries": 32.0,
+        "Total.Serious.Injuries": 8.0,
+        "Total.Minor.Injuries": 3.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "IMC": 6,
+            "VMC": 15
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 6,
+            "Substantial": 15
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 3,
+            "UNKNOWN": 3,
+            "MANEUVERING": 10,
+            "APPROACH": 1,
+            "CRUISE": 2,
+            "GO-AROUND": 2
+        },
+        "Make": {
+            "pilatus": 1,
+            "cessna": 6,
+            "piper": 6,
+            "beech": 1,
+            "bellanca": 2,
+            "quicksilver enterprises inc": 1,
+            "weatherly aviation co inc": 1,
+            "ayres corporation": 1,
+            "american champion aircraft": 1,
+            "aviat": 1
+        },
+        "Month": {
+            "11": 3,
+            "10": 1,
+            "09": 1,
+            "01": 2,
+            "12": 1,
+            "03": 1,
+            "02": 1,
+            "06": 4,
+            "04": 1,
+            "05": 3,
+            "08": 1,
+            "07": 2
+        }
+    },
+    "Tennessee": {
+        "Incidents": 52,
+        "Total.Fatal.Injuries": 50.0,
+        "Total.Serious.Injuries": 34.0,
+        "Total.Minor.Injuries": 14.0,
+        "Total.Uninjured": 4.0,
+        "Weather.Condition": {
+            "VMC": 41,
+            "IMC": 11
+        },
+        "Aircraft.Damage": {
+            "Substantial": 38,
+            "Destroyed": 14
+        },
+        "Broad.Phase.of.Flight": {
+            "MANEUVERING": 7,
+            "TAKEOFF": 12,
+            "GO-AROUND": 5,
+            "APPROACH": 7,
+            "LANDING": 9,
+            "DESCENT": 4,
+            "CRUISE": 3,
+            "STANDING": 1,
+            "CLIMB": 2,
+            "UNKNOWN": 1,
+            "TAXI": 1
+        },
+        "Make": {
+            "beech": 8,
+            "piper": 12,
+            "grumman": 1,
+            "maule": 2,
+            "cessna": 11,
+            "american aviation": 1,
+            "mooney": 5,
+            "columbia aircraft mfg": 1,
+            "aero vodochody": 1,
+            "meuer gary d": 1,
+            "air tractor inc": 1,
+            "gulfstream am corp comm div": 1,
+            "durfee fred": 1,
+            "champion": 1,
+            "luscombe": 1,
+            "diamond": 1,
+            "bellanca": 1,
+            "raytheon aircraft company": 1,
+            "taylorcraft": 1
+        },
+        "Month": {
+            "10": 9,
+            "12": 5,
+            "11": 3,
+            "08": 5,
+            "01": 5,
+            "06": 7,
+            "05": 5,
+            "09": 3,
+            "04": 4,
+            "02": 2,
+            "07": 2,
+            "03": 2
+        }
+    },
+    "Texas": {
+        "Incidents": 210,
+        "Total.Fatal.Injuries": 202.0,
+        "Total.Serious.Injuries": 148.0,
+        "Total.Minor.Injuries": 47.0,
+        "Total.Uninjured": 31.0,
+        "Weather.Condition": {
+            "VMC": 180,
+            "IMC": 30
+        },
+        "Aircraft.Damage": {
+            "Substantial": 134,
+            "Destroyed": 72,
+            "Minor": 4
+        },
+        "Broad.Phase.of.Flight": {
+            "STANDING": 4,
+            "TAKEOFF": 60,
+            "UNKNOWN": 2,
+            "APPROACH": 46,
+            "CRUISE": 18,
+            "DESCENT": 8,
+            "MANEUVERING": 49,
+            "CLIMB": 4,
+            "TAXI": 1,
+            "GO-AROUND": 9,
+            "LANDING": 9
+        },
+        "Make": {
+            "cessna": 51,
+            "navion": 1,
+            "beech": 29,
+            "piper": 39,
+            "cirrus": 2,
+            "raytheon": 2,
+            "air tractor": 6,
+            "ercoupe": 1,
+            "grumman": 4,
+            "rans": 2,
+            "rose": 1,
+            "luscombe": 1,
+            "north american": 2,
+            "czech sport aircraft as": 1,
+            "air tractor inc": 5,
+            "aero vodochody": 1,
+            "eris e. ervin": 1,
+            "hillard charlie r": 1,
+            "american aviation": 1,
+            "cirrus design corp": 5,
+            "northwing": 1,
+            "aviat aircraft inc": 1,
+            "bellanca": 5,
+            "rockwell": 2,
+            "grumman american avn. corp.": 2,
+            "costruzioni aeronautiche tecna": 2,
+            "zenair ltd": 1,
+            "aero commander": 4,
+            "colonial": 1,
+            "champion": 2,
+            "raytheon aircraft company": 1,
+            "american champion aircraft": 1,
+            "lancair company": 1,
+            "mooney airplane co inc": 1,
+            "hawker": 1,
+            "beechcraft": 2,
+            "kenneth m franz": 1,
+            "pipistrel": 1,
+            "quad city ultralight acft corp": 1,
+            "aerovodochody": 1,
+            "jabiru usa sport aircraft, llc": 1,
+            "mooney": 1,
+            "varga aircraft corp.": 1,
+            "hawker beechcraft": 1,
+            "quad city": 1,
+            "boeing": 1,
+            "mooney aircraft corp.": 1,
+            "ultralight america": 1,
+            "stinson": 2,
+            "columbia aircraft mfg": 1,
+            "maule": 1,
+            "gulfstream-schweizer a/c corp": 1,
+            "american champion aircraft cor": 1,
+            "evektor aerotechnik": 1,
+            "new piper aircraft inc": 1,
+            "wicks air center llc": 1,
+            "gentry john k": 1,
+            "collard": 1,
+            "gulfstream aerospace": 1,
+            "indus": 1,
+            "globe": 1
+        },
+        "Month": {
+            "03": 14,
+            "02": 19,
+            "12": 14,
+            "11": 18,
+            "10": 23,
+            "06": 21,
+            "05": 20,
+            "04": 13,
+            "01": 14,
+            "09": 13,
+            "08": 18,
+            "07": 23
+        }
+    },
+    "Tibet": {
+        "Incidents": 7,
+        "Total.Fatal.Injuries": 4.0,
+        "Total.Serious.Injuries": 5.0,
+        "Total.Minor.Injuries": 1.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 7
+        },
+        "Aircraft.Damage": {
+            "Substantial": 6,
+            "Destroyed": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "LANDING": 1,
+            "MANEUVERING": 5,
+            "TAKEOFF": 1
+        },
+        "Make": {
+            "piper": 1,
+            "citabria": 1,
+            "cessna": 1,
+            "taylorcraft": 1,
+            "buckeye industries": 1,
+            "bellanca": 1,
+            "champion": 1
+        },
+        "Month": {
+            "03": 2,
+            "05": 2,
+            "08": 1,
+            "10": 1,
+            "07": 1
+        }
+    },
+    "Unknown": {
+        "Incidents": 84,
+        "Total.Fatal.Injuries": 130.0,
+        "Total.Serious.Injuries": 23.0,
+        "Total.Minor.Injuries": 11.0,
+        "Total.Uninjured": 5.0,
+        "Weather.Condition": {
+            "IMC": 17,
+            "VMC": 66,
+            "UNK": 1
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 24,
+            "Substantial": 60
+        },
+        "Broad.Phase.of.Flight": {
+            "UNKNOWN": 5,
+            "TAKEOFF": 16,
+            "CRUISE": 7,
+            "MANEUVERING": 25,
+            "CLIMB": 5,
+            "APPROACH": 12,
+            "DESCENT": 10,
+            "STANDING": 2,
+            "LANDING": 2
+        },
+        "Make": {
+            "maule": 2,
+            "cessna": 31,
+            "mooney": 1,
+            "piper": 26,
+            "hawker": 2,
+            "aero commander": 2,
+            "icon aircraft inc": 1,
+            "grumman": 2,
+            "bellanca": 2,
+            "flight design gmbh": 1,
+            "bartels": 1,
+            "sea & sky inc dba krucker acft": 1,
+            "learjet": 1,
+            "swift museum foundation, inc.": 1,
+            "silvaire": 1,
+            "universal stinson": 1,
+            "north american": 1,
+            "cirrus": 1,
+            "m-squared": 1,
+            "champion": 1,
+            "diamond aircraft ind inc": 1,
+            "iniziative industriali italian": 1,
+            "diamond aircraft industries": 1,
+            "beech": 1
+        },
+        "Month": {
+            "03": 6,
+            "09": 4,
+            "08": 10,
+            "05": 6,
+            "02": 8,
+            "12": 9,
+            "11": 7,
+            "10": 7,
+            "06": 11,
+            "07": 5,
+            "04": 5,
+            "01": 6
+        }
+    },
+    "Utah": {
+        "Incidents": 47,
+        "Total.Fatal.Injuries": 76.0,
+        "Total.Serious.Injuries": 19.0,
+        "Total.Minor.Injuries": 8.0,
+        "Total.Uninjured": 7.0,
+        "Weather.Condition": {
+            "VMC": 44,
+            "UNK": 1,
+            "IMC": 2
+        },
+        "Aircraft.Damage": {
+            "Substantial": 39,
+            "Destroyed": 8
+        },
+        "Broad.Phase.of.Flight": {
+            "MANEUVERING": 18,
+            "CLIMB": 5,
+            "DESCENT": 2,
+            "CRUISE": 5,
+            "TAKEOFF": 7,
+            "OTHER": 1,
+            "APPROACH": 2,
+            "GO-AROUND": 1,
+            "LANDING": 6
+        },
+        "Make": {
+            "cessna": 24,
+            "piper": 7,
+            "beech": 4,
+            "aviat aircraft inc": 1,
+            "diamond aircraft ind inc": 2,
+            "cirrus design corp": 1,
+            "american": 1,
+            "aircraft mfg & development co": 1,
+            "lockheed": 1,
+            "cirrus": 1,
+            "aero commander": 1,
+            "piper aircraft inc": 1,
+            "storch aviation australia pty": 1,
+            "maule": 1
+        },
+        "Month": {
+            "09": 1,
+            "10": 5,
+            "06": 8,
+            "12": 5,
+            "08": 5,
+            "07": 5,
+            "01": 3,
+            "05": 6,
+            "11": 4,
+            "04": 2,
+            "02": 1,
+            "03": 2
+        }
+    },
+    "Vermont": {
+        "Incidents": 6,
+        "Total.Fatal.Injuries": 4.0,
+        "Total.Serious.Injuries": 3.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 1.0,
+        "Weather.Condition": {
+            "VMC": 5,
+            "IMC": 1
+        },
+        "Aircraft.Damage": {
+            "Substantial": 5,
+            "Destroyed": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "APPROACH": 3,
+            "TAKEOFF": 3
+        },
+        "Make": {
+            "piper": 2,
+            "cessna": 2,
+            "aeronca": 1,
+            "embraer": 1
+        },
+        "Month": {
+            "08": 2,
+            "12": 1,
+            "03": 1,
+            "09": 1,
+            "10": 1
+        }
+    },
+    "Virginia": {
+        "Incidents": 53,
+        "Total.Fatal.Injuries": 58.0,
+        "Total.Serious.Injuries": 23.0,
+        "Total.Minor.Injuries": 11.0,
+        "Total.Uninjured": 5.0,
+        "Weather.Condition": {
+            "VMC": 43,
+            "IMC": 10
+        },
+        "Aircraft.Damage": {
+            "Substantial": 39,
+            "Destroyed": 14
+        },
+        "Broad.Phase.of.Flight": {
+            "CRUISE": 4,
+            "TAKEOFF": 16,
+            "CLIMB": 1,
+            "GO-AROUND": 5,
+            "LANDING": 1,
+            "DESCENT": 3,
+            "APPROACH": 12,
+            "STANDING": 1,
+            "MANEUVERING": 10
+        },
+        "Make": {
+            "cirrus": 1,
+            "piper": 13,
+            "cessna": 13,
+            "costruzioni aeronautiche tecna": 1,
+            "aviat aircraft inc": 1,
+            "north american": 3,
+            "beech": 4,
+            "jihlavan airplanes sro": 1,
+            "taylorcraft": 1,
+            "u-fly-it": 1,
+            "mooney": 4,
+            "titan": 1,
+            "newgent, barry": 1,
+            "new piper aircraft inc": 1,
+            "maule": 1,
+            "czech aircraft works": 1,
+            "maxair": 1,
+            "pilatus": 1,
+            "emory b. wood": 1,
+            "cirrus design corp": 1,
+            "extra flugzeugbau": 1
+        },
+        "Month": {
+            "08": 9,
+            "10": 5,
+            "06": 2,
+            "05": 6,
+            "07": 8,
+            "04": 5,
+            "11": 1,
+            "09": 6,
+            "03": 6,
+            "12": 5
+        }
+    },
+    "Washington": {
+        "Incidents": 50,
+        "Total.Fatal.Injuries": 45.0,
+        "Total.Serious.Injuries": 38.0,
+        "Total.Minor.Injuries": 4.0,
+        "Total.Uninjured": 3.0,
+        "Weather.Condition": {
+            "VMC": 47,
+            "IMC": 3
+        },
+        "Aircraft.Damage": {
+            "Substantial": 41,
+            "Destroyed": 8,
+            "Minor": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "CRUISE": 3,
+            "APPROACH": 7,
+            "MANEUVERING": 11,
+            "LANDING": 7,
+            "TAKEOFF": 17,
+            "CLIMB": 3,
+            "STANDING": 1,
+            "GO-AROUND": 1
+        },
+        "Make": {
+            "piper": 10,
+            "mooney": 1,
+            "cessna": 18,
+            "titan": 1,
+            "cirrus design corp": 1,
+            "mooney aircraft corp.": 1,
+            "rockwell international": 1,
+            "beech": 2,
+            "north american": 1,
+            "republic": 1,
+            "grumman acft eng cor-schweizer": 1,
+            "ayres corporation": 1,
+            "grumman american avn. corp.": 1,
+            "czech aircraft works spol sro": 1,
+            "taylorcraft": 1,
+            "ercoupe": 1,
+            "remos aircraft gmbh": 1,
+            "stinson": 1,
+            "aero commander": 1,
+            "bellanca": 1,
+            "grumman american": 1,
+            "ayres": 1,
+            "aeronca": 1
+        },
+        "Month": {
+            "01": 2,
+            "08": 4,
+            "07": 13,
+            "03": 1,
+            "04": 7,
+            "09": 3,
+            "06": 6,
+            "05": 3,
+            "02": 3,
+            "11": 1,
+            "12": 1,
+            "10": 6
+        }
+    },
+    "West Virginia": {
+        "Incidents": 20,
+        "Total.Fatal.Injuries": 16.0,
+        "Total.Serious.Injuries": 20.0,
+        "Total.Minor.Injuries": 6.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "UNK": 1,
+            "VMC": 15,
+            "IMC": 4
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 6,
+            "Substantial": 14
+        },
+        "Broad.Phase.of.Flight": {
+            "UNKNOWN": 2,
+            "TAKEOFF": 10,
+            "CRUISE": 4,
+            "LANDING": 1,
+            "DESCENT": 1,
+            "CLIMB": 1,
+            "MANEUVERING": 1
+        },
+        "Make": {
+            "aeropro cz": 1,
+            "mooney": 3,
+            "globe": 1,
+            "cessna": 6,
+            "piper": 3,
+            "beech": 2,
+            "raytheon aircraft company": 1,
+            "cirrus": 1,
+            "aeronca": 1,
+            "boeing": 1
+        },
+        "Month": {
+            "01": 2,
+            "10": 2,
+            "05": 2,
+            "03": 2,
+            "11": 2,
+            "04": 1,
+            "06": 3,
+            "02": 1,
+            "09": 3,
+            "07": 1,
+            "12": 1
+        }
+    },
+    "Wisconsin": {
+        "Incidents": 41,
+        "Total.Fatal.Injuries": 39.0,
+        "Total.Serious.Injuries": 31.0,
+        "Total.Minor.Injuries": 4.0,
+        "Total.Uninjured": 5.0,
+        "Weather.Condition": {
+            "VMC": 34,
+            "IMC": 7
+        },
+        "Aircraft.Damage": {
+            "Substantial": 28,
+            "Destroyed": 13
+        },
+        "Broad.Phase.of.Flight": {
+            "LANDING": 7,
+            "GO-AROUND": 5,
+            "TAKEOFF": 8,
+            "APPROACH": 9,
+            "MANEUVERING": 6,
+            "STANDING": 1,
+            "CRUISE": 3,
+            "DESCENT": 2
+        },
+        "Make": {
+            "aeronca": 2,
+            "cessna": 8,
+            "de havilland": 1,
+            "piper / laudeman": 1,
+            "aerofab inc": 1,
+            "piper": 10,
+            "mooney": 2,
+            "flight design gmbh": 1,
+            "bristell": 1,
+            "cirrus design corp": 1,
+            "weatherly aviation company inc": 1,
+            "beech": 2,
+            "taylorcraft": 1,
+            "diamond aircraft ind inc": 1,
+            "bellanca": 1,
+            "edwards douglas l": 1,
+            "hawker beechcraft": 1,
+            "air creation": 1,
+            "cirrus design": 1,
+            "socata": 1,
+            "cirrus design corp.": 1,
+            "ekornaas, fred": 1
+        },
+        "Month": {
+            "10": 3,
+            "08": 6,
+            "07": 13,
+            "06": 4,
+            "11": 3,
+            "05": 3,
+            "09": 5,
+            "12": 2,
+            "01": 1,
+            "02": 1
+        }
+    },
+    "Wyoming": {
+        "Incidents": 23,
+        "Total.Fatal.Injuries": 20.0,
+        "Total.Serious.Injuries": 16.0,
+        "Total.Minor.Injuries": 5.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 20,
+            "IMC": 3
+        },
+        "Aircraft.Damage": {
+            "Substantial": 15,
+            "Destroyed": 8
+        },
+        "Broad.Phase.of.Flight": {
+            "APPROACH": 2,
+            "CRUISE": 3,
+            "GO-AROUND": 2,
+            "LANDING": 1,
+            "MANEUVERING": 7,
+            "TAKEOFF": 4,
+            "CLIMB": 1,
+            "DESCENT": 3
+        },
+        "Make": {
+            "piper": 3,
+            "champion": 1,
+            "socata": 1,
+            "cessna": 9,
+            "cub crafters": 1,
+            "quest": 1,
+            "alon": 1,
+            "aeronca": 1,
+            "p&m aviation": 1,
+            "beech": 1,
+            "bellanca": 1,
+            "cirrus design corp.": 1,
+            "cgs aviation": 1
+        },
+        "Month": {
+            "03": 2,
+            "09": 3,
+            "02": 1,
+            "11": 2,
+            "12": 1,
+            "10": 3,
+            "07": 3,
+            "06": 2,
+            "04": 1,
+            "08": 5
+        }
+    },
+    "Xinjiang": {
+        "Incidents": 8,
+        "Total.Fatal.Injuries": 11.0,
+        "Total.Serious.Injuries": 4.0,
+        "Total.Minor.Injuries": 1.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 5,
+            "IMC": 3
+        },
+        "Aircraft.Damage": {
+            "Substantial": 5,
+            "Destroyed": 3
+        },
+        "Broad.Phase.of.Flight": {
+            "LANDING": 1,
+            "CLIMB": 1,
+            "TAKEOFF": 1,
+            "GO-AROUND": 2,
+            "CRUISE": 1,
+            "MANEUVERING": 2
+        },
+        "Make": {
+            "north american": 1,
+            "cessna": 2,
+            "cirrus design corp": 1,
+            "piper": 3,
+            "grumman aircraft cor-schweizer": 1
+        },
+        "Month": {
+            "08": 2,
+            "09": 1,
+            "12": 3,
+            "07": 2
+        }
+    },
+    "Zhambyl": {
+        "Incidents": 1,
+        "Total.Fatal.Injuries": 2.0,
+        "Total.Serious.Injuries": 0.0,
+        "Total.Minor.Injuries": 0.0,
+        "Total.Uninjured": 0.0,
+        "Weather.Condition": {
+            "VMC": 1
+        },
+        "Aircraft.Damage": {
+            "Destroyed": 1
+        },
+        "Broad.Phase.of.Flight": {
+            "TAKEOFF": 1
+        },
+        "Make": {
+            "cessna": 1
+        },
+        "Month": {
+            "08": 1
+        }
+    }
+}
