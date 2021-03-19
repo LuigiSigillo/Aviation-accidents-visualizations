@@ -42,7 +42,7 @@ var color = d3.scaleCategory20();
 
 
 
-d3.csv("AviationCrashLocation.csv", function (error, data) {
+d3.csv("datasets/AviationCrashLocation_3k.csv", function (error, data) {
 
 
     function change(year,country) {
