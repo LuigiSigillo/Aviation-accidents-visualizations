@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <title>VA of Aviation accidents in USA</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/map.js"></script>
+<script type="text/javascript" src="scripts/mds.js"></script>
+<script type="text/javascript" src="scripts/scatter.js"></script>
+
+<body>
+    <div id="block_container">
+        <!--html for MAP-->
+        <div id="content">
+            <svg id='map'>
+                <g id='mapProv' class="map"></g>
+                <g id='mapReg' class="map"></g>
+                <!--legend for italy map-->
+                <g class='mapLegend' id='legendMap'> </g>
+            </svg>
+        </div>
+        <!--html for MDS-->
+        <div id="central_view">
+            <div id="menu_tendina">
+                <div id="computation" class="custom-select" style="width:200px;">
+                    <label for="computationCrimes"><b>Computation type:</b></label>
+                    <select id='computationCrimes'>
+                        <option value="0" selected>number of crimes (default)</option>
+                        <option value="1">number of crimes each 10k citizen</option>
+                    </select>
+                </div>
+
+                <div id="mcomputation" class="custom-select" style="width:200px;">
+                    <label for="mdsComputation"><b>MDS computation type:</b></label>
+                    <select id='mdsComputation'>
+                        <option value="0" selected>coefficient of danger (default)</option>
+                        <option value="1">coefficient over total crimes</option>
+                        <option value="2">no additional coefficient</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="regions">
+
+            </div>
+
+        </div>
+
+
+        <!--html for MENU-->
+        <div id="menu">
+
+            <div id='crimes'></div>
+            <div id='legendCrimes'></div>
+        </div>
+
+    </div>
+    <!--html for SCATTER plot-->
+    <div id="par-coord">
+        <div id="my_dataviz"></div>
+        <div>
+
+</body>
+
+</html>
