@@ -1,4 +1,4 @@
-d3.csv("datasets/AviationCrashLocation.csv", function (err, data) {
+d3.csv("datasets/AviationCrashLocation_3k.csv", function (err, data) {
 
     var dbNames = {
         "crashCountry": "Crash.Country",
@@ -70,7 +70,7 @@ d3.csv("datasets/AviationCrashLocation.csv", function (err, data) {
     }
 
     var path = d3.geo.path();
-    var projection = d3.geoEqualEarth()
+    
     
     var mapSvg = d3.select("#canvas-svg").append("svg")
         .attr("width", params.WIDTH)
