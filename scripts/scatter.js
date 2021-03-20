@@ -39,12 +39,12 @@ var yAxis = d3.axisLeft()
     .scale(yscale)
 
 var aggregationType = "aggregated_state"
-
-function changing(aggregationType) {
+var X = 'Incidents'
+var Y = 'Total.Fatal.Injuries'
+var R = 'Total.Serious.Injuries'
+function changing(aggregationType,X,Y,R) {
     
     d3.json("datasets/" + aggregationType + ".json", function (error, data) {
-
-        //console.log(data);
         // data pre-processing
         var i
         keys = Object.keys(data),
@@ -57,13 +57,9 @@ function changing(aggregationType) {
         var ymax = -1
         var rmax = -1
         var come_vuole_lui = []
-        var X = 'Incidents'
-        var Y = 'Total.Fatal.Injuries'
-        var R = 'Total.Serious.Injuries'
+
 
         for (var key in data) {
-            //console.log(data[key])
-            //var d=data[key]
 
             data[key].x = +data[key][X];
             data[key].y = +data[key][Y];
@@ -76,22 +72,15 @@ function changing(aggregationType) {
                 rmax = data[key]["r"]
             come_vuole_lui.push(data[key])
         }
-        //console.log(data)
-        //console.log(keys)
-        //console.log(come_vuole_lui)
-        //data.sort(function (a, b) { console.log(a); return b.r - a.r; });
-        /*yscale.domain(d3.extent(d3.values(data, function (d) {
-            console.log('aaa')
-            return d.y;
-        }))).nice();
-        */
+
         yscale.domain([0, ymax]).nice();
         xscale.domain([0, xmax]).nice();
         radius.domain([0, rmax]).nice();
         
         //cancello
         svg.selectAll("g").remove();
-        
+        svg.selectAll("text").remove();
+
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
             .attr("class", "x axis")
@@ -131,17 +120,15 @@ function changing(aggregationType) {
             .attr("x", 6)
             .attr("y", -2)
             .attr("class", "label")
-            .text("Fatalities");
+            .text(X);
 
         svg.append("text")
             .attr("x", width - 2)
             .attr("y", height - 6)
             .attr("text-anchor", "end")
             .attr("class", "label")
-            .text("Incidents");
+            .text(Y);
         
-        //svg.selectAll(".legend").remove()
-
         //console.log(color.domain())
         var legend = svg.selectAll(".legend")
             .data(color.domain())
@@ -183,4 +170,4 @@ function changing(aggregationType) {
     });
 }
 
-changing(aggregationType)
+changing(aggregationType,X,Y,R)

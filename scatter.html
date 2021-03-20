@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="css/scatter.css">
 
 <body>
-    <div id="menu_tendina">
+    <div id="menu_aggrina">
         <div id="computation" class="custom-select" style="width:400px;">
             <label for="aggregationType"><b>Aggregation type:</b></label>
             <select id='aggregationType'>
@@ -14,12 +14,12 @@
             </select>
         </div>
 
-            <label for="X_axis"><b>X_axis:</b></label>
+            <label for="X_axis" style="color: brown;"><b>X_axis:</b></label>
             <select id='X_axis'>
-                <option value="aggregated_month" >Month</option>
-                <option value="aggregated_state" selected>State</option>
-                <option value="aggregated_make" >Manufacturer</option>
-                <option value="aggregated_phase">Phase</option>
+                <option value="Total.Uninjured" >Uninjured</option>
+                <option value="Total.Minor.Injuries" selected>Minor Injuries</option>
+                <option value="Total.Serious.Injuries" >Serious Injuries</option>
+                <option value="Total.Fatal.Injuries">Fatal Injuries</option>
             </select>
 
             <label for="Y_axis"><b>Y_axis:</b></label>
@@ -44,16 +44,16 @@
 </body>
 
 <script>
-    var tend = document.getElementById("aggregationType");
-    //var output = document.getElementById("demo");
-    //output.innerHTML = slider.value;
-    tend.onchange = function () {
-        console.log(tend.value)
-        changing(tend.value)
+    var aggr = document.getElementById("aggregationType");
+    aggr.onchange = function () {
+        aggregationType = aggr.value
+        changing(aggr.value,X,Y,R)
     }
-    /*slider.oninput = function () {
-      output.innerHTML = this.value;
-    }*/
+    var X_axis = document.getElementById("X_axis");
+    X_axis.onchange = function () {
+        //X = X_axis.value
+        //changing(aggregationType,X,Y,R)
+    }
   </script>
 
 <script src="//d3js.org/d3.v4.0.0-alpha.35.min.js"></script>
