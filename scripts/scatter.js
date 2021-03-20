@@ -44,39 +44,6 @@ var color = d3.scaleCategory20();
 
 d3.json("datasets/aggregated_state.json", function (error, data) {
 
-    /*
-    function change(year,country) {
-
-        var e = d3.nest()
-            .key(function (d) { return d[dbNames.crashCountry]; })
-            .rollup(function (v) {
-                return {
-                    Total_Accidents: d3.sum(v, function (d) {
-                        if (year == +d["Event.Date"].split("-")[0] && d["Crash.Country"] == country) return 1;
-                        else return 0;
-                    }),
-                    Fatalities: d3.sum(v, function (d) {
-                        if (year == +d["Event.Date"].split("-")[0] && d["Crash.Country"] == country) return d[dbNames.fatal];
-                        else return 0;
-                    }),
-                    Serious_Injuries: d3.sum(v, function (d) {
-                        if (year == +d["Event.Date"].split("-")[0] && d["Crash.Country"] == country) return d[dbNames.serious];
-                        else return 0;
-                    }),
-                    Minor_Injuries: d3.sum(v, function (d) {
-                        if (year == +d["Event.Date"].split("-")[0] && d["Crash.Country"] == country) return d[dbNames.minor];
-                        else return 0;
-                    })
-                };
-            })
-            .map(data);
-        return e
-    }
-    */
-
-
-
-
     //console.log(data);
     // data pre-processing
     var i
@@ -94,13 +61,17 @@ d3.json("datasets/aggregated_state.json", function (error, data) {
     var ymax = -1
     var rmax = -1
     var come_vuole_lui = []
+    var X = 'Incidents'
+    var Y = 'Total.Fatal.Injuries'
+    var R = 'Total.Serious.Injuries'
+    
     for (var key in data) {
         //console.log(data[key])
         //var d=data[key]
 
-        data[key].x = +data[key]["Incidents"];
-        data[key].y = +data[key]["Total.Fatal.Injuries"];
-        data[key].r = +data[key]["Total.Serious.Injuries"];
+        data[key].x = +data[key][X];
+        data[key].y = +data[key][Y];
+        data[key].r = +data[key][R];
         if (data[key]["x"] > xmax)
             xmax = data[key]["x"]
         if (data[key]["y"] > ymax)
