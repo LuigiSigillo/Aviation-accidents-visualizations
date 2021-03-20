@@ -53,10 +53,6 @@ d3.json("datasets/aggregated_state.json", function (error, data) {
         return a - b;
     });
 
-    for (i = 0; i < len; i++) {
-        var a = keys[i];
-        console.log(a + ':' + data[a]);
-    }
     var xmax = -1
     var ymax = -1
     var rmax = -1
@@ -64,7 +60,7 @@ d3.json("datasets/aggregated_state.json", function (error, data) {
     var X = 'Incidents'
     var Y = 'Total.Fatal.Injuries'
     var R = 'Total.Serious.Injuries'
-    
+
     for (var key in data) {
         //console.log(data[key])
         //var d=data[key]
@@ -77,12 +73,12 @@ d3.json("datasets/aggregated_state.json", function (error, data) {
         if (data[key]["y"] > ymax)
             ymax = data[key]["y"]
         if (data[key]["r"] > rmax)
-            rmax = data[key]["r"]
+            rmax = data[key]["r"]   
         come_vuole_lui.push(data[key])
     }
-    console.log(data)
-    console.log(keys)
-    console.log(come_vuole_lui)
+    //console.log(data)
+    //console.log(keys)
+    //console.log(come_vuole_lui)
     //data.sort(function (a, b) { console.log(a); return b.r - a.r; });
     /*yscale.domain(d3.extent(d3.values(data, function (d) {
         console.log('aaa')
@@ -106,22 +102,18 @@ d3.json("datasets/aggregated_state.json", function (error, data) {
         .data(come_vuole_lui)
         .enter().append("g")
         .attr("class", "bubble")
-        .attr("transform", function (d) {
-            console.log('diomrda')
-            return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")"
-        });
+        .attr("transform", function (d) {return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")"});
     var j = -1
-    group
-        .append("circle")
+    group.append("circle")
         .attr("r", function (d) { return radius(d.r); })
         .style("fill", function (d) {
             //console.log(d)
             j++
             return color(keys[j]);
         })
-        j = -1
-    group
-        .append("text")
+    j = -1
+    
+    group.append("text")
         .attr("x", function (d) { return radius(d.r); })
         .attr("alignment-baseline", "middle")
         .text(function (d) {
@@ -160,16 +152,16 @@ d3.json("datasets/aggregated_state.json", function (error, data) {
         .attr("dy", ".35em")
         .style("text-anchor", "start")
         .text(function (d) { return d; });
-        
+
     legend.on("mouseover", function (type) {
-        j=-1
+        j = -1
         d3.selectAll(".legend")
             .style("opacity", 0.1);
         d3.select(this)
             .style("opacity", 1);
         d3.selectAll(".bubble")
             .style("opacity", 0.1)
-            .filter(function (d) { j++; console.log(type); console.log(keys[j]); return keys[j] == type; })
+            .filter(function (d) { j++; return keys[j] == type; })
             .style("opacity", 1);
     })
         .on("mouseout", function (type) {
