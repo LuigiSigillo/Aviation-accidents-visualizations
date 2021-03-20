@@ -1,7 +1,7 @@
 
-var margin = { top: 30, right: 150, bottom: 40, left: 50 };
+var margin = { top: 30, right: 220, bottom: 40, left: 50 };
 var width = 1560 - margin.left - margin.right;
-var height = 1000 - margin.top - margin.bottom;
+var height = 900 - margin.top - margin.bottom;
 
 var dbNames = {
     "crashCountry": "Crash.Country",
@@ -52,7 +52,7 @@ d3.json("datasets/aggregated_state.json", function (error, data) {
     keys.sort(function (a, b) {
         return a - b;
     });
-
+    console.log(keys.length)
     var xmax = -1
     var ymax = -1
     var rmax = -1
