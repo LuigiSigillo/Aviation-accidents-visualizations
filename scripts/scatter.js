@@ -47,8 +47,23 @@ var Y = 'Total.Fatal.Injuries'
 var R = 'Total.Serious.Injuries'
 
 
+function zuppa(d) {
+    //console.log(d)
+    s = ""
+    for (var key in d) {
+        if (key == "Weather.Condition" || key == "Broad.Phase.of.Flight" || key == "Aircraft.Damage") {
+            s += key + ":\n"
+            for (var k in d[key])
+                s += ("\t"+k + " " + d[key][k] + "\n")
+        }
+    }
+
+    console.log(s)
+    return s
+}
+
 function changing(aggregationType, X, Y, R) {
-    
+
     var aggr = document.getElementById("aggregationType");
     aggr.onchange = function () {
         aggregationType = aggr.value
@@ -181,18 +196,20 @@ function changing(aggregationType, X, Y, R) {
         group.append("circle")
             .attr("r", function (d) { return radius(d.r) * 10; })
             .style("fill", function (d) {
-                //console.log(d)
                 j++
                 return color(keys[j]);
             })
         j = -1
 
         group.append("text")
-            .attr("x", function (d) { return radius(d.r); })
+            .attr("r", function (d) { return radius(d.r); })
             .attr("alignment-baseline", "middle")
+            .style("white-space","pre-line")
             .text(function (d) {
                 j++
-                return keys[j];
+                //console.log(d)
+                //return zuppa(d);
+                return keys[j];;
             });
 
         svg.append("text")
