@@ -185,7 +185,17 @@ d3scatterplot = function(svg,X,D,cities) {
 
 }
 
-	
+
+d3.text("datasets/AviationCrashLocation_3k.csv", function(raw) {
+    d3.text("datasets/AviationCrashLocation_3k.csv", function(raw) {
+        var dsv = d3.dsvFormat(';');
+        var data =dsv.parse(raw);
+        console.log(data)
+    
+
+        });
+})
+
 d3.json("data.js", function(data) {
     var  svg = d3.select("#d3plot").append("svg")
 	.attr("width","100%")
