@@ -16,26 +16,31 @@
 
             <label for="X_axis" style="color: brown;"><b>X_axis:</b></label>
             <select id='X_axis'>
+                <option value="Incidents" >Incidents</option>
                 <option value="Total.Uninjured" >Uninjured</option>
-                <option value="Total.Minor.Injuries" selected>Minor Injuries</option>
+                <option value="Total.Minor.Injuries" >Minor Injuries</option>
                 <option value="Total.Serious.Injuries" >Serious Injuries</option>
-                <option value="Total.Fatal.Injuries">Fatal Injuries</option>
+                <option value="Total.Fatal.Injuries" selected>Fatal Injuries</option>
             </select>
 
-            <label for="Y_axis"><b>Y_axis:</b></label>
+
+            <label for="Y_axis" style="color: brown;"><b>Y_axis:</b></label>
             <select id='Y_axis'>
-                <option value="aggregated_month" >Month</option>
-                <option value="aggregated_state" selected>State</option>
-                <option value="aggregated_make" >Manufacturer</option>
-                <option value="aggregated_phase">Phase</option>
+                <option value="Incidents" selected>Incidents</option>
+                <option value="Total.Uninjured" >Uninjured</option>
+                <option value="Total.Minor.Injuries" >Minor Injuries</option>
+                <option value="Total.Serious.Injuries" >Serious Injuries</option>
+                <option value="Total.Fatal.Injuries" >Fatal Injuries</option>
             </select>
 
-            <label for="Radius"><b>Radius:</b></label>
-            <select id='Radius'>
-                <option value="aggregated_month" >Month</option>
-                <option value="aggregated_state" selected>State</option>
-                <option value="aggregated_make" >Manufacturer</option>
-                <option value="aggregated_phase">Phase</option>
+
+            <label for="R_axis" style="color: brown;"><b>R_axis:</b></label>
+            <select id='R_axis'>
+                <option value="Incidents" >Incidents</option>
+                <option value="Total.Uninjured" >Uninjured</option>
+                <option value="Total.Minor.Injuries" >Minor Injuries</option>
+                <option value="Total.Serious.Injuries"selected >Serious Injuries</option>
+                <option value="Total.Fatal.Injuries">Fatal Injuries</option>
             </select>
         </div>
         
@@ -44,16 +49,7 @@
 </body>
 
 <script>
-    var aggr = document.getElementById("aggregationType");
-    aggr.onchange = function () {
-        aggregationType = aggr.value
-        changing(aggr.value,X,Y,R)
-    }
-    var X_axis = document.getElementById("X_axis");
-    X_axis.onchange = function () {
-        //X = X_axis.value
-        //changing(aggregationType,X,Y,R)
-    }
+
   </script>
 
 <script src="//d3js.org/d3.v4.0.0-alpha.35.min.js"></script>
