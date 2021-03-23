@@ -14,5 +14,27 @@
 
 <body>
     <div id="d3plot" class="d3-scatter-output">  </div>
+    <div id="menu_tendina">
+        <div id="computation" class="custom-select" style="width:200px;">
+            <label for="computationCrimes"><b>Computation type:</b></label>
+            <select id='computationCrimes'>
+                <option value="0" selected>number of crimes (default)</option>
+                <option value="1">number of crimes each 10k citizen</option>
+            </select>
+        </div>
+
+        <div id="mcomputation" class="custom-select" style="width:200px;">
+            <label for="mdsComputation"><b>MDS computation type:</b></label>
+            <select id='mdsComputation'>
+                <option value="0" selected>coefficient of danger (default)</option>
+                <option value="1">coefficient over total crimes</option>
+                <option value="2">no additional coefficient</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="regions">
+
+    </div>
 </body>
 </html>
