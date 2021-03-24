@@ -196,7 +196,7 @@ d3.text("datasets/AviationCrashLocation_3k.csv", function(raw) {
         });
 })
 
-d3.json("data.js", function(data) {
+d3.json("datasets/mdsDataJuliano.json", function(data) {
     var  svg = d3.select("#d3plot").append("svg")
 	.attr("width","100%")
 	.attr("height","100%");
