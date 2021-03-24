@@ -62,6 +62,36 @@ function zuppa(d) {
     return s
 }
 
+
+function change(year) {
+
+    var e = d3.nest()
+        .key(function (d) { return d[dbNames.crashCountry]; })
+        .rollup(function (v) {
+            return {
+                Total_Accidents: d3.sum(v, function (d) {
+                    if (year >= +d["Event.Date"].split("-")[0]) return 1;
+                    else return 0;
+                }),
+                Fatalities: d3.sum(v, function (d) {
+                    if (year >= +d["Event.Date"].split("-")[0]) return d[dbNames.fatal];
+                    else return 0;
+                }),
+                Serious_Injuries: d3.sum(v, function (d) {
+                    if (year >= +d["Event.Date"].split("-")[0]) return d[dbNames.serious];
+                    else return 0;
+                }),
+                Minor_Injuries: d3.sum(v, function (d) {
+                    if (year >= +d["Event.Date"].split("-")[0]) return d[dbNames.minor];
+                    else return 0;
+                })
+            };
+        })
+        .map(data);
+    return e
+}
+
+
 function changing(aggregationType, X, Y, R) {
 
     var aggr = document.getElementById("aggregationType");
@@ -74,13 +104,14 @@ function changing(aggregationType, X, Y, R) {
 
     d3.json("datasets/" + aggregationType + ".json", function (error, data) {
         // data pre-processing
+        console.log(data)
+
         var i
         keys = Object.keys(data),
             i, len = keys.length;
         keys.sort(function (a, b) {
             return a - b;
         });
-        console.log(keys.length)
         var xmax = -1
         var ymax = -1
         var rmax = -1
