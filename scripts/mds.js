@@ -93,22 +93,24 @@ expand = function(r)
 }
 
 d3scatterplot = function(svg,X,D,cities) {
-    var nPix= 420,n=X.length,mar = [40,60,40,40];
+    var nPix= 420
+	n=X.length
+	mar = [40,60,40,40];
 
-    var xv = X.map(function(e) { return e.x;}),xRange=expand(xv.range());
-    var yv = X.map(function(e) { return e.y;}),yRange=expand(yv.range());
+    var xv = X.map(function(e) { return e.x;})
+	xRange=expand(xv.range());
+
+    var yv = X.map(function(e) { return e.y;})
+	yRange=expand(yv.range());
+
     svg.attr("width", nPix+mar[0]+mar[2])
 	.attr("height", nPix+mar[1]+mar[3]);    
-
 
     var sg = svg.append("g")
 	.attr("transform", "translate("
 	      + mar[0] + ","
 	      + mar[1] + ")");
 
-
-    
-        
     var xScale = d3.scale.linear()
 	.range([0, nPix])
 	.domain(xRange);
@@ -148,7 +150,6 @@ d3scatterplot = function(svg,X,D,cities) {
 	.attr("r",8);
   
     
-    console.log(labels);
 
     var xAxis = d3.svg.axis().scale(xScale).orient("bottom").ticks(4);
     svg.append("g").call(xAxis)
@@ -203,3 +204,4 @@ d3.json("datasets/mdsDataJuliano.json", function(data) {
 
     d3scatterplot(svg,data.X,data.D,data.cities);
 });
+
