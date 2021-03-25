@@ -16,7 +16,7 @@ function createMDS(year, visibleLabel, evolutionMode) {
 
     d3.text(dataset_path, function (raw) {
         var data = d3.csv(dataset_path, function (error, data) {
-            console.log(change(data, "Crash.Country", 2019, false))
+            console.log(change(data, "Broad.Phase.of.Flight", 2019, true))
 
             //---------------------------------------------Computing  default dissimilarity matrix------------------------------------------------
             var m = chooseCharacteristic(data, year)
@@ -50,27 +50,17 @@ function plotMds(matrix, visibleLabel, evolutionMode) {
 
 var size
 
-function chooseCharacteristic(regions, years) {
+function chooseCharacteristic(data, year) {
 
     var dissM = [];
-    var e = regions.filter(function (d) { return +d["Event.Date"].split("-")[0] == "2019" });             //establish size of dissimilarity matrix
-    var filtered = d3.nest()
-        .key(function (d) { return d["Crash.Country"]; })
-        .rollup(function (v) {
-            return {
-                Total_Accidents: d3.sum(v, function (d) { return 1; }),
-                Fatalities: d3.sum(v, function (d) { return d[dbNames.fatal]; }),
-                Serious_Injuries: d3.sum(v, function (d) { return d[dbNames.serious]; }),
-                Minor_Injuries: d3.sum(v, function (d) { return d[dbNames.minor]; })
-            };
-        })
-        .map(e)
+    filtered = change(data, "Crash.Country", 2019, year)
+    console.log(filtered)
     size = Object.keys(filtered)
     for (var i = 0; i < size.length; i++) {
         dissM[i] = [];
         for (var j = 0; j < size.length; j++) {
-            var listaI = [filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Fatalities"], filtered[size[i]]["Serious_Injuries"], filtered[size[i]]["Minor_Injuries"]]
-            var listaJ = [filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Fatalities"], filtered[size[j]]["Serious_Injuries"], filtered[size[j]]["Minor_Injuries"]]
+            var listaI = [filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Human_Injuries"]["Fatal"], filtered[size[i]]["Human_Injuries"]["Serious"], filtered[size[i]]["Human_Injuries"]["Minor"]]
+            var listaJ = [filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Human_Injuries"]["Fatal"], filtered[size[j]]["Human_Injuries"]["Serious"], filtered[size[j]]["Human_Injuries"]["Minor"]]
 
             dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
         }
@@ -111,7 +101,7 @@ function eliminate_others_mds_point(areas) {
         }
     })
 }
-
+/*
 (function () {
     var lastWidth = 0;
     function pollZoomFireEvent() {
@@ -125,6 +115,7 @@ function eliminate_others_mds_point(areas) {
     }
     setInterval(pollZoomFireEvent, 100);
 })();
+*/
 
 
 

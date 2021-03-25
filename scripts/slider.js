@@ -1,4 +1,3 @@
-
 var dataset_path = "datasets/AviationCrashLocation.csv"
 
 var dbNames = {
@@ -36,7 +35,7 @@ function change(data, subject, year, single_year) {
             return {
                 Total_Accidents: d3.sum(v, function (d) { return 1; }),
                 Human_Injuries: {
-                    Fatal: d3.sum(v, function (d) { return d["Total.Fatal.Injuries"]; }),
+                    Fatal: d3.sum(v, function (d)   { return d["Total.Fatal.Injuries"]; }),
                     Serious: d3.sum(v, function (d) { return d["Total.Serious.Injuries"]; }),
                     Minor: d3.sum(v, function (d) { return d["Total.Minor.Injuries"]; }),
                     Uninjured: d3.sum(v, function (d) { return d["Total.Uninjured"]; })
@@ -52,16 +51,30 @@ function change(data, subject, year, single_year) {
                 },
                 Phase: {
                     MANEUVERING: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "MANEUVERING"; }),
-                    STANDING: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "STANDING"; }),
-                    UNKNOWN: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "UNKNOWN"; }),
-                    TAKEOFF: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "TAKEOFF"; }),
-                    APPROACH: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "APPROACH"; }),
-                    CLIMB: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "CLIMB"; }),
-                    CRUISE: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "CRUISE"; }),
-                    DESCENT: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "DESCENT"; }),
-                    LANDING: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "LANDING"; }),
-                    GOAROUND: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "GO-AROUND"; }),
-                    TAXI: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "TAXI"; })
+                    STANDING: d3.sum(v, function (d)    { return d["Broad.Phase.of.Flight"] == "STANDING"; }),
+                    UNKNOWN: d3.sum(v, function (d)     { return d["Broad.Phase.of.Flight"] == "UNKNOWN"; }),
+                    TAKEOFF: d3.sum(v, function (d)     { return d["Broad.Phase.of.Flight"] == "TAKEOFF"; }),
+                    APPROACH: d3.sum(v, function (d)    { return d["Broad.Phase.of.Flight"] == "APPROACH"; }),
+                    CLIMB: d3.sum(v, function (d)       { return d["Broad.Phase.of.Flight"] == "CLIMB"; }),
+                    CRUISE: d3.sum(v, function (d)      { return d["Broad.Phase.of.Flight"] == "CRUISE"; }),
+                    DESCENT: d3.sum(v, function (d)     { return d["Broad.Phase.of.Flight"] == "DESCENT"; }),
+                    LANDING: d3.sum(v, function (d)     { return d["Broad.Phase.of.Flight"] == "LANDING"; }),
+                    GOAROUND: d3.sum(v, function (d)    { return d["Broad.Phase.of.Flight"] == "GO-AROUND"; }),
+                    TAXI: d3.sum(v, function (d)        { return d["Broad.Phase.of.Flight"] == "TAXI"; })
+                },
+                Month: {
+                    Genuary: d3.sum(v, function (d)     { return d["Event.Date"].split("-")[1] == "01"}),
+                    February: d3.sum(v, function (d)    { return d["Event.Date"].split("-")[1] == "02"}),
+                    March: d3.sum(v, function (d)       { return d["Event.Date"].split("-")[1] == "03"}),
+                    April: d3.sum(v, function (d)       { return d["Event.Date"].split("-")[1] == "04"}),
+                    May: d3.sum(v, function (d)         { return d["Event.Date"].split("-")[1] == "05"}),
+                    June: d3.sum(v, function (d)        { return d["Event.Date"].split("-")[1] == "06"}),
+                    July: d3.sum(v, function (d)        { return d["Event.Date"].split("-")[1] == "07"}),
+                    August: d3.sum(v, function (d)      { return d["Event.Date"].split("-")[1] == "08"}),
+                    September: d3.sum(v, function (d)   { return d["Event.Date"].split("-")[1] == "09"}),
+                    October: d3.sum(v, function (d)     { return d["Event.Date"].split("-")[1] == "10"}),
+                    November: d3.sum(v, function (d)    { return d["Event.Date"].split("-")[1] == "11"}),
+                    December: d3.sum(v, function (d)    { return d["Event.Date"].split("-")[1] == "12"})
                 }
             };
         })
