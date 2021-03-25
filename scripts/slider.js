@@ -1,4 +1,4 @@
-var dataset_path = "datasets/AviationCrashLocation.csv"
+var dataset_path = "datasets/AviationCrashLocation_new.csv"
 
 var dbNames = {
     "crashCountry": "Crash.Country",

@@ -53,7 +53,7 @@ var size
 function chooseCharacteristic(data, year) {
 
     var dissM = [];
-    filtered = change(data, "Crash.Country", 2019, year)
+    filtered = change(data, "Crash.Country", year, true)
     console.log(filtered)
     size = Object.keys(filtered)
     for (var i = 0; i < size.length; i++) {
