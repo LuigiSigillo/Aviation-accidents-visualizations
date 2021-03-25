@@ -23,11 +23,15 @@ body {
   /* Legend Position Style */
   .legend {
     position: absolute;
-    left: 800px;
-    top: 350px;
+    left: 5px;
+    top: 450px;
     background-color: whitesmoke;
   }
 
+  .legend {
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
 
   #tooltip-container {
     position: absolute;
@@ -58,6 +62,7 @@ body {
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
+    top: 222px
   }
 
   .slider:hover {

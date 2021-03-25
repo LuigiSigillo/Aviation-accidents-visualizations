@@ -1,4 +1,4 @@
-var margin = { top: 30, right: 220, bottom: 40, left: 50 };
+var margin = { top: 30, right: 220, bottom: 300, left: 500 };
 var width = 1560 - margin.left - margin.right;
 var height = 900 - margin.top - margin.bottom;
 
@@ -12,7 +12,7 @@ var dbNames = {
     "phase": "Broad.Phase.of.Flight"
 }
 
-var svg = d3.select("body")
+var svg = d3.select("#scatter")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -222,7 +222,7 @@ function changing(aggregationType, X, Y, R) {
             .attr("class", "bubble")
             .attr("transform", function (d) { return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")" });
         var j = -1
-        var color = d3.scaleCategory20();
+        var color = d3.scaleOrdinal(d3.schemeCategory20)
 
         group.append("circle")
             .attr("r", function (d) { return radius(d.r) * 10; })

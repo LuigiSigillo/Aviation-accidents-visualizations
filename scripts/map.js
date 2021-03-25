@@ -1,4 +1,4 @@
-d3.csv("datasets/AviationCrashLocation_3k.csv", function (err, data) {
+d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
 
     var dbNames = {
         "crashCountry": "Crash.Country",
@@ -69,14 +69,14 @@ d3.csv("datasets/AviationCrashLocation_3k.csv", function (err, data) {
         return colors[res].getColors().r
     }
 
-    var path = d3.geo.path();
+    var path = d3version3.geo.path();
     
     
-    var mapSvg = d3.select("#canvas-svg").append("svg")
+    var mapSvg = d3version3.select("#map").append("svg")
         .attr("width", params.WIDTH)
         .attr("height", params.HEIGHT);
 
-    d3.tsv("datasets/code-states.tsv", function (error, names) {
+    d3version3.tsv("datasets/code-states.tsv", function (error, names) {
 
         name_id_map = {};
         id_name_map = {};
@@ -120,37 +120,37 @@ d3.csv("datasets/AviationCrashLocation_3k.csv", function (err, data) {
 
             var map_width = $('.states-choropleth')[0].getBoundingClientRect().width;
 
-            if (d3.event.layerX < map_width / 2) {
-                d3.select("#tooltip-container")
-                    .style("top", (d3.event.layerY + 15) + "px")
-                    .style("left", (d3.event.layerX + 15) + "px");
+            if (d3version3.event.layerX < map_width / 2) {
+                d3version3.select("#tooltip-container")
+                    .style("top", (d3version3.event.layerY + 15) + "px")
+                    .style("left", (d3version3.event.layerX + 15) + "px");
             } else {
                 var tooltip_width = $("#tooltip-container").width();
-                d3.select("#tooltip-container")
-                    .style("top", (d3.event.layerY + 15) + "px")
-                    .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
+                d3version3.select("#tooltip-container")
+                    .style("top", (d3version3.event.layerY + 15) + "px")
+                    .style("left", (d3version3.event.layerX - tooltip_width - 30) + "px");
             }
         }
 
         function change(year) {
 
-            var e = d3.nest()
+            var e = d3version3.nest()
                 .key(function (d) { return d[dbNames.crashCountry]; })
                 .rollup(function (v) {
                     return {
-                        Total_Accidents: d3.sum(v, function (d) {
+                        Total_Accidents: d3version3.sum(v, function (d) {
                             if (year >= +d["Event.Date"].split("-")[0]) return 1;
                             else return 0;
                         }),
-                        Fatalities: d3.sum(v, function (d) {
+                        Fatalities: d3version3.sum(v, function (d) {
                             if (year >= +d["Event.Date"].split("-")[0]) return d[dbNames.fatal];
                             else return 0;
                         }),
-                        Serious_Injuries: d3.sum(v, function (d) {
+                        Serious_Injuries: d3version3.sum(v, function (d) {
                             if (year >= +d["Event.Date"].split("-")[0]) return d[dbNames.serious];
                             else return 0;
                         }),
-                        Minor_Injuries: d3.sum(v, function (d) {
+                        Minor_Injuries: d3version3.sum(v, function (d) {
                             if (year >= +d["Event.Date"].split("-")[0]) return d[dbNames.minor];
                             else return 0;
                         })
@@ -162,7 +162,7 @@ d3.csv("datasets/AviationCrashLocation_3k.csv", function (err, data) {
 
 
         e = change(2000)
-        d3.json("datasets/us-states.json", function (error, us) {
+        d3version3.json("datasets/us-states.json", function (error, us) {
             function updateMapColors(type ="Fatalities"){
                 //cambia colore
                 mapSvg.selectAll("g").remove();
@@ -200,7 +200,7 @@ d3.csv("datasets/AviationCrashLocation_3k.csv", function (err, data) {
 
             var legendText = ["0-1","1-2","3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
             //var legendText = ["Fatalities:", "0-35", "36-70", "71-105", "106-140", "141-175", "176-210", "211-245", "246-280", "281-315"];
-            var legend = d3.select("body").append("svg")
+            var legend = d3version3.select("body").append("svg")
                 .attr("class", "legend")
                 .attr("width", 82)
                 .attr("height", 178)
@@ -217,7 +217,7 @@ d3.csv("datasets/AviationCrashLocation_3k.csv", function (err, data) {
                 .attr("height", 18)
                 .style("fill", function (d, i) {
                     //if (i == 0) return;
-                    console.log(i)
+                    //console.log(i)
                     //var color = colors[i - 1].getColors().r;
                     var color = colors[i].getColors().r;
                     //console.log(i, valueById.get(d.id))
@@ -233,20 +233,20 @@ d3.csv("datasets/AviationCrashLocation_3k.csv", function (err, data) {
                 });
 
         
-            d3.select("input")
+            d3version3.select("input")
                 .on("change", function () {
-                    var yearInput = +d3.select(this).node().value;
+                    var yearInput = +d3version3.select(this).node().value;
                     e = change(yearInput);
                     grp = $("input[type='radio'][name='gender']:checked").val();
-                    console.log(grp)
+                    //console.log(grp)
                     updateMapColors(grp)
                 });
 
             function update(){
 
                 // For each check box:
-                d3.selectAll(".checkbox").each(function(d){
-                    cb = d3.select(this);
+                d3version3.selectAll(".checkbox").each(function(d){
+                    cb = d3version3.select(this);
                     grp = cb.property("value")
                     if(cb.property("checked"))
                         updateMapColors(grp)
@@ -254,7 +254,7 @@ d3.csv("datasets/AviationCrashLocation_3k.csv", function (err, data) {
                 }
               
             // When a button change, I run the update function
-            d3.selectAll(".checkbox").on("change",update);
+            d3version3.selectAll(".checkbox").on("change",update);
               
         });
 

@@ -1,7 +1,4 @@
-var dataset_path = "datasets/AviationCrashLocation_3k.csv"
-var url_regioni = ""
-var url_province = ""
-
+var dataset_path = "datasets/AviationCrashLocation_new.csv"
 var dbNames = {
     "crashCountry": "Crash.Country",
     "fatal": "Total.Fatal.Injuries",
