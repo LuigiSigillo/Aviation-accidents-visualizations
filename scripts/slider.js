@@ -29,7 +29,7 @@ function change(data, subject, year, single_year) {
     }
 
     //aggregate values, TO ADD MAKE AND MONTH
-    var res = d3.nest()
+    var res = d3version3.nest()
         .key(function (d) { return d[subject]; })
         .rollup(function (v) {
             return {
@@ -80,4 +80,5 @@ function change(data, subject, year, single_year) {
         })
         .map(filtered_map)
     return res;
+    
 }

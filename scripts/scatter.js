@@ -110,6 +110,7 @@ function changing(aggregationType, X, Y, R) {
         function scatter_visualization(yearInput,aggregationType) {
 
             e = change(data, aggregationType, yearInput, false)
+            console.log("ciao",e)
             //e = change(yearInput);
             var i
             keys = Object.keys(e),

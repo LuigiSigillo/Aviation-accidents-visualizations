@@ -162,6 +162,7 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
 
 
         e = change(2000)
+        console.log("aeae",e)
         d3version3.json("datasets/us-states.json", function (error, us) {
             function updateMapColors(type ="Fatalities"){
                 //cambia colore
