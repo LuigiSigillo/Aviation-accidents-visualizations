@@ -41,10 +41,6 @@ var yAxis = d3.axisLeft()
 
 
 
-var aggregationType = "aggregated_state"
-var X = 'Total_Accidents'
-var Y = 'Fatal'
-var R = 'Serious'
 
 
 function zuppa(d) {
@@ -92,14 +88,18 @@ function change(year) {
 }*/
 
 
+var aggregationType = "Crash.Country"
+var X = 'Total_Accidents'
+var Y = 'Fatal'
+var R = 'Serious'
 
 function changing(aggregationType, X, Y, R) {
 
-    console.log('Chiamata changing con parametri: ' + aggregationType, X, Y, R)
+    //console.log('Chiamata changing con parametri: ' + aggregationType, X, Y, R)
     var aggr = document.getElementById("aggregationType");
     aggr.onchange = function () {
         aggregationType = aggr.value
-        console.log(X, Y, R)
+        //console.log(X, Y, R)
         changing(aggr.value, X, Y, R)
     }
 
@@ -107,9 +107,8 @@ function changing(aggregationType, X, Y, R) {
     d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
 
 
-        function scatter_visualization(yearInput) {
+        function scatter_visualization(yearInput,aggregationType) {
 
-            console.log('CIAONE: ' + yearInput)
             e = change(data, aggregationType, yearInput, false)
             //e = change(yearInput);
             var i
@@ -318,13 +317,16 @@ function changing(aggregationType, X, Y, R) {
 
 
         // data pre-processing
-        console.log(data)
+        //console.log(data)
         //e = change(data, 'Crash.Country', 2000, false)
-        scatter_visualization(2000)
+        scatter_visualization(2000,aggregationType)
         //get input from slider
         d3.select("input")
-            .on("change", scatter_visualization(+d3.select(this).node().value))
+            .on("change", function () {
+                var yearInput = +d3.select(this).node().value
+                console.log('CIAONE: ' + yearInput)
+                scatter_visualization(yearInput,aggregationType)
+            })
 });
 }
-
 changing(aggregationType, X, Y, R)
