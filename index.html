@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/index.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
 
     <!-- magia versioni-->
 
@@ -32,29 +33,36 @@
 <script type="text/javascript" src="scripts/map.js"></script>
 <link rel="stylesheet" href="css/map.css">
 
-<style>
-    .row {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin: 0 auto;
-    }
 
-    .block {
-        width: 400px;
-    }
 
-</style>
+<script type="text/javascript" src="scripts/slider.js"></script>
 
 <body>
-    <!--html for MAP-->
-    <div class="row">
+    <div>
+        <!--html for MAP-->
         <div id="map" class="block">
             <div id="tooltip-container"></div>
 
             <div id="canvas-svg"></div>
+
+        </div>
+
+        <!--html for SCATTER plot-->
+        <div id="scatter" class="block">
+           <link rel="stylesheet" href="css/scatter.css">
+        </div>
+
+
+        <!--html for MDS-->
+        <div id="mds" class="block">
+
+
+        </div>
+
+        <div id="menu" class="block" style="margin-left: 100%;">
+            <!-- Buttons for map -->
             <div class="slidecontainer">
-                <input type="range" min="2000" max="2021" step="1" value="2000" class="slider" id="slider">
+                <input type="range" min="2001" max="2021" step="1" value="2001" class="slider" id="slider">
                 <br>
                 <p>
                     Year: <span id="demo"></span>
@@ -70,10 +78,8 @@
                     }
                 </script>
             </div>
-
-            <!-- Button -->
             <div>
-                <p>Do your bet:</p>
+                <p>Change map visualization:</p>
                 <input type="radio" class="checkbox" value="Total_Accidents" name="gender"><label
                     for="Accidents">Accidents</label>
                 <input type="radio" class="checkbox" value="Fatalities" name="gender" checked><label
@@ -85,10 +91,7 @@
                     injuries</label>
             </div>
 
-        </div>
-
-        <!--html for SCATTER plot-->
-        <div id="scatter" class="block">
+            <!-- Scatter plot-->
             <div id="menu_aggrina">
                 <div id="computation" class="custom-select" style="width:400px;">
                     <label for="aggregationType"><b>Aggregation type:</b></label>
@@ -102,7 +105,7 @@
 
                 <label for="X_axis" style="color: brown;"><b>X_axis:</b></label>
                 <select id='X_axis'>
-                    <option value="Total_Accidents"selected>Incidents</option>
+                    <option value="Total_Accidents" selected>Incidents</option>
                     <option value="Uninjured">Uninjured</option>
                     <option value="Minor">Minor Injuries</option>
                     <option value="Serious">Serious Injuries</option>
@@ -116,7 +119,7 @@
                     <option value="Uninjured">Uninjured</option>
                     <option value="Minor">Minor Injuries</option>
                     <option value="Serious">Serious Injuries</option>
-                    <option value="Fatal"selected>Fatal Injuries</option>
+                    <option value="Fatal" selected>Fatal Injuries</option>
                 </select>
 
 
@@ -129,23 +132,16 @@
                     <option value="Fatal">Fatal Injuries</option>
                 </select>
             </div>
-            <script type="text/javascript" src="scripts/slider.js"></script>
+            <script type="text/javascript" src="scripts/mds.js"></script>
+
             <script type="text/javascript" src="scripts/scatter.js"></script>
-            <link rel="stylesheet" href="css/scatter.css">
-        </div>
-
-
-        <!--html for MDS-->
-        <div id="central_view" class="block">
-            <div id="regions"></div>
+            
+            
+            <!-- MDS-->
 
         </div>
     </div>
 </body>
-<script type="text/javascript" src="scripts/slider.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
-
-<script type="text/javascript" src="scripts/mds_functions.js"></script>
 <link rel="stylesheet" href="css/mds.css">
 
 

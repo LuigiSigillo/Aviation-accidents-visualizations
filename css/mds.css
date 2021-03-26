@@ -4,14 +4,6 @@ shape-rendering: crispEdges;
 }
 
 
-.axis line {
-stroke: #00F;
-stroke-width: 2px;
-fill: none;
-stroke: black;
-shape-rendering: crispEdges;
-}
-
 .axis path {
 stroke: #00F;
 stroke-width: 2px;
@@ -48,138 +40,95 @@ height: 500px;
 }
 
 
-   /*MDS*/
-   #regions{
-    height: 80%;
-    width: 100%;
-    position: relative;
-  }
-  .axis path,
-  .axis line {
-      fill: none;
-      stroke: black;
-      shape-rendering: crispEdges;
-  }
+/*MDS*/
+#regions{
+height: 80%;
+width: 100%;
+position: relative;
+}
+
+
+.axis text {
+    font-size: 11px;
+}
+
+circle {
+    stroke: #2c7bb6;
+    fill : #2c7bb6;
+    opacity : 0.8;
+}
+#text{
+  opacity: 0.6;
+}
+.brushed {
+  fill: red;
+  stroke: red;
+  opacity: 1.0;
+}
+
+.brushed_text{
+  fill: #0e0d0d;
+  opacity: 1.0;
+}
+
+#coordination{
+  stroke: black;
+  stroke-width: 2;
+  opacity: 1.0;
+}
+
+.pc_brushed{
+  fill: lightgray;
+  stroke: darkgray;
+  opacity: 1.0;
+}
+
+div.mdsTooltip {
+  position: absolute;
+  text-align: center;
+  padding: 5px;
+  font: sans-serif;
+  background: lightgray;
+  border-radius: 25px;
+  pointer-events: none;
+}
+
+
+/*---------*/
+#menu_tendina {
+  display: table;
+  width: 99%;
+  margin-left: 0.5%;
+  table-layout: fixed;
+  border-spacing: 10px;
+  border-style: outset;
+  border-width: 2px;
+  background-color: lightgrey;
+  border-radius: 10px;
   
-  .axis text {
-      font-size: 11px;
-  }
-  
-  circle {
-      stroke: #2c7bb6;
-      fill : #2c7bb6;
-      opacity : 0.8;
-  }
-  #text{
-    opacity: 0.6;
-  }
-  .brushed {
-    fill: red;
-    stroke: red;
-    opacity: 1.0;
-  }
-  
-  .brushed_text{
-    fill: #0e0d0d;
-    opacity: 1.0;
-  }
-  
-  #coordination{
-    stroke: black;
-    stroke-width: 2;
-    opacity: 1.0;
-  }
-  
-  .pc_brushed{
-    fill: lightgray;
-    stroke: darkgray;
-    opacity: 1.0;
-  }
-  
-  div.mdsTooltip {
-    position: absolute;
-    text-align: center;
-    padding: 5px;
-    font: sans-serif;
-    background: lightgray;
-    border-radius: 25px;
-    pointer-events: none;
-  }
-  
-  /*PARALLEL COORDINATES*/
-  #par-coord{
-    border:3px solid black;
-    /*border-style: inset;*/
-    border-radius: 5px;
-    position: absolute;
-    top:57%;
-    height: 42%;
-    width: 97%;
-  }
-  #my_dataviz{
-    height: 100%;
-    width: 100%;
-    position: relative;
-  }
-  .PCtooltip {
-    border-radius: 25px;
-    background: lightgray; 
-    display:none;
-    padding: 5px;
-    font-family: sans-serif;
-  }
-  
-  .brush .extent {
-    fill-opacity: .3;
-    stroke: #fff;
-    shape-rendering: crispEdges;
-  }
-  .background path {
-    fill: none;
-    stroke: #ddd;
-    shape-rendering: crispEdges;
-  }
-  
-  .foreground path {
-    fill: none;
-    stroke: steelblue;
-  }
-  
-  /*---------*/
-  #menu_tendina {
-    display: table;
-    width: 99%;
-    margin-left: 0.5%;
-    table-layout: fixed;
-    border-spacing: 10px;
-    border-style: outset;
-    border-width: 2px;
-    background-color: lightgrey;
-    border-radius: 10px;
-    
-  }
-  #mcomputation,#computation,#visualizationType {
-    display: table-cell;
-  }
-  
-  .button .arrow{
-    border-width: 2px;
-  }
-  .arrow {
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-    background-color: white;
-  }
-  
-  .right {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-  }
-  
-  .left {
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
-    margin-left: 20%;
-  }
+}
+#mcomputation,#computation,#visualizationType {
+  display: table-cell;
+}
+
+.button .arrow{
+  border-width: 2px;
+}
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  background-color: white;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  margin-left: 20%;
+}

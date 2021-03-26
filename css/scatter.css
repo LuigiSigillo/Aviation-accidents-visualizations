@@ -7,12 +7,13 @@ body {
     font-size: 15px;
   }
 
-  .legend {
+  .legendina {
     opacity: 1;
     transition: opacity 0.3s;
+    overflow-y:scroll; height:400px; background:gray
   }
 
-  .legend text,
+  .legendina text,
   .axis text {
     font-size: 13px;
     fill: #333;

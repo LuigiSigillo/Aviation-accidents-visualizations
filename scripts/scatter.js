@@ -1,4 +1,4 @@
-var margin = { top: 30, right: 220, bottom: 300, left: 500 };
+var margin = { top: 30, right: 200, bottom: 100, left: 500 };
 var width = 1560 - margin.left - margin.right;
 var height = 900 - margin.top - margin.bottom;
 
@@ -257,9 +257,9 @@ function changing(aggregationType, X, Y, R, year) {
 
             //console.log(color.domain())
             var legend = svg.selectAll(".legend")
-                .data(color.domain())
+                .data(color.domain().sort(function (a,b) {return dataset_dict[b].r -dataset_dict[a].r}))
                 .enter().append("g")
-                .attr("class", "legend")
+                .attr("class", "legendina")
                 .attr("transform", function (d, i) { return "translate(2," + i * 14 + ")"; });
 
 
@@ -303,7 +303,13 @@ function changing(aggregationType, X, Y, R, year) {
         d3.select("input")
             .on("change", function () {
                 yearInput = +d3.select(this).node().value
-                console.log('CIAONE: ' + yearInput)
+
+                
+                
+                createMDS(yearInput, 0, 0)
+                
+                
+                
                 d3.selectAll('circle') // move the circles
                     .transition().duration(1000)
                     .attr("r", function (d) { return radius(d.r) * 0; })
