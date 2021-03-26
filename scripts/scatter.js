@@ -78,7 +78,7 @@ function changing(aggregationType, X, Y, R, year) {
     d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
 
 
-        function scatter_visualization(yearInput,aggregationType) {
+        function scatter_visualization(yearInput, aggregationType) {
 
             dataset_dict = change(data, aggregationType, yearInput, false)
             //console.log("ciao",e)
@@ -122,7 +122,7 @@ function changing(aggregationType, X, Y, R, year) {
 
             function returnRange(nuovaXY, axis) {
                 var xmax = -1
-                
+
                 for (var elem in dataset_dict) {
                     //console.log(axis)
                     //console.log(nuovaXY)
@@ -158,7 +158,7 @@ function changing(aggregationType, X, Y, R, year) {
 
 
             function xChange() {
-                
+
                 X = this.value // get the new y value
                 console.log('NUOVA X: ' + X)
                 console.log('VECCHIA Y: ' + Y)
@@ -202,11 +202,13 @@ function changing(aggregationType, X, Y, R, year) {
                 .attr("transform", "translate(0," + height + ")")
                 .attr("class", "x axis")
                 .attr('id', 'xAxis')
+                .transition().duration(1000)
                 .call(xAxis);
             svg.append("g")
                 .attr("transform", "translate(0,0)")
                 .attr("class", "y axis")
                 .attr('id', 'yAxis')
+                .transition().duration(1000)
                 .call(yAxis);
 
 
@@ -219,6 +221,7 @@ function changing(aggregationType, X, Y, R, year) {
             var color = d3.scaleOrdinal(d3.schemeCategory20)
 
             group.append("circle")
+                .transition().duration(1000)
                 .attr("r", function (d) { return radius(d.r) * 10; })
                 .style("fill", function (d) {
                     j++
@@ -295,14 +298,25 @@ function changing(aggregationType, X, Y, R, year) {
         }
         //console.log(data)
         //e = change(data, 'Crash.Country', 2000, false)
-        scatter_visualization(year,aggregationType)
+        scatter_visualization(year, aggregationType)
         //get input from slider
         d3.select("input")
             .on("change", function () {
                 yearInput = +d3.select(this).node().value
                 console.log('CIAONE: ' + yearInput)
-                scatter_visualization(yearInput,aggregationType)
+                d3.selectAll('circle') // move the circles
+                    .transition().duration(1000)
+                    .attr("r", function (d) { return radius(d.r) * 0; })
+                    .on("end", function (d) {
+                        scatter_visualization(yearInput, aggregationType)
+                    });
+                d3.select('#xAxis') // redraw the xAxis
+                    .transition().duration(1000)
+                    .call(xAxis)
+                d3.select('#yAxis') // redraw the yAxis
+                    .transition().duration(1000)
+                    .call(yAxis)
             })
-});
+    });
 }
 changing(aggregationType, X, Y, R, yearInput)
