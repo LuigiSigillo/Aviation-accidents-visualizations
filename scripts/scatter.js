@@ -42,7 +42,7 @@ var yAxis = d3.axisLeft()
 
 
 
-
+//IN PROGRESS
 function zuppa(d) {
     //console.log(d)
     s = ""
@@ -53,54 +53,25 @@ function zuppa(d) {
                 s += ("\t" + k + " " + d[key][k] + "\n")
         }
     }
-
     console.log(s)
     return s
 }
-
-/*
-function change(year) {
-
-    var e = d3.nest()
-        .key(function (d) { return d[dbNames.crashCountry]; })
-        .rollup(function (v) {
-            return {
-                Total_Accidents: d3.sum(v, function (d) {
-                    if (year >= +d["Event.Date"].split("-")[0]) return 1;
-                    else return 0;
-                }),
-                Fatalities: d3.sum(v, function (d) {
-                    if (year >= +d["Event.Date"].split("-")[0]) return d[dbNames.fatal];
-                    else return 0;
-                }),
-                Serious_Injuries: d3.sum(v, function (d) {
-                    if (year >= +d["Event.Date"].split("-")[0]) return d[dbNames.serious];
-                    else return 0;
-                }),
-                Minor_Injuries: d3.sum(v, function (d) {
-                    if (year >= +d["Event.Date"].split("-")[0]) return d[dbNames.minor];
-                    else return 0;
-                })
-            };
-        })
-        .map(data);
-    return e
-}*/
 
 
 var aggregationType = "Crash.Country"
 var X = 'Total_Accidents'
 var Y = 'Fatal'
 var R = 'Serious'
+var yearInput = 2000
 
-function changing(aggregationType, X, Y, R) {
+function changing(aggregationType, X, Y, R, year) {
 
     //console.log('Chiamata changing con parametri: ' + aggregationType, X, Y, R)
     var aggr = document.getElementById("aggregationType");
     aggr.onchange = function () {
         aggregationType = aggr.value
-        //console.log(X, Y, R)
-        changing(aggr.value, X, Y, R)
+        console.log('CHIAMO CON X Y Z: ', X, Y, R)
+        changing(aggr.value, X, Y, R, yearInput)
     }
 
 
@@ -109,16 +80,16 @@ function changing(aggregationType, X, Y, R) {
 
         function scatter_visualization(yearInput,aggregationType) {
 
-            e = change(data, aggregationType, yearInput, false)
-            console.log("ciao",e)
+            dataset_dict = change(data, aggregationType, yearInput, false)
+            //console.log("ciao",e)
             //e = change(yearInput);
             var i
-            keys = Object.keys(e),
+            keys = Object.keys(dataset_dict),
                 i, len = keys.length;
             keys.sort(function (a, b) {
                 return a - b;
             });
-            console.log('CHIAVI: ' + keys)
+            //console.log('CHIAVI: ' + keys)
             var xmax = -1
             var ymax = -1
             var rmax = -1
@@ -126,22 +97,22 @@ function changing(aggregationType, X, Y, R) {
 
             //check max values to rescale axis
             //console.log(e)
-            for (var key in keys) {
-                console.log(keys[key])
-                console.log(e[keys[key]])
+            for (var elem in dataset_dict) {
+                //console.log(keys[key])
                 //console.log(e[elem])
-                e[keys[key]].x = +e[keys[key]][X];
+                //console.log(e[elem])
+                dataset_dict[elem].x = +dataset_dict[elem][X];
                 //data[key].x = +e[key][X];
 
-                e[keys[key]].y = +e[keys[key]]['Human_Injuries'][Y];
-                e[keys[key]].r = +e[keys[key]]['Human_Injuries'][R];
-                if (e[keys[key]]["x"] > xmax)
-                    xmax = e[keys[key]]["x"]
-                if (e[keys[key]]["y"] > ymax)
-                    ymax = e[keys[key]]["y"]
-                if (e[keys[key]]["r"] > rmax)
-                    rmax = e[keys[key]]["r"]
-                come_vuole_lui.push(e[keys[key]])
+                dataset_dict[elem].y = +dataset_dict[elem][Y];
+                dataset_dict[elem].r = +dataset_dict[elem][R];
+                if (dataset_dict[elem]["x"] > xmax)
+                    xmax = dataset_dict[elem]["x"]
+                if (dataset_dict[elem]["y"] > ymax)
+                    ymax = dataset_dict[elem]["y"]
+                if (dataset_dict[elem]["r"] > rmax)
+                    rmax = dataset_dict[elem]["r"]
+                come_vuole_lui.push(dataset_dict[elem])
 
             }
             //scale the axis to the correct values
@@ -151,11 +122,17 @@ function changing(aggregationType, X, Y, R) {
 
             function returnRange(nuovaXY, axis) {
                 var xmax = -1
-                for (var key in data) {
-                    data[key][axis] = +data[key][nuovaXY];
-                    if (data[key][axis] > xmax)
-                        xmax = data[key][axis]
+                
+                for (var elem in dataset_dict) {
+                    //console.log(axis)
+                    //console.log(nuovaXY)
+                    //console.log(dataset_dict[elem])
+                    dataset_dict[elem][axis] = +dataset_dict[elem][nuovaXY]
+                    //console.log('E ELEM AXIS: ' + dataset_dict[elem][axis])
+                    if (dataset_dict[elem][axis] > xmax)
+                        xmax = dataset_dict[elem][axis]
                 }
+                console.log('MAX: ' + xmax)
                 if (axis == "r")
                     return xmax
                 return xmax + 10
@@ -163,6 +140,8 @@ function changing(aggregationType, X, Y, R) {
 
             function yChange() {
                 Y = this.value // get the new y value
+                console.log('NUOVA Y: ' + Y)
+                console.log('VECCHIA X: ' + X)
                 yscale.domain([0, returnRange(Y, "y")])
                 yAxis.scale(yscale) // change the yScale
                 d3.select('#yAxis') // redraw the yAxis
@@ -179,7 +158,10 @@ function changing(aggregationType, X, Y, R) {
 
 
             function xChange() {
+                
                 X = this.value // get the new y value
+                console.log('NUOVA X: ' + X)
+                console.log('VECCHIA Y: ' + Y)
                 xscale.domain([0, returnRange(X, "x")])
                 xAxis.scale(xscale) // change the yScale
                 d3.select('#xAxis') // redraw the yAxis
@@ -196,7 +178,7 @@ function changing(aggregationType, X, Y, R) {
 
             function rChange() {
                 R = this.value // get the new y value
-                console.log(R)
+                console.log('NUOVA R: ' + R)
                 radius.domain([0, returnRange(R, "r")])
 
                 d3.selectAll('circle') // move the circles
@@ -313,14 +295,14 @@ function changing(aggregationType, X, Y, R) {
         }
         //console.log(data)
         //e = change(data, 'Crash.Country', 2000, false)
-        scatter_visualization(2000,aggregationType)
+        scatter_visualization(year,aggregationType)
         //get input from slider
         d3.select("input")
             .on("change", function () {
-                var yearInput = +d3.select(this).node().value
+                yearInput = +d3.select(this).node().value
                 console.log('CIAONE: ' + yearInput)
                 scatter_visualization(yearInput,aggregationType)
             })
 });
 }
-changing(aggregationType, X, Y, R)
+changing(aggregationType, X, Y, R, yearInput)
