@@ -310,13 +310,6 @@ function changing(aggregationType, X, Y, R) {
 
 
         }
-
-
-
-
-
-
-        // data pre-processing
         //console.log(data)
         //e = change(data, 'Crash.Country', 2000, false)
         scatter_visualization(2000,aggregationType)
