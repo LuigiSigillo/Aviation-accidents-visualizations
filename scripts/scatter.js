@@ -309,7 +309,9 @@ function changing(aggregationType, X, Y, R, year) {
                 createMDS(yearInput, 0, 0)
                 
                 
-                
+                                
+                scatter_visualization(yearInput,aggregationType)
+/*
                 d3.selectAll('circle') // move the circles
                     .transition().duration(1000)
                     .attr("r", function (d) { return radius(d.r) * 0; })
@@ -321,7 +323,7 @@ function changing(aggregationType, X, Y, R, year) {
                     .call(xAxis)
                 d3.select('#yAxis') // redraw the yAxis
                     .transition().duration(1000)
-                    .call(yAxis)
+                    .call(yAxis)*/
             })
     });
 }

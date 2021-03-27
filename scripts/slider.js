@@ -18,6 +18,8 @@ Params:     subject-->  (string)    the subject of visualization -> Crash.Countr
             single_year (bool)      single year or multiple year
 Returns:    result-->   (map)       filtered and processed map 
 */
+
+
 function change(data, subject, year, single_year) {
     var filtered_map
 
@@ -54,7 +56,7 @@ function change(data, subject, year, single_year) {
                 LANDING: d3.sum(v, function (d)     { return d["Broad.Phase.of.Flight"] == "LANDING"; }),
                 GOAROUND: d3.sum(v, function (d)    { return d["Broad.Phase.of.Flight"] == "GO-AROUND"; }),
                 TAXI: d3.sum(v, function (d)        { return d["Broad.Phase.of.Flight"] == "TAXI"; }),
-                Genuary: d3.sum(v, function (d)     { return d["Event.Date"].split("-")[1] == "01"}),
+                January: d3.sum(v, function (d)     { return d["Event.Date"].split("-")[1] == "01"}),
                 February: d3.sum(v, function (d)    { return d["Event.Date"].split("-")[1] == "02"}),
                 March: d3.sum(v, function (d)       { return d["Event.Date"].split("-")[1] == "03"}),
                 April: d3.sum(v, function (d)       { return d["Event.Date"].split("-")[1] == "04"}),
