@@ -49,7 +49,7 @@ function plotMds(matrix, visibleLabel, evolutionMode) {
         });
 }
 
-
+/*
 d3.select("#slider")
     .on("change", function () {
         console.log("cu sibi md")
@@ -57,7 +57,7 @@ d3.select("#slider")
         createMDS(yearInput, 0, 0)
 
     });
-
+*/
 var size;
 
 function chooseCharacteristic(data, year) {

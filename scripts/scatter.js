@@ -1,7 +1,10 @@
 var margin = { top: 30, right: 200, bottom: 100, left: 500 };
 var width = 1560 - margin.left - margin.right;
 var height = 900 - margin.top - margin.bottom;
-
+/* height = document.getElementById('scatter').getBoundingClientRect()["height"]
+width = document.getElementById('scatter').getBoundingClientRect()["width"]
+console.log("scat",height,"h",width)
+ */
 var dbNames = {
     "crashCountry": "Crash.Country",
     "fatal": "Total.Fatal.Injuries",
@@ -300,16 +303,12 @@ function changing(aggregationType, X, Y, R, year) {
         //e = change(data, 'Crash.Country', 2000, false)
         scatter_visualization(year, aggregationType)
         //get input from slider
-        d3.select("input")
+        d3.select("#slider")
             .on("change", function () {
                 yearInput = +d3.select(this).node().value
 
-                
-                
                 createMDS(yearInput, 0, 0)
-                
-                
-                                
+                           
                 scatter_visualization(yearInput,aggregationType)
 /*
                 d3.selectAll('circle') // move the circles

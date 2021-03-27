@@ -29,18 +29,28 @@
 
 </head>
 
-
+<script type="text/javascript" src="scripts/slider.js"></script>
 <script type="text/javascript" src="scripts/map.js"></script>
 <link rel="stylesheet" href="css/map.css">
 
-
-
-<script type="text/javascript" src="scripts/slider.js"></script>
-
 <body>
+    <h1 style="float: right;">VA of Aviation accidents in USA</h1>
     <div>
         <!--html for MAP-->
         <div id="map" class="block">
+            <div>
+                <p>Change map visualization:</p>
+                <input type="radio" class="checkbox" value="Total_Accidents" name="gender"><label
+                    for="Accidents">Accidents</label>
+                <input type="radio" class="checkbox" value="Fatal" name="gender" checked><label
+                    for="Fatalities">Fatalities</label>
+                <input type="radio" class="checkbox" value="Serious" name="gender"><label for="Serious">Serious
+                    injuries</label>
+                <input type="radio" class="checkbox" value="Minor" name="gender"><label for="Minor">Minor
+                    injuries</label>
+                <input type="radio" class="checkbox" value="Uninjured" name="gender"><label
+                    for="Uninjured">Uninjured</label>
+            </div>
             <div id="tooltip-container"></div>
 
             <div id="canvas-svg"></div>
@@ -49,17 +59,45 @@
 
         <!--html for SCATTER plot-->
         <div id="scatter" class="block">
-           <link rel="stylesheet" href="css/scatter.css">
-        </div>
+            <link rel="stylesheet" href="css/scatter.css">
+            <label for="X_axis" style="color: brown;"><b>X_axis:</b></label>
+            <select id='X_axis'>
+                <option value="Total_Accidents" selected>Incidents</option>
+                <option value="Uninjured">Uninjured</option>
+                <option value="Minor">Minor Injuries</option>
+                <option value="Serious">Serious Injuries</option>
+                <option value="Fatal">Fatal Injuries</option>
+            </select>
 
+
+            <label for="Y_axis" style="color: brown;"><b>Y_axis:</b></label>
+            <select id='Y_axis'>
+                <option value="Total_Accidents">Incidents</option>
+                <option value="Uninjured">Uninjured</option>
+                <option value="Minor">Minor Injuries</option>
+                <option value="Serious">Serious Injuries</option>
+                <option value="Fatal" selected>Fatal Injuries</option>
+            </select>
+
+
+            <label for="R_axis" style="color: brown;"><b>R_axis:</b></label>
+            <select id='R_axis'>
+                <option value="Total_Accidents">Incidents</option>
+                <option value="Uninjured">Uninjured</option>
+                <option value="Minor">Minor Injuries</option>
+                <option value="Serious" selected>Serious Injuries</option>
+                <option value="Fatal">Fatal Injuries</option>
+            </select>
+        </div>
 
         <!--html for MDS-->
         <div id="mds" class="block">
 
 
         </div>
+        <!--html for MENU -->
 
-        <div id="menu" class="block" style="margin-left: 100%;">
+        <div id="menu" class="block" style="margin-left: 40%;" >
             <!-- Buttons for map -->
             <div class="slidecontainer">
                 <input type="range" min="2001" max="2021" step="1" value="2001" class="slider" id="slider">
@@ -78,21 +116,9 @@
                     }
                 </script>
             </div>
-            <div>
-                <p>Change map visualization:</p>
-                <input type="radio" class="checkbox" value="Total_Accidents" name="gender"><label
-                    for="Accidents">Accidents</label>
-                <input type="radio" class="checkbox" value="Fatalities" name="gender" checked><label
-                    for="Fatalities">Fatalities</label>
-                <input type="radio" class="checkbox" value="Serious_Injuries" name="gender"><label
-                    for="Serious injuries">Serious injuries</label>
-                <input type="radio" class="checkbox" value="Minor_Injuries" name="gender"><label
-                    for="Minor injuries">Minor
-                    injuries</label>
-            </div>
 
             <!-- Scatter plot-->
-            <div id="menu_aggrina">
+            <div id="menu_tendina">
                 <div id="computation" class="custom-select" style="width:400px;">
                     <label for="aggregationType"><b>Aggregation type:</b></label>
                     <select id='aggregationType'>
@@ -103,43 +129,11 @@
                     </select>
                 </div>
 
-                <label for="X_axis" style="color: brown;"><b>X_axis:</b></label>
-                <select id='X_axis'>
-                    <option value="Total_Accidents" selected>Incidents</option>
-                    <option value="Uninjured">Uninjured</option>
-                    <option value="Minor">Minor Injuries</option>
-                    <option value="Serious">Serious Injuries</option>
-                    <option value="Fatal">Fatal Injuries</option>
-                </select>
 
-
-                <label for="Y_axis" style="color: brown;"><b>Y_axis:</b></label>
-                <select id='Y_axis'>
-                    <option value="Total_Accidents">Incidents</option>
-                    <option value="Uninjured">Uninjured</option>
-                    <option value="Minor">Minor Injuries</option>
-                    <option value="Serious">Serious Injuries</option>
-                    <option value="Fatal" selected>Fatal Injuries</option>
-                </select>
-
-
-                <label for="R_axis" style="color: brown;"><b>R_axis:</b></label>
-                <select id='R_axis'>
-                    <option value="Total_Accidents">Incidents</option>
-                    <option value="Uninjured">Uninjured</option>
-                    <option value="Minor">Minor Injuries</option>
-                    <option value="Serious" selected>Serious Injuries</option>
-                    <option value="Fatal">Fatal Injuries</option>
-                </select>
             </div>
-            <script type="text/javascript" src="scripts/mds.js"></script>
-
-            <script type="text/javascript" src="scripts/scatter.js"></script>
-            
-            
-            <!-- MDS-->
-
         </div>
+        <script type="text/javascript" src="scripts/mds.js"></script>
+        <script type="text/javascript" src="scripts/scatter.js"></script>
     </div>
 </body>
 <link rel="stylesheet" href="css/mds.css">

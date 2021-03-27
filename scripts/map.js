@@ -1,22 +1,14 @@
 d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
-
-    var dbNames = {
-        "crashCountry": "Crash.Country",
-        "fatal": "Total.Fatal.Injuries",
-        "serious": "Total.Serious.Injuries",
-        "minor": "Total.Minor.Injuries",
-        "uninjured": "Total.Uninjured",
-        "weather": "Weather.Condition",
-        "phase": "Broad.Phase.of.Flight"
-    }
-
+    
+/*     var height = document.getElementById('map').getBoundingClientRect()["height"]
+    var width = document.getElementById('map').getBoundingClientRect()["width"]
+    console.log("mapp",document.getElementById('map').getBoundingClientRect()["height"],"h",document.getElementById('map').getBoundingClientRect()["width"])
+ */
     var params = {
-        "WIDTH": 1000,
-        "HEIGHT": 700,
+        "WIDTH": height,
+        "HEIGHT": width,
         "SCALE": 1
     }
-
-
 
     function Color(_r, _g, _b) {
         var r, g, b;
@@ -87,6 +79,7 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
         }
 
         function createHtml (d) {
+            
             var html = "";
             html += "<div class=\"tooltip_kv\">";
             html += "<span class=\"tooltip_key\">";
@@ -94,26 +87,52 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
             html += "</span><br>";
             html += "<span class=\"tooltip_value\">";
             html += "<a>Total Accidents: "
-            html += (e[id_name_map[d.id]]["Total_Accidents"]);
+            try {
+                html += (e[id_name_map[d.id]]["Total_Accidents"]);
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span class=\"tooltip_value\">";
+                html += "<a>Fatalities: "
+                html += (e[id_name_map[d.id]]["Fatal"]);
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span class=\"tooltip_value\">";
+                html += "<a>Serious Injuries: "
+                html += (e[id_name_map[d.id]]["Serious"]);
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span class=\"tooltip_value\">";
+                html += "<a>Minor Injuries: "
+                html += (e[id_name_map[d.id]]["Minor"]);
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span class=\"tooltip_value\">";
+                html += "<a>Uninjured: "
+                html += (e[id_name_map[d.id]]["Uninjured"]);
+            }
+            catch(error){
+                html = html.replace("<a>Total Accidents: ","")
+                html += "<a>Total Accidents: 0"
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span class=\"tooltip_value\">";
+                html += "<a>Fatalities: 0"
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span class=\"tooltip_value\">";
+                html += "<a>Serious Injuries: 0"
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span class=\"tooltip_value\">";
+                html += "<a>Minor Injuries: 0"
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span class=\"tooltip_value\">";
+                html += "<a>Uninjured: 0"
+            }
             html += "</a>";
             html += "</span><br>";
-            html += "<span class=\"tooltip_value\">";
-            html += "<a>Fatalities: "
-            html += (e[id_name_map[d.id]]["Fatalities"]);
-            html += "</a>";
-            html += "</span><br>";
-            html += "<span class=\"tooltip_value\">";
-            html += "<a>Serious Injuries: "
-            html += (e[id_name_map[d.id]]["Serious_Injuries"]);
-            html += "</a>";
-            html += "</span><br>";
-            html += "<span class=\"tooltip_value\">";
-            html += "<a>Minor Injuries: "
-            html += (e[id_name_map[d.id]]["Minor_Injuries"]);
-            html += "</a>";
-            html += "</span>";
             html += "</div>";
-
             $("#tooltip-container").html(html);
             $(this).attr("fill-opacity", "0.8");
             $("#tooltip-container").show();
@@ -132,39 +151,12 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
             }
         }
 
-        function change(year) {
-
-            var e = d3version3.nest()
-                .key(function (d) { return d[dbNames.crashCountry]; })
-                .rollup(function (v) {
-                    return {
-                        Total_Accidents: d3version3.sum(v, function (d) {
-                            if (year >= +d["Event.Date"].split("-")[0]) return 1;
-                            else return 0;
-                        }),
-                        Fatalities: d3version3.sum(v, function (d) {
-                            if (year >= +d["Event.Date"].split("-")[0]) return d[dbNames.fatal];
-                            else return 0;
-                        }),
-                        Serious_Injuries: d3version3.sum(v, function (d) {
-                            if (year >= +d["Event.Date"].split("-")[0]) return d[dbNames.serious];
-                            else return 0;
-                        }),
-                        Minor_Injuries: d3version3.sum(v, function (d) {
-                            if (year >= +d["Event.Date"].split("-")[0]) return d[dbNames.minor];
-                            else return 0;
-                        })
-                    };
-                })
-                .map(data);
-            return e
-        }
 
 
-        e = change(2000)
-        console.log("aeae",e)
+        e = change(data,"Crash.Country",2001,false)
+        //console.log("primo dataset 2001",e)
         d3version3.json("datasets/us-states.json", function (error, us) {
-            function updateMapColors(type ="Fatalities"){
+            function updateMapColors(type ="Fatal"){
                 //cambia colore
                 mapSvg.selectAll("g").remove();
                 mapSvg.append("g")
@@ -174,12 +166,11 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
                     .enter().append("path")
                     .attr("transform", "scale(" + params.SCALE + ")")
                     .style("fill", function (d) {
-                        if (e[id_name_map[d.id]] != undefined) {
+                        if (e[id_name_map[d.id]] != undefined) 
                             var color = colorMapping(e[id_name_map[d.id]][type]);
-                            return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
-                        } else {
-                            return "";
-                        }
+                        else 
+                            var color = colors[0].getColors().r
+                        return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
                     })
                     .style('stroke', 'black')
                     .attr("d", path)
@@ -192,12 +183,6 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
             }
             // aggiorna mappa subito
             updateMapColors()
-
-            /*mapSvg.append("path")
-                .datum(topojson.mesh(us, us.objects.states, function (a, b) { return a !== b; }))
-                .attr("class", "states")
-                .attr("transform", "scale(" + params.SCALE + ")")
-                .attr("d", path);*/
 
             var legendText = ["0-1","1-2","3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
             //var legendText = ["Fatalities:", "0-35", "36-70", "71-105", "106-140", "141-175", "176-210", "211-245", "246-280", "281-315"];
@@ -234,17 +219,15 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
                 });
 
         
-            d3version3.select("input")
+            d3version3.select("#slider")
                 .on("change", function () {
                     var yearInput = +d3version3.select(this).node().value;
-                    e = change(yearInput);
+                    e = change(data,"Crash.Country",yearInput,false)
                     grp = $("input[type='radio'][name='gender']:checked").val();
-                    //console.log(grp)
                     updateMapColors(grp)
                 });
 
             function update(){
-
                 // For each check box:
                 d3version3.selectAll(".checkbox").each(function(d){
                     cb = d3version3.select(this);
