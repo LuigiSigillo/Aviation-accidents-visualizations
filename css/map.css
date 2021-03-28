@@ -1,86 +1,52 @@
-body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    width: 960px;
-    height: 500px;
-    position: relative;
-    background-color: cadetblue;
-    font: 15px sans-serif;
+.states {
+  fill: none;
+  stroke: rgb(0, 0, 0);
+  stroke-linejoin: round;
+}
 
-  }
+.states-choropleth {
+  fill: #ccc;
+}
 
-  /* stylesheet for your custom graph */
+/* Legend Position Style */
+.legend {
+  position: absolute;
+  left: 5px;
+  top: 450px;
+  background-color: whitesmoke;
+}
 
-  .states {
-    fill: none;
-    stroke: rgb(0, 0, 0);
-    stroke-linejoin: round;
-  }
+.legend {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
 
-  .states-choropleth {
-    fill: #ccc;
-  }
+#tooltip-container {
+  position: absolute;
+  background-color: #fff;
+  color: #000;
+  padding: 10px;
+  border: 1px solid;
+  display: none;
+}
 
-  /* Legend Position Style */
-  .legend {
-    position: absolute;
-    left: 5px;
-    top: 450px;
-    background-color: whitesmoke;
-  }
+.tooltip_key {
+  font-weight: bold;
+}
 
-  .legend {
-    opacity: 1;
-    transition: opacity 0.3s;
-  }
+.tooltip_value {
+  white-space: pre-wrap;
+  margin-left: 10px;
+}
+.tooltip_cat {
+  white-space: pre-wrap;
+  margin-left: 10px;
+  float: right;
+}
 
-  #tooltip-container {
-    position: absolute;
-    background-color: #fff;
-    color: #000;
-    padding: 10px;
-    border: 1px solid;
-    display: none;
-  }
-
-  .tooltip_key {
-    font-weight: bold;
-  }
-
-  .tooltip_value {
-    white-space: pre-wrap;
-    margin-left: 20px;
-    float: right;
-  }
-
-
-  .slider {
-    -webkit-appearance: none;
-    width: 65%;
-    height: 25px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-    top: 222px
-  }
-
-  .slider:hover {
-    opacity: 1;
-  }
-
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    background: #838383;
-    cursor: pointer;
-  }
-
-  .slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    background: #838383;
-    cursor: pointer;
-  }
+#map {
+  background-color: cadetblue;
+  /*border:3px solid black;
+  border-right-style: outset;
+  border-radius: 5px;*/
+}

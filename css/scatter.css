@@ -1,8 +1,3 @@
-body {
-    margin: 0;
-    font-family: arial, sans;
-  }
-
   .label {
     font-size: 15px;
   }
@@ -26,9 +21,6 @@ body {
     stroke: #e7e7e7;
   }
 
-  circle {
-    stroke: #fff;
-  }
 
   .bubble {
     opacity: 1;

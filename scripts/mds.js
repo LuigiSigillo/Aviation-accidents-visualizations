@@ -8,9 +8,6 @@ var dbNames = {
     "weather": "Weather.Condition",
     "phase": "Broad.Phase.of.Flight"
 }
-//var margin = { top: 30, right: 220, bottom: 300, left: 500 };
-var width = 1560 //- margin.left - margin.right;
-var height = 900 //- margin.top - margin.bottom;
 
 function createMDS(year, visibleLabel, evolutionMode) {
 
@@ -39,8 +36,8 @@ function plotMds(matrix, visibleLabel, evolutionMode) {
         locationCoordinates[1],
         size,
         {
-            w: width,//document.getElementById("regions").clientWidth,
-            h: height,//document.getElementById("regions").clientHeight,
+            w: document.getElementById("mds").clientWidth,
+            h: document.getElementById("mds").clientHeight,
             padding: 60,
             reverseX: false,
             reverseY: false,

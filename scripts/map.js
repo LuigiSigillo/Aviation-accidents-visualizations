@@ -1,12 +1,24 @@
 d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
     
-/*     var height = document.getElementById('map').getBoundingClientRect()["height"]
+    /*var height = document.getElementById('map').getBoundingClientRect()["height"]
     var width = document.getElementById('map').getBoundingClientRect()["width"]
-    console.log("mapp",document.getElementById('map').getBoundingClientRect()["height"],"h",document.getElementById('map').getBoundingClientRect()["width"])
- */
+    console.log("mapp_width:",width,"h",height)
+    var height = document.getElementById('scatter').getBoundingClientRect()["height"]
+    var width = document.getElementById('scatter').getBoundingClientRect()["width"]
+    console.log("mapp_width:",width,"h",height)
+    var height = document.getElementById('mds').getBoundingClientRect()["height"]
+    var width = document.getElementById('mds').getBoundingClientRect()["width"]
+    console.log("mapp_width:",width,"h",height)
+    var height = document.getElementById('menu').getBoundingClientRect()["height"]
+    var width = document.getElementById('menu').getBoundingClientRect()["width"]
+    console.log("mapp_width:",width,"h",height)*/
+    
+    /* width: 960px;
+    height: 500px;*/
+    
     var params = {
-        "WIDTH": height,
-        "HEIGHT": width,
+        "WIDTH": "1200",
+        "HEIGHT": "500",
         "SCALE": 1
     }
 
@@ -109,6 +121,22 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
                 html += "<span class=\"tooltip_value\">";
                 html += "<a>Uninjured: "
                 html += (e[id_name_map[d.id]]["Uninjured"]);
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span class=\"tooltip_value\">";
+                html += "<a>VMC: "
+                html += (e[id_name_map[d.id]]["VMC"]);
+                html += " IMC: "
+                html += (e[id_name_map[d.id]]["IMC"]);
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span class=\"tooltip_value\">";
+                html += "<a>Destroyed: "
+                html += (e[id_name_map[d.id]]["Destroyed_Damage"]);
+                html += " Substantial: "
+                html += (e[id_name_map[d.id]]["Substantial_Damage"]);
+                html += " Minor: "
+                html += (e[id_name_map[d.id]]["Minor_Damage"]);
             }
             catch(error){
                 html = html.replace("<a>Total Accidents: ","")

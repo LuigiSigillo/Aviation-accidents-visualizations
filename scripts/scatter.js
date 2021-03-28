@@ -1,6 +1,6 @@
-var margin = { top: 30, right: 200, bottom: 100, left: 500 };
-var width = 1560 - margin.left - margin.right;
-var height = 900 - margin.top - margin.bottom;
+var margin = { top: 30, right: 10, bottom: 100, left: 20 };
+var width = 1200 - margin.left - margin.right;
+var height = 500 - margin.top - margin.bottom;
 /* height = document.getElementById('scatter').getBoundingClientRect()["height"]
 width = document.getElementById('scatter').getBoundingClientRect()["width"]
 console.log("scat",height,"h",width)
@@ -14,6 +14,8 @@ var dbNames = {
     "weather": "Weather.Condition",
     "phase": "Broad.Phase.of.Flight"
 }
+
+
 
 var svg = d3.select("#scatter")
     .append("svg")
