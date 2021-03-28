@@ -56,7 +56,7 @@
         </div>
 
         <!--html for SCATTER plot-->
-        <div id="scatter" class="block">
+        <div id="scatter" class="block" style="background-color: aquamarine;">
             <link rel="stylesheet" href="css/scatter.css">
             <label for="X_axis" style="color: brown;"><b>X_axis:</b></label>
             <select id='X_axis'>
@@ -89,13 +89,13 @@
         </div>
 
         <!--html for MDS-->
-        <div id="mds" class="block">
+        <div id="mds" class="block" style="background-color: brown;">
 
 
         </div>
         <!--html for MENU -->
 
-        <div id="menu" class="block" style="margin-left: 40%;" >
+        <div id="menu" class="block" style="margin-left: 40%; background-color: dimgrey;" >
             <!-- Buttons for map -->
             <div class="slidecontainer">
                 <input type="range" min="2001" max="2021" step="1" value="2001" class="slider" id="slider">
@@ -117,7 +117,7 @@
 
             <!-- Scatter plot-->
             <div id="menu_tendina">
-                <div id="computation" class="custom-select" style="width:400px;">
+                <div id="computation" class="custom-select">
                     <label for="aggregationType"><b>Aggregation type:</b></label>
                     <select id='aggregationType'>
                         <option value="Event.Month">Month</option>
@@ -126,8 +126,6 @@
                         <option value="Broad.Phase.of.Flight">Phase</option>
                     </select>
                 </div>
-
-
             </div>
         </div>
         <script type="text/javascript" src="scripts/mds.js"></script>

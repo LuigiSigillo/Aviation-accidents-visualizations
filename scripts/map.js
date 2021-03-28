@@ -209,42 +209,42 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
                         $("#tooltip-container").hide();
                     });
             }
+
+            function updateLegend() {
+                var legendText = ["0-1","1-2","3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
+                //var legendText = ["Fatalities:", "0-35", "36-70", "71-105", "106-140", "141-175", "176-210", "211-245", "246-280", "281-315"];
+                var legend = mapSvg.append("svg")
+                    .attr("class", "legend")
+                    .attr("width", 82)
+                    .attr("height", 178)
+                    .selectAll("g")
+                    .data(legendText)
+                    .enter()
+                    .append("g")
+                    .attr("transform", function (d, i) {
+                        return "translate(0," + i * 20 + ")";
+                    });
+                
+                legend.append("rect")
+                    .attr("width", 18)
+                    .attr("height", 18)
+                    .style("fill", function (d, i) {
+                        var color = colors[i].getColors().r;
+                        return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
+                    });
+    
+                legend.append("text")
+                    .data(legendText)
+                    .attr("x", 24)
+                    .attr("y", 9)
+                    .attr("dy", ".35em")
+                    .text(function (d) { return d;
+                    });
+            }
             // aggiorna mappa subito
             updateMapColors()
-
-            var legendText = ["0-1","1-2","3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
-            //var legendText = ["Fatalities:", "0-35", "36-70", "71-105", "106-140", "141-175", "176-210", "211-245", "246-280", "281-315"];
-            var legend = d3version3.select("body").append("svg")
-                .attr("class", "legend")
-                .attr("width", 82)
-                .attr("height", 178)
-                .selectAll("g")
-                .data(legendText)
-                .enter()
-                .append("g")
-                .attr("transform", function (d, i) {
-                    return "translate(0," + i * 20 + ")";
-                });
+            updateLegend()
             
-            legend.append("rect")
-                .attr("width", 18)
-                .attr("height", 18)
-                .style("fill", function (d, i) {
-                    //if (i == 0) return;
-                    //console.log(i)
-                    //var color = colors[i - 1].getColors().r;
-                    var color = colors[i].getColors().r;
-                    //console.log(i, valueById.get(d.id))
-                    return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
-                });
-
-            legend.append("text")
-                .data(legendText)
-                .attr("x", 24)
-                .attr("y", 9)
-                .attr("dy", ".35em")
-                .text(function (d) { return d;
-                });
 
         
             d3version3.select("#slider")
@@ -262,6 +262,7 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
                     grp = cb.property("value")
                     if(cb.property("checked"))
                         updateMapColors(grp)
+                        updateLegend()
                 })
                 }
               
