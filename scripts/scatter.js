@@ -1,5 +1,5 @@
 var margin = { top: 30, right: 10, bottom: 100, left: 20 };
-var width = 1200 - margin.left - margin.right;
+var width = 1100 - margin.left - margin.right;
 var height = 500 - margin.top - margin.bottom;
 /* height = document.getElementById('scatter').getBoundingClientRect()["height"]
 width = document.getElementById('scatter').getBoundingClientRect()["width"]
@@ -216,12 +216,13 @@ function changing(aggregationType, X, Y, R, year) {
                 .transition().duration(1000)
                 .call(yAxis);
 
-
             var group = svg.selectAll("g.bubble")
                 .data(come_vuole_lui)
                 .enter().append("g")
                 .attr("class", "bubble")
-                .attr("transform", function (d) { return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")" });
+                .attr("transform", function (d) { return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")" })
+                .on("mouseover", function (d) {createMousoverHtml(d);})
+
             var j = -1
             var color = d3.scaleOrdinal(d3.schemeCategory20)
 
@@ -232,6 +233,8 @@ function changing(aggregationType, X, Y, R, year) {
                     j++
                     return color(keys[j]);
                 })
+                
+
             j = -1
 
             group.append("text")
@@ -242,7 +245,7 @@ function changing(aggregationType, X, Y, R, year) {
                     j++
                     //console.log(d)
                     //return zuppa(d);
-                    return keys[j];;
+                    return keys[j];
                 });
 
             svg.append("text")
