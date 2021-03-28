@@ -42,3 +42,25 @@
   }
 
   
+#tooltip-container-scatter {
+  position: absolute;
+  background-color: #fff;
+  color: #000;
+  padding: 10px;
+  border: 1px solid;
+  display: none;
+}
+
+.tooltip_key {
+  font-weight: bold;
+}
+
+.tooltip_value {
+  white-space: pre-wrap;
+  margin-left: 10px;
+}
+.tooltip_cat {
+  white-space: pre-wrap;
+  margin-left: 10px;
+  float: right;
+}
