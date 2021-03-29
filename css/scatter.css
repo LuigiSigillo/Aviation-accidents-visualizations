@@ -5,7 +5,9 @@
   .legendina {
     opacity: 1;
     transition: opacity 0.3s;
-    overflow-y:scroll; height:400px; background:gray
+    overflow-y:scroll;
+    height:400px;
+    background:gray
   }
 
   .legendina text,

@@ -1,9 +1,9 @@
 d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
-    
-    /*var height = document.getElementById('map').getBoundingClientRect()["height"]
-    var width = document.getElementById('map').getBoundingClientRect()["width"]
-    console.log("mapp_width:",width,"h",height)
-    var height = document.getElementById('scatter').getBoundingClientRect()["height"]
+
+    var margin = { top: 50, right: 15, bottom: 15, left: 0 },
+    width = document.getElementById("map").clientWidth + margin.left + margin.right
+    height = document.getElementById("map").clientHeight - margin.top - margin.bottom;
+    /*var height = document.getElementById('scatter').getBoundingClientRect()["height"]
     var width = document.getElementById('scatter').getBoundingClientRect()["width"]
     console.log("mapp_width:",width,"h",height)
     var height = document.getElementById('mds').getBoundingClientRect()["height"]
@@ -12,13 +12,13 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
     var height = document.getElementById('menu').getBoundingClientRect()["height"]
     var width = document.getElementById('menu').getBoundingClientRect()["width"]
     console.log("mapp_width:",width,"h",height)*/
-    
+
     /* width: 960px;
     height: 500px;*/
-    
+
     var params = {
-        "WIDTH": "1200",
-        "HEIGHT": "500",
+        "WIDTH": width,
+        "HEIGHT": height,
         "SCALE": 1
     }
 
@@ -66,20 +66,24 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
 
     function colorMapping(numero) {
         //var legendText = ["0-1","1-2","3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
-        if (numero==0)
+        if (numero == 0)
             res = 0
-        else 
+        else
             res = Math.floor(Math.log2(numero))
         return colors[res].getColors().r
     }
 
     var path = d3version3.geo.path();
-    
-    
-    var mapSvg = d3version3.select("#map").append("svg")
-        .attr("width", params.WIDTH)
-        .attr("height", params.HEIGHT);
 
+
+    var mapSvg = d3version3.select("#map")
+        .append("svg")
+        .attr("width", params.WIDTH + margin.left + margin.right)
+        .attr("height", params.HEIGHT + margin.top + margin.bottom);
+
+     mapSvg = mapSvg.append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
     d3version3.tsv("datasets/code-states.tsv", function (error, names) {
 
         name_id_map = {};
@@ -90,8 +94,8 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
             id_name_map[names[i].id] = names[i].name;
         }
 
-        function createHtml (d) {
-            
+        function createHtml(d) {
+
             var html = "";
             html += "<div class=\"tooltip_kv\">";
             html += "<span class=\"tooltip_key\">";
@@ -138,8 +142,8 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
                 html += " Minor: "
                 html += (e[id_name_map[d.id]]["Minor_Damage"]);
             }
-            catch(error){
-                html = html.replace("<a>Total Accidents: ","")
+            catch (error) {
+                html = html.replace("<a>Total Accidents: ", "")
                 html += "<a>Total Accidents: 0"
                 html += "</a>";
                 html += "</span><br>";
@@ -181,10 +185,10 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
 
 
 
-        e = change(data,"Crash.Country",2001,false)
+        e = change(data, "Crash.Country", 2001, false)
         //console.log("primo dataset 2001",e)
         d3version3.json("datasets/us-states.json", function (error, us) {
-            function updateMapColors(type ="Fatal"){
+            function updateMapColors(type = "Fatal") {
                 //cambia colore
                 mapSvg.selectAll("g").remove();
                 mapSvg.append("g")
@@ -194,15 +198,16 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
                     .enter().append("path")
                     .attr("transform", "scale(" + params.SCALE + ")")
                     .style("fill", function (d) {
-                        if (e[id_name_map[d.id]] != undefined) 
+                        if (e[id_name_map[d.id]] != undefined)
                             var color = colorMapping(e[id_name_map[d.id]][type]);
-                        else 
+                        else
                             var color = colors[0].getColors().r
                         return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
                     })
                     .style('stroke', 'black')
                     .attr("d", path)
-                    .on("mousemove", function (d) { createHtml(d)
+                    .on("mousemove", function (d) {
+                        createHtml(d)
                     })
                     .on("mouseout", function () {
                         $(this).attr("fill-opacity", "1.0");
@@ -211,7 +216,7 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
             }
 
             function updateLegend() {
-                var legendText = ["0-1","1-2","3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
+                var legendText = ["0-1", "1-2", "3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
                 //var legendText = ["Fatalities:", "0-35", "36-70", "71-105", "106-140", "141-175", "176-210", "211-245", "246-280", "281-315"];
                 var legend = mapSvg.append("svg")
                     .attr("class", "legend")
@@ -224,7 +229,7 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
                     .attr("transform", function (d, i) {
                         return "translate(0," + i * 20 + ")";
                     });
-                
+
                 legend.append("rect")
                     .attr("width", 18)
                     .attr("height", 18)
@@ -232,43 +237,46 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
                         var color = colors[i].getColors().r;
                         return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
                     });
-    
+
                 legend.append("text")
                     .data(legendText)
                     .attr("x", 24)
                     .attr("y", 9)
                     .attr("dy", ".35em")
-                    .text(function (d) { return d;
+                    .text(function (d) {
+                        return d;
                     });
             }
             // aggiorna mappa subito
             updateMapColors()
             updateLegend()
-            
 
-        
+
+
             d3version3.select("#slider")
                 .on("change", function () {
                     var yearInput = +d3version3.select(this).node().value;
-                    e = change(data,"Crash.Country",yearInput,false)
+                    e = change(data, "Crash.Country", yearInput, false)
                     grp = $("input[type='radio'][name='gender']:checked").val();
                     updateMapColors(grp)
+                    updateLegend()
+
                 });
 
-            function update(){
+            function update() {
                 // For each check box:
-                d3version3.selectAll(".checkbox").each(function(d){
+                d3version3.selectAll(".checkbox").each(function (d) {
                     cb = d3version3.select(this);
                     grp = cb.property("value")
-                    if(cb.property("checked"))
+                    if (cb.property("checked"))
                         updateMapColors(grp)
-                        updateLegend()
+                    updateLegend()
                 })
-                }
-              
+            }
+
             // When a button change, I run the update function
-            d3version3.selectAll(".checkbox").on("change",update);
-              
+            d3version3.selectAll(".checkbox").on("change", update);
+
         });
 
     });

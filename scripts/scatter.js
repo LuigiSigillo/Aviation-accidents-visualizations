@@ -1,6 +1,11 @@
 var margin = { top: 30, right: 10, bottom: 100, left: 20 };
 var width = 1200 - margin.left - margin.right;
 var height = 500 - margin.top - margin.bottom;
+margin = { top: 15, right: 0, bottom: 0, left: 10 },
+width = document.getElementById("scatter").clientWidth + margin.left + margin.right -200
+height = document.getElementById("scatter").clientHeight - margin.top - margin.bottom -50;
+console.log("scat",height,"h",width)
+
 /* height = document.getElementById('scatter').getBoundingClientRect()["height"]
 width = document.getElementById('scatter').getBoundingClientRect()["width"]
 console.log("scat",height,"h",width)
@@ -26,7 +31,6 @@ var svg = d3.select("#scatter")
 
 
 var xscale = d3.scaleLinear()
-    .domain([0, 800])
     .range([0, width]);
 
 var yscale = d3.scaleLinear()
