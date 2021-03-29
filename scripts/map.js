@@ -15,11 +15,27 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
 
     /* width: 960px;
     height: 500px;*/
+    function scaling(width,height){
+        maxWidth = 1295
+        maxHeight = 619
+        ratio = 1
+                // Check if the current width is larger than the max
+                if(width < maxWidth)
+                    ratio = width/maxWidth   // get ratio for scaling image
+                // Check if current height is larger than max
+                if(height < maxHeight)
+                    ratio = height/maxHeight; // get ratio for scaling image
+        return ratio
+    }
 
+
+
+    console.log(scaling(width,height))
+    var scale = scaling(width,height)
     var params = {
         "WIDTH": width,
         "HEIGHT": height,
-        "SCALE": 1
+        "SCALE": scale
     }
 
     function Color(_r, _g, _b) {
@@ -81,9 +97,10 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
         .attr("width", params.WIDTH + margin.left + margin.right)
         .attr("height", params.HEIGHT + margin.top + margin.bottom);
 
-     mapSvg = mapSvg.append("g")
+    mapSvg = mapSvg.append("g")
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
+
     d3version3.tsv("datasets/code-states.tsv", function (error, names) {
 
         name_id_map = {};
@@ -170,7 +187,6 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
             $("#tooltip-container").show();
 
             var map_width = $('.states-choropleth')[0].getBoundingClientRect().width;
-            console.log($('.states-choropleth'))
 
             if (d3version3.event.layerX < map_width / 2) {
                 d3version3.select("#tooltip-container")
@@ -182,7 +198,6 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
                     .style("top", (d3version3.event.layerY + 15) + "px")
                     .style("left", (d3version3.event.layerX - tooltip_width - 30) + "px");
             }
-            console.log('LAYER X: ')
         }
 
 
@@ -278,6 +293,23 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
 
             // When a button change, I run the update function
             d3version3.selectAll(".checkbox").on("change", update);
+
+            window.onresize = function() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                //fare cose
+               /* d3version3.select("#map").select("svg").remove();
+                mapSvg = d3version3.select("#map")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom);
+                params.SCALE = scaling(width,height)
+                updateLegend()
+                updateMapColors()
+                
+                console.log(width,height)*/
+              };
+        
 
         });
 
