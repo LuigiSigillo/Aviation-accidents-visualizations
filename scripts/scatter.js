@@ -1,5 +1,5 @@
 var margin = { top: 30, right: 10, bottom: 100, left: 20 };
-var width = 1200 - margin.left - margin.right;
+var width = 1100 - margin.left - margin.right;
 var height = 500 - margin.top - margin.bottom;
 margin = { top: 15, right: 0, bottom: 0, left: 10 },
 width = document.getElementById("scatter").clientWidth + margin.left + margin.right -200
@@ -8,8 +8,8 @@ console.log("scat",height,"h",width)
 
 /* height = document.getElementById('scatter').getBoundingClientRect()["height"]
 width = document.getElementById('scatter').getBoundingClientRect()["width"]
-console.log("scat",height,"h",width)
- */
+console.log("scat",height,"h",width) */
+
 var dbNames = {
     "crashCountry": "Crash.Country",
     "fatal": "Total.Fatal.Injuries",
@@ -52,18 +52,100 @@ var yAxis = d3.axisLeft()
 
 
 //IN PROGRESS
-function zuppa(d) {
-    //console.log(d)
-    s = ""
-    for (var key in d) {
-        if (key == "Weather.Condition" || key == "Broad.Phase.of.Flight" || key == "Aircraft.Damage") {
-            s += key + ":\n"
-            for (var k in d[key])
-                s += ("\t" + k + " " + d[key][k] + "\n")
-        }
+/* Create HTML for mouseover */
+function createMousoverHtml(d) {
+
+    var html = "";
+    html += "<div class=\"tooltip_kv\">";
+    html += "<span class=\"tooltip_key\">";
+    html += d['Item'];
+    html += "</span><br>";
+    html += "<span class=\"tooltip_value\">";
+    html += "<a>Total Accidents: "
+    try {
+        html += (d["Total_Accidents"]);
+        html += "</a>";
+        html += "</span><br>";
+        html += "<span class=\"tooltip_value\">";
+        html += "<a>Fatalities: "
+        html += (d["Fatal"]);
+        html += "</a>";
+        html += "</span><br>";
+        html += "<span class=\"tooltip_value\">";
+        html += "<a>Serious Injuries: "
+        html += (d["Serious"]);
+        html += "</a>";
+        html += "</span><br>";
+        html += "<span class=\"tooltip_value\">";
+        html += "<a>Minor Injuries: "
+        html += (d["Minor"]);
+        html += "</a>";
+        html += "</span><br>";
+        html += "<span class=\"tooltip_value\">";
+        html += "<a>Uninjured: "
+        html += (d["Uninjured"]);
+        html += "</a>";
+        html += "</span><br>";
+        html += "<span class=\"tooltip_value\">";
+        html += "<a>VMC: "
+        html += (d["VMC"]);
+        html += " IMC: "
+        html += (d["IMC"]);
+        html += "</a>";
+        html += "</span><br>";
+        html += "<span class=\"tooltip_value\">";
+        html += "<a>Destroyed: "
+        html += (d["Destroyed_Damage"]);
+        html += " Substantial: "
+        html += (d["Substantial_Damage"]);
+        html += " Minor: "
+        html += (d["Minor_Damage"]);
     }
-    console.log(s)
-    return s
+    catch (error) {
+        html = html.replace("<a>Total Accidents: ", "")
+        html += "<a>Total Accidents: 0"
+        html += "</a>";
+        html += "</span><br>";
+        html += "<span class=\"tooltip_value\">";
+        html += "<a>Fatalities: 0"
+        html += "</a>";
+        html += "</span><br>";
+        html += "<span class=\"tooltip_value\">";
+        html += "<a>Serious Injuries: 0"
+        html += "</a>";
+        html += "</span><br>";
+        html += "<span class=\"tooltip_value\">";
+        html += "<a>Minor Injuries: 0"
+        html += "</a>";
+        html += "</span><br>";
+        html += "<span class=\"tooltip_value\">";
+        html += "<a>Uninjured: 0"
+    }
+    html += "</a>";
+    html += "</span><br>";
+    html += "</div>";
+    $("#tooltip-container-scatter").html(html);
+    $(this).attr("fill-opacity", "0.8");
+    $("#tooltip-container-scatter").show();
+
+    //quello commentato ha senso, ma scaja
+    //var map_width = document.getElementById('scatter').getBoundingClientRect().width;
+    var map_width = $('scatter')[0].getBoundingClientRect().width;
+    console.log($('scatter'))
+    
+        console.log('LAYER X ' + d3.event.layerX)
+        console.log('LAYER Y ' +d3.event.layerY)
+        
+        if (d3.event.layerX < map_width / 2) {
+            d3.select("#tooltip-container-scatter")
+                .style("top", (d3.event.layerY + 15) + "px")
+                .style("left", (d3.event.layerX + 15) + "px");
+        } else {
+            var tooltip_width = $("#tooltip-container-scatter").width();
+            d3.select("#tooltip-container-scatter")
+                .style("top", (d3.event.layerY + 15) + "px")
+                .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
+        }
 }
 
 
@@ -220,12 +302,17 @@ function changing(aggregationType, X, Y, R, year) {
                 .transition().duration(1000)
                 .call(yAxis);
 
-
             var group = svg.selectAll("g.bubble")
                 .data(come_vuole_lui)
                 .enter().append("g")
                 .attr("class", "bubble")
-                .attr("transform", function (d) { return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")" });
+                .attr("transform", function (d) { return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")" })
+                .on("mouseover", function (d) {createMousoverHtml(d);})
+                .on("mouseout", function () {
+                    $(this).attr("fill-opacity", "1.0");
+                    $("#tooltip-container-scatter").hide();
+                });
+
             var j = -1
             var color = d3.scaleOrdinal(d3.schemeCategory20)
 
@@ -236,6 +323,8 @@ function changing(aggregationType, X, Y, R, year) {
                     j++
                     return color(keys[j]);
                 })
+                
+
             j = -1
 
             group.append("text")
@@ -246,7 +335,7 @@ function changing(aggregationType, X, Y, R, year) {
                     j++
                     //console.log(d)
                     //return zuppa(d);
-                    return keys[j];;
+                    return keys[j];
                 });
 
             svg.append("text")

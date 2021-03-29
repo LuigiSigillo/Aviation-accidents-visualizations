@@ -170,6 +170,7 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
             $("#tooltip-container").show();
 
             var map_width = $('.states-choropleth')[0].getBoundingClientRect().width;
+            console.log($('.states-choropleth'))
 
             if (d3version3.event.layerX < map_width / 2) {
                 d3version3.select("#tooltip-container")
@@ -181,6 +182,7 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
                     .style("top", (d3version3.event.layerY + 15) + "px")
                     .style("left", (d3version3.event.layerX - tooltip_width - 30) + "px");
             }
+            console.log('LAYER X: ')
         }
 
 
