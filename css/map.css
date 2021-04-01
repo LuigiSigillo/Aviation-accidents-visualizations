@@ -5,6 +5,8 @@
 }
 
 .states-choropleth {
+  position:relative;
+  width: 100px;
   fill: #ccc;
 }
 

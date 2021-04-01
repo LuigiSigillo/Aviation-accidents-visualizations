@@ -76,7 +76,7 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
     var path = d3version3.geo.path();
 
 
-    var mapSvg = d3version3.select("#map")
+    var mapSvg = d3version3.select("#canvas-svg")
         .append("svg")
         .attr("width", params.WIDTH + margin.left + margin.right)
         .attr("height", params.HEIGHT + margin.top + margin.bottom);
