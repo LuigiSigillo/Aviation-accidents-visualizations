@@ -1,24 +1,52 @@
-var dataset_path = "datasets/AviationCrashLocation_new.csv"
-var dbNames = {
-    "crashCountry": "Crash.Country",
-    "fatal": "Total.Fatal.Injuries",
-    "serious": "Total.Serious.Injuries",
-    "minor": "Total.Minor.Injuries",
-    "uninjured": "Total.Uninjured",
-    "weather": "Weather.Condition",
-    "phase": "Broad.Phase.of.Flight"
-}
+var dataset_path = "datasets/AviationCrashLocation_new.csv";
+var size;
+var brushing = false;
+var brushed_points = [];
 
+/*
+    "Crash.Country",
+    "Total.Fatal.Injuries",
+    "Total.Serious.Injuries",
+    "Total.Minor.Injuries",
+    "Total.Uninjured",
+    "Weather.Condition",
+    "Broad.Phase.of.Flight"
+*/
+
+/*
+Function:   Ma cosa cazzo è
+Params:     //      
+Returns:    //
+*/
+(function () {
+    var lastWidth = 0;
+    function pollZoomFireEvent() {
+        var widthNow = jQuery(window).width();
+        if (lastWidth == widthNow) return;
+        lastWidth = widthNow;
+        d3.select("#regions").selectAll("*").remove()
+        var computationType = 0
+        var mdsComputationType = 0
+        createMDS(2001, computationType, mdsComputationType)
+    }
+    setInterval(pollZoomFireEvent, 100);
+})();
+
+/*
+Function:   Creates MDS
+Params:     year-->             (int)   year of slider
+            visibleLabel-->     (?)      
+Returns:    //       
+*/
 function createMDS(year, visibleLabel, evolutionMode) {
 
     d3.text(dataset_path, function (raw) {
         var data = d3.csv(dataset_path, function (error, data) {
-            console.log(change(data, "Broad.Phase.of.Flight", 2019, true))
 
             //---------------------------------------------Computing  default dissimilarity matrix------------------------------------------------
-            var m = chooseCharacteristic(data, year)
+            var matrix = chooseCharacteristic(data, year)
             //---------------------------------------------Visualization------------------------------------------------
-            plotMds(m, visibleLabel, evolutionMode)
+            plotMds(matrix, visibleLabel, evolutionMode)
 
         })
 
@@ -27,9 +55,16 @@ function createMDS(year, visibleLabel, evolutionMode) {
     })
 }
 
+/*
+Function:   Plots MDS
+Params:     matrix-->           ([[float]])   mds computation
+            visibleLabel-->     (?) 
+            evolutionMode-->    (?)       
+Returns:    //       
+*/
 function plotMds(matrix, visibleLabel, evolutionMode) {
-    var locationCoordinates = numeric.transpose(classic(matrix));               //mds computation
-    //console.log("matrice: ",locationCoordinates)
+    //two arrays of coordinates
+    var locationCoordinates = numeric.transpose(classic(matrix));               
 
     drawD3ScatterPlot(d3.select("#mds"),                                  //mds plot
         locationCoordinates[0],
@@ -47,17 +82,13 @@ function plotMds(matrix, visibleLabel, evolutionMode) {
 }
 
 /*
-d3.select("#slider")
-    .on("change", function () {
-        console.log("cu sibi md")
-        var yearInput = +d3.select(this).node().value;
-        createMDS(yearInput, 0, 0)
-
-    });
+Function:   Creates mds 
+Params:     subject-->  (string)    the subject of visualization -> Crash.Country, Broad.Phase.of.Flight, 
+            year-->     (int)       year of slider
+            single_year (bool)      single year or multiple year
+Returns:    dissM-->    (map)       DissimilaritM
 */
-var size;
-
-function chooseCharacteristic(data, year) {
+function chooseCharacteristic(data, year, aggr) {
 
     var dissM = [];
     filtered = change(data, "Crash.Country", year, true)
@@ -73,12 +104,16 @@ function chooseCharacteristic(data, year) {
         }
     }
 
-    //console.log(dissM)
-
     return dissM
 
 }
 
+/*
+Function:   Euclidean distance calculator
+Params:     ar1-->  (?)    
+            ar2-->  (?)       
+Returns:    ed-->   (float)       Euclidean dist
+*/
 function euclidean_distance(ar1, ar2) {
     var dis = 0
     for (var i = 0; i < ar1.length; i++) {
@@ -87,6 +122,11 @@ function euclidean_distance(ar1, ar2) {
     return Math.sqrt(dis)
 }
 
+/*
+Function:   ?
+Params:     area-->       
+Returns:    //
+*/
 function eliminate_add_points_mds(area) {
     d3.select("#regions").selectAll(".dot").each(function (d) {
         if (area == d) {
@@ -98,6 +138,11 @@ function eliminate_add_points_mds(area) {
     })
 }
 
+/*
+Function:   ?
+Params:     area-->       
+Returns:    //
+*/
 function eliminate_others_mds_point(areas) {
     d3.select("#regions").selectAll(".dot").each(function (d) {
         if (d != null) {
@@ -109,24 +154,14 @@ function eliminate_others_mds_point(areas) {
     })
 }
 
-(function () {
-    var lastWidth = 0;
-    function pollZoomFireEvent() {
-        var widthNow = jQuery(window).width();
-        if (lastWidth == widthNow) return;
-        lastWidth = widthNow;
-        d3.select("#regions").selectAll("*").remove()
-        var computationType = 0
-        var mdsComputationType = 0
-        createMDS(2001, computationType, mdsComputationType)
-    }
-    setInterval(pollZoomFireEvent, 100);
-})();
-
-
-
-
+/*
+Function:   ctorna due liste di coordinate dalla matrix
+Params:     distances--> ([[float]]) matrix
+            dimensions--> undefined  DA TOGLIERE E' sempre undefined   
+Returns:    //
+*/
 function classic(distances, dimensions) {
+    console.log("1", distances, "2", dimensions)
     dimensions = dimensions || 2;
 
     // square distances
@@ -153,11 +188,17 @@ function classic(distances, dimensions) {
     });
 };
 
-var brushing = false;
-var brushed_points = []
 
-/// draws a scatter plot of points, useful for displaying the output
-/// from mds.classic etc
+
+/*
+Function:   Draws
+Params:     element-->  (d3 elements)   points
+            xPos-->     ([float])       list of x coordinates
+            yPos-->     ([float])       list of y coordinates
+            labels-->   ([st])          list of labels
+            params-->   (jsonlike)      params
+Returns:    //
+*/
 function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
     params = params || {};
     var padding = params.padding || 32,
