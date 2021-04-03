@@ -1,7 +1,6 @@
 function brushMap(brushList,toBeBrushed) {
     d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
         var yearInput = +d3version3.select("#slider").node().value;
-        console.log("anno brush",yearInput)
         e = change(data, "Crash.Country", yearInput, false)
         function scaling(width, height) {
             maxWidth = 1295
@@ -16,7 +15,6 @@ function brushMap(brushList,toBeBrushed) {
             return ratio
         }
 
-        console.log(scaling(width, height))
         var scale = scaling(width, height)
         var params = {
             "WIDTH": width,
@@ -237,13 +235,10 @@ function brushMap(brushList,toBeBrushed) {
     })
 }
 
-function unbrashMap(brushList){
-
-}
 d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
 
     var margin = { top: 50, right: 15, bottom: 15, left: 0 },
-        width = document.getElementById("map").clientWidth + margin.left + margin.right
+    width = document.getElementById("map").clientWidth + margin.left + margin.right
     height = document.getElementById("map").clientHeight - margin.top - margin.bottom;
 
 
@@ -271,7 +266,6 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
         "HEIGHT": height,
         "SCALE": scale
     }
-
     function Color(_r, _g, _b) {
         var r, g, b;
         var setColors = function (_r, _g, _b) {
