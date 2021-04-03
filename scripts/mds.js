@@ -270,7 +270,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
         var brush = d3.brush()
             .on("brush", highlightBrushedCircles)
             .on("end", displayLocation)
-
+        var visualization = 1
         svg.append("g")
             .attr("class", "mdsbrush")
             .on("mousedown", function () {
@@ -288,10 +288,14 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                 else {//INTERACTIONS WITH MAP
                     var id = d3.select('#mapProv').selectAll('path').filter(function (d) {
                         var terName = d3.select('#' + this['id']).attr('name');
+
                         return brushed_points.includes(terName);
                     });
                     id.style('stroke-width', '0.5');
                 }
+
+                unbrashMap(brushed_points)
+                
                 brushed_points.forEach(function (d) {
                     d3.select("#my_dataviz").selectAll('path').each(function (t) {
                         if (d3.select(this).attr("name") != null) {
@@ -361,7 +365,15 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                         return terName == d;
                     });
                     id.style('stroke-width', '2');
-                    showTooltipReg(id, 150);
+                    
+                    /*
+                    highlitgh_region();
+                    mouseon su mds su mappa 
+
+                    eliminate visualization since we alwa regions
+
+
+                    */
                 }
                 else {//INTERACTIONS WITH MAP
                     var id = d3.select('#mapProv').selectAll('path').filter(function (t) {
@@ -371,11 +383,12 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                     id.style('stroke-width', '1.5');
                     showTooltipProv(id, 150);
                 }
+                /*
                 if (d3.select(this).classed("brushed") == true && d3.select(this).style('fill') != 'rgb(211, 211, 211)') {
                     oldSt = id.style('stroke');
                     id.style('stroke', 'blue');
                 }
-
+                */
                 if (!brushing) {
                     d3.select("#my_dataviz").selectAll('path').each(function (t) {
                         if (d3.select(this).attr("name") != null) {
@@ -408,6 +421,8 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                     if (visualization == 1) {//INTERACTIONS WITH MAP
                         var id = d3.select('#mapReg').selectAll('path').filter(function (t) {
                             var terName = d3.select('#' + this['id']).attr('name');
+                            
+                            console.log("eccoci");
                             return terName == d;
                         });
                         id.style('stroke', oldSt);
@@ -477,6 +492,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
         else {
             d3.selectAll("circle").each(function (d) {
                 if (brushed_points.includes(d3.select(this).data()[0])) {
+
                     d3.select(this).classed("brushed", true)
                 }
                 else {
@@ -595,6 +611,9 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
         }
         //INTERACTIONS WITH PC
         MDS_PC_LOCK = true
+
+        //Interaction with map vera
+        brushMap(brushed_points)
         brushed_points.forEach(function (d) {
             d3.select("#my_dataviz").selectAll('path').each(function (t) {
                 if (d3.select(this).attr("name") != null) {
