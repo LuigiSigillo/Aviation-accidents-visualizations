@@ -294,7 +294,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                     id.style('stroke-width', '0.5');
                 }
 
-                unbrashMap(brushed_points)
+                brushMap(brushed_points,false)
                 
                 brushed_points.forEach(function (d) {
                     d3.select("#my_dataviz").selectAll('path').each(function (t) {
@@ -613,7 +613,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
         MDS_PC_LOCK = true
 
         //Interaction with map vera
-        brushMap(brushed_points)
+        brushMap(brushed_points,true)
         brushed_points.forEach(function (d) {
             d3.select("#my_dataviz").selectAll('path').each(function (t) {
                 if (d3.select(this).attr("name") != null) {
