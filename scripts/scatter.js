@@ -401,7 +401,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
             legend.on("mouseover", function (type) {
                 j = -1
-                d3.selectAll(".legend")
+                d3.selectAll(".legendina")
                     .style("opacity", 0.1);
                 d3.select(this)
                     .style("opacity", 1);
@@ -411,7 +411,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     .style("opacity", 1);
             })
                 .on("mouseout", function (type) {
-                    d3.selectAll(".legend")
+                    d3.selectAll(".legendina")
                         .style("opacity", 1);
                     d3.selectAll(".bubble")
                         .style("opacity", 1);
