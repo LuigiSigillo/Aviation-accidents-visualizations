@@ -1,9 +1,12 @@
 var margin = { top: 30, right: 10, bottom: 100, left: 20 };
 var width = 1100 - margin.left - margin.right;
 var height = 500 - margin.top - margin.bottom;
-margin = { top: 15, right: 0, bottom: 0, left: 10 },
-    width = document.getElementById("scatter").clientWidth + margin.left + margin.right - 200
+
+
+margin = { top: 15, right: 0, bottom: 0, left: 10 }
+width = document.getElementById("scatter").clientWidth + margin.left + margin.right - 200
 height = document.getElementById("scatter").clientHeight - margin.top - margin.bottom - 50;
+
 console.log("scat", height, "h", width)
 
 /* height = document.getElementById('scatter').getBoundingClientRect()["height"]
@@ -24,7 +27,7 @@ var dbNames = {
 
 var svg = d3.select("#scatter")
     .append("svg")
-    .attr("width", width + margin.left + margin.right)
+    .attr("width", width + margin.left + margin.right )
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -173,7 +176,7 @@ var aggregationType = "Crash.Country"
 var X = 'Total_Accidents'
 var Y = 'Fatal'
 var R = 'Serious'
-var yearInput = 2000
+var yearInput = 2001
 var aggregated_by_year = "false"
 
 function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
