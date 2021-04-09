@@ -1,7 +1,8 @@
 function brushMap(brushList,toBeBrushed) {
     d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
         var yearInput = +d3version3.select("#slider").node().value;
-        e = change(data, "Crash.Country", yearInput, false)
+        var year_bool = document.getElementById("aggregationYear").value;
+        e = change(data, "Crash.Country", yearInput, year_bool)
         function scaling(width, height) {
             maxWidth = 1295
             maxHeight = 619
@@ -237,7 +238,7 @@ function brushMap(brushList,toBeBrushed) {
 
 d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
 
-    var margin = { top: 50, right: 15, bottom: 15, left: 0 },
+    var margin = { top: 50, right: 15, bottom: 15, left: 100 },
     width = document.getElementById("map").clientWidth + margin.left + margin.right
     height = document.getElementById("map").clientHeight - margin.top - margin.bottom;
 
@@ -429,9 +430,10 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
             }
         }
 
+        var aggregationYear = "false"
+       
 
-
-        e = change(data, "Crash.Country", 2001, false)
+        e = change(data, "Crash.Country", 2001, aggregationYear)
         //console.log("primo dataset 2001",e)
         d3version3.json("datasets/us-states.json", function (error, us) {
             function updateMapColors(type = "Fatal") {
@@ -464,10 +466,11 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
             function updateLegend() {
                 var legendText = ["0-1", "1-2", "3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
                 //var legendText = ["Fatalities:", "0-35", "36-70", "71-105", "106-140", "141-175", "176-210", "211-245", "246-280", "281-315"];
+                mapSvg.selectAll(".legend").remove();
                 var legend = mapSvg.append("svg")
-                    .attr("class", "legend")
                     .attr("width", 82)
                     .attr("height", 178)
+                    .attr("class", "legend")
                     .selectAll("g")
                     .data(legendText)
                     .enter()
@@ -498,13 +501,23 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
             updateLegend()
 
 
-
+            var year_bool = document.getElementById("aggregationYear");
+            year_bool.onchange = function () {
+                console.log("cambiato mappa")
+                aggregationYear = year_bool.value
+                e = change(data, "Crash.Country", yearInput, aggregationYear)
+                grp = $("input[type='radio'][name='gender']:checked").val();
+    
+                updateMapColors(grp)
+                updateLegend()
+            }
+            
             d3version3.select("#slider")
                 .on("change", function () {
                     var yearInput = +d3version3.select(this).node().value;
                     console.log("anno slider",yearInput)
         
-                    e = change(data, "Crash.Country", yearInput, false)
+                    e = change(data, "Crash.Country", yearInput, aggregationYear)
                     grp = $("input[type='radio'][name='gender']:checked").val();
                     updateMapColors(grp)
                     updateLegend()

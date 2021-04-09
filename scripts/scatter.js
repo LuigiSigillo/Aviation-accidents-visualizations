@@ -151,7 +151,7 @@ function createMousoverHtml(d) {
 
 function brushScatter(brushed_points, highlighting) {
     var aggr = document.getElementById("aggregationType").value;
-    if(aggr != "Crash.Country") return;
+    if (aggr != "Crash.Country") return;
     d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         if (highlighting) {
             d3.selectAll(".bubble")
@@ -174,7 +174,7 @@ var X = 'Total_Accidents'
 var Y = 'Fatal'
 var R = 'Serious'
 var yearInput = 2000
-var aggregated_by_year = false
+var aggregated_by_year = "false"
 
 function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
@@ -185,13 +185,14 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
         console.log('CHIAMO CON X Y Z: ', X, Y, R)
         changing(aggr.value, X, Y, R, yearInput, aggregated_by_year)
     }
+    d3.select("#aggregationYear")
+        .on("change", function () {
+            var year_bool = d3.select(this).node().value;
+            console.log("scatter", year_bool)
+            changing(aggregationType, X, Y, R, yearInput, year_bool)
+            createMDS(yearInput, 0, 0,year_bool)
 
-    var year_bool = document.getElementById("aggregationYear");
-    year_bool.onchange = function () {
-        aggregationYear = year_bool.value
-        changing(aggregationType, X, Y, R, yearInput, year_bool.value)
-
-    }
+        })
 
 
     d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
@@ -431,7 +432,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
             .on("change", function () {
                 yearInput = +d3.select(this).node().value
 
-                createMDS(yearInput, 0, 0)
+                createMDS(yearInput, 0, 0,aggregated_by_year)
 
                 scatter_visualization(yearInput, aggregationType)
                 /*

@@ -13,12 +13,9 @@
 /* Legend Position Style */
 .legend {
   position: absolute;
-  left: 5px;
-  top: 450px;
-  background-color: whitesmoke;
-}
-
-.legend {
+  left: 10%;
+  top: 40%;
+  background-color: yellow;
   opacity: 1;
   transition: opacity 0.3s;
 }

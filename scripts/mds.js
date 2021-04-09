@@ -27,7 +27,7 @@ Returns:    //
         d3.select("#regions").selectAll("*").remove()
         var computationType = 0
         var mdsComputationType = 0
-        createMDS(2001, computationType, mdsComputationType)
+        createMDS(2001, computationType, mdsComputationType,"false")
     }
     setInterval(pollZoomFireEvent, 100);
 })();
@@ -38,13 +38,13 @@ Params:     year-->             (int)   year of slider
             visibleLabel-->     (?)      
 Returns:    //       
 */
-function createMDS(year, visibleLabel, evolutionMode) {
+function createMDS(year, visibleLabel, evolutionMode,aggr_by_year) {
 
     d3.text(dataset_path, function (raw) {
         var data = d3.csv(dataset_path, function (error, data) {
 
             //---------------------------------------------Computing  default dissimilarity matrix------------------------------------------------
-            var matrix = chooseCharacteristic(data, year)
+            var matrix = chooseCharacteristic(data, year,aggr_by_year)
             //---------------------------------------------Visualization------------------------------------------------
             plotMds(matrix, visibleLabel, evolutionMode)
 
@@ -91,7 +91,7 @@ Returns:    dissM-->    (map)       DissimilaritM
 function chooseCharacteristic(data, year, aggr) {
 
     var dissM = [];
-    filtered = change(data, "Crash.Country", year, true)
+    filtered = change(data, "Crash.Country", year, aggr)
     console.log(filtered)
     size = Object.keys(filtered)
     for (var i = 0; i < size.length; i++) {
