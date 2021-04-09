@@ -64,7 +64,7 @@ Returns:    //
 */
 function plotMds(matrix, visibleLabel, evolutionMode) {
     //two arrays of coordinates
-    var locationCoordinates = numeric.transpose(classic(matrix));               
+    var locationCoordinates = numeric.transpose(classic(matrix));
 
     drawD3ScatterPlot(d3.select("#mds"),                                  //mds plot
         locationCoordinates[0],
@@ -294,8 +294,9 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                     id.style('stroke-width', '0.5');
                 }
 
-                brushMap(brushed_points,false)
-                
+                brushMap(brushed_points, false)
+                brushScatter(brushed_points, false)
+
                 brushed_points.forEach(function (d) {
                     d3.select("#my_dataviz").selectAll('path').each(function (t) {
                         if (d3.select(this).attr("name") != null) {
@@ -354,7 +355,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                         return terName == d;
                     });
                     id.style('stroke-width', '2');
-                    
+
                     /*
                     highlitgh_region();
                     mouseon su mds su mappa 
@@ -404,11 +405,11 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                     if (visualization == 1) {//INTERACTIONS WITH MAP
                         var id = d3.select('#mapReg').selectAll('path').filter(function (t) {
                             var terName = d3.select('#' + this['id']).attr('name');
-                            
+
                             console.log("eccoci");
                             return terName == d;
                         });
-                        id.style('stroke', oldSt);
+                        // id.style('stroke', oldSt);
                     }
                     else {//INTERACTIONS WITH MAP
                         var id = d3.select('#mapProv').selectAll('path').filter(function (t) {
@@ -592,7 +593,8 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
         MDS_PC_LOCK = true
 
         //Interaction with map vera
-        brushMap(brushed_points,true)
+        brushMap(brushed_points, true)
+        brushScatter(brushed_points, true)
         brushed_points.forEach(function (d) {
             d3.select("#my_dataviz").selectAll('path').each(function (t) {
                 if (d3.select(this).attr("name") != null) {

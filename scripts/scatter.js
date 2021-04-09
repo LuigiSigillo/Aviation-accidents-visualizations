@@ -2,9 +2,9 @@ var margin = { top: 30, right: 10, bottom: 100, left: 20 };
 var width = 1100 - margin.left - margin.right;
 var height = 500 - margin.top - margin.bottom;
 margin = { top: 15, right: 0, bottom: 0, left: 10 },
-width = document.getElementById("scatter").clientWidth + margin.left + margin.right -200
-height = document.getElementById("scatter").clientHeight - margin.top - margin.bottom -50;
-console.log("scat",height,"h",width)
+    width = document.getElementById("scatter").clientWidth + margin.left + margin.right - 200
+height = document.getElementById("scatter").clientHeight - margin.top - margin.bottom - 50;
+console.log("scat", height, "h", width)
 
 /* height = document.getElementById('scatter').getBoundingClientRect()["height"]
 width = document.getElementById('scatter').getBoundingClientRect()["width"]
@@ -132,21 +132,41 @@ function createMousoverHtml(d) {
     //var map_width = document.getElementById('scatter').getBoundingClientRect().width;
     var map_width = $('scatter')[0].getBoundingClientRect().width;
     console.log($('scatter'))
-    
-        console.log('LAYER X ' + d3.event.layerX)
-        console.log('LAYER Y ' +d3.event.layerY)
-        
-        if (d3.event.layerX < map_width / 2) {
-            d3.select("#tooltip-container-scatter")
-                .style("top", (d3.event.layerY + 15) + "px")
-                .style("left", (d3.event.layerX + 15) + "px");
-        } else {
-            var tooltip_width = $("#tooltip-container-scatter").width();
-            d3.select("#tooltip-container-scatter")
-                .style("top", (d3.event.layerY + 15) + "px")
-                .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
-        }
+
+    console.log('LAYER X ' + d3.event.layerX)
+    console.log('LAYER Y ' + d3.event.layerY)
+
+    if (d3.event.layerX < map_width / 2) {
+        d3.select("#tooltip-container-scatter")
+            .style("top", (d3.event.layerY + 15) + "px")
+            .style("left", (d3.event.layerX + 15) + "px");
+    } else {
+        var tooltip_width = $("#tooltip-container-scatter").width();
+        d3.select("#tooltip-container-scatter")
+            .style("top", (d3.event.layerY + 15) + "px")
+            .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
+    }
 }
+
+
+function brushScatter(brushed_points, highlighting) {
+    var aggr = document.getElementById("aggregationType").value;
+    if(aggr != "Crash.Country") return;
+    d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
+        if (highlighting) {
+            d3.selectAll(".bubble")
+                .style("opacity", 0.1)
+                .filter(function (d) { return brushed_points.includes(d.Item); })
+                .style("opacity", 1);
+        }
+        else {
+            d3.selectAll(".bubble")
+                .style("opacity", 1)
+        }
+    })
+}
+
+
 
 
 var aggregationType = "Crash.Country"
@@ -307,7 +327,7 @@ function changing(aggregationType, X, Y, R, year) {
                 .enter().append("g")
                 .attr("class", "bubble")
                 .attr("transform", function (d) { return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")" })
-                .on("mouseover", function (d) {createMousoverHtml(d);})
+                .on("mouseover", function (d) { createMousoverHtml(d); })
                 .on("mouseout", function () {
                     $(this).attr("fill-opacity", "1.0");
                     $("#tooltip-container-scatter").hide();
@@ -323,7 +343,7 @@ function changing(aggregationType, X, Y, R, year) {
                     j++
                     return color(keys[j]);
                 })
-                
+
 
             j = -1
 
@@ -355,7 +375,7 @@ function changing(aggregationType, X, Y, R, year) {
 
             //console.log(color.domain())
             var legend = svg.selectAll(".legend")
-                .data(color.domain().sort(function (a,b) {return dataset_dict[b].r -dataset_dict[a].r}))
+                .data(color.domain().sort(function (a, b) { return dataset_dict[b].r - dataset_dict[a].r }))
                 .enter().append("g")
                 .attr("class", "legendina")
                 .attr("transform", function (d, i) { return "translate(2," + i * 14 + ")"; });
@@ -403,21 +423,21 @@ function changing(aggregationType, X, Y, R, year) {
                 yearInput = +d3.select(this).node().value
 
                 createMDS(yearInput, 0, 0)
-                           
-                scatter_visualization(yearInput,aggregationType)
-/*
-                d3.selectAll('circle') // move the circles
-                    .transition().duration(1000)
-                    .attr("r", function (d) { return radius(d.r) * 0; })
-                    .on("end", function (d) {
-                        scatter_visualization(yearInput, aggregationType)
-                    });
-                d3.select('#xAxis') // redraw the xAxis
-                    .transition().duration(1000)
-                    .call(xAxis)
-                d3.select('#yAxis') // redraw the yAxis
-                    .transition().duration(1000)
-                    .call(yAxis)*/
+
+                scatter_visualization(yearInput, aggregationType)
+                /*
+                                d3.selectAll('circle') // move the circles
+                                    .transition().duration(1000)
+                                    .attr("r", function (d) { return radius(d.r) * 0; })
+                                    .on("end", function (d) {
+                                        scatter_visualization(yearInput, aggregationType)
+                                    });
+                                d3.select('#xAxis') // redraw the xAxis
+                                    .transition().duration(1000)
+                                    .call(xAxis)
+                                d3.select('#yAxis') // redraw the yAxis
+                                    .transition().duration(1000)
+                                    .call(yAxis)*/
             })
     });
 }
