@@ -306,10 +306,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                     })
                 })
                 brushed_points = []
-                //brush zoom
-                /*xScale.domain(xDomain);
-                yScale.domain(yDomain);
-                redraw();*/
+
             })
             .call(brush);
 
@@ -327,14 +324,6 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
             .style("pointer-events", "all")
             .call(zoom);
 
-        //zoom over y axis
-        /*svg.append("rect")
-            .attr("width", h/3)
-            .attr("height", h)
-            .attr("x", 0)            
-            .style("fill", "none")
-            .style("pointer-events", "all")
-            .call(zoom);*/
 
         var mtooltip = element.append("div")
             .attr("class", "mdsTooltip")
@@ -383,12 +372,6 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                     id.style('stroke-width', '1.5');
                     showTooltipProv(id, 150);
                 }
-                /*
-                if (d3.select(this).classed("brushed") == true && d3.select(this).style('fill') != 'rgb(211, 211, 211)') {
-                    oldSt = id.style('stroke');
-                    id.style('stroke', 'blue');
-                }
-                */
                 if (!brushing) {
                     d3.select("#my_dataviz").selectAll('path').each(function (t) {
                         if (d3.select(this).attr("name") != null) {
@@ -577,10 +560,6 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
             return;
         }
 
-        //brush zoom
-        /*xScale.domain([s[0][0], s[1][0]].map(xScale.invert, xScale));
-        yScale.domain([s[1][1], s[0][1]].map(yScale.invert, yScale));
-        redraw();*/
         //clearing brush
         d3.select(this).call(brush.move, null);
         brushed_points = []
