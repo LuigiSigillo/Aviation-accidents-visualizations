@@ -19,8 +19,8 @@ var n_w = (width + margin.left + margin.right) * 1.5
 var n_h = (height + margin.top + margin.bottom) * 1.5
 var svg = d3.select("#scatter")
     .append("svg")
-    .attr("width", n_w)
-    .attr("height", n_h)
+    .attr("width", /* n_w + */ '100%')
+    .attr("height", /* n_h + */ '100%')
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -382,6 +382,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
             
             var div = svg.append("g")
                     .attr("id","legendaScatter")
+                    .style('overflow','visible')
                     .attr("class", "legenda")
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
