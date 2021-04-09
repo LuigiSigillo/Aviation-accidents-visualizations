@@ -32,7 +32,7 @@ function change(data, subject, year, single_year) {
     var filtered_map
 
     //if single year, filter map with single year
-    if (single_year) {
+    if (single_year == 'true') {
         filtered_map = data.filter(function (d) { return +d["Event.Date"].split("-")[0] == year });
     } else {
         filtered_map = data.filter(function (d) { return +d["Event.Date"].split("-")[0] <= year });

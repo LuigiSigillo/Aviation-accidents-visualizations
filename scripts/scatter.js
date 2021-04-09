@@ -174,15 +174,23 @@ var X = 'Total_Accidents'
 var Y = 'Fatal'
 var R = 'Serious'
 var yearInput = 2000
+var aggregated_by_year = false
 
-function changing(aggregationType, X, Y, R, year) {
+function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
     //console.log('Chiamata changing con parametri: ' + aggregationType, X, Y, R)
     var aggr = document.getElementById("aggregationType");
     aggr.onchange = function () {
         aggregationType = aggr.value
         console.log('CHIAMO CON X Y Z: ', X, Y, R)
-        changing(aggr.value, X, Y, R, yearInput)
+        changing(aggr.value, X, Y, R, yearInput, aggregated_by_year)
+    }
+
+    var year_bool = document.getElementById("aggregationYear");
+    year_bool.onchange = function () {
+        aggregationYear = year_bool.value
+        changing(aggregationType, X, Y, R, yearInput, year_bool.value)
+
     }
 
 
@@ -191,7 +199,7 @@ function changing(aggregationType, X, Y, R, year) {
 
         function scatter_visualization(yearInput, aggregationType) {
 
-            dataset_dict = change(data, aggregationType, yearInput, false)
+            dataset_dict = change(data, aggregationType, yearInput, aggregated_by_year)
             //console.log("ciao",e)
             //e = change(yearInput);
             var i
@@ -292,7 +300,7 @@ function changing(aggregationType, X, Y, R, year) {
                 console.log('NUOVA R: ' + R)
                 radius.domain([0, returnRange(R, "r")])
 
-                d3.selectAll('circle') // move the circles
+                d3.selectAll('.circle_scatter') // move the circles
                     .transition().duration(1000)
                     .delay(function (d, i) { return i * 10 })
                     .attr("r", function (d) { return radius(d.r) * 10; })
@@ -343,6 +351,7 @@ function changing(aggregationType, X, Y, R, year) {
                     j++
                     return color(keys[j]);
                 })
+                .attr("class", "circle_scatter")
 
 
             j = -1
@@ -441,4 +450,4 @@ function changing(aggregationType, X, Y, R, year) {
             })
     });
 }
-changing(aggregationType, X, Y, R, yearInput)
+changing(aggregationType, X, Y, R, yearInput, aggregated_by_year)

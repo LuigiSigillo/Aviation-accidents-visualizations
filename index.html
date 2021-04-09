@@ -57,7 +57,7 @@
         <!--html for SCATTER plot-->
         <div id="scatter" class="block" >
             <link rel="stylesheet" href="css/scatter.css">
-            <label for="X_axis" style="color: brown;"><b>X_axis:</b></label>
+            <label for="X_axis" style="color: brown;"><b>X:</b></label>
             <select id='X_axis'>
                 <option value="Total_Accidents" selected>Incidents</option>
                 <option value="Uninjured">Uninjured</option>
@@ -67,7 +67,7 @@
             </select>
 
 
-            <label for="Y_axis" style="color: brown;"><b>Y_axis:</b></label>
+            <label for="Y_axis" style="color: brown;"><b>Y:</b></label>
             <select id='Y_axis'>
                 <option value="Total_Accidents">Incidents</option>
                 <option value="Uninjured">Uninjured</option>
@@ -77,7 +77,7 @@
             </select>
 
 
-            <label for="R_axis" style="color: brown;"><b>R_axis:</b></label>
+            <label for="R_axis" style="color: brown;"><b>Radius:</b></label>
             <select id='R_axis'>
                 <option value="Total_Accidents">Incidents</option>
                 <option value="Uninjured">Uninjured</option>
@@ -125,10 +125,10 @@
                         <option value="Make">Manufacturer</option>
                         <option value="Broad.Phase.of.Flight">Phase</option>
                     </select>
-                    <label for="aggregationYear"><b>Year Aggregated:</b></label>
+                    <label for="aggregationYear"><b>Single year:</b></label>
                     <select id='aggregationYear'>
-                        <option value="Event.Year">Yes</option>
-                        <option value="Event.Year">No</option>
+                        <option value="true">Yes</option>
+                        <option value="false" selected>No</option>
 
                     </select>
                 </div>
