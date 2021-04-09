@@ -1,4 +1,4 @@
-var margin = { top: 25, right: -200, bottom: 50, left: 10 };
+var margin = { top: 25, right: -230, bottom: 50, left: 30 };
 var width = document.getElementById("scatter").clientWidth + margin.left + margin.right
 var height = document.getElementById("scatter").clientHeight - margin.top - margin.bottom
 
@@ -15,11 +15,11 @@ var dbNames = {
 }
 
 
-var n_w = (width + margin.left + margin.right)*1.5
-var n_h = (height + margin.top + margin.bottom)*1.5
+var n_w = (width + margin.left + margin.right) * 1.5
+var n_h = (height + margin.top + margin.bottom) * 1.5
 var svg = d3.select("#scatter")
     .append("svg")
-    .attr("width",n_w )
+    .attr("width", n_w)
     .attr("height", n_h)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -185,7 +185,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
             var year_bool = d3.select(this).node().value;
             console.log("scatter", year_bool)
             changing(aggregationType, X, Y, R, yearInput, year_bool)
-            createMDS(yearInput, 0, 0,year_bool)
+            createMDS(yearInput, 0, 0, year_bool)
 
         })
 
@@ -379,12 +379,17 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .text(Y);
 
             //console.log(color.domain())
-            var legend = svg.selectAll(".legendina")
+            
+            var div = svg.append("g")
+                    .attr("id","legendaScatter")
+                    .attr("class", "legenda")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            var legend = div.selectAll(".legenda")
                 .data(color.domain().sort(function (a, b) { return dataset_dict[b].r - dataset_dict[a].r }))
                 .enter().append("g")
                 .attr("class", "legendina")
                 .attr("transform", function (d, i) { return "translate(2," + i * 14 + ")"; });
-
 
             legend.append("rect")
                 .attr("x", width)
@@ -427,7 +432,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
             .on("change", function () {
                 yearInput = +d3.select(this).node().value
 
-                createMDS(yearInput, 0, 0,aggregated_by_year)
+                createMDS(yearInput, 0, 0, aggregated_by_year)
 
                 scatter_visualization(yearInput, aggregationType)
                 /*

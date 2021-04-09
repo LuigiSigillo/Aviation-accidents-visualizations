@@ -259,8 +259,6 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
     }
 
 
-
-    console.log(scaling(width, height))
     var scale = scaling(width, height)
     var params = {
         "WIDTH": width,

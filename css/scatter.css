@@ -1,12 +1,16 @@
   .label {
     font-size: 15px;
   }
-
+.legenda{
+  overflow:scroll;
+  fill:red;
+  height: 200px;
+  width: 50px;
+}
   .legendina {
     opacity: 1;
     transition: opacity 0.3s;
     overflow-y:scroll;
-    background-color:gray
   }
 
   .legendina text,
