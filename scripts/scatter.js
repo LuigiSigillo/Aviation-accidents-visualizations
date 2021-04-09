@@ -1,6 +1,6 @@
-var margin = { top: 30, right: 10, bottom: 100, left: 20 };
-var width = document.getElementById("scatter").clientWidth + margin.left + margin.right - 200
-var height = document.getElementById("scatter").clientHeight - margin.top - margin.bottom - 50;
+var margin = { top: 25, right: -200, bottom: 50, left: 10 };
+var width = document.getElementById("scatter").clientWidth + margin.left + margin.right
+var height = document.getElementById("scatter").clientHeight - margin.top - margin.bottom
 
 console.log("scat", height, "h", width)
 
@@ -15,11 +15,12 @@ var dbNames = {
 }
 
 
-
+var n_w = (width + margin.left + margin.right)*1.5
+var n_h = (height + margin.top + margin.bottom)*1.5
 var svg = d3.select("#scatter")
     .append("svg")
-    .attr("width", (width + margin.left + margin.right)*2 )
-    .attr("height", (height + margin.top + margin.bottom)*1.5)
+    .attr("width",n_w )
+    .attr("height", n_h)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -378,7 +379,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .text(Y);
 
             //console.log(color.domain())
-            var legend = svg.selectAll(".legend")
+            var legend = svg.selectAll(".legendina")
                 .data(color.domain().sort(function (a, b) { return dataset_dict[b].r - dataset_dict[a].r }))
                 .enter().append("g")
                 .attr("class", "legendina")

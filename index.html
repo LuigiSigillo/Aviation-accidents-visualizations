@@ -5,6 +5,10 @@
     <title>VA of Aviation accidents in USA</title>
 
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="css/scatter.css">
+    <link rel="stylesheet" href="css/mds.css">
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/topojson/1.1.0/topojson.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
@@ -26,7 +30,7 @@
 
 
 </head>
-<link rel="stylesheet" href="css/map.css">
+
 <script type="text/javascript" src="scripts/slider.js"></script>
 <script type="text/javascript" src="scripts/map.js"></script>
 
@@ -48,15 +52,14 @@
                     for="Uninjured">Uninjured</label>
             </div>
             <div id="canvas-svg"></div>
-            
+
             <div id="tooltip-container"></div>
 
 
         </div>
 
         <!--html for SCATTER plot-->
-        <div id="scatter" class="block" >
-            <link rel="stylesheet" href="css/scatter.css">
+        <div id="scatter" class="block">
             <label for="X_axis" style="color: brown;"><b>X:</b></label>
             <select id='X_axis'>
                 <option value="Total_Accidents" selected>Incidents</option>
@@ -89,31 +92,15 @@
         </div>
 
         <!--html for MDS-->
-        <div id="mds" class="block" >
+        <div id="mds" class="block">
 
 
         </div>
         <!--html for MENU -->
 
-        <div id="menu" class="block" >
+        <div id="menu" class="block">
             <!-- Buttons for map -->
-            <div class="slidecontainer">
-                <input type="range" min="2001" max="2020" step="1" value="2001" class="slider" id="slider">
-                <br>
-                <p>
-                    Year: <span id="demo"></span>
-                </p>
-                <script>
-                    //var projection = d3.geoEqualEarth()
-                    var slider = document.getElementById("slider");
-                    var output = document.getElementById("demo");
-                    output.innerHTML = slider.value;
 
-                    slider.oninput = function () {
-                        output.innerHTML = this.value;
-                    }
-                </script>
-            </div>
 
             <!-- Scatter plot-->
             <div id="menu_tendina">
@@ -132,13 +119,29 @@
 
                     </select>
                 </div>
+                <div class="slidecontainer">
+                    <input type="range" min="2001" max="2020" step="1" value="2001" class="slider" id="slider">
+                    <br>
+                    <p>
+                        Year: <span id="demo"></span>
+                    </p>
+                    <script>
+                        //var projection = d3.geoEqualEarth()
+                        var slider = document.getElementById("slider");
+                        var output = document.getElementById("demo");
+                        output.innerHTML = slider.value;
+
+                        slider.oninput = function () {
+                            output.innerHTML = this.value;
+                        }
+                    </script>
+                </div>
             </div>
         </div>
         <script type="text/javascript" src="scripts/mds.js"></script>
         <script type="text/javascript" src="scripts/scatter.js"></script>
     </div>
 </body>
-<link rel="stylesheet" href="css/mds.css">
 
 
 </html>
