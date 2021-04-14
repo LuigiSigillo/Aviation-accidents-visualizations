@@ -42,10 +42,3 @@
   margin-left: 10px;
   float: right;
 }
-
-#map {
-  /* background-color: cadetblue;*/
-  border:3px solid black;
-  border-right-style: outset;
-  border-radius: 5px;
-}

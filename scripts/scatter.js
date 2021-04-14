@@ -1,4 +1,4 @@
-var margin = { top: 25, right: -230, bottom: 50, left: 30 };
+var margin = { top: 25, right: -230, bottom: 00, left: 30 };
 var width = document.getElementById("scatter").clientWidth + margin.left + margin.right
 var height = document.getElementById("scatter").clientHeight - margin.top - margin.bottom
 

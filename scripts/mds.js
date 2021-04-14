@@ -44,7 +44,7 @@ function createMDS(year, visibleLabel, evolutionMode,aggr_by_year) {
         var data = d3.csv(dataset_path, function (error, data) {
 
             //---------------------------------------------Computing  default dissimilarity matrix------------------------------------------------
-            var matrix = chooseCharacteristic(data, year,aggr_by_year)
+            var matrix = chooseCharacteristic(data, year,aggr_by_year, "kind",  "Crash.Country")
             //---------------------------------------------Visualization------------------------------------------------
             plotMds(matrix, visibleLabel, evolutionMode)
 
@@ -88,21 +88,60 @@ Params:     subject-->  (string)    the subject of visualization -> Crash.Countr
             single_year (bool)      single year or multiple year
 Returns:    dissM-->    (map)       DissimilaritM
 */
-function chooseCharacteristic(data, year, aggr) {
-
+function chooseCharacteristic(data, year, aggr, keyword, subject) {
+    console.log("AAKAJAOJOJ", aggr)
     var dissM = [];
-    filtered = change(data, "Crash.Country", year, aggr)
-    console.log(filtered)
-    size = Object.keys(filtered)
-    for (var i = 0; i < size.length; i++) {
-        dissM[i] = [];
-        for (var j = 0; j < size.length; j++) {
-            var listaI = [filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Fatal"], filtered[size[i]]["Serious"], filtered[size[i]]["Minor"]]
-            var listaJ = [filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Fatal"], filtered[size[j]]["Serious"], filtered[size[j]]["Minor"]]
+    if(keyword == "std"){
+        filtered = change(data, subject, year, aggr)
+        console.log(filtered)
+        size = Object.keys(filtered)
+        for (var i = 0; i < size.length; i++) {
+            dissM[i] = [];
+            for (var j = 0; j < size.length; j++) {
+                var listaI = [filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Fatal"], filtered[size[i]]["Serious"], filtered[size[i]]["Minor"]]
+                var listaJ = [filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Fatal"], filtered[size[j]]["Serious"], filtered[size[j]]["Minor"]]
 
-            dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
+                dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
+            }
         }
-    }
+    } 
+    else if (keyword == "percentage"){
+        filtered = change(data, subject, year, aggr)
+        console.log(filtered)
+        size = Object.keys(filtered)
+        for (var i = 0; i < size.length; i++) {
+            dissM[i] = [];
+            for (var j = 0; j < size.length; j++) {
+                var listaI = [filtered[size[i]]["Fatal"]/filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Serious"]/filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Minor"]/filtered[size[i]]["Total_Accidents"]]
+                var listaJ = [filtered[size[j]]["Fatal"]/filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Serious"]/filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Minor"]/filtered[size[j]]["Total_Accidents"]]
+                
+                dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
+            }
+        }
+    } 
+    else if (keyword == "kind"){
+        filtered = change(data, subject, year, aggr)
+        console.log(filtered)
+        size = Object.keys(filtered)
+        for (var i = 0; i < size.length; i++) {
+            dissM[i] = [];
+            for (var j = 0; j < size.length; j++) {
+                var listaI = [filtered[size[i]]["VMC"], filtered[size[i]]["IMC"], 
+                filtered[size[i]]["Minor_Damage"], filtered[size[i]]["Substantial_Damage"], filtered[size[i]]["Destroyed_Damage"],
+                filtered[size[i]]["MANEUVERING"], filtered[size[i]]["STANDING"] , filtered[size[i]]["UNKNOWN"], filtered[size[i]]["TAKEOFF"], 
+                filtered[size[i]]["APPROACH"], filtered[size[i]]["CLIMB"], filtered[size[i]]["CRUISE"], filtered[size[i]]["DESCENT"], 
+                filtered[size[i]]["LANDING"], filtered[size[i]]["GOAROUND"], filtered[size[i]]["TAXI"]
+                ].map(x=>x/filtered[size[i]]["Total_Accidents"])
+                var listaJ = [filtered[size[j]]["VMC"], filtered[size[j]]["IMC"], 
+                filtered[size[j]]["Minor_Damage"], filtered[size[j]]["Substantial_Damage"], filtered[size[j]]["Destroyed_Damage"],
+                filtered[size[j]]["MANEUVERING"], filtered[size[j]]["STANDING"] , filtered[size[j]]["UNKNOWN"], filtered[size[j]]["TAKEOFF"], 
+                filtered[size[j]]["APPROACH"], filtered[size[j]]["CLIMB"], filtered[size[j]]["CRUISE"], filtered[size[j]]["DESCENT"], 
+                filtered[size[j]]["LANDING"], filtered[size[j]]["GOAROUND"], filtered[size[j]]["TAXI"]].map(x=>x/filtered[size[j]]["Total_Accidents"])
+                
+                dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
+            }
+        }
+    } 
 
     return dissM
 
