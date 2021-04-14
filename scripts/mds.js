@@ -356,8 +356,9 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                     });
                     id.style('stroke-width', '2');
 
+                    
+                    mouse_on(d);
                     /*
-                    highlitgh_region();
                     mouseon su mds su mappa 
 
                     eliminate visualization since we alwa regions

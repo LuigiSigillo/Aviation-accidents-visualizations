@@ -21,7 +21,7 @@ html, body {
   position:relative}
 #scatter { top:0;   left:50%;  }
 #mds { top:50%; left:0;     }
-#menu { top:70%; left:50%;    }  
+#menu { top:50%; left:50%;    }  
 
 
 .slider {
@@ -61,7 +61,7 @@ html, body {
 #menu_tendina {
     display: table;
     width: 60%;
-    margin-top: 20%;
+    margin-top: 0%;
     margin-left: 0.5%;
     table-layout: fixed;
     border-spacing: 10px;
@@ -70,3 +70,14 @@ html, body {
     border-radius: 10px;
     
   }
+
+
+  #tooltip-container-menu {
+    position: relative;
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
+    border: 1px solid;
+    display: none;
+  }
+  
