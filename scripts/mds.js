@@ -25,9 +25,7 @@ Returns:    //
         if (lastWidth == widthNow) return;
         lastWidth = widthNow;
         d3.select("#regions").selectAll("*").remove()
-        var computationType = 0
-        var mdsComputationType = 0
-        createMDS(2001, computationType, mdsComputationType,"false")
+        createMDS(2001, 0, 0,"false","Crash.Country","std")
     }
     setInterval(pollZoomFireEvent, 100);
 })();
@@ -38,13 +36,13 @@ Params:     year-->             (int)   year of slider
             visibleLabel-->     (?)      
 Returns:    //       
 */
-function createMDS(year, visibleLabel, evolutionMode,aggr_by_year) {
+function createMDS(year, visibleLabel, evolutionMode,aggr_by_year, aggr_type,mds_type_value) {
 
     d3.text(dataset_path, function (raw) {
         var data = d3.csv(dataset_path, function (error, data) {
 
             //---------------------------------------------Computing  default dissimilarity matrix------------------------------------------------
-            var matrix = chooseCharacteristic(data, year,aggr_by_year, "std",  "Event.Month")
+            var matrix = chooseCharacteristic(data, year,aggr_by_year, mds_type_value, aggr_type)
             //---------------------------------------------Visualization------------------------------------------------
             plotMds(matrix, visibleLabel, evolutionMode)
 
@@ -89,7 +87,6 @@ Params:     subject-->  (string)    the subject of visualization -> Crash.Countr
 Returns:    dissM-->    (map)       DissimilaritM
 */
 function chooseCharacteristic(data, year, aggr, keyword, subject) {
-    console.log("AAKAJAOJOJ", aggr)
     var dissM = [];
     if(keyword == "std"){
         filtered = change(data, subject, year, aggr)

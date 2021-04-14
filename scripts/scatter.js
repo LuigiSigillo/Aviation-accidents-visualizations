@@ -1,4 +1,4 @@
-var margin = { top: 25, right: -230, bottom: 00, left: 30 };
+var margin = { top: 25, right: -230, bottom: 50, left: 30 };
 var width = document.getElementById("scatter").clientWidth + margin.left + margin.right
 var height = document.getElementById("scatter").clientHeight - margin.top - margin.bottom
 
@@ -146,15 +146,17 @@ function createMousoverHtml(d) {
 
 function brushScatter(brushed_points, highlighting) {
     var aggr = document.getElementById("aggregationType").value;
-    if (aggr != "Crash.Country") return;
     d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         if (highlighting) {
+            tobebrushed = true
+            brushedPoints = brushed_points
             d3.selectAll(".bubble")
                 .style("opacity", 0.1)
                 .filter(function (d) { return brushed_points.includes(d.Item); })
                 .style("opacity", 1);
         }
         else {
+            tobebrushed = false
             d3.selectAll(".bubble")
                 .style("opacity", 1)
         }
@@ -162,7 +164,8 @@ function brushScatter(brushed_points, highlighting) {
 }
 
 
-
+var brushedPoints = []
+var tobebrushed = false
 
 var aggregationType = "Crash.Country"
 var X = 'Total_Accidents'
@@ -170,27 +173,35 @@ var Y = 'Fatal'
 var R = 'Serious'
 var yearInput = 2001
 var aggregated_by_year = "false"
-
+var mds_type_value = "std"
 function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
     //console.log('Chiamata changing con parametri: ' + aggregationType, X, Y, R)
     var aggr = document.getElementById("aggregationType");
     aggr.onchange = function () {
         aggregationType = aggr.value
-        console.log('CHIAMO CON X Y Z: ', X, Y, R)
-        changing(aggr.value, X, Y, R, yearInput, aggregated_by_year)
+        //console.log('CHIAMO CON X Y Z: ', X, Y, R)
+        changing(aggregationType, X, Y, R, yearInput, aggregated_by_year)
+        createMDS(yearInput, 0, 0, aggregated_by_year,aggregationType,mds_type_value)
+
     }
     d3.select("#aggregationYear")
         .on("change", function () {
             var year_bool = d3.select(this).node().value;
             console.log("scatter", year_bool)
             changing(aggregationType, X, Y, R, yearInput, year_bool)
-            createMDS(yearInput, 0, 0, year_bool)
+            createMDS(yearInput, 0, 0, year_bool,aggregationType,mds_type_value)
 
         })
 
-
-    d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
+    var mdsType = document.getElementById("mdsType");
+    mdsType.onchange = function () {
+            mds_type_value = mdsType.value
+            createMDS(yearInput, 0, 0, aggregated_by_year,aggregationType, mds_type_value)
+    
+        }
+    
+        d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
 
 
         function scatter_visualization(yearInput, aggregationType) {
@@ -350,7 +361,12 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 })
                 .attr("class", "circle_scatter")
 
-
+            if (tobebrushed) {
+                d3.selectAll(".bubble")
+                .style("opacity", 0.1)
+                .filter(function (d) { return brushedPoints.includes(d.Item); })
+                .style("opacity", 1);
+            }
             j = -1
 
             group.append("text")
@@ -434,7 +450,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
             .on("change", function () {
                 yearInput = +d3.select(this).node().value
 
-                createMDS(yearInput, 0, 0, aggregated_by_year)
+                createMDS(yearInput, 0, 0, aggregated_by_year,aggregationType,mds_type_value)
 
                 scatter_visualization(yearInput, aggregationType)
                 /*

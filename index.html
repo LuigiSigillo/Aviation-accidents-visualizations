@@ -53,6 +53,9 @@
                     for="Uninjured">Uninjured</label>
             </div>
             <div id="canvas-svg"></div>
+            <div id="legenda-svg">
+               
+            </div>
 
             <div id="tooltip-container"></div>
 
@@ -136,6 +139,13 @@
                     <select id='aggregationYear'>
                         <option value="true">Yes</option>
                         <option value="false" selected>No</option>
+
+                    </select>
+                    <label for="mdsType"><b>MDS type:</b></label>
+                    <select id='mdsType'>
+                        <option value="std" selected>Incidents</option>
+                        <option value="percentage" >Incidents percentage</option>
+                        <option value="kind" >Typology</option>
 
                     </select>
                 </div>

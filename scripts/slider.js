@@ -12,13 +12,6 @@ var dbNames = {
 }
 
 
-
-
-
-
-
-
-
 /*
 Function:   Change visualization subject depending from year and tipology of visualization
 Params:     subject-->  (string)    the subject of visualization -> Crash.Country, Broad.Phase.of.Flight, 
