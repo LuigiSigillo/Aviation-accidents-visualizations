@@ -44,7 +44,7 @@ function createMDS(year, visibleLabel, evolutionMode,aggr_by_year) {
         var data = d3.csv(dataset_path, function (error, data) {
 
             //---------------------------------------------Computing  default dissimilarity matrix------------------------------------------------
-            var matrix = chooseCharacteristic(data, year,aggr_by_year, "kind",  "Crash.Country")
+            var matrix = chooseCharacteristic(data, year,aggr_by_year, "std",  "Event.Month")
             //---------------------------------------------Visualization------------------------------------------------
             plotMds(matrix, visibleLabel, evolutionMode)
 
@@ -121,7 +121,7 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
     } 
     else if (keyword == "kind"){
         filtered = change(data, subject, year, aggr)
-        console.log(filtered)
+        console.log("COSA",filtered)
         size = Object.keys(filtered)
         for (var i = 0; i < size.length; i++) {
             dissM[i] = [];
@@ -130,14 +130,12 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
                 filtered[size[i]]["Minor_Damage"], filtered[size[i]]["Substantial_Damage"], filtered[size[i]]["Destroyed_Damage"],
                 filtered[size[i]]["MANEUVERING"], filtered[size[i]]["STANDING"] , filtered[size[i]]["UNKNOWN"], filtered[size[i]]["TAKEOFF"], 
                 filtered[size[i]]["APPROACH"], filtered[size[i]]["CLIMB"], filtered[size[i]]["CRUISE"], filtered[size[i]]["DESCENT"], 
-                filtered[size[i]]["LANDING"], filtered[size[i]]["GOAROUND"], filtered[size[i]]["TAXI"]
-                ].map(x=>x/filtered[size[i]]["Total_Accidents"])
+                filtered[size[i]]["LANDING"], filtered[size[i]]["GOAROUND"], filtered[size[i]]["TAXI"]]
                 var listaJ = [filtered[size[j]]["VMC"], filtered[size[j]]["IMC"], 
                 filtered[size[j]]["Minor_Damage"], filtered[size[j]]["Substantial_Damage"], filtered[size[j]]["Destroyed_Damage"],
                 filtered[size[j]]["MANEUVERING"], filtered[size[j]]["STANDING"] , filtered[size[j]]["UNKNOWN"], filtered[size[j]]["TAKEOFF"], 
                 filtered[size[j]]["APPROACH"], filtered[size[j]]["CLIMB"], filtered[size[j]]["CRUISE"], filtered[size[j]]["DESCENT"], 
-                filtered[size[j]]["LANDING"], filtered[size[j]]["GOAROUND"], filtered[size[j]]["TAXI"]].map(x=>x/filtered[size[j]]["Total_Accidents"])
-                
+                filtered[size[j]]["LANDING"], filtered[size[j]]["GOAROUND"], filtered[size[j]]["TAXI"]]
                 dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
             }
         }
