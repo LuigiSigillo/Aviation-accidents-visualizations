@@ -76,7 +76,7 @@ function brushMap(brushList, toBeBrushed, first = false) {
                 res = 0
             else
                 res = Math.floor(Math.log2(numero))
-            return colors[res + 1].getColors().r
+            return colors[res+1].getColors().r
         }
 
         var path = d3version3.geo.path();
