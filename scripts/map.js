@@ -224,11 +224,13 @@ function brushMap(brushList,toBeBrushed) {
                 })
                 .attr("d", path)
                 .on("mousemove", function (d) {
-                    createHtml(d)
+                    // createHtml(d)
+                    mouse_on(id_name_map[d.id])
                 })
                 .on("mouseout", function () {
-                    $(this).attr("fill-opacity", "1.0");
-                    $("#tooltip-container").hide();
+                    mouse_out()
+                    /* $(this).attr("fill-opacity", "1.0");
+                    $("#tooltip-container").hide(); */
                 });
             updateLegend()
         })
@@ -453,11 +455,14 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
                     .style('stroke', 'black')
                     .attr("d", path)
                     .on("mousemove", function (d) {
-                        createHtml(d)
+                        // createHtml(d)
+                        // console.log('QUELLO CHE CI INTERESSA ',d['properties']['name'])
+                        mouse_on(id_name_map[d.id])
                     })
                     .on("mouseout", function () {
-                        $(this).attr("fill-opacity", "1.0");
-                        $("#tooltip-container").hide();
+                        mouse_out()
+                        /* $(this).attr("fill-opacity", "1.0");
+                        $("#tooltip-container").hide(); */
                     });
             }
 

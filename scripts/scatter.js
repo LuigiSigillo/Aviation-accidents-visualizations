@@ -331,10 +331,11 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .enter().append("g")
                 .attr("class", "bubble")
                 .attr("transform", function (d) { return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")" })
-                .on("mouseover", function (d) { createMousoverHtml(d); })
+                .on("mouseover", function (d) { mouse_on(d.Item); })
                 .on("mouseout", function () {
-                    $(this).attr("fill-opacity", "1.0");
-                    $("#tooltip-container-scatter").hide();
+                    mouse_out()
+                    /* $(this).attr("fill-opacity", "1.0");
+                    $("#tooltip-container-scatter").hide(); */
                 });
 
             var j = -1

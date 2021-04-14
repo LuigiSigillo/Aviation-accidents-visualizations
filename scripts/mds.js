@@ -399,6 +399,8 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
 
             })
             .on("mouseout", function (d) {
+                mouse_out();
+
                 mtooltip.transition()
                     .duration(500)
                     .style("opacity", 0);
@@ -418,6 +420,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                             return terName == d;
                         });
                         id.style('stroke', oldSt);
+
                     }
                 }
                 if (d3.select(this).classed("brushed") != true || d3.select(this).style('fill') == 'rgb(211, 211, 211)') {

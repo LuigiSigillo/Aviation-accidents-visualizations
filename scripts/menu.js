@@ -9,16 +9,16 @@ function mouse_on(pippo) {
 
     d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         dataset_dict = change(data, aggregationType, year, aggregated_by_year)
-        console.log('AAAAAAAA ',pippo, ' ', data)
+        console.log('AAAAAAAA ',pippo)
         d = dataset_dict[pippo]
         var html = "";
         html += "<div>";
         html += "<span>";
-        html += d['Item'];
-        html += "</span><br>";
-        html += "<span>";
-        html += "<a>Total Accidents: "
         try {
+            html += d['Item'];
+            html += "</span><br>";
+            html += "<span>";
+            html += "<a>Total Accidents: "
             html += (d["Total_Accidents"]);
             html += "</a>";
             html += "</span><br>";
@@ -58,7 +58,11 @@ function mouse_on(pippo) {
             html += (d["Minor_Damage"]);
         }
         catch (error) {
-            html = html.replace("<a>Total Accidents: ", "")
+            html += pippo;
+            html += "</span><br>";
+            html += "<span>";
+            // html += "<a>Total Accidents: "
+            // html = html.replace("<a>Total Accidents: ", "")
             html += "<a>Total Accidents: 0"
             html += "</a>";
             html += "</span><br>";
@@ -103,4 +107,8 @@ function mouse_on(pippo) {
                 .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
         }
     })
+}
+
+function mouse_out(){
+    d3.select('#tooltip-container-menu').style('display','none')
 }
