@@ -67,12 +67,16 @@ function brushMap(brushList,toBeBrushed) {
                 colors.push(new Color(hexToRgb(colors_hex[i])));
             }
             function updateLegend() {
-                var legendText = ["0-1", "1-2", "3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
-                //var legendText = ["Fatalities:", "0-35", "36-70", "71-105", "106-140", "141-175", "176-210", "211-245", "246-280", "281-315"];
-                var legend = mapSvg.append("svg")
+                //var legendText = ["0-1", "1-2", "3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
+                var grp = $("input[type='radio'][name='gender']:checked").val();
+                var mappa = {"Total_Accidents" :"Accidents","Fatal" :"Fatalities","Serious" :"Serious injuries","Minor" :"Minor injuries","Uninjured":"Uninjured"}
+                var legendText = ["# "+mappa[grp], "0-1", "1-2", "3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
+                var legendsvg = d3version3.select("#legenda-svg")
+                legendsvg.selectAll(".legend").remove();
+                var legend = legendsvg.append("svg")
                     .attr("class", "legend")
-                    .attr("width", 82)
-                    .attr("height", 178)
+                    .attr("width", 170)
+                    .attr("height", 200)
                     .selectAll("g")
                     .data(legendText)
                     .enter()
@@ -96,6 +100,11 @@ function brushMap(brushList,toBeBrushed) {
                     .attr("dy", ".35em")
                     .text(function (d) {
                         return d;
+                    })
+                    .style("font-weight", function (d, i) {
+                        console.log(i)
+                        if (i==0)
+                            return "bold"
                     });
             }
             function colorMapping(numero) {
@@ -107,95 +116,33 @@ function brushMap(brushList,toBeBrushed) {
                 return colors[res].getColors().r
             }
 
-            var path = d3version3.geo.path();
-            function createHtml(d) {
+                   
+        function createNameHtml(d) {
+            var html = "";
 
-                var html = "";
-                html += "<div class=\"tooltip_kv\">";
-                html += "<span class=\"tooltip_key\">";
-                html += id_name_map[d.id];
-                html += "</span><br>";
-                html += "<span class=\"tooltip_value\">";
-                html += "<a>Total Accidents: "
-                try {
-                    html += (e[id_name_map[d.id]]["Total_Accidents"]);
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Fatalities: "
-                    html += (e[id_name_map[d.id]]["Fatal"]);
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Serious Injuries: "
-                    html += (e[id_name_map[d.id]]["Serious"]);
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Minor Injuries: "
-                    html += (e[id_name_map[d.id]]["Minor"]);
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Uninjured: "
-                    html += (e[id_name_map[d.id]]["Uninjured"]);
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>VMC: "
-                    html += (e[id_name_map[d.id]]["VMC"]);
-                    html += " IMC: "
-                    html += (e[id_name_map[d.id]]["IMC"]);
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Destroyed: "
-                    html += (e[id_name_map[d.id]]["Destroyed_Damage"]);
-                    html += " Substantial: "
-                    html += (e[id_name_map[d.id]]["Substantial_Damage"]);
-                    html += " Minor: "
-                    html += (e[id_name_map[d.id]]["Minor_Damage"]);
-                }
-                catch (error) {
-                    html = html.replace("<a>Total Accidents: ", "")
-                    html += "<a>Total Accidents: 0"
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Fatalities: 0"
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Serious Injuries: 0"
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Minor Injuries: 0"
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Uninjured: 0"
-                }
-                html += "</a>";
-                html += "</span><br>";
-                html += "</div>";
-                $("#tooltip-container").html(html);
-                $(this).attr("fill-opacity", "0.8");
-                $("#tooltip-container").show();
+            html += "<span class=\"tooltip_key\">";
+            html += id_name_map[d.id];
+            html += "</span><br>";
+            $("#tooltip-container").html(html);
+            $(this).attr("fill-opacity", "0.8");
+            $("#tooltip-container").show();
 
-                var map_width = $('.states-choropleth')[0].getBoundingClientRect().width;
+            var map_width = $('.states-choropleth')[0].getBoundingClientRect().width;
 
-                if (d3version3.event.layerX < map_width / 2) {
-                    d3version3.select("#tooltip-container")
-                        .style("top", (d3version3.event.layerY + 15) + "px")
-                        .style("left", (d3version3.event.layerX + 15) + "px");
-                } else {
-                    var tooltip_width = $("#tooltip-container").width();
-                    d3version3.select("#tooltip-container")
-                        .style("top", (d3version3.event.layerY + 15) + "px")
-                        .style("left", (d3version3.event.layerX - tooltip_width - 30) + "px");
-                }
+            if (d3version3.event.layerX < map_width / 2) {
+                d3version3.select("#tooltip-container")
+                    .style("top", (d3version3.event.layerY + 15) + "px")
+                    .style("left", (d3version3.event.layerX + 15) + "px");
+            } else {
+                var tooltip_width = $("#tooltip-container").width();
+                d3version3.select("#tooltip-container")
+                    .style("top", (d3version3.event.layerY + 15) + "px")
+                    .style("left", (d3version3.event.layerX - tooltip_width - 30) + "px");
             }
+        }
+
+            var path = d3version3.geo.path();
+
             d3version3.json("datasets/us-states.json", function (error, us) {
                 type = "Fatal"
             //cambia colore
@@ -224,13 +171,14 @@ function brushMap(brushList,toBeBrushed) {
                 })
                 .attr("d", path)
                 .on("mousemove", function (d) {
-                    // createHtml(d)
+                    createNameHtml(d)
+
                     mouse_on(id_name_map[d.id])
                 })
                 .on("mouseout", function () {
                     mouse_out()
-                    /* $(this).attr("fill-opacity", "1.0");
-                    $("#tooltip-container").hide(); */
+                    $(this).attr("fill-opacity", "1.0");
+                    $("#tooltip-container").hide();
                 });
             updateLegend()
         })
@@ -296,7 +244,7 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
     }
 
 
-    var colors_hex = ['#fff7ec', '#fee8c8', '#fdd49e', '#fdbb84', '#fc8d59', '#ef6548', '#d7301f', '#b30000', '#7f0000']
+    var colors_hex = ['#ffffff','#fff7ec', '#fee8c8', '#fdd49e', '#fdbb84', '#fc8d59', '#ef6548', '#d7301f', '#b30000', '#7f0000']
     var colors = []
 
     for (var i = 0; i < colors_hex.length; i++) {
@@ -315,7 +263,7 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
             res = 0
         else
             res = Math.floor(Math.log2(numero))
-        return colors[res].getColors().r
+        return colors[res+1].getColors().r
     }
 
     var path = d3version3.geo.path();
@@ -430,8 +378,31 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
             }
         }
 
+        function createNameHtml(d) {
+            var html = "";
+
+            html += "<span class=\"tooltip_key\">";
+            html += id_name_map[d.id];
+            html += "</span><br>";
+            $("#tooltip-container").html(html);
+            $(this).attr("fill-opacity", "0.8");
+            $("#tooltip-container").show();
+
+            var map_width = $('.states-choropleth')[0].getBoundingClientRect().width;
+
+            if (d3version3.event.layerX < map_width / 2) {
+                d3version3.select("#tooltip-container")
+                    .style("top", (d3version3.event.layerY + 15) + "px")
+                    .style("left", (d3version3.event.layerX + 15) + "px");
+            } else {
+                var tooltip_width = $("#tooltip-container").width();
+                d3version3.select("#tooltip-container")
+                    .style("top", (d3version3.event.layerY + 15) + "px")
+                    .style("left", (d3version3.event.layerX - tooltip_width - 30) + "px");
+            }
+        }
+
         var aggregationYear = "false"
-       
 
         e = change(data, "Crash.Country", 2001, aggregationYear)
         //console.log("primo dataset 2001",e)
@@ -455,24 +426,27 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
                     .style('stroke', 'black')
                     .attr("d", path)
                     .on("mousemove", function (d) {
-                        // createHtml(d)
+                        createNameHtml(d)
                         // console.log('QUELLO CHE CI INTERESSA ',d['properties']['name'])
                         mouse_on(id_name_map[d.id])
                     })
                     .on("mouseout", function () {
                         mouse_out()
-                        /* $(this).attr("fill-opacity", "1.0");
-                        $("#tooltip-container").hide(); */
+                        $(this).attr("fill-opacity", "1.0");
+                        $("#tooltip-container").hide();
                     });
             }
 
             function updateLegend() {
-                var legendText = ["0-1", "1-2", "3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
-                //var legendText = ["Fatalities:", "0-35", "36-70", "71-105", "106-140", "141-175", "176-210", "211-245", "246-280", "281-315"];
-                mapSvg.selectAll(".legend").remove();
-                var legend = mapSvg.append("svg")
-                    .attr("width", 82)
-                    .attr("height", 178)
+                //var legendText = ["0-1", "1-2", "3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
+                var grp = $("input[type='radio'][name='gender']:checked").val();
+                var mappa = {"Total_Accidents" :"Accidents","Fatal" :"Fatalities","Serious" :"Serious injuries","Minor" :"Minor injuries","Uninjured":"Uninjured"}
+                var legendText = ["# "+mappa[grp], "0-1", "1-2", "3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
+                var legendsvg = d3version3.select("#legenda-svg")
+                legendsvg.selectAll(".legend").remove();
+                var legend = legendsvg.append("svg")
+                    .attr("width", 170)
+                    .attr("height", 200)
                     .attr("class", "legend")
                     .selectAll("g")
                     .data(legendText)
@@ -497,6 +471,11 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
                     .attr("dy", ".35em")
                     .text(function (d) {
                         return d;
+                    })
+                    .style("font-weight", function (d, i) {
+                        console.log(i)
+                        if (i==0)
+                            return "bold"
                     });
             }
             // aggiorna mappa subito
@@ -525,7 +504,8 @@ d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
                     updateMapColors(grp)
                     updateLegend()
 
-                });
+                }
+            );
 
             function update() {
                 // For each check box:
