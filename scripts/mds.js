@@ -118,7 +118,7 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
     } 
     else if (keyword == "kind"){
         filtered = change(data, subject, year, aggr)
-        console.log(filtered)
+        console.log("COSA",filtered)
         size = Object.keys(filtered)
         for (var i = 0; i < size.length; i++) {
             dissM[i] = [];
