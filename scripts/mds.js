@@ -128,12 +128,12 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
                 filtered[size[i]]["MANEUVERING"], filtered[size[i]]["STANDING"] , filtered[size[i]]["UNKNOWN"], filtered[size[i]]["TAKEOFF"], 
                 filtered[size[i]]["APPROACH"], filtered[size[i]]["CLIMB"], filtered[size[i]]["CRUISE"], filtered[size[i]]["DESCENT"], 
                 filtered[size[i]]["LANDING"], filtered[size[i]]["GOAROUND"], filtered[size[i]]["TAXI"]
-                ].map(x=>x/filtered[size[i]]["Total_Accidents"])
+                ]//.map(x=>x/filtered[size[i]]["Total_Accidents"])
                 var listaJ = [filtered[size[j]]["VMC"], filtered[size[j]]["IMC"], 
                 filtered[size[j]]["Minor_Damage"], filtered[size[j]]["Substantial_Damage"], filtered[size[j]]["Destroyed_Damage"],
                 filtered[size[j]]["MANEUVERING"], filtered[size[j]]["STANDING"] , filtered[size[j]]["UNKNOWN"], filtered[size[j]]["TAKEOFF"], 
                 filtered[size[j]]["APPROACH"], filtered[size[j]]["CLIMB"], filtered[size[j]]["CRUISE"], filtered[size[j]]["DESCENT"], 
-                filtered[size[j]]["LANDING"], filtered[size[j]]["GOAROUND"], filtered[size[j]]["TAXI"]].map(x=>x/filtered[size[j]]["Total_Accidents"])
+                filtered[size[j]]["LANDING"], filtered[size[j]]["GOAROUND"], filtered[size[j]]["TAXI"]]//.map(x=>x/filtered[size[j]]["Total_Accidents"])
                 
                 dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
             }

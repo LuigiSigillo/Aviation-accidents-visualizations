@@ -88,8 +88,7 @@ function brushMap(brushList, toBeBrushed, first = false) {
                 .attr("width", params.WIDTH + margin.left + margin.right)
                 .attr("height", params.HEIGHT + margin.top + margin.bottom);
             mapSvg = mapSvg.append("g")
-                .attr("transform",
-                    "translate(" + margin.left + "," + margin.top + ")");
+                        //.attr("transform","translate(" + margin.left + "," + margin.top + ")");
         }
         else {
             var mapSvg = d3version3.select("#svgmappa")
@@ -235,6 +234,7 @@ function brushMap(brushList, toBeBrushed, first = false) {
                         .data(topojson.feature(us, us.objects.states).features)
                         .enter().append("path")
                         .attr("transform", "scale(" + params.SCALE + ")")
+                        //.attr("transform","translate(" + margin.left + "," + margin.top + ")")
                         .style("fill", function (d) {
                             if (e[id_name_map[d.id]] != undefined)
                                 var color = colorMapping(e[id_name_map[d.id]][type]);
