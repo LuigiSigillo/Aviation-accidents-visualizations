@@ -41,6 +41,12 @@ circle {
   opacity: 1.0;
 }
 
+.mouseon {
+  fill: green;
+  stroke: greenyellow;
+  opacity: 1.0;
+}
+
 .brushed_text{
   fill: #0e0d0d;
   opacity: 1.0;

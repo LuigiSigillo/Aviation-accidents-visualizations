@@ -25,7 +25,7 @@ Returns:    //
         if (lastWidth == widthNow) return;
         lastWidth = widthNow;
         d3.select("#regions").selectAll("*").remove()
-        createMDS(2001, 0, 0,"false","Crash.Country","std")
+        createMDS(2001, 0, 0, "false", "Crash.Country", "std")
     }
     setInterval(pollZoomFireEvent, 100);
 })();
@@ -36,13 +36,13 @@ Params:     year-->             (int)   year of slider
             visibleLabel-->     (?)      
 Returns:    //       
 */
-function createMDS(year, visibleLabel, evolutionMode,aggr_by_year, aggr_type,mds_type_value) {
+function createMDS(year, visibleLabel, evolutionMode, aggr_by_year, aggr_type, mds_type_value) {
 
     d3.text(dataset_path, function (raw) {
         var data = d3.csv(dataset_path, function (error, data) {
 
             //---------------------------------------------Computing  default dissimilarity matrix------------------------------------------------
-            var matrix = chooseCharacteristic(data, year,aggr_by_year, mds_type_value, aggr_type)
+            var matrix = chooseCharacteristic(data, year, aggr_by_year, mds_type_value, aggr_type)
             //---------------------------------------------Visualization------------------------------------------------
             plotMds(matrix, visibleLabel, evolutionMode)
 
@@ -88,7 +88,7 @@ Returns:    dissM-->    (map)       DissimilaritM
 */
 function chooseCharacteristic(data, year, aggr, keyword, subject) {
     var dissM = [];
-    if(keyword == "std"){
+    if (keyword == "std") {
         filtered = change(data, subject, year, aggr)
         console.log(filtered)
         size = Object.keys(filtered)
@@ -101,44 +101,44 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
                 dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
             }
         }
-    } 
-    else if (keyword == "percentage"){
+    }
+    else if (keyword == "percentage") {
         filtered = change(data, subject, year, aggr)
         console.log(filtered)
         size = Object.keys(filtered)
         for (var i = 0; i < size.length; i++) {
             dissM[i] = [];
             for (var j = 0; j < size.length; j++) {
-                var listaI = [filtered[size[i]]["Fatal"]/filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Serious"]/filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Minor"]/filtered[size[i]]["Total_Accidents"]]
-                var listaJ = [filtered[size[j]]["Fatal"]/filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Serious"]/filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Minor"]/filtered[size[j]]["Total_Accidents"]]
-                
+                var listaI = [filtered[size[i]]["Fatal"] / filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Serious"] / filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Minor"] / filtered[size[i]]["Total_Accidents"]]
+                var listaJ = [filtered[size[j]]["Fatal"] / filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Serious"] / filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Minor"] / filtered[size[j]]["Total_Accidents"]]
+
                 dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
             }
         }
-    } 
-    else if (keyword == "kind"){
+    }
+    else if (keyword == "kind") {
         filtered = change(data, subject, year, aggr)
-        console.log("COSA",filtered)
+        console.log("COSA", filtered)
         size = Object.keys(filtered)
         for (var i = 0; i < size.length; i++) {
             dissM[i] = [];
             for (var j = 0; j < size.length; j++) {
-                var listaI = [filtered[size[i]]["VMC"], filtered[size[i]]["IMC"], 
+                var listaI = [filtered[size[i]]["VMC"], filtered[size[i]]["IMC"],
                 filtered[size[i]]["Minor_Damage"], filtered[size[i]]["Substantial_Damage"], filtered[size[i]]["Destroyed_Damage"],
-                filtered[size[i]]["MANEUVERING"], filtered[size[i]]["STANDING"] , filtered[size[i]]["UNKNOWN"], filtered[size[i]]["TAKEOFF"], 
-                filtered[size[i]]["APPROACH"], filtered[size[i]]["CLIMB"], filtered[size[i]]["CRUISE"], filtered[size[i]]["DESCENT"], 
+                filtered[size[i]]["MANEUVERING"], filtered[size[i]]["STANDING"], filtered[size[i]]["UNKNOWN"], filtered[size[i]]["TAKEOFF"],
+                filtered[size[i]]["APPROACH"], filtered[size[i]]["CLIMB"], filtered[size[i]]["CRUISE"], filtered[size[i]]["DESCENT"],
                 filtered[size[i]]["LANDING"], filtered[size[i]]["GOAROUND"], filtered[size[i]]["TAXI"]
                 ]//.map(x=>x/filtered[size[i]]["Total_Accidents"])
-                var listaJ = [filtered[size[j]]["VMC"], filtered[size[j]]["IMC"], 
+                var listaJ = [filtered[size[j]]["VMC"], filtered[size[j]]["IMC"],
                 filtered[size[j]]["Minor_Damage"], filtered[size[j]]["Substantial_Damage"], filtered[size[j]]["Destroyed_Damage"],
-                filtered[size[j]]["MANEUVERING"], filtered[size[j]]["STANDING"] , filtered[size[j]]["UNKNOWN"], filtered[size[j]]["TAKEOFF"], 
-                filtered[size[j]]["APPROACH"], filtered[size[j]]["CLIMB"], filtered[size[j]]["CRUISE"], filtered[size[j]]["DESCENT"], 
+                filtered[size[j]]["MANEUVERING"], filtered[size[j]]["STANDING"], filtered[size[j]]["UNKNOWN"], filtered[size[j]]["TAKEOFF"],
+                filtered[size[j]]["APPROACH"], filtered[size[j]]["CLIMB"], filtered[size[j]]["CRUISE"], filtered[size[j]]["DESCENT"],
                 filtered[size[j]]["LANDING"], filtered[size[j]]["GOAROUND"], filtered[size[j]]["TAXI"]]//.map(x=>x/filtered[size[j]]["Total_Accidents"])
-                
+
                 dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
             }
         }
-    } 
+    }
 
     return dissM
 
@@ -244,7 +244,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
         Math.max.apply(null, xPos)],
         yDomain = [Math.max.apply(null, yPos),
         Math.min.apply(null, yPos)],
-        pointRadius = params.pointRadius || 3;
+        pointRadius = params.pointRadius || 5;
 
     if (params.reverseX) {
         xDomain.reverse();
@@ -330,7 +330,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                     id.style('stroke-width', '0.5');
                 }
 
-                brushMap(brushed_points, false)
+                brushMap(brushed_points, false, false)
                 brushScatter(brushed_points, false)
 
                 brushed_points.forEach(function (d) {
@@ -381,7 +381,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
             .on("mouseover", function (d) {
                 mtooltip.transition()
                     .duration(200)
-                    .style("opacity", .9);
+                    .style("opacity", .9)
                 mtooltip.html(d)
                     .style("left", (d3.mouse(this)[0]) + "px")
                     .style("top", (d3.mouse(this)[1] - 25) + "px");
@@ -392,8 +392,20 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                     });
                     id.style('stroke-width', '2');
 
-                    
+
                     mouse_on(d);
+
+                    brushMap([d], true, false, true)
+                    // style brushed circles
+                    nodes.selectAll("circle").filter(function () {
+
+                        var cx = d3.select(this).attr("cx"),
+                            cy = d3.select(this).attr("cy");
+
+                        return isBrushed(brush_coords, cx, cy);
+                    })
+                        .classed("mouseon", true);
+                    brushScatter([d], true)
                     /*
                     mouseon su mds su mappa 
 
@@ -402,19 +414,12 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
 
                     */
                 }
-                else {//INTERACTIONS WITH MAP
-                    var id = d3.select('#mapProv').selectAll('path').filter(function (t) {
-                        var terName = d3.select('#' + this['id']).attr('name');
-                        return terName == d;
-                    });
-                    id.style('stroke-width', '1.5');
-                    showTooltipProv(id, 150);
-                }
+
                 if (!brushing) {
                     d3.select("#my_dataviz").selectAll('path').each(function (t) {
                         if (d3.select(this).attr("name") != null) {
                             if (d.trim() == d3.select(this).attr("name").trim()) {
-                                d3.select(this).style("stroke", "#d7191c")
+                                d3.select(this).style("stroke", "#19d71f")
                                 d3.select(this).style("stroke-width", "3")
                                 d3.select(this).raise().classed("active", true);
                             }
@@ -431,11 +436,16 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                         }
                     })
                 }
-                d3.select(this).attr("id", null).attr("r", "3")
+                // non c ha senso perchè fanno sta cosa? qua qua
+                d3.select(this).attr("id", null).attr("r", "10")
+
 
             })
             .on("mouseout", function (d) {
                 mouse_out();
+
+                brushMap([d], false)
+                brushScatter([d], false)
 
                 mtooltip.transition()
                     .duration(500)
@@ -487,6 +497,9 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                 d3.select("#my_dataviz").selectAll('path').each(function (t) {
                     d3.select(this).style('stroke-width', '1.5');
                 })
+
+                d3.select(this).attr("id", null).attr("r", "5")
+
             });
 
 

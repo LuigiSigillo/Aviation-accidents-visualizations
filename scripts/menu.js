@@ -10,7 +10,6 @@ function mouse_on(pippo) {
     d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         dataset_dict = change(data, aggr, year, aggregated_by_year)
         console.log("ciaoo",dataset_dict)
-        console.log('AAAAAAAA ',pippo)
         d = dataset_dict[pippo]
         var html = "";
         html += "<div>";

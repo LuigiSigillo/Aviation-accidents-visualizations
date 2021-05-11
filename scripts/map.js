@@ -1,4 +1,4 @@
-function brushMap(brushList, toBeBrushed, first = false) {
+function brushMap(brushList, toBeBrushed, first = false, mouseOn=false) {
     d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
 
         var margin = { top: 50, right: 15, bottom: 15, left: 100 }
@@ -245,11 +245,16 @@ function brushMap(brushList, toBeBrushed, first = false) {
                                     var color = colors[9].getColors().r //TEST*/
                             return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
                         })
-                        .style('stroke', 'black')
+                        .style('stroke', function (d){
+                            if (mouseOn)
+                                if (e[id_name_map[d.id]] != undefined && brushList.includes(e[id_name_map[d.id]]['Item']))
+                                    return '#2c7bb6'
+                            return 'black'
+                        })
                         .style('stroke-width', function (d) {
                             if (toBeBrushed)
                                 if (e[id_name_map[d.id]] != undefined && brushList.includes(e[id_name_map[d.id]]['Item']))
-                                    return '5'
+                                    return '8'
                         })
                         .attr("d", path)
                         .on("mousemove", function (d) {
