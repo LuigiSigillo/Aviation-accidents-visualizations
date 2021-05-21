@@ -330,7 +330,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                     id.style('stroke-width', '0.5');
                 }
 
-                brushMap(brushed_points, false, false)
+                brushMap(brushed_points, "unbrush")
                 brushScatter(brushed_points, false)
 
                 brushed_points.forEach(function (d) {
@@ -395,7 +395,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
 
                     mouse_on(d);
 
-                    brushMap([d], true, false, true)
+                    brushMap([d], "mouseon")
                     // style brushed circles
                     nodes.selectAll("circle").filter(function () {
 
@@ -444,7 +444,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
             .on("mouseout", function (d) {
                 mouse_out();
 
-                brushMap([d], false)
+                brushMap([d], "mouseout")
                 brushScatter([d], false)
 
                 mtooltip.transition()
@@ -646,7 +646,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
         MDS_PC_LOCK = true
 
         //Interaction with map vera
-        brushMap(brushed_points, true)
+        brushMap(brushed_points, "brush")
         brushScatter(brushed_points, true)
         brushed_points.forEach(function (d) {
             d3.select("#my_dataviz").selectAll('path').each(function (t) {
