@@ -233,7 +233,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 dataset_dict[elem].r = +dataset_dict[elem][R]
                 
 
-                if(aggregationType=="VMC" || aggregationType =="IMC") {
+                if(aggregationType=="VMC" || aggregationType =="IMC" || aggregationType.includes("Damage")) {
                     dataset_dict[elem].x = (dataset_dict[elem].x/dataset_dict[elem]["Total_Accidents"]) *100;
                     dataset_dict[elem].y = (dataset_dict[elem].y/dataset_dict[elem]["Total_Accidents"]) *100;
                     dataset_dict[elem].r = (dataset_dict[elem].r/dataset_dict[elem]["Total_Accidents"]) *100;
