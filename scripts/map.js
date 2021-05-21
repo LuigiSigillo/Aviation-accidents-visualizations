@@ -313,7 +313,6 @@ function brushMap(brushList, mode) {
                             return d;
                         })
                         .style("font-weight", function (d, i) {
-                            console.log(i)
                             if (i == 0)
                                 return "bold"
                         });

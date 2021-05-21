@@ -116,31 +116,51 @@
         <div id="scatter" class="block">
             <label for="X_axis" style="color: brown;"><b>X:</b></label>
             <select id='X_axis'>
-                <option value="Total_Accidents" selected>Incidents</option>
-                <option value="Uninjured">Uninjured</option>
-                <option value="Minor">Minor Injuries</option>
-                <option value="Serious">Serious Injuries</option>
-                <option value="Fatal">Fatal Injuries</option>
+                <optgroup label = "Incidents">
+                    <option value="Total_Accidents" selected>Incidents</option>
+                    <option value="Uninjured">Uninjured</option>
+                    <option value="Minor">Minor Injuries</option>
+                    <option value="Serious">Serious Injuries</option>
+                    <option value="Fatal" >Fatal Injuries</option>
+                </optgroup>
+                <optgroup label = "Weather">
+                    <option value="IMC">IMC</option>
+                    <option value="VMC">VMC</option>
+                </optgroup>
+
             </select>
 
 
             <label for="Y_axis" style="color: brown;"><b>Y:</b></label>
             <select id='Y_axis'>
-                <option value="Total_Accidents">Incidents</option>
-                <option value="Uninjured">Uninjured</option>
-                <option value="Minor">Minor Injuries</option>
-                <option value="Serious">Serious Injuries</option>
-                <option value="Fatal" selected>Fatal Injuries</option>
+                <optgroup label = "Incidents">
+                    <option value="Total_Accidents">Incidents</option>
+                    <option value="Uninjured">Uninjured</option>
+                    <option value="Minor">Minor Injuries</option>
+                    <option value="Serious">Serious Injuries</option>
+                    <option value="Fatal" selected>Fatal Injuries</option>
+                </optgroup>
+                <optgroup label = "Weather">
+                    <option value="IMC">IMC</option>
+                    <option value="VMC">VMC</option>
+                </optgroup>
+
             </select>
 
 
             <label for="R_axis" style="color: brown;"><b>Radius:</b></label>
             <select id='R_axis'>
-                <option value="Total_Accidents">Incidents</option>
-                <option value="Uninjured">Uninjured</option>
-                <option value="Minor">Minor Injuries</option>
-                <option value="Serious" selected>Serious Injuries</option>
-                <option value="Fatal">Fatal Injuries</option>
+                <optgroup label = "Incidents">
+                    <option value="Total_Accidents">Incidents</option>
+                    <option value="Uninjured">Uninjured</option>
+                    <option value="Minor">Minor Injuries</option>
+                    <option value="Serious" selected>Serious Injuries</option>
+                    <option value="Fatal">Fatal Injuries</option>
+                </optgroup>
+                <optgroup label = "Weather">
+                    <option value="IMC">IMC</option>
+                    <option value="VMC">VMC</option>
+                </optgroup>
             </select>
             <div id="tooltip-container-scatter"></div>
 

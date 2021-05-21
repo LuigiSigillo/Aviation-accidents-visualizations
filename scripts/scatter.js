@@ -226,12 +226,19 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
             for (var elem in dataset_dict) {
                 //console.log(keys[key])
                 //console.log(e[elem])
-                //console.log(e[elem])
-                dataset_dict[elem].x = +dataset_dict[elem][X];
-                //data[key].x = +e[key][X];
+                
+                dataset_dict[elem].x = +dataset_dict[elem][X]
+                
+                dataset_dict[elem].y = +dataset_dict[elem][Y]
+                dataset_dict[elem].r = +dataset_dict[elem][R]
+                
 
-                dataset_dict[elem].y = +dataset_dict[elem][Y];
-                dataset_dict[elem].r = +dataset_dict[elem][R];
+                if(aggregationType=="VMC" || aggregationType =="IMC") {
+                    dataset_dict[elem].x = (dataset_dict[elem].x/dataset_dict[elem]["Total_Accidents"]) *100;
+                    dataset_dict[elem].y = (dataset_dict[elem].y/dataset_dict[elem]["Total_Accidents"]) *100;
+                    dataset_dict[elem].r = (dataset_dict[elem].r/dataset_dict[elem]["Total_Accidents"]) *100;
+                }
+                console.log("x normalizzato =",dataset_dict[elem].x,"x originale = ", dataset_dict[elem][X], "total =", dataset_dict[elem]["Total_Accidents"])
                 if (dataset_dict[elem]["x"] > xmax)
                     xmax = dataset_dict[elem]["x"]
                 if (dataset_dict[elem]["y"] > ymax)
@@ -310,7 +317,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 d3.selectAll('.circle_scatter') // move the circles
                     .transition().duration(1000)
                     .delay(function (d, i) { return i * 10 })
-                    .attr("r", function (d) { return radius(d.r) * 10; })
+                    .attr("r", function (d) { return radius(d.r) * 5; })
             }
 
 
@@ -354,7 +361,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
             group.append("circle")
                 .transition().duration(1000)
-                .attr("r", function (d) { return radius(d.r) * 10; })
+                .attr("r", function (d) { return radius(d.r) * 5; })
                 .style("fill", function (d) {
                     j++
                     return color(keys[j]);
