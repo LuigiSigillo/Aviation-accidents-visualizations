@@ -90,7 +90,6 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
     var dissM = [];
     if (keyword == "std") {
         filtered = change(data, subject, year, aggr)
-        console.log(filtered)
         size = Object.keys(filtered)
         for (var i = 0; i < size.length; i++) {
             dissM[i] = [];
@@ -197,7 +196,6 @@ Params:     distances--> ([[float]]) matrix
 Returns:    //
 */
 function classic(distances, dimensions) {
-    console.log("1", distances, "2", dimensions)
     dimensions = dimensions || 2;
 
     // square distances
