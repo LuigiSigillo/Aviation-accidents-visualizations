@@ -1,4 +1,4 @@
-function brushMap(brushList, toBeBrushed, first = false, mouseOn=false) {
+function brushMap(brushList, mode) {
     d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
 
         var margin = { top: 50, right: 15, bottom: 15, left: 100 }
@@ -81,7 +81,7 @@ function brushMap(brushList, toBeBrushed, first = false, mouseOn=false) {
 
         var path = d3version3.geo.path();
 
-        if (first) {
+        if (mode=="init") {
             var mapSvg = d3version3.select("#canvas-svg")
                 .append("svg")
                 .attr("id", 'svgmappa')
@@ -246,13 +246,13 @@ function brushMap(brushList, toBeBrushed, first = false, mouseOn=false) {
                             return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
                         })
                         .style('stroke', function (d){
-                            if (mouseOn)
+                            if (mode=="mouseon")
                                 if (e[id_name_map[d.id]] != undefined && brushList.includes(e[id_name_map[d.id]]['Item']))
                                     return '#2c7bb6'
                             return 'black'
                         })
                         .style('stroke-width', function (d) {
-                            if (toBeBrushed)
+                            if (mode=="brush")
                                 if (e[id_name_map[d.id]] != undefined && brushList.includes(e[id_name_map[d.id]]['Item']))
                                     return '8'
                         })
@@ -378,7 +378,7 @@ function brushMap(brushList, toBeBrushed, first = false, mouseOn=false) {
     });
 }
 
-brushMap([], false, true)
+brushMap([], "init")
 
 
 /*function brushMap(brushList,toBeBrushed) {
