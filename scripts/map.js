@@ -1,6 +1,12 @@
+var brushed_countries = []
+
 function brushMap(brushList, mode) {
     d3version3.csv("datasets/AviationCrashLocation_new.csv", function (err, data) {
 
+        if (mode =="brush")
+            brushed_countries = brushList
+        if (mode =="unbrush")
+            brushed_countries = []
         var margin = { top: 50, right: 15, bottom: 15, left: 100 }
         var width = document.getElementById("map").clientWidth + margin.left + margin.right
         var height = document.getElementById("map").clientHeight - margin.top - margin.bottom;
@@ -240,9 +246,7 @@ function brushMap(brushList, mode) {
                                 var color = colorMapping(e[id_name_map[d.id]][type]);
                             else
                                 var color = colors[0].getColors().r
-                            /*if (toBeBrushed)
-                                if (e[id_name_map[d.id]] != undefined && brushList.includes(e[id_name_map[d.id]]['Item']))
-                                    var color = colors[9].getColors().r //TEST*/
+                            
                             return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
                         })
                         .style('stroke', function (d){
@@ -252,9 +256,12 @@ function brushMap(brushList, mode) {
                             return 'black'
                         })
                         .style('stroke-width', function (d) {
-                            if (mode=="brush")
-                                if (e[id_name_map[d.id]] != undefined && brushList.includes(e[id_name_map[d.id]]['Item']))
+                            if (brushed_countries != [])
+                                if (e[id_name_map[d.id]] != undefined && brushed_countries.includes(e[id_name_map[d.id]]['Item']))
                                     return '8'
+                            if (mode=="mouseon")
+                                    if (e[id_name_map[d.id]] != undefined && brushList.includes(e[id_name_map[d.id]]['Item']))
+                                            return '8'
                         })
                         .attr("d", path)
                         .on("mousemove", function (d) {
