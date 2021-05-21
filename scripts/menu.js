@@ -9,7 +9,7 @@ function mouse_on(pippo) {
 
     d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         dataset_dict = change(data, aggr, year, aggregated_by_year)
-        console.log("ciaoo",dataset_dict)
+        console.log("ciaoo", dataset_dict)
         d = dataset_dict[pippo]
         var html = "";
         html += "<div>";
@@ -109,32 +109,32 @@ function mouse_on(pippo) {
     })
 }
 
-function mouse_out(){
-    d3.select('#tooltip-container-menu').style('display','none')
+function mouse_out() {
+    d3.select('#tooltip-container-menu').style('display', 'none')
 }
 
 //da qui ce sta il nuovo slider col play button
-var formatDateIntoYear = d3.timeFormat("%Y");
-var formatDate = d3.timeFormat("%b %Y");
-var parseDate = d3.timeParse("%m/%d/%y");
+// var formatDateIntoYear = d3.timeFormat("%Y");
+// var formatDate = d3.timeFormat("%b %Y");
+// var parseDate = d3.timeParse("%m/%d/%y");
 
-var startDate = new Date("2001-11-01"),
-    endDate = new Date("2021-04-01");
+// var startDate = new Date("2001-11-01"),
+//     endDate = new Date("2021-04-01");
 
-var margin = { top: 50, right: 50, bottom: 0, left: 50 },
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+// var margin = { top: 50, right: 50, bottom: 0, left: 50 },
+//     width = 960 - margin.left - margin.right,
+//     height = 500 - margin.top - margin.bottom;
 
-var svg = d3.select("#vis")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom);
+// var svg = d3.select("#vis")
+//     .append("svg")
+//     .attr("width", width + margin.left + margin.right)
+//     .attr("height", height + margin.top + margin.bottom);
 
 ////////// slider //////////
 
-var moving = false;
-var currentValue = 0;
-var targetValue = width;
+// var moving = false;
+// var currentValue = 0;
+// var targetValue = width;
 
 var playButton = d3.select("#play-button");
 
