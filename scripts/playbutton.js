@@ -1,24 +1,31 @@
 var playButton = d3.select("#play-button");
 
-d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
 
-    playButton.on("click", function () {
-        // var i = 0
-        // while(i<100){
-        //     step()
-        //     i++
-        //     console.log(i)
-        // }
-        var i=0
-        while(i<20){
-            console.log(document.getElementById("aggregationType").value, +d3.select("#slider").node().value + i, d3.select("#aggregationYear").node().value)
-            change(data, document.getElementById("aggregationType").value, +d3.select("#slider").node().value + i, d3.select("#aggregationYear").node().value)
-            i++
+playButton.on("click", function () {
+
+    var myVar = setInterval(rec_play, 1000);
+    
+
+    
+    function myStopFunction() {
+      clearInterval(myVar);
+    }
+
+    function rec_play() {
+        var slider = document.getElementById("slider");
+        if(slider.value>=2020){
+            myStopFunction();
+            return;
         }
-        // change(data, document.getElementById("aggregationType").value, +d3.select("#slider").node().value, d3.select("#aggregationYear").node().value)
-        // step()
-
-        console.log('dio')
-    })
+        var output = document.getElementById("demo");
+        slider.value = +slider.value + 1
+        output.innerHTML = slider.value;
+        var evt = document.createEvent("HTMLEvents");
+        evt.initEvent("change", false, true);
+        slider.dispatchEvent(evt)
+        console.log('slider ', slider.value)
+    }
 
 })
+
+
