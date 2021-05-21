@@ -397,12 +397,12 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
 
                     brushMap([d], "mouseon")
                     // style brushed circles
-                    nodes.selectAll("circle").filter(function () {
+                    nodes.selectAll("circle").filter(function (r) {
 
-                        var cx = d3.select(this).attr("cx"),
-                            cy = d3.select(this).attr("cy");
+                        if (r == d)
+                            return true
 
-                        return isBrushed(brush_coords, cx, cy);
+                        return false
                     })
                         .classed("mouseon", true);
                     brushScatter([d], true)
@@ -447,6 +447,14 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
                 brushMap([d], "mouseout")
                 brushScatter([d], false)
 
+                nodes.selectAll("circle").filter(function (r) {
+
+                    if (r == d)
+                        return true
+
+                    return false
+                })
+                    .classed("mouseon", false);
                 mtooltip.transition()
                     .duration(500)
                     .style("opacity", 0);
