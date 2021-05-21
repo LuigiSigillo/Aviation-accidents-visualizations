@@ -235,7 +235,7 @@ Params:     element-->  (d3 elements)   points
             params-->   (jsonlike)      params
 Returns:    //
 */
-function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
+function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
     params = params || {};
     var padding = params.padding || 32,
         w = params.w || Math.min(720, document.documentElement.clientWidth - padding),
@@ -710,4 +710,28 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params) {
             .attr('y', function (d, i) { return new_yScale(yPos[i]) - 2 * pointRadius; });
     }
 
+}
+
+function mouseon_mds(elem){
+    var svg = d3.select("#mds").select("svg");
+    svg.attr("clip-path", "url(#clip)")
+            .selectAll("circle").filter(function (d) {
+        if (elem == d){
+            return true
+        }
+        return false
+    })
+        .classed("mouseon", true);
+};
+
+function mouseout_mds(elem){
+    var svg = d3.select("#mds").select("svg");
+    svg.attr("clip-path", "url(#clip)")
+            .selectAll("circle").filter(function (d) {
+        if (elem == d){
+            return true
+        }
+        return false
+    })
+        .classed("mouseon", false);
 };
