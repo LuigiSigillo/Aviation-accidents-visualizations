@@ -265,3 +265,30 @@ function update(h) {
 //   })
 //   drawPlot(newData);
 }
+
+
+
+
+function mouseon_mds(elem){
+    var svg = d3.select("#mds").select("svg");
+    svg.attr("clip-path", "url(#clip)")
+            .selectAll("circle").filter(function (d) {
+        if (elem == d){
+            return true
+        }
+        return false
+    })
+        .classed("mouseon", true);
+};
+
+function mouseout_mds(elem){
+    var svg = d3.select("#mds").select("svg");
+    svg.attr("clip-path", "url(#clip)")
+            .selectAll("circle").filter(function (d) {
+        if (elem == d){
+            return true
+        }
+        return false
+    })
+        .classed("mouseon", false);
+};

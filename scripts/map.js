@@ -266,10 +266,11 @@ function brushMap(brushList, mode) {
                         .attr("d", path)
                         .on("mousemove", function (d) {
                             createNameHtml(d)
-
+                            mouseon_mds(id_name_map[d.id])
                             mouse_on(id_name_map[d.id])
                         })
-                        .on("mouseout", function () {
+                        .on("mouseout", function (d) {
+                            mouseout_mds(id_name_map[d.id])
                             mouse_out()
                             $(this).attr("fill-opacity", "1.0");
                             $("#tooltip-container").hide();

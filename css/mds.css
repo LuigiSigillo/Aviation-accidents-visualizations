@@ -45,6 +45,8 @@ circle {
   fill: green;
   stroke: greenyellow;
   opacity: 1.0;
+  r: 13;
+
 }
 
 .brushed_text{
