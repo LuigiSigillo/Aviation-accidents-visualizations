@@ -20,9 +20,9 @@ html, body {
   position:relative}
 
 
-#sliderblock { top:0%;  left:0; width: 50%; height: 10%; border:3px solid yellow;}
+#sliderblock { top:0%;  left:60%; width: 50%; height: 10%; border:3px solid yellow;}
 
-#menublock { top:0%;   left:50%; width: 70%; height: 10%; border:3px solid grey;}
+#menublock { top:0%;   left:0%; width: 60%; height: 10%; border:3px solid grey;}
 
 #scatter { top:10%;   left:0; width: 50%; height: 50%; border:3px solid red;}
 
