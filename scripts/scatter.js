@@ -352,12 +352,12 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .on("mouseover", function (d) {
                     mouse_on(d.Item);
                     mouseon_mds(d.Item);
-                    brushMap([d.Item],"mouseon")
+                    brushMap([d.Item], "mouseon")
                 })
                 .on("mouseout", function (d) {
                     mouse_out()
                     mouseout_mds(d.Item)
-                    brushMap([d.Item],"mouseout")
+                    brushMap([d.Item], "mouseout")
 
                     /* $(this).attr("fill-opacity", "1.0");
                     $("#tooltip-container-scatter").hide(); */
@@ -365,13 +365,70 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
             var j = -1
             var color = d3.scaleOrdinal(d3.schemeCategory20)
+            
+            
 
+
+            //very simple hash
+            function hashStr(str) {
+                var hash = 0;
+                for (var i = 0; i < str.length; i++) {
+                    var charCode = str.charCodeAt(i);
+                    hash += charCode;
+                }
+                return parseFloat('0.'+hash)
+            }
+
+            var rgbToHex = function (rgb) { 
+                var hex = Number(rgb).toString(16);
+                if (hex.length < 2) {
+                     hex = "0" + hex;
+                }
+                return hex;
+            };
+
+            var fullColorHex = function(rgb) {   
+                console.log(rgb)
+                //rgb(255, 0, 0)
+                var stringone = angryRainbow(hashStr(rgb)).split('(')[1].split(',')
+                console.log(stringone)
+                var red = rgbToHex(stringone[0]);
+                var green = rgbToHex(stringone[1].split(' ')[1]);
+                var blue = rgbToHex(stringone[2].split(')')[0]);
+                console.log(red+green+blue)
+                return '#'+red+green+blue;
+            };
+
+            var angryRainbow = d3.scaleSequential(t => d3.hsl(t * 360, 1, 0.5).toString())
+            console.log(angryRainbow(hashStr('Alabama')),angryRainbow(hashStr('Indiana')),angryRainbow(hashStr('Florida')))
+            //var color = d3.scaleSequential(hashStr);
+            //console.log(color)
+
+            //const scale = d3.scaleSequential(hashStr);
+            //console.log(color())
+            //const before = scale(0.5);
+            //const range = scale.range();
+            //scale.range(range); // uses the same extrema, but resets the interpolator
+            //const after = scale(0.5);
+            //console.log(before, after, range);
+
+
+
+            //const scale = d3.scaleSequential(d3.interpolateSinebow); // same as t1
+            //const interpolator = scale.hashStr();
+            //console.log(interpolator('Alabama'))
+            legendlist = []
             group.append("circle")
                 .transition().duration(1000)
                 .attr("r", function (d) { return radius(d.r) * 5; })
                 .style("fill", function (d) {
                     j++
-                    return color(keys[j]);
+                    color(keys[j]);
+                    legendlist.push(keys[j])
+                    //console.log(angryRainbow(hashStr(keys[j])),color(keys[j]))
+                    return angryRainbow(hashStr(keys[j]));
+                    
+                    //return color(angryRainbow(hashStr(keys[j])));
                 })
                 .attr("class", "circle_scatter")
 
@@ -418,17 +475,20 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             var legend = div.selectAll(".legenda")
-                .data(color.domain().sort(function (a, b) { return dataset_dict[b].r - dataset_dict[a].r }))
+                //.data(color.domain().sort(function (a, b) { return dataset_dict[b].r - dataset_dict[a].r }))
+                .data(legendlist)
                 .enter().append("g")
                 .attr("class", "legendina")
                 .attr("transform", function (d, i) { return "translate(2," + i * 14 + ")"; });
+
+                //console.log(color.domain(),color)
+                console.log(color(1),angryRainbow(1))
 
             legend.append("rect")
                 .attr("x", width)
                 .attr("width", 12)
                 .attr("height", 12)
-                .style("fill", color);
-
+                .style("fill", fullColorHex);
             legend.append("text")
                 .attr("x", width + 16)
                 .attr("y", 6)
