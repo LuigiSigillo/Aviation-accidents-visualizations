@@ -311,3 +311,82 @@ function mouseout_scatter(elem){
                 .style("opacity", 1);
     }
 };
+
+
+
+function preset_selection() {
+    var user = $("input[type='radio'][name='preset']:checked").val();
+
+/*
+    User 1:
+    Description 1:
+        Tizio americano che vuole sapere che tipo di velivolo acquistare/affittare in base all'affidabilità, relativa a marca, meteo, stato (dove sta lui o dove deve arrivare), mese in cui deve volare.
+    Analitica 1:
+        - Mappa: Controlla le disrtibuzioni delle fatalities dipendenti da dove vola lui
+            --> Non viaggio verso uno stato in cui stira gente in aereo, lo vedo grazie alla mappa --> stati poco colorati ce posso viaggia.
+        - Bubble: Group by manufacturer e nelle assi incidents e altro parametro a piacere per classificare i manufacturer in base alle fatalities/meteo/distruzione o altro. Stessa cosa col mese/state.
+        - MDS: supporto al bubble ma con diverse prospettive di idee, dai ancora piu senso alle cose di prima. bubble + mds = TOP
+*/
+    if(user=="user1") {
+        yearInput = 2020 
+        aggregated_by_year = "false"
+        aggregationType = "Manufacturer"
+        mds_type_value = "std"
+        X, Y, R = "Total_Accidents","Destroyed_Damage","IMC"
+        type_map = "Fatal"
+    }
+
+/*
+    USER 2:
+    Description 2:
+        Tizio dell'azienda che produce velivoli vede che tipo di incidenti fanno i propri velivoli per capire cosa migliorare: ex se so fatal deve capi come non fa stira gente, oppure se so sotto la pioggia migliora la resistenza alle intemperie,
+    Analitica 2:
+        - Mappa: ___
+        - Bubble: aggregazione per marca puo confrontare la sua azienda con le altre, capendo dove si posiziona la propria. Mesi so utili per vedere resistenza freddo col meteo pure(?).
+            Dati utili: tipologia incidente, meteo, periodo, fase del volo (ex se me scaja l aereo mentre decollo devo migliora quella fase).
+        - MDS: simil bubble, ci da info che rafforzano concetto.
+    Non sappiamo come correlare phase e manufcaturer in modo pulito
+*/
+    if (user == "user2") {
+        yearInput = 2015 
+        aggregated_by_year = "false"
+        aggregationType = "Make"
+        mds_type_value = "std"
+        X, Y, R = "Total_Accidents","Minor_Damage","VMC"
+        type_map = "Minor"
+    }
+/*
+    USER 3
+    Description:
+        Aeronautica militare vuole avere una visione a tutto tondo degli incidenti per considerare nuove traiettorie, nuovi miglioramenti etc.
+    Analitica 3:
+        - Mappa: stessa funzione dello user 1
+        - Bubble: utilita per tutto
+        - MDS: simil bubble, ci da info che rafforzano concetto.
+*/
+    else {
+        yearInput = 2020 
+        aggregated_by_year = "true"
+        aggregationType = "Make"
+        mds_type_value = "std"
+        X, Y, R = "Total_Accidents","Minor_Damage","VMC"
+        type_map = "Minor" 
+    }
+
+
+    brushMap([],"preset "+yearInput+" "+aggregated_by_year+" "+type_map)
+    createMDS(yearInput, 0, 0, aggregated_by_year, aggregationType, mds_type_value)
+    changing(aggregationType, X, Y, R, yearInput, aggregated_by_year)
+
+    // update on HTML
+    document.getElementById("slider").value =  yearInput
+    document.getElementById("aggregationYear").value = aggregated_by_year
+    document.getElementById("aggregationType").value = aggregationType 
+    document.getElementById("mdsType").value = mds_type_value 
+    document.getElementById("X_axis").value = X
+    document.getElementById("Y_axis").value = Y
+    document.getElementById("R_axis").value = R
+    document.getElementById("demo").innerHTML = yearInput;
+    var $radios = $('input:radio[name=gender]');
+    $radios.filter('[value='+type_map+']').prop('checked', true);
+}

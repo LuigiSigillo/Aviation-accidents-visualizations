@@ -24,6 +24,8 @@ html, body {
 
 #menublock { top:0%;   left:0%; width: 60%; height: 10%; border:3px solid grey;}
 
+#presetblock { top:0%;   left:42%; border:3px solid cyan;}
+
 #scatter { top:10%;   left:0%; width: 50%; height: 50%; border:3px solid red;}
 
 #cicciocazzo { top:0%;   left:93%; border:3px solid red;}

@@ -112,94 +112,6 @@ function brushMap(brushList, mode) {
                 id_name_map[names[i].id] = names[i].name;
             }
 
-            function createHtml(d) {
-
-                var html = "";
-                html += "<div class=\"tooltip_kv\">";
-                html += "<span class=\"tooltip_key\">";
-                html += id_name_map[d.id];
-                html += "</span><br>";
-                html += "<span class=\"tooltip_value\">";
-                html += "<a>Total Accidents: "
-                try {
-                    html += (e[id_name_map[d.id]]["Total_Accidents"]);
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Fatalities: "
-                    html += (e[id_name_map[d.id]]["Fatal"]);
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Serious Injuries: "
-                    html += (e[id_name_map[d.id]]["Serious"]);
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Minor Injuries: "
-                    html += (e[id_name_map[d.id]]["Minor"]);
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Uninjured: "
-                    html += (e[id_name_map[d.id]]["Uninjured"]);
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>VMC: "
-                    html += (e[id_name_map[d.id]]["VMC"]);
-                    html += " IMC: "
-                    html += (e[id_name_map[d.id]]["IMC"]);
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Destroyed: "
-                    html += (e[id_name_map[d.id]]["Destroyed_Damage"]);
-                    html += " Substantial: "
-                    html += (e[id_name_map[d.id]]["Substantial_Damage"]);
-                    html += " Minor: "
-                    html += (e[id_name_map[d.id]]["Minor_Damage"]);
-                }
-                catch (error) {
-                    html = html.replace("<a>Total Accidents: ", "")
-                    html += "<a>Total Accidents: 0"
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Fatalities: 0"
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Serious Injuries: 0"
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Minor Injuries: 0"
-                    html += "</a>";
-                    html += "</span><br>";
-                    html += "<span class=\"tooltip_value\">";
-                    html += "<a>Uninjured: 0"
-                }
-                html += "</a>";
-                html += "</span><br>";
-                html += "</div>";
-                $("#tooltip-container").html(html);
-                $(this).attr("fill-opacity", "0.8");
-                $("#tooltip-container").show();
-
-                var map_width = $('.states-choropleth')[0].getBoundingClientRect().width;
-
-                if (d3version3.event.layerX < map_width / 2) {
-                    d3version3.select("#tooltip-container")
-                        .style("top", (d3version3.event.layerY + 15) + "px")
-                        .style("left", (d3version3.event.layerX + 15) + "px");
-                } else {
-                    var tooltip_width = $("#tooltip-container").width();
-                    d3version3.select("#tooltip-container")
-                        .style("top", (d3version3.event.layerY + 15) + "px")
-                        .style("left", (d3version3.event.layerX - tooltip_width - 30) + "px");
-                }
-            }
 
             function createNameHtml(d) {
                 var html = "";
@@ -228,6 +140,13 @@ function brushMap(brushList, mode) {
             //var aggregationYear = "false"
             var yearInput = +d3version3.select("#slider").node().value;
             var aggregationYear = document.getElementById("aggregationYear").value;
+            var type = "Fatal"
+            if (mode.startsWith("preset")) {
+                par = mode.split(" ")
+                yearInput = par[1]
+                aggregationYear = par[2] 
+                type = par[3]
+            }
             e = change(data, "Crash.Country", yearInput, aggregationYear)
             //console.log("primo dataset 2001",e)
             d3version3.json("datasets/us-states.json", function (error, us) {
@@ -265,6 +184,7 @@ function brushMap(brushList, mode) {
                         })
                         .attr("d", path)
                         .on("mousemove", function (d) {
+                            //brushMap(id_name_map[d.id],"mouseon")
                             createNameHtml(d)
                             mouseon_mds(id_name_map[d.id])
                             mouse_on(id_name_map[d.id])
@@ -272,6 +192,7 @@ function brushMap(brushList, mode) {
                             console.log("eccoci")
                         })
                         .on("mouseout", function (d) {
+                            //brushMap(id_name_map[d.id],"mouseout")
                             mouseout_mds(id_name_map[d.id])
                             mouse_out()
                             mouseout_scatter(id_name_map[d.id])
@@ -389,12 +310,4 @@ function brushMap(brushList, mode) {
 }
 
 brushMap([], "init")
-
-function mouseon_map(elem){
-    var svg = d3version3.select("#svgmappa").select("svg");
-    svg.attr("class", "states-choropleth")
-             .selectAll("path").filter(function (d) {
-            console.log(d)
-    })
-};
 
