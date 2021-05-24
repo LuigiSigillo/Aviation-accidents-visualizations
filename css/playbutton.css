@@ -17,7 +17,7 @@ body {
     padding: 0 12px;
     width: 60px;
     cursor: pointer;
-    height: 30px;
+    height: 40px;
 }
 
 #play-button:hover {
@@ -37,7 +37,7 @@ body {
     padding: 0 12px;
     width: 60px;
     cursor: pointer;
-    height: 30px;
+    height: 40px;
 }
 
 #pause-button:hover {

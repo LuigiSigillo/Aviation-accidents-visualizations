@@ -23,8 +23,12 @@ function rec_play() {
 
 playButton.on("click", function () {
     globalone = setInterval(rec_play, 1000);
+    document.getElementById('play-button').style.display = 'none';
+    document.getElementById('pause-button').style.display = 'block';
 })
 
 pauseButton.on("click", function () {
     myStopFunction(globalone);
+    document.getElementById('pause-button').style.display = 'none';
+    document.getElementById('play-button').style.display = 'block';
 })
