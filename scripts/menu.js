@@ -138,12 +138,12 @@ function mouse_out() {
 
 var playButton = d3.select("#play-button");
 
-var x = d3.scaleTime()
+/* var x = d3.scaleTime()
     .domain([startDate, endDate])
     .range([0, targetValue])
-    .clamp(true);
+    .clamp(true); */
 
-var slider = svg.append("g")
+/* var slider = svg.append("g")
     .attr("class", "slider")
     .attr("transform", "translate(" + margin.left + "," + height / 5 + ")");
 
@@ -162,8 +162,8 @@ slider.append("line")
             update(x.invert(currentValue));
         })
     );
-
-slider.insert("g", ".track-overlay")
+ */
+/* slider.insert("g", ".track-overlay")
     .attr("class", "ticks")
     .attr("transform", "translate(0," + 18 + ")")
     .selectAll("text")
@@ -183,7 +183,7 @@ var label = slider.append("text")
     .attr("class", "label")
     .attr("text-anchor", "middle")
     .text(formatDate(startDate))
-    .attr("transform", "translate(0," + (-25) + ")")
+    .attr("transform", "translate(0," + (-25) + ")") */
 
 
 ////////// plot //////////
@@ -315,9 +315,11 @@ function mouseout_scatter(elem){
 
 
 function preset_selection() {
-    var user = $("input[type='radio'][name='preset']:checked").val();
-
-/*
+    //var user = $("input[type='radio'][name='preset']:checked").val();
+    var user = document.getElementById("presetType").value
+    console.log("user", user)
+    var yearInput, aggregated_by_year, aggregationType, mds_type_value, X, Y, R, type_map
+    /*  
     User 1:
     Description 1:
         Tizio americano che vuole sapere che tipo di velivolo acquistare/affittare in base all'affidabilità, relativa a marca, meteo, stato (dove sta lui o dove deve arrivare), mese in cui deve volare.
@@ -328,12 +330,14 @@ function preset_selection() {
         - MDS: supporto al bubble ma con diverse prospettive di idee, dai ancora piu senso alle cose di prima. bubble + mds = TOP
 */
     if(user=="user1") {
-        yearInput = 2020 
+        yearInput = 2015 
         aggregated_by_year = "false"
-        aggregationType = "Manufacturer"
-        mds_type_value = "std"
-        X, Y, R = "Total_Accidents","Destroyed_Damage","IMC"
-        type_map = "Fatal"
+        aggregationType = "Make"
+        mds_type_value = "percentage"
+        X = "Total_Accidents"
+        Y = "Uninjured"
+        R = "Minor"
+        type_map = "Uninjured"
     }
 
 /*
@@ -348,12 +352,14 @@ function preset_selection() {
     Non sappiamo come correlare phase e manufcaturer in modo pulito
 */
     if (user == "user2") {
-        yearInput = 2015 
+        yearInput = 2020 
         aggregated_by_year = "false"
         aggregationType = "Make"
-        mds_type_value = "std"
-        X, Y, R = "Total_Accidents","Minor_Damage","VMC"
-        type_map = "Minor"
+        mds_type_value = "percentage"
+        X = "Total_Accidents"
+        Y = "IMC"
+        R = "Fatal"
+        type_map = "Fatal"
     }
 /*
     USER 3
@@ -364,20 +370,20 @@ function preset_selection() {
         - Bubble: utilita per tutto
         - MDS: simil bubble, ci da info che rafforzano concetto.
 */
-    else {
+    if (user == "user3") {
         yearInput = 2020 
-        aggregated_by_year = "true"
-        aggregationType = "Make"
+        aggregated_by_year = "false"
+        aggregationType = "Crash.Country"
         mds_type_value = "std"
-        X, Y, R = "Total_Accidents","Minor_Damage","VMC"
-        type_map = "Minor" 
+        X = "Total_Accidents"
+        Y = "Fatal"
+        R = "Destroyed_Damage"
+        type_map = "Fatal" 
     }
-
 
     brushMap([],"preset "+yearInput+" "+aggregated_by_year+" "+type_map)
     createMDS(yearInput, 0, 0, aggregated_by_year, aggregationType, mds_type_value)
     changing(aggregationType, X, Y, R, yearInput, aggregated_by_year)
-
     // update on HTML
     document.getElementById("slider").value =  yearInput
     document.getElementById("aggregationYear").value = aggregated_by_year
@@ -387,6 +393,11 @@ function preset_selection() {
     document.getElementById("Y_axis").value = Y
     document.getElementById("R_axis").value = R
     document.getElementById("demo").innerHTML = yearInput;
-    var $radios = $('input:radio[name=gender]');
-    $radios.filter('[value='+type_map+']').prop('checked', true);
+    /* var $radios = $('input:radio[name=gender]');
+    $radios.filter('[value='+type_map+']').prop('checked', true); */
+    console.log("AO",yearInput, aggregated_by_year, aggregationType, mds_type_value, X, Y, R, type_map)
+
+    
+
+
 }

@@ -10,7 +10,6 @@ html, body {
     -moz-box-sizing:border-box;
     -webkit-box-sizing:border-box;
     border:3px solid black;
-    border-right-style: outset;
     border-radius: 5px;
 }
 
@@ -20,21 +19,21 @@ html, body {
   position:relative}
 
 
-#sliderblock { top:0%;  left:60%; width: 50%; height: 10%; border:3px solid yellow;}
+#sliderblock { top:0%;  left:50%; width: 50%; height: 10%; background-color: lightgrey;}
 
-#menublock { top:0%;   left:0%; width: 60%; height: 10%; border:3px solid grey;}
+#menublock { top:0%;   left:0%; width: 50%; height: 10%; background-color: lightgrey;}
 
-#presetblock { top:0%;   left:42%; border:3px solid cyan;}
+#presetblock { top:0%;   left:42%; border:3px solid transparent;}
 
-#scatter { top:10%;   left:0%; width: 50%; height: 50%; border:3px solid red;}
+#scatter { top:10%;   left:0%; width: 50%; height: 50%; }
 
-#cicciocazzo { top:0%;   left:93%; border:3px solid red;}
+#cicciocazzo { top:0%;   left:90%; border:3px solid transparent; }
 
-#mds { top:60%; left:0;  width: 50%; height: 40%; border:3px solid blue;  }
+#mds { top:60%; left:0;  width: 50%; height: 40%;  }
 
-#map { top:10%;   left:50%;   width: 50%; height: 70%;  border:3px solid green;}
+#map { top:10%;   left:50%;   width: 50%; height: 70%;  }
 
-#menu { top:80%; left:50%;   width: 50%; height: 20%;border:3px solid black; }  
+#menu { top:80%; left:50%;   width: 50%; height: 20%;background-color: lightgrey; }  
 
 
 .slider {
@@ -70,9 +69,9 @@ html, body {
 
   
 /*---------*/
-#menu_tendina {
+.menu_tendina {
     display: table;
-    width: 60%;
+    width: 90%;
     margin-top: 0%;
     margin-left: 0.5%;
     table-layout: fixed;

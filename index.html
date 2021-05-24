@@ -40,9 +40,11 @@
         <div class="block" id="sliderblock">
             <input type="range" min="2001" max="2020" step="1" value="2001" class="slider" id="slider">
             <br>
+            
             <p>
-                Year: <span id="demo"></span>
+                <b> Year:         </b><span id="demo"></span>
             </p>
+
             <script>
                 //var projection = d3.geoEqualEarth()
                 var slider = document.getElementById("slider");
@@ -58,7 +60,7 @@
         </div>
 
         <div class="block" id="menublock">
-            <div id="menu_tendina">
+            <div id="menu_tendina" class="menu_tendina">
 
                 <div id="computation" class="custom-select">
                     <label for="aggregationType"><b>Aggregation type:</b></label>
@@ -81,11 +83,24 @@
                         <option value="kind">Tipology</option>
 
                     </select>
+                    <label for="presetType"><b>Preset:</b></label>
+                    <select id='presetType'>
+                        <option disabled selected value> -- select an option -- </option>
+                        <option value="user1">Aviator</option>
+                        <option value="user2">Manufacturer</option>
+                        <option value="user3">Military</option>
+
+                    </select>
+                    <script>
+                        var mdsType = document.getElementById("presetType");
+                        mdsType.onchange = preset_selection
+                    </script>
                 </div>
 
             </div>
-
+            <!--
             <div class="block" id="presetblock">
+                <div class="menu_tendina" style="width: auto; height;">
                 <p>Select preset:</p>
                 <input type="radio" value="user1" class="preset" name="preset"><label for="user1">Amateur
                     aviator</label>
@@ -95,12 +110,14 @@
                     d3.selectAll(".preset").on("change", preset_selection);
                 </script>
             </div>
-
+            -->
             <div class="block" id="cicciocazzo">
                 <button id="play-button" style="display: block; height: 40px; width: 70px;">&#9658; Play</button>
                 <button id="pause-button" style="display: none; height: 40px; width: 70px;">&#10074;&#10074;
                     Pause</button>
             </div>
+        </div>
+        
         </div>
 
         <!--html for MAP-->
@@ -119,9 +136,7 @@
                     for="Uninjured">Uninjured</label>
             </div>
             <div id="canvas-svg"></div>
-            <div id="legenda-svg">
-
-            </div>
+            <div id="legenda-svg"></div>
 
             <div id="tooltip-container"></div>
 
