@@ -185,19 +185,22 @@ function brushMap(brushList, mode) {
                         .attr("d", path)
                         .on("mousemove", function (d) {
                             //brushMap(id_name_map[d.id],"mouseon")
-                            createNameHtml(d)
-                            mouseon_mds(id_name_map[d.id])
-                            mouse_on(id_name_map[d.id])
-                            mouseon_scatter(id_name_map[d.id])
-                            console.log("eccoci")
+                            if(document.getElementById("aggregationType").value == "Crash.Country") {
+                                createNameHtml(d)
+                                mouseon_mds(id_name_map[d.id])
+                                mouse_on(id_name_map[d.id])
+                                mouseon_scatter(id_name_map[d.id])
+                            }
                         })
                         .on("mouseout", function (d) {
                             //brushMap(id_name_map[d.id],"mouseout")
-                            mouseout_mds(id_name_map[d.id])
-                            mouse_out()
-                            mouseout_scatter(id_name_map[d.id])
-                            $(this).attr("fill-opacity", "1.0");
-                            $("#tooltip-container").hide();
+                            if(document.getElementById("aggregationType").value == "Crash.Country") {
+                                mouse_out()
+                                $(this).attr("fill-opacity", "1.0");
+                                $("#tooltip-container").hide();
+                                mouseout_mds(id_name_map[d.id])
+                                mouseout_scatter(id_name_map[d.id])
+                                }
                         });
                 }
 
