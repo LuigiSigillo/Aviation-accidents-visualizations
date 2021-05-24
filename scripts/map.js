@@ -268,12 +268,13 @@ function brushMap(brushList, mode) {
                             createNameHtml(d)
                             mouseon_mds(id_name_map[d.id])
                             mouse_on(id_name_map[d.id])
+                            mouseon_scatter(id_name_map[d.id])
                             console.log("eccoci")
-                            mouseon_map("tt")
                         })
                         .on("mouseout", function (d) {
                             mouseout_mds(id_name_map[d.id])
                             mouse_out()
+                            mouseout_scatter(id_name_map[d.id])
                             $(this).attr("fill-opacity", "1.0");
                             $("#tooltip-container").hide();
                         });
