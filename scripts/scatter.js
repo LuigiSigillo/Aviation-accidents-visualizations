@@ -247,7 +247,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     dataset_dict[elem].r = +(+dataset_dict[elem].r / +dataset_dict[elem]["Total_Accidents"]) * 100;
                 }
 
-                console.log("x normalizzato =", dataset_dict[elem].x, "x originale = ", dataset_dict[elem][X], "total =", dataset_dict[elem]["Total_Accidents"])
+                //console.log("x normalizzato =", dataset_dict[elem].x, "x originale = ", dataset_dict[elem][X], "total =", dataset_dict[elem]["Total_Accidents"])
                 if (dataset_dict[elem]["x"] > xmax)
                     xmax = +dataset_dict[elem]["x"]
                 if (dataset_dict[elem]["y"] > ymax)
@@ -406,7 +406,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
             };
 
             var fullColorHex = function (rgb) {
-                console.log(rgb)
+                //console.log(rgb)
                 //rgb(255, 0, 0)
                 var stringone = angryRainbow(hashStr(rgb)).split('(')[1].split(',')
                 //console.log(stringone)
@@ -449,6 +449,11 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     //return color(angryRainbow(hashStr(keys[j])));
                 })
                 .attr("class", "circle_scatter")
+
+
+            //color.domain().sort(function (a, b) { return dataset_dict[b].r - dataset_dict[a].r })
+            legendlist.sort(function(a,b){return dataset_dict[b].r - dataset_dict[a].r})
+
 
             if (tobebrushed) {
                 d3.selectAll(".bubble")
@@ -524,12 +529,18 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     .style("opacity", 0.1)
                     .filter(function (d) { j++; return keys[j] == type; })
                     .style("opacity", 1);
+                mouse_on(type);
+                mouseon_mds(type);
+                brushMap([type], "mouseon")
             })
                 .on("mouseout", function (type) {
                     d3.selectAll(".legendina")
                         .style("opacity", 1);
                     d3.selectAll(".bubble")
                         .style("opacity", 1);
+                    mouse_out()
+                    mouseout_mds(type)
+                    brushMap([type], "mouseout")
                 });
 
 
