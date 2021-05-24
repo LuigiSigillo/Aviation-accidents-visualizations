@@ -53,43 +53,56 @@
                     output.innerHTML = this.value;
                 }
             </script>
-            
+
 
         </div>
-        <div class="block" id="cicciocazzo">
-            <button id="play-button" style="display: block; height: 40px; width: 70px;">&#9658; Play</button>
-            <button id="pause-button" style="display: none; height: 40px; width: 70px;">&#10074;&#10074; Pause</button>
-        </div>
+
         <div class="block" id="menublock">
-        <div id="menu_tendina" >
+            <div id="menu_tendina">
 
-            <div id="computation" class="custom-select">
-                <label for="aggregationType"><b>Aggregation type:</b></label>
-                <select id='aggregationType'>
-                    <option value="Event.Month">Month</option>
-                    <option value="Crash.Country" selected>State</option>
-                    <option value="Make">Manufacturer</option>
-                    <option value="Broad.Phase.of.Flight">Phase</option>
-                </select>
-                <label for="aggregationYear"><b>Single year:</b></label>
-                <select id='aggregationYear'>
-                    <option value="true">Yes</option>
-                    <option value="false" selected>No</option>
+                <div id="computation" class="custom-select">
+                    <label for="aggregationType"><b>Aggregation type:</b></label>
+                    <select id='aggregationType'>
+                        <option value="Event.Month">Month</option>
+                        <option value="Crash.Country" selected>State</option>
+                        <option value="Make">Manufacturer</option>
+                        <option value="Broad.Phase.of.Flight">Phase</option>
+                    </select>
+                    <label for="aggregationYear"><b>Single year:</b></label>
+                    <select id='aggregationYear'>
+                        <option value="true">Yes</option>
+                        <option value="false" selected>No</option>
 
-                </select>
-                <label for="mdsType"><b>MDS type:</b></label>
-                <select id='mdsType'>
-                    <option value="std" selected>Incidents</option>
-                    <option value="percentage">Incidents percentage</option>
-                    <option value="kind">Tipology</option>
+                    </select>
+                    <label for="mdsType"><b>MDS type:</b></label>
+                    <select id='mdsType'>
+                        <option value="std" selected>Incidents</option>
+                        <option value="percentage">Incidents percentage</option>
+                        <option value="kind">Tipology</option>
 
-                </select>
+                    </select>
+                </div>
+
             </div>
 
+            <div class="block" id="presetblock">
+                <p>Select preset:</p>
+                <input type="radio" value="user1" class="preset" name="preset"><label for="user1">Amateur
+                    aviator</label>
+                <input type="radio" value="user2" class="preset" name="preset"><label for="user2">Manufacturer</label>
+                <input type="radio" value="user3" class="preset" name="preset"><label for="user3">Military</label>
+                <script>
+                    d3.selectAll(".preset").on("change", preset_selection);
+                </script>
+            </div>
+
+            <div class="block" id="cicciocazzo">
+                <button id="play-button" style="display: block; height: 40px; width: 70px;">&#9658; Play</button>
+                <button id="pause-button" style="display: none; height: 40px; width: 70px;">&#10074;&#10074;
+                    Pause</button>
+            </div>
         </div>
-    
-    </div>
-        
+
         <!--html for MAP-->
         <div id="map" class="block">
             <div>
@@ -119,18 +132,18 @@
         <div id="scatter" class="block">
             <label for="X_axis" style="color: brown;"><b>X:</b></label>
             <select id='X_axis'>
-                <optgroup label = "Incidents">
+                <optgroup label="Incidents">
                     <option value="Total_Accidents" selected>Incidents</option>
                     <option value="Uninjured">Uninjured</option>
                     <option value="Minor">Minor Injuries</option>
                     <option value="Serious">Serious Injuries</option>
-                    <option value="Fatal" >Fatal Injuries</option>
+                    <option value="Fatal">Fatal Injuries</option>
                 </optgroup>
-                <optgroup label = "Weather">
+                <optgroup label="Weather %">
                     <option value="IMC">IMC</option>
                     <option value="VMC">VMC</option>
                 </optgroup>
-                <optgroup label = "Damage">
+                <optgroup label="Damage %">
                     <option value="Minor_Damage">Minor</option>
                     <option value="Substantial_Damage">Subsantial</option>
                     <option value="Destroyed_Damage">Destroyed</option>
@@ -140,18 +153,18 @@
 
             <label for="Y_axis" style="color: brown;"><b>Y:</b></label>
             <select id='Y_axis'>
-                <optgroup label = "Incidents">
+                <optgroup label="Incidents">
                     <option value="Total_Accidents">Incidents</option>
                     <option value="Uninjured">Uninjured</option>
                     <option value="Minor">Minor Injuries</option>
                     <option value="Serious">Serious Injuries</option>
                     <option value="Fatal" selected>Fatal Injuries</option>
                 </optgroup>
-                <optgroup label = "Weather">
+                <optgroup label="Weather %">
                     <option value="IMC">IMC</option>
                     <option value="VMC">VMC</option>
                 </optgroup>
-                <optgroup label = "Damage">
+                <optgroup label="Damage %">
                     <option value="Minor_Damage">Minor</option>
                     <option value="Substantial_Damage">Subsantial</option>
                     <option value="Destroyed_Damage">Destroyed</option>
@@ -161,18 +174,18 @@
 
             <label for="R_axis" style="color: brown;"><b>Radius:</b></label>
             <select id='R_axis'>
-                <optgroup label = "Incidents">
+                <optgroup label="Incidents">
                     <option value="Total_Accidents">Incidents</option>
                     <option value="Uninjured">Uninjured</option>
                     <option value="Minor">Minor Injuries</option>
                     <option value="Serious" selected>Serious Injuries</option>
                     <option value="Fatal">Fatal Injuries</option>
                 </optgroup>
-                <optgroup label = "Weather">
+                <optgroup label="Weather %">
                     <option value="IMC">IMC</option>
                     <option value="VMC">VMC</option>
                 </optgroup>
-                <optgroup label = "Damage">
+                <optgroup label="Damage %">
                     <option value="Minor_Damage">Minor</option>
                     <option value="Substantial_Damage">Subsantial</option>
                     <option value="Destroyed_Damage">Destroyed</option>
@@ -193,12 +206,12 @@
             <!-- Buttons for map -->
 
             <div id="tooltip-container-menu" class="tooltip-container-menu"></div>
-            
+
 
             <!-- Scatter plot-->
 
         </div>
-        
+
         <script type="text/javascript" src="scripts/playbutton.js"></script>
         <script type="text/javascript" src="scripts/mds.js"></script>
         <script type="text/javascript" src="scripts/scatter.js"></script>
