@@ -182,7 +182,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
         aggregationType = aggr.value
         //console.log('CHIAMO CON X Y Z: ', X, Y, R)
         changing(aggregationType, X, Y, R, yearInput, aggregated_by_year)
-        createMDS(yearInput, 0, 0, aggregated_by_year,aggregationType,mds_type_value)
+        createMDS(yearInput, 0, 0, aggregated_by_year, aggregationType, mds_type_value)
 
     }
     d3.select("#aggregationYear")
@@ -190,18 +190,18 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
             var year_bool = d3.select(this).node().value;
             console.log("scatter", year_bool)
             changing(aggregationType, X, Y, R, yearInput, year_bool)
-            createMDS(yearInput, 0, 0, year_bool,aggregationType,mds_type_value)
+            createMDS(yearInput, 0, 0, year_bool, aggregationType, mds_type_value)
 
         })
 
     var mdsType = document.getElementById("mdsType");
     mdsType.onchange = function () {
-            mds_type_value = mdsType.value
-            createMDS(yearInput, 0, 0, aggregated_by_year,aggregationType, mds_type_value)
-    
-        }
-    
-        d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
+        mds_type_value = mdsType.value
+        createMDS(yearInput, 0, 0, aggregated_by_year, aggregationType, mds_type_value)
+
+    }
+
+    d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
 
 
         function scatter_visualization(yearInput, aggregationType) {
@@ -226,19 +226,19 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
             for (var elem in dataset_dict) {
                 //console.log(keys[key])
                 //console.log(e[elem])
-                
+
                 dataset_dict[elem].x = +dataset_dict[elem][X]
-                
+
                 dataset_dict[elem].y = +dataset_dict[elem][Y]
                 dataset_dict[elem].r = +dataset_dict[elem][R]
-                
 
-                if(aggregationType=="VMC" || aggregationType =="IMC" || aggregationType.includes("Damage")) {
-                    dataset_dict[elem].x = (dataset_dict[elem].x/dataset_dict[elem]["Total_Accidents"]) *100;
-                    dataset_dict[elem].y = (dataset_dict[elem].y/dataset_dict[elem]["Total_Accidents"]) *100;
-                    dataset_dict[elem].r = (dataset_dict[elem].r/dataset_dict[elem]["Total_Accidents"]) *100;
+
+                if (aggregationType == "VMC" || aggregationType == "IMC" || aggregationType.includes("Damage")) {
+                    dataset_dict[elem].x = (dataset_dict[elem].x / dataset_dict[elem]["Total_Accidents"]) * 100;
+                    dataset_dict[elem].y = (dataset_dict[elem].y / dataset_dict[elem]["Total_Accidents"]) * 100;
+                    dataset_dict[elem].r = (dataset_dict[elem].r / dataset_dict[elem]["Total_Accidents"]) * 100;
                 }
-                console.log("x normalizzato =",dataset_dict[elem].x,"x originale = ", dataset_dict[elem][X], "total =", dataset_dict[elem]["Total_Accidents"])
+                console.log("x normalizzato =", dataset_dict[elem].x, "x originale = ", dataset_dict[elem][X], "total =", dataset_dict[elem]["Total_Accidents"])
                 if (dataset_dict[elem]["x"] > xmax)
                     xmax = dataset_dict[elem]["x"]
                 if (dataset_dict[elem]["y"] > ymax)
@@ -349,9 +349,16 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .enter().append("g")
                 .attr("class", "bubble")
                 .attr("transform", function (d) { return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")" })
-                .on("mouseover", function (d) { mouse_on(d.Item); })
-                .on("mouseout", function () {
+                .on("mouseover", function (d) {
+                    mouse_on(d.Item);
+                    mouseon_mds(d.Item);
+                    brushMap([d.Item],"mouseon")
+                })
+                .on("mouseout", function (d) {
                     mouse_out()
+                    mouseout_mds(d.Item)
+                    brushMap([d.Item],"mouseout")
+
                     /* $(this).attr("fill-opacity", "1.0");
                     $("#tooltip-container-scatter").hide(); */
                 });
@@ -370,9 +377,9 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
             if (tobebrushed) {
                 d3.selectAll(".bubble")
-                .style("opacity", 0.1)
-                .filter(function (d) { return brushedPoints.includes(d.Item); })
-                .style("opacity", 1);
+                    .style("opacity", 0.1)
+                    .filter(function (d) { return brushedPoints.includes(d.Item); })
+                    .style("opacity", 1);
             }
             j = -1
 
@@ -403,12 +410,12 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .text(Y);
 
             //console.log(color.domain())
-            
+
             var div = svg.append("g")
-                    .attr("id","legendaScatter")
-                    .style('overflow','visible')
-                    .attr("class", "legenda")
-                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                .attr("id", "legendaScatter")
+                .style('overflow', 'visible')
+                .attr("class", "legenda")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
             var legend = div.selectAll(".legenda")
                 .data(color.domain().sort(function (a, b) { return dataset_dict[b].r - dataset_dict[a].r }))
@@ -457,7 +464,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
             .on("change", function () {
                 yearInput = +d3.select(this).node().value
 
-                createMDS(yearInput, 0, 0, aggregated_by_year,aggregationType,mds_type_value)
+                createMDS(yearInput, 0, 0, aggregated_by_year, aggregationType, mds_type_value)
 
                 scatter_visualization(yearInput, aggregationType)
                 /*

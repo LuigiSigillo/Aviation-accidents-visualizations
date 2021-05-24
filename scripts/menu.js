@@ -1,15 +1,15 @@
 /* Create HTML for mouseover */
 function mouse_on(pippo) {
     var aggr = document.getElementById("aggregationType").value;
-    console.log('AGGR: ', aggr)
+    //console.log('AGGR: ', aggr)
     var aggregated_by_year = document.getElementById("aggregationYear").value;
-    console.log('AGGREGATED YEAR: ', aggregated_by_year)
+    //console.log('AGGREGATED YEAR: ', aggregated_by_year)
     var year = document.getElementById('slider').value
-    console.log('YEAR: ', year)
+    //console.log('YEAR: ', year)
 
     d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         dataset_dict = change(data, aggr, year, aggregated_by_year)
-        console.log("ciaoo", dataset_dict)
+        //console.log("ciaoo", dataset_dict)
         d = dataset_dict[pippo]
         var html = "";
         html += "<div>";
@@ -291,4 +291,23 @@ function mouseout_mds(elem){
         return false
     })
         .classed("mouseon", false);
+};
+
+
+function mouseon_scatter(elem){
+    d3.selectAll(".bubble")
+                .style("opacity", 0.1)
+                .filter(function (d) { return d.Item ==elem })
+                .style("opacity", 1);
+};
+
+function mouseout_scatter(elem){
+    if(brushed_countries.length == 0)
+        d3.selectAll(".bubble").style("opacity", 1)
+    else {
+        d3.selectAll(".bubble")
+                .style("opacity", 0.1)
+                .filter(function (d) { return brushed_countries.includes(d.Item)})
+                .style("opacity", 1);
+    }
 };
