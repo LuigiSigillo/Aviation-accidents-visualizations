@@ -14,6 +14,12 @@ var dbNames = {
     "phase": "Broad.Phase.of.Flight"
 }
 
+function triggeraSlider() {
+    var slider = document.getElementById("slider");
+    var evt = document.createEvent("HTMLEvents");
+    evt.initEvent("change", false, true);
+    slider.dispatchEvent(evt)
+}
 
 var n_w = (width + margin.left + margin.right) * 1.5
 var n_h = (height + margin.top + margin.bottom) * 1.5
@@ -44,7 +50,9 @@ var yAxis = d3.axisLeft()
 
 
 
-
+function isPercentage(elem) {
+    return elem == "VMC" || elem == "IMC" || elem.includes("Damage")
+}
 
 //IN PROGRESS
 /* Create HTML for mouseover */
@@ -167,13 +175,13 @@ function brushScatter(brushed_points, highlighting) {
 var brushedPoints = []
 var tobebrushed = false
 
-var aggregationType = "Crash.Country"
-var X = 'Total_Accidents'
-var Y = 'Fatal'
-var R = 'Serious'
-var yearInput = 2001
-var aggregated_by_year = "false"
-var mds_type_value = "std"
+var aggregationType = document.getElementById("aggregationType").value
+var X = document.getElementById("X_axis").value
+var Y = document.getElementById("Y_axis").value
+var R = document.getElementById("R_axis").value
+var yearInput = document.getElementById("slider").value
+var aggregated_by_year = document.getElementById("aggregationYear").value
+var mds_type_value = document.getElementById("mdsType").value
 function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
     //console.log('Chiamata changing con parametri: ' + aggregationType, X, Y, R)
@@ -233,18 +241,19 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 dataset_dict[elem].r = +dataset_dict[elem][R]
 
 
-                if (aggregationType == "VMC" || aggregationType == "IMC" || aggregationType.includes("Damage")) {
-                    dataset_dict[elem].x = (dataset_dict[elem].x / dataset_dict[elem]["Total_Accidents"]) * 100;
-                    dataset_dict[elem].y = (dataset_dict[elem].y / dataset_dict[elem]["Total_Accidents"]) * 100;
-                    dataset_dict[elem].r = (dataset_dict[elem].r / dataset_dict[elem]["Total_Accidents"]) * 100;
+                if (isPercentage(X) || isPercentage(Y) || isPercentage(R)) {
+                    dataset_dict[elem].x = +(+dataset_dict[elem].x / +dataset_dict[elem]["Total_Accidents"]) * 100;
+                    dataset_dict[elem].y = +(+dataset_dict[elem].y / +dataset_dict[elem]["Total_Accidents"]) * 100;
+                    dataset_dict[elem].r = +(+dataset_dict[elem].r / +dataset_dict[elem]["Total_Accidents"]) * 100;
                 }
+
                 console.log("x normalizzato =", dataset_dict[elem].x, "x originale = ", dataset_dict[elem][X], "total =", dataset_dict[elem]["Total_Accidents"])
                 if (dataset_dict[elem]["x"] > xmax)
-                    xmax = dataset_dict[elem]["x"]
+                    xmax = +dataset_dict[elem]["x"]
                 if (dataset_dict[elem]["y"] > ymax)
-                    ymax = dataset_dict[elem]["y"]
+                    ymax = +dataset_dict[elem]["y"]
                 if (dataset_dict[elem]["r"] > rmax)
-                    rmax = dataset_dict[elem]["r"]
+                    rmax = +dataset_dict[elem]["r"]
                 come_vuole_lui.push(dataset_dict[elem])
 
             }
@@ -260,10 +269,14 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     //console.log(axis)
                     //console.log(nuovaXY)
                     //console.log(dataset_dict[elem])
-                    dataset_dict[elem][axis] = +dataset_dict[elem][nuovaXY]
+                    if (isPercentage(nuovaXY)) {
+                        dataset_dict[elem][axis] = +(+dataset_dict[elem][nuovaXY] / +dataset_dict[elem]["Total_Accidents"]) * 100;
+                    }
+                    else
+                        dataset_dict[elem][axis] = +dataset_dict[elem][nuovaXY]
                     //console.log('E ELEM AXIS: ' + dataset_dict[elem][axis])
                     if (dataset_dict[elem][axis] > xmax)
-                        xmax = dataset_dict[elem][axis]
+                        xmax = +dataset_dict[elem][axis]
                 }
                 console.log('MAX: ' + xmax)
                 if (axis == "r")
@@ -275,7 +288,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 Y = this.value // get the new y value
                 console.log('NUOVA Y: ' + Y)
                 console.log('VECCHIA X: ' + X)
-                yscale.domain([0, returnRange(Y, "y")])
+                yscale.domain([0, returnRange(Y, "y")]).nice()
                 yAxis.scale(yscale) // change the yScale
                 d3.select('#yAxis') // redraw the yAxis
                     .transition().duration(1000)
@@ -287,6 +300,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     .transition().duration(1000)
                     .delay(function (d, i) { return i * 10 })
                     .attr("transform", function (d) { return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")" });
+                triggeraSlider()
             }
 
 
@@ -295,7 +309,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 X = this.value // get the new y value
                 console.log('NUOVA X: ' + X)
                 console.log('VECCHIA Y: ' + Y)
-                xscale.domain([0, returnRange(X, "x")])
+                xscale.domain([0, returnRange(X, "x")]).nice()
                 xAxis.scale(xscale) // change the yScale
                 d3.select('#xAxis') // redraw the yAxis
                     .transition().duration(1000)
@@ -307,17 +321,21 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     .transition().duration(1000)
                     .delay(function (d, i) { return i * 10 })
                     .attr("transform", function (d) { return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")" });
+
+                triggeraSlider()
+
             }
 
             function rChange() {
                 R = this.value // get the new y value
                 console.log('NUOVA R: ' + R)
-                radius.domain([0, returnRange(R, "r")])
+                radius.domain([0, returnRange(R, "r")]).nice()
 
                 d3.selectAll('.circle_scatter') // move the circles
                     .transition().duration(1000)
                     .delay(function (d, i) { return i * 10 })
                     .attr("r", function (d) { return radius(d.r) * 5; })
+                triggeraSlider()
             }
 
 
@@ -365,8 +383,8 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
             var j = -1
             var color = d3.scaleOrdinal(d3.schemeCategory20)
-            
-            
+
+
 
 
             //very simple hash
@@ -376,31 +394,31 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     var charCode = str.charCodeAt(i);
                     hash += charCode;
                 }
-                return parseFloat('0.'+hash)
+                return parseFloat('0.' + hash)
             }
 
-            var rgbToHex = function (rgb) { 
+            var rgbToHex = function (rgb) {
                 var hex = Number(rgb).toString(16);
                 if (hex.length < 2) {
-                     hex = "0" + hex;
+                    hex = "0" + hex;
                 }
                 return hex;
             };
 
-            var fullColorHex = function(rgb) {   
+            var fullColorHex = function (rgb) {
                 console.log(rgb)
                 //rgb(255, 0, 0)
                 var stringone = angryRainbow(hashStr(rgb)).split('(')[1].split(',')
-                console.log(stringone)
+                //console.log(stringone)
                 var red = rgbToHex(stringone[0]);
                 var green = rgbToHex(stringone[1].split(' ')[1]);
                 var blue = rgbToHex(stringone[2].split(')')[0]);
-                console.log(red+green+blue)
-                return '#'+red+green+blue;
+                //console.log(red+green+blue)
+                return '#' + red + green + blue;
             };
 
             var angryRainbow = d3.scaleSequential(t => d3.hsl(t * 360, 1, 0.5).toString())
-            console.log(angryRainbow(hashStr('Alabama')),angryRainbow(hashStr('Indiana')),angryRainbow(hashStr('Florida')))
+            //console.log(angryRainbow(hashStr('Alabama')),angryRainbow(hashStr('Indiana')),angryRainbow(hashStr('Florida')))
             //var color = d3.scaleSequential(hashStr);
             //console.log(color)
 
@@ -427,7 +445,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     legendlist.push(keys[j])
                     //console.log(angryRainbow(hashStr(keys[j])),color(keys[j]))
                     return angryRainbow(hashStr(keys[j]));
-                    
+
                     //return color(angryRainbow(hashStr(keys[j])));
                 })
                 .attr("class", "circle_scatter")
@@ -481,8 +499,8 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .attr("class", "legendina")
                 .attr("transform", function (d, i) { return "translate(2," + i * 14 + ")"; });
 
-                //console.log(color.domain(),color)
-                console.log(color(1),angryRainbow(1))
+            //console.log(color.domain(),color)
+            //console.log(color(1),angryRainbow(1))
 
             legend.append("rect")
                 .attr("x", width)
