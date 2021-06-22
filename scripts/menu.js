@@ -199,9 +199,9 @@ function preset_selection() {
     if (user == "user2") {
         yearInput = 2020 
         aggregated_by_year = "false"
-        aggregationType = "Make"
+        aggregationType = "Broad.Phase.of.Flight"
         mds_type_value = "percentage"
-        X = "Total_Accidents"
+        X = "Destroyed_Damage"
         Y = "IMC"
         R = "Fatal"
         type_map = "Fatal"

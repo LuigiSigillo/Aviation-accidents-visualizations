@@ -1,10 +1,10 @@
   .label {
     font-size: 15px;
   }
-.legenda{
-  overflow:visible;
-  fill:red;
-}
+  .legenda{
+    overflow:visible;
+    fill:red;
+  }
   .legendina {
     opacity: 1;
     transition: opacity 0.3s;

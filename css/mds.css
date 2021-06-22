@@ -39,6 +39,7 @@ circle {
   fill: red;
   stroke: red;
   opacity: 1.0;
+  r: 11.5;
 }
 
 .mouseon {

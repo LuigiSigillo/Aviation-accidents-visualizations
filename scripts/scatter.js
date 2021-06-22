@@ -482,7 +482,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 });
 
             svg.append("text")
-                .attr("x", width - 2)
+                .attr("x", width + 20)
                 .attr("y", height - 6)
                 .attr("class", "axis")
                 .attr('id', 'xAxisLabel')
@@ -491,7 +491,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
             svg.append("text")
                 .attr("x", 6)
-                .attr("y", -2)
+                .attr("y", -9)
                 .attr("text-anchor", "end")
                 .attr("class", "axis")
                 .attr('id', 'yAxisLabel')
@@ -499,18 +499,20 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
             //console.log(color.domain())
 
-            var div = svg.append("g")
+            var div = svg.append("svg")
                 .attr("id", "legendaScatter")
-                .style('overflow', 'visible')
+                .attr("height",height - 29)
+                //.attr("viewBox", "100 0 500 812")
+                .style('overflow', 'hidden')
                 .attr("class", "legenda")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                .attr("transform", "translate(" + 900 + "," + margin.top + ")");
 
             var legend = div.selectAll(".legenda")
                 //.data(color.domain().sort(function (a, b) { return dataset_dict[b].r - dataset_dict[a].r }))
                 .data(legendlist)
                 .enter().append("g")
                 .attr("class", "legendina")
-                .attr("transform", function (d, i) { return "translate(2," + i * 14 + ")"; });
+                .attr("transform", function (d, i) { return "translate(20," + i * 14 + ")"; });
 
             //console.log(color.domain(),color)
             //console.log(color(1),angryRainbow(1))
