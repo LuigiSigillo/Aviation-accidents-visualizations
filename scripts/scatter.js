@@ -242,9 +242,15 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 dataset_dict[elem].r = +dataset_dict[elem][R]
 
 
-                if (isPercentage(X) || isPercentage(Y) || isPercentage(R)) {
+                if (isPercentage(X)){
                     dataset_dict[elem].x = +(+dataset_dict[elem].x / +dataset_dict[elem]["Total_Accidents"]) * 100;
+                }
+                
+                if(isPercentage(Y)){
                     dataset_dict[elem].y = +(+dataset_dict[elem].y / +dataset_dict[elem]["Total_Accidents"]) * 100;
+                }
+                
+                if(isPercentage(R)) {
                     dataset_dict[elem].r = +(+dataset_dict[elem].r / +dataset_dict[elem]["Total_Accidents"]) * 100;
                 }
 
