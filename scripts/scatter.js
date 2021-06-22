@@ -485,14 +485,17 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .attr("x", width + 20)
                 .attr("y", height - 6)
                 .attr("class", "axis")
+                .attr("font-size", "smaller")
+
                 .attr('id', 'xAxisLabel')
                 .text(X);
                 console.log(X)
 
             svg.append("text")
-                .attr("x", 6)
+                .attr("x", 40)
                 .attr("y", -9)
                 .attr("text-anchor", "end")
+                .attr("font-size", "smaller")
                 .attr("class", "axis")
                 .attr('id', 'yAxisLabel')
                 .text(Y);
