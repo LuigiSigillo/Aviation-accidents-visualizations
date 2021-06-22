@@ -91,6 +91,7 @@ function brushMap(brushList, mode) {
             var mapSvg = d3version3.select("#canvas-svg")
                 .append("svg")
                 .attr("id", 'svgmappa')
+                .attr("viewBox", "0 0 1143 812")
                 .attr("width", params.WIDTH + margin.left + margin.right)
                 .attr("height", params.HEIGHT + margin.top + margin.bottom);
             mapSvg = mapSvg.append("g")

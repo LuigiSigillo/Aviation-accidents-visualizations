@@ -175,7 +175,7 @@ function preset_selection() {
         - MDS: supporto al bubble ma con diverse prospettive di idee, dai ancora piu senso alle cose di prima. bubble + mds = TOP
 */
     if(user=="user1") {
-        yearInput = 2015 
+        yearInput = 2020 
         aggregated_by_year = "false"
         aggregationType = "Make"
         mds_type_value = "percentage"

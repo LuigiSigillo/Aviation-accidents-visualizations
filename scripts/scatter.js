@@ -27,6 +27,7 @@ var svg = d3.select("#scatter")
     .append("svg")
     .attr("width", /* n_w + */ '100%')
     .attr("height", /* n_h + */ '100%')
+    //.attr("viewBox", "0 0 1100 600")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -475,18 +476,19 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 });
 
             svg.append("text")
-                .attr("x", 6)
-                .attr("y", -2)
-                .attr("class", "axis")
-                .attr('id', 'yAxisLabel')
-                .text(X);
-
-            svg.append("text")
                 .attr("x", width - 2)
                 .attr("y", height - 6)
-                .attr("text-anchor", "end")
                 .attr("class", "axis")
                 .attr('id', 'xAxisLabel')
+                .text(X);
+                console.log(X)
+
+            svg.append("text")
+                .attr("x", 6)
+                .attr("y", -2)
+                .attr("text-anchor", "end")
+                .attr("class", "axis")
+                .attr('id', 'yAxisLabel')
                 .text(Y);
 
             //console.log(color.domain())
