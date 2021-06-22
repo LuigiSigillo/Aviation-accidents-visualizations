@@ -498,7 +498,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .text(Y);
 
             //console.log(color.domain())
-
+            //https://jsfiddle.net/Lvnozzn2/1/ per piazzare la scrollview ma tanto non funziona stupido
             var div = svg.append("svg")
                 .attr("id", "legendaScatter")
                 .attr("height",height - 29)
