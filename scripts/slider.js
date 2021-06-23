@@ -32,6 +32,7 @@ function change(data, subject, year, single_year) {
     }
 
     //aggregate values, TO ADD MAKE AND MONTH
+    if(subject != "Event.Id"){
     var res = d3version3.nest()
         .key(function (d) { return d[subject]; })
         .rollup(function (v) {
@@ -73,6 +74,49 @@ function change(data, subject, year, single_year) {
             };
         })
         .map(filtered_map)
+    } else{
+        var res = d3version3.nest()
+        .key(function (d) { return d[subject]; })
+        .rollup(function (v) {console.log("jjj", v[0]["Total.Fatal.Injuries"])
+            return {
+                Item: v[0][subject],
+                Total_Accidents: 1,
+                Fatal: v[0]["Total.Fatal.Injuries"],
+                Serious: v[0]["Total.Serious.Injuries"],
+                Minor: v[0]["Total.Minor.Injuries"],
+                Uninjured: v[0]["Total.Uninjured"],
+                VMC: d3.sum(v, function (d) { return d["Weather.Condition"] == "VMC"; }),
+                IMC: d3.sum(v, function (d) { return d["Weather.Condition"] == "IMC"; }),
+                Minor_Damage: d3.sum(v, function (d) { return d["Aircraft.Damage"] == "Minor"; }),
+                Substantial_Damage: d3.sum(v, function (d) { return d["Aircraft.Damage"] == "Substantial"; }),
+                Destroyed_Damage: d3.sum(v, function (d) { return d["Aircraft.Damage"] == "Destroyed"; }),
+                MANEUVERING: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "MANEUVERING"; }),
+                STANDING: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "STANDING"; }),
+                UNKNOWN: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "UNKNOWN"; }),
+                TAKEOFF: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "TAKEOFF"; }),
+                APPROACH: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "APPROACH"; }),
+                CLIMB: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "CLIMB"; }),
+                CRUISE: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "CRUISE"; }),
+                DESCENT: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "DESCENT"; }),
+                LANDING: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "LANDING"; }),
+                GOAROUND: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "GO-AROUND"; }),
+                TAXI: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "TAXI"; }),
+                January: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "01" }),
+                February: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "02" }),
+                March: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "03" }),
+                April: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "04" }),
+                May: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "05" }),
+                June: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "06" }),
+                July: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "07" }),
+                August: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "08" }),
+                September: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "09" }),
+                October: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "10" }),
+                November: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "11" }),
+                December: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "12" })
+            };
+        })
+        .map(filtered_map)
+    }
     return res;
 
 }

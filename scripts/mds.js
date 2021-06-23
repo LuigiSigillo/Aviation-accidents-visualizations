@@ -102,6 +102,7 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
         }
     }
     else if (keyword == "percentage") {
+        
         filtered = change(data, subject, year, aggr)
         console.log(filtered)
         size = Object.keys(filtered)
@@ -110,6 +111,29 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
             for (var j = 0; j < size.length; j++) {
                 var listaI = [filtered[size[i]]["Fatal"] / filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Serious"] / filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Minor"] / filtered[size[i]]["Total_Accidents"]]
                 var listaJ = [filtered[size[j]]["Fatal"] / filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Serious"] / filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Minor"] / filtered[size[j]]["Total_Accidents"]]
+
+                dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
+            }
+        }
+    }else if (keyword == "flights") {
+        
+        filtered = change(data, "Event.Id", year, aggr)
+        console.log(filtered)
+        size = Object.keys(filtered)
+        for (var i = 0; i < size.length; i++) {
+            dissM[i] = [];
+            for (var j = 0; j < size.length; j++) {
+                var listaI = [filtered[size[i]]["VMC"], filtered[size[i]]["IMC"],
+                filtered[size[i]]["Minor_Damage"], filtered[size[i]]["Substantial_Damage"], filtered[size[i]]["Destroyed_Damage"],
+                filtered[size[i]]["MANEUVERING"], filtered[size[i]]["STANDING"], filtered[size[i]]["UNKNOWN"], filtered[size[i]]["TAKEOFF"],
+                filtered[size[i]]["APPROACH"], filtered[size[i]]["CLIMB"], filtered[size[i]]["CRUISE"], filtered[size[i]]["DESCENT"],
+                filtered[size[i]]["LANDING"], filtered[size[i]]["GOAROUND"], filtered[size[i]]["TAXI"]
+                ]//.map(x=>x/filtered[size[i]]["Total_Accidents"])
+                var listaJ = [filtered[size[j]]["VMC"], filtered[size[j]]["IMC"],
+                filtered[size[j]]["Minor_Damage"], filtered[size[j]]["Substantial_Damage"], filtered[size[j]]["Destroyed_Damage"],
+                filtered[size[j]]["MANEUVERING"], filtered[size[j]]["STANDING"], filtered[size[j]]["UNKNOWN"], filtered[size[j]]["TAKEOFF"],
+                filtered[size[j]]["APPROACH"], filtered[size[j]]["CLIMB"], filtered[size[j]]["CRUISE"], filtered[size[j]]["DESCENT"],
+                filtered[size[j]]["LANDING"], filtered[size[j]]["GOAROUND"], filtered[size[j]]["TAXI"]]//.map(x=>x/filtered[size[j]]["Total_Accidents"])
 
                 dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
             }
@@ -396,13 +420,13 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                     brushMap([d], "mouseon")
                     // style brushed circles
                     nodes.selectAll("circle").filter(function (r) {
-
+                        console.log(r)
                         if (r == d)
                             return true
 
                         return false
                     })
-                        .classed("mouseon", true);
+                        .classed("mouseon", true)
                     //brushScatter([d], true)
                     /*
                     mouseon su mds su mappa 
