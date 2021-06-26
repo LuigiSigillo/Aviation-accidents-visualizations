@@ -1,0 +1,6 @@
+.parAxis {
+    opacity: 0.8;
+  }
+  .parAxis:hover {
+    opacity: 1;
+  }
