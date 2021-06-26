@@ -11,12 +11,12 @@ function brushMap(brushList, mode) {
         var width = document.getElementById("map").clientWidth + margin.left + margin.right
         var height = document.getElementById("map").clientHeight - margin.top - margin.bottom;
 
-
+        
         /* width: 960px;
         height: 500px;*/
         function scaling(width, height) {
-            maxWidth = 1295
-            maxHeight = 619
+            maxWidth = 647.5
+            maxHeight = 309.5
             ratio = 1
             // Check if the current width is larger than the max
             if (width < maxWidth)
