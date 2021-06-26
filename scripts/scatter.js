@@ -424,6 +424,8 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 return '#' + red + green + blue;
             };
 
+            
+
             var angryRainbow = d3.scaleSequential(t => d3.hsl(t * 360, 1, 0.5).toString())
             //console.log(angryRainbow(hashStr('Alabama')),angryRainbow(hashStr('Indiana')),angryRainbow(hashStr('Florida')))
             //var color = d3.scaleSequential(hashStr);
@@ -437,22 +439,38 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
             //const after = scale(0.5);
             //console.log(before, after, range);
 
-
-
+            qualitative_colors = ['rgb(166,206,227)','rgb(31,120,180)','rgb(178,223,138)','rgb(51,160,44)','rgb(251,154,153)','rgb(227,26,28)','rgb(253,191,111)','rgb(255,127,0)','rgb(202,178,214)','rgb(106,61,154)','rgb(255,255,153)','rgb(177,89,40)']
+            qualitative_colors_hex = ['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928']
+            
             //const scale = d3.scaleSequential(d3.interpolateSinebow); // same as t1
             //const interpolator = scale.hashStr();
             //console.log(interpolator('Alabama'))
             legendlist = []
+            mapping_zozzo = {}
             group.append("circle")
                 .transition().duration(1000)
                 .attr("r", function (d) { return radius(d.r) * 5; })
                 .style("fill", function (d) {
+                    aggrtype = document.getElementById("aggregationType").value
                     j++
                     color(keys[j]);
                     legendlist.push(keys[j])
-                    //console.log(angryRainbow(hashStr(keys[j])),color(keys[j]))
-                    return angryRainbow(hashStr(keys[j]));
-
+                    if(aggrtype == 'Crash.Country' || aggrtype == 'Make'){
+                        
+                        console.log('AIAIAIA: ', keys[j], angryRainbow(hashStr(keys[j])), j)
+                        //console.log(angryRainbow(hashStr(keys[j])),color(keys[j]))
+                        return angryRainbow(hashStr(keys[j]));
+                    }
+                    else if (aggrtype == 'Event.Month') {
+                        //12
+                        mapping_zozzo[keys[j]] = qualitative_colors[j]
+                        return qualitative_colors[j]
+                    }
+                    else if (aggrtype == 'Broad.Phase.of.Flight') {
+                        //11
+                        mapping_zozzo[keys[j]] = qualitative_colors[j]
+                        return qualitative_colors[j]
+                    }
                     //return color(angryRainbow(hashStr(keys[j])));
                 })
                 .attr("class", "circle_scatter")
@@ -524,7 +542,18 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .attr("x", width)
                 .attr("width", 12)
                 .attr("height", 12)
-                .style("fill", fullColorHex);
+                // .style("fill", fullColorHex);
+                .style("fill", function (d) { 
+                    aggrtype = document.getElementById("aggregationType").value
+                    console.log('madonna ladra',aggrtype)
+                    if(aggrtype == 'Crash.Country' || aggrtype == 'Make'){
+                        console.log('DIDIDI',d,fullColorHex(d))
+                        return fullColorHex(d)
+                    }
+                    else {
+                        return mapping_zozzo[d]
+                    }});
+
             legend.append("text")
                 .attr("x", width + 16)
                 .attr("y", 6)
