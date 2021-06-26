@@ -24,7 +24,8 @@ var n_w = (width + margin.left + margin.right) * 1.5
 var n_h = (height + margin.top + margin.bottom) * 1.5
 
 function fuffa(d){
-    console.log('FUFFA')
+    d3.selectAll(".bubble")
+                .style("opacity", 1)
 }
 
 function endBrush(d){
@@ -50,7 +51,10 @@ var svg = d3.select("#scatter")
     //.call(brushella)
     //.attr("viewBox", "0 0 1100 600")
     .append("g")
+    .on("mousedown", fuffa)
     .call(brushella)
+
+    
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     
     
@@ -647,27 +651,35 @@ changing(aggregationType, X, Y, R, yearInput, aggregated_by_year)
 
 // roba per il brush
 function isBrushed(brush_coords, cx, cy) {
-
     var x0 = brush_coords[0][0],
         x1 = brush_coords[1][0],
         y0 = brush_coords[0][1],
         y1 = brush_coords[1][1];
-
     return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
 }
 function highlightBrushedBubbles() {
     var bubbles = d3.selectAll(".bubble")
     if (d3.event.selection != null) {
         var brush_coords = d3.brushSelection(this);
-        
+        brushed = []
+            
         console.log(brush_coords)
+        
         bubbles.filter(function () {
             var cx = this.transform['animVal'][0]['matrix']['e'],
                 cy = this.transform['animVal'][0]['matrix']['f'];
-            console.log(brush_coords, cx, cy)
-            console.log(this, isBrushed(brush_coords, cx, cy))
-            return isBrushed(brush_coords, cx, cy);
-        })
+            //console.log(brush_coords, cx, cy)
+            //console.log(this, isBrushed(brush_coords, cx, cy))
+            return !isBrushed(brush_coords, cx, cy);
+        }).style("opacity", 0.1)
+
+        // console.log(ciaone)
+
+        // bubbles.forEach(d => {var cx = this.transform['animVal'][0]['matrix']['e'],
+        //                         cy = this.transform['animVal'][0]['matrix']['f'];
+
+        //                     })
+        
 
     }
 }
