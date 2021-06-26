@@ -2,7 +2,6 @@ var margin = { top: 25, right: -230, bottom: 50, left: 30 };
 var width = document.getElementById("scatter").clientWidth + margin.left + margin.right
 var height = document.getElementById("scatter").clientHeight - margin.top - margin.bottom
 
-console.log("scat", height, "h", width)
 
 var dbNames = {
     "crashCountry": "Crash.Country",
@@ -23,13 +22,38 @@ function triggeraSlider() {
 
 var n_w = (width + margin.left + margin.right) * 1.5
 var n_h = (height + margin.top + margin.bottom) * 1.5
+
+function fuffa(d){
+    console.log('FUFFA')
+}
+
+function endBrush(d){
+    console.log('END')
+}
+
+var brushella = d3.brush()
+    .extent([[0, 0], [10000, 10000]])
+    .on("brush", fuffa)
+    .on("end", highlightBrushedBubbles); 
+
+// svg.append("g")
+//     .call(brush);
+
 var svg = d3.select("#scatter")
     .append("svg")
     .attr("width", /* n_w + */ '100%')
     .attr("height", /* n_h + */ '100%')
+    //.attr("class","brush")
+    //.call(brushella)
+    //.attr("class","brush")
+    //.call(d3.brush().on("brush", fuffa))
+    //.call(brushella)
     //.attr("viewBox", "0 0 1100 600")
     .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .call(brushella)
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    
+    
 
 
 var xscale = d3.scaleLinear()
@@ -54,6 +78,9 @@ var yAxis = d3.axisLeft()
 function isPercentage(elem) {
     return elem == "VMC" || elem == "IMC" || elem.includes("Damage")
 }
+
+
+
 
 //IN PROGRESS
 /* Create HTML for mouseover */
@@ -152,7 +179,7 @@ function createMousoverHtml(d) {
     }
 }
 
-
+// highlight if brushing on MDS
 function brushScatter(brushed_points, highlighting) {
     var aggr = document.getElementById("aggregationType").value;
     d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
@@ -173,6 +200,9 @@ function brushScatter(brushed_points, highlighting) {
 }
 
 
+
+
+
 var brushedPoints = []
 var tobebrushed = false
 
@@ -184,6 +214,9 @@ var yearInput = document.getElementById("slider").value
 var aggregated_by_year = document.getElementById("aggregationYear").value
 var mds_type_value = document.getElementById("mdsType").value
 function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
+
+    
+
 
     //console.log('Chiamata changing con parametri: ' + aggregationType, X, Y, R)
     var aggr = document.getElementById("aggregationType");
@@ -457,7 +490,6 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     legendlist.push(keys[j])
                     if(aggrtype == 'Crash.Country' || aggrtype == 'Make'){
                         
-                        console.log('AIAIAIA: ', keys[j], angryRainbow(hashStr(keys[j])), j)
                         //console.log(angryRainbow(hashStr(keys[j])),color(keys[j]))
                         return angryRainbow(hashStr(keys[j]));
                     }
@@ -507,7 +539,6 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
                 .attr('id', 'xAxisLabel')
                 .text(X);
-                console.log(X)
 
             svg.append("text")
                 .attr("x", 40)
@@ -545,9 +576,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 // .style("fill", fullColorHex);
                 .style("fill", function (d) { 
                     aggrtype = document.getElementById("aggregationType").value
-                    console.log('madonna ladra',aggrtype)
                     if(aggrtype == 'Crash.Country' || aggrtype == 'Make'){
-                        console.log('DIDIDI',d,fullColorHex(d))
                         return fullColorHex(d)
                     }
                     else {
@@ -615,3 +644,30 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
     });
 }
 changing(aggregationType, X, Y, R, yearInput, aggregated_by_year)
+
+// roba per il brush
+function isBrushed(brush_coords, cx, cy) {
+
+    var x0 = brush_coords[0][0],
+        x1 = brush_coords[1][0],
+        y0 = brush_coords[0][1],
+        y1 = brush_coords[1][1];
+
+    return x0 <= cx && cx <= x1 && y0 <= cy && cy <= y1;
+}
+function highlightBrushedBubbles() {
+    var bubbles = d3.selectAll(".bubble")
+    if (d3.event.selection != null) {
+        var brush_coords = d3.brushSelection(this);
+        
+        console.log(brush_coords)
+        bubbles.filter(function () {
+            var cx = this.transform['animVal'][0]['matrix']['e'],
+                cy = this.transform['animVal'][0]['matrix']['f'];
+            console.log(brush_coords, cx, cy)
+            console.log(this, isBrushed(brush_coords, cx, cy))
+            return isBrushed(brush_coords, cx, cy);
+        })
+
+    }
+}
