@@ -26,14 +26,13 @@ var n_h = (height + margin.top + margin.bottom) * 1.5
 function fuffa(d){
     d3.selectAll(".bubble")
                 .style("opacity", 1)
+                // d3.select(this).call(brushella.move,null)
+
 }
 
-function endBrush(d){
-    console.log('END')
-}
 
 var brushella = d3.brush()
-    .extent([[0, 0], [10000, 10000]])
+    .extent([[0, 0], [1000, 1000]])
     .on("brush", fuffa)
     .on("end", highlightBrushedBubbles); 
 
@@ -51,8 +50,7 @@ var svg = d3.select("#scatter")
     //.call(brushella)
     //.attr("viewBox", "0 0 1100 600")
     .append("g")
-    .on("mousedown", fuffa)
-    .call(brushella)
+    
 
     
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
@@ -405,7 +403,9 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .attr('id', 'yAxis')
                 .transition().duration(1000)
                 .call(yAxis);
-
+            svg.append("g")
+                .on("mousedown", fuffa)
+                .call(brushella)
             var group = svg.selectAll("g.bubble")
                 .data(come_vuole_lui)
                 .enter().append("g")
@@ -672,7 +672,16 @@ function highlightBrushedBubbles() {
             //console.log(this, isBrushed(brush_coords, cx, cy))
             return !isBrushed(brush_coords, cx, cy);
         }).style("opacity", 0.1)
-
+        d3.select('.selection').style('display','none')
+        //d3.selectAll('.selection').remove()
+        // d3.select('.handle handle--n').remove()
+        // d3.select('.handle handle--e').remove()
+        // d3.select('.handle handle--s').remove()
+        // d3.select('.handle handle--w').remove()
+        // d3.select('.handle handle--nw').remove()
+        // d3.select('.handle handle--ne').remove()
+        // d3.select('.handle handle--se').remove()
+        // d3.select('.handle handle--sw').remove()
         // console.log(ciaone)
 
         // bubbles.forEach(d => {var cx = this.transform['animVal'][0]['matrix']['e'],
