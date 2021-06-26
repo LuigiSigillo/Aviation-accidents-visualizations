@@ -1,8 +1,11 @@
 var dataset_path = "datasets/AviationCrashLocation_new.csv";
 var size;
+var size2;
 var brushing = false;
 var brushed_points = [];
 
+var flights;
+var aggreg 
 /*
     "Crash.Country",
     "Total.Fatal.Injuries",
@@ -91,6 +94,7 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
     if (keyword == "std") {
         filtered = change(data, subject, year, aggr)
         size = Object.keys(filtered)
+        size2 = filtered
         for (var i = 0; i < size.length; i++) {
             dissM[i] = [];
             for (var j = 0; j < size.length; j++) {
@@ -106,6 +110,7 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
         filtered = change(data, subject, year, aggr)
         console.log(filtered)
         size = Object.keys(filtered)
+        size2 = filtered
         for (var i = 0; i < size.length; i++) {
             dissM[i] = [];
             for (var j = 0; j < size.length; j++) {
@@ -120,6 +125,7 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
         filtered = change(data, "Event.Id", year, aggr)
         console.log(filtered)
         size = Object.keys(filtered)
+        size2 = filtered
         for (var i = 0; i < size.length; i++) {
             dissM[i] = [];
             for (var j = 0; j < size.length; j++) {
@@ -143,6 +149,7 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
         filtered = change(data, subject, year, aggr)
         console.log("COSA", filtered)
         size = Object.keys(filtered)
+        size2 = filtered
         for (var i = 0; i < size.length; i++) {
             dissM[i] = [];
             for (var j = 0; j < size.length; j++) {
@@ -258,6 +265,12 @@ Params:     element-->  (d3 elements)   points
 Returns:    //
 */
 function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
+    if (document.getElementById("mdsType").value == "flights"){
+        flights = true
+    }else{
+        flights = false
+    }
+    aggreg = document.getElementById("aggregationType").value;
     params = params || {};
     var padding = params.padding || 32,
         w = params.w || Math.min(720, document.documentElement.clientWidth - padding),
@@ -351,10 +364,30 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                     });
                     id.style('stroke-width', '0.5');
                 }
-
-                brushMap(brushed_points, "unbrush")
-                brushScatter(brushed_points, false)
-
+                if(flights == true){
+                    brushed = []
+                    brushed_points.forEach(d => brushed.push(size2[d]["STATE"]))
+                    brushMap(brushed, "unbrush")
+                    if (aggreg == "Crash.Country"){
+                        brushScatter(brushed, false)
+                    }
+                    if(aggreg == "Broad.Phase.of.Flight"){
+                        brushed_points.forEach(d => brushed.push(size2[d]["PHASE"]))
+                        brushScatter(brushed, false)
+                    }
+                    if(aggreg == "Event.Month"){
+                        brushed_points.forEach(d => brushed.push(size2[d]["MONTH"]))
+                        brushScatter(brushed, false)
+                    }
+                    if(aggreg == "Make"){
+                        brushed_points.forEach(d => brushed.push(size2[d]["MAKE"]))
+                        brushScatter(brushed, false)
+                    }
+                }else{
+                    brushMap(brushed_points, "unbrush")
+                    brushScatter(brushed_points, false)
+    
+                }
                 brushed_points.forEach(function (d) {
                     d3.select("#my_dataviz").selectAll('path').each(function (t) {
                         if (d3.select(this).attr("name") != null) {
@@ -387,20 +420,20 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
         var mtooltip = element.append("div")
             .attr("class", "mdsTooltip")
             .style("opacity", 0);
-
+        
+        console.log(labels, "aaaa")
         var nodes = svg.attr("clip-path", "url(#clip)")
             .selectAll("circle")
             .data(labels)
             .enter()
             .append("g");
-
         nodes.style("display", "block")
             .attr("class", "dot")
             .append("circle")
             .attr("r", pointRadius)
             .attr("cx", function (d, i) { return xScale(xPos[i]); })
             .attr("cy", function (d, i) { return yScale(yPos[i]); })
-            .on("mouseover", function (d) {
+            .on("mouseover", function (d, i) {
                 mtooltip.transition()
                     .duration(200)
                     .style("opacity", .9)
@@ -413,15 +446,30 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                         return terName == d;
                     });
                     id.style('stroke-width', '2');
-
-
+                if(flights == true){
+                    mouse_on(d)
+                    brushMap([size2[d]["STATE"]], "mouseon")
+                    if (aggreg == "Crash.Country"){
+                        mouseon_scatter(size2[d]["STATE"])
+                    }
+                    if(aggreg == "Broad.Phase.of.Flight"){
+                        mouseon_scatter(size2[d]["PHASE"])
+                    }
+                    if(aggreg == "Event.Month"){
+                        mouseon_scatter(size2[d]["MONTH"])
+                    }
+                    if(aggreg == "Make"){
+                        mouseon_scatter(size2[d]["MAKE"])
+                    }
+                }else{
                     mouse_on(d);
                     mouseon_scatter(d)
                     brushMap([d], "mouseon")
+                }
                     // style brushed circles
                     nodes.selectAll("circle").filter(function (r) {
                         console.log(r)
-                        if (r == d)
+                        if (r== d)
                             return true
 
                         return false
@@ -465,10 +513,26 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
             })
             .on("mouseout", function (d) {
                 mouse_out();
-
-                brushMap([d], "mouseout")
-                //brushScatter([d], false)
-                mouseout_scatter(d)
+                if(flights == true){
+                    brushMap([size2[d]["STATE"]], "mouseout")
+                    if (aggreg == "Crash.Country"){
+                        mouseout_scatter(size2[d]["STATE"])
+                    }
+                    if(aggreg == "Broad.Phase.of.Flight"){
+                        mouseout_scatter(size2[d]["PHASE"])
+                    }
+                    if(aggreg == "Event.Month"){
+                        mouseout_scatter(size2[d]["MONTH"])
+                    }
+                    if(aggreg == "Make"){
+                        mouseout_scatter(size2[d]["MAKE"])
+                    }
+                }else{
+    
+                    brushMap([d], "mouseout")
+                    //brushScatter([d], false)
+                    mouseout_scatter(d)
+                }
                 nodes.selectAll("circle").filter(function (r) {
 
                     if (r == d)
@@ -674,10 +738,30 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
         }
         //INTERACTIONS WITH PC
         MDS_PC_LOCK = true
-
+        if(flights == true){
+            brushed = []
+            brushed_points.forEach(d => brushed.push(size2[d]["STATE"]))
+            brushMap(brushed, "brush")
+            if (aggreg == "Crash.Country"){
+                brushScatter(brushed, true)
+            }
+            if(aggreg == "Broad.Phase.of.Flight"){
+                brushed_points.forEach(d => brushed.push(size2[d]["PHASE"]))
+                brushScatter(brushed, true)
+            }
+            if(aggreg == "Event.Month"){
+                brushed_points.forEach(d => brushed.push(size2[d]["MONTH"]))
+                brushScatter(brushed, true)
+            }
+            if(aggreg == "Make"){
+                brushed_points.forEach(d => brushed.push(size2[d]["MAKE"]))
+                brushScatter(brushed, true)
+            }
+        }else{
+            brushMap(brushed_points, "brush")
+            brushScatter(brushed_points, true)
+        }
         //Interaction with map vera
-        brushMap(brushed_points, "brush")
-        brushScatter(brushed_points, true)
         brushed_points.forEach(function (d) {
             d3.select("#my_dataviz").selectAll('path').each(function (t) {
                 if (d3.select(this).attr("name") != null) {
