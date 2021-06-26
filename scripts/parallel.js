@@ -16,6 +16,8 @@ var mtooltip = d3.select("#parallel").append("div")
     .style("opacity", 0);
 // Parse the Data
 d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
+    
+    dataset_dict = change(data, "Crash.Country", 2020, "false")
 
     var i
     keys = Object.keys(dataset_dict),
