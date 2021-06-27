@@ -468,7 +468,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                     mouse_on(d);
                     mouseon_scatter(d)
                     brushMap([d], "mouseon")
-                    brushParallel([d])
+                    mouseonParallel(d)
                 }
                     // style brushed circles
                     nodes.selectAll("circle").filter(function (r) {
@@ -536,7 +536,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                     brushMap([d], "mouseout")
                     //brushScatter([d], false)
                     mouseout_scatter(d)
-                    unbrushParallel()
+                    mouseoutParallel()
                 }
                 nodes.selectAll("circle").filter(function (r) {
 
