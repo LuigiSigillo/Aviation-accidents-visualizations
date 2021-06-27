@@ -16,8 +16,16 @@ var mtooltip = d3.select("#parallel").append("div")
     .style("opacity", 0);
 // Parse the Data
 d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
-    
-    dataset_dict = change(data, "Crash.Country", 2020, "false")
+    var aggregationType = document.getElementById("aggregationType").value
+    var map_key
+    // var yearInput = document.getElementById("slider").value
+    d3version3.selectAll(".checkbox").each(function(d) {
+        cb = d3.select(this);
+        grp = cb.property("value")
+        if (cb.property("checked"))
+            map_key = grp
+    })
+    dataset_dict = change(data, aggregationType, 2001, "false")
 
     var i
     keys = Object.keys(dataset_dict),
@@ -26,7 +34,6 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         return a - b;
     });
     dimensions = Array.from({ length: 20 }, (x, i) => 2001 + i);
-    // Here I set the list of dimension manually to control the order of axis:
 
     // For each dimension, I build a linear scale. I store all in a y object
     var y = {}
@@ -55,12 +62,12 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
 
 
         // first every group turns grey NOT WORKING
-        d3.selectAll(".line")
+        svgParallel.selectAll("path")
             .transition().duration(200)
             .style("stroke", "lightgrey")
             .style("opacity", "0.2")
         // // Second the hovered specie takes its colorParallel
-        d3.selectAll(".line" + d)
+        svgParallel.selectAll(".line" + d)
             .transition().duration(200)
             .style("stroke", "#f03b20")
             .style("opacity", "1")
@@ -70,7 +77,7 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
     // Unhighlight
     var doNotHighlight = function (d) {
         console.log(d)
-        d3.selectAll(".line" + d)
+        svgParallel.selectAll("path")
             .transition().duration(200)
             .style("stroke", "#2ca25f")
             .style("opacity", "1")
@@ -82,9 +89,10 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
     // The path function take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
     function path(d) {
         return d3.line()(dimensions.map(function (year) {
-            dataset_dict = change(data, "Crash.Country", year, "true")
+            dataset_dict = change(data, aggregationType, year, "true")
+            console.log(map_key)
             try {
-                return [x(year), y[year](dataset_dict[d]['Fatal'])]
+                return [x(year), y[year](dataset_dict[d][map_key])]
             }
             catch (error) {
                 return [x(year), y[year](0)]
