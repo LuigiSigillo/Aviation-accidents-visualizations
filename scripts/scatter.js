@@ -424,12 +424,13 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     mouse_on(d.Item);
                     mouseon_mds(d.Item);
                     brushMap([d.Item], "mouseon")
+                    brushParallel([d.Item])
                 })
                 .on("mouseout", function (d) {
                     mouse_out()
                     mouseout_mds(d.Item)
                     brushMap([d.Item], "mouseout")
-
+                    unbrushParallel()
                     /* $(this).attr("fill-opacity", "1.0");
                     $("#tooltip-container-scatter").hide(); */
                 });
@@ -616,6 +617,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 mouse_on(type);
                 mouseon_mds(type);
                 brushMap([type], "mouseon")
+                brushParallel([type])
             })
                 .on("mouseout", function (type) {
                     d3.selectAll(".legendina")
@@ -625,6 +627,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     mouse_out()
                     mouseout_mds(type)
                     brushMap([type], "mouseout")
+                    unbrushParallel()
                 });
 
 
