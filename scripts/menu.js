@@ -249,6 +249,25 @@ function mouseout_mds(elem){
         .classed("mouseon", false);
 };
 
+function brush_mds(elem){
+    var svg = d3.select("#mds").select("svg");
+    svg.attr("clip-path", "url(#clip)")
+            .selectAll("circle").filter(function (d) {
+        if (elem.includes(d)){
+            return true
+        }
+        return false
+    })
+        .classed("brushed", true)
+}
+
+function unbrush_mds(){
+var svg = d3.select("#mds").select("svg");
+svg.attr("clip-path", "url(#clip)")
+            .selectAll("circle")
+            .classed("brushed", false)
+}
+
 
 function mouseon_scatter(elem){
     d3.selectAll(".bubble")
