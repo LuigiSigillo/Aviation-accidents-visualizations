@@ -232,9 +232,10 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
         d3.selectAll(".checkbox").each(function(d) {
             cb = d3.select(this);
             grp = cb.property("value")
-            if (cb.property("checked"))
+            if (cb.property("checked")) {
                 map_key = grp
-            parallelCoord(aggregationType,map_key)
+                parallelCoord(aggregationType,map_key)
+            }
 
         })
     }

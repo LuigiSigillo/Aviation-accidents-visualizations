@@ -36,8 +36,8 @@ circle {
   opacity: 0.6;
 }
 .brushed {
-  fill: red;
-  stroke: red;
+  fill: black;
+  stroke: black;
   opacity: 1.0;
   r: 11.5;
 }

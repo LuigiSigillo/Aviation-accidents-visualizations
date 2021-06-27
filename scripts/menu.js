@@ -350,7 +350,7 @@ function brushParallel(listBrush){
         // Second the hovered specie takes its colorParallel
         svgParallel.selectAll(".line" + d)
         .transition().duration(200)
-        .style("stroke", "#f03b20")
+        .style("stroke", "black")
         .style("opacity", "1")
         });
 
@@ -390,7 +390,7 @@ function mouseoutParallel(d){
             .transition().duration(200)
             .style("stroke", function(d){
                 if (d!=null && brushed_par.includes(d))
-                    return "red"
+                    return "black"
                 if (brushed_par.length == 0)
                     return "#2c7bb6"
                 return "lightgrey"

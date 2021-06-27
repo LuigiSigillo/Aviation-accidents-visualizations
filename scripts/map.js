@@ -170,12 +170,10 @@ function brushMap(brushList, mode) {
                             return "rgb(" + color.r + "," + color.g + "," + color.b + ")";
                         })
                         .style('stroke', function (d){
-                            if (mode=="mouseon")
+                            if (mode=="mouseon") {
                                 if (e[id_name_map[d.id]] != undefined && brushList.includes(e[id_name_map[d.id]]['Item']))
                                     return 'green'
-                                if (mode=="brush")
-                                    if (e[id_name_map[d.id]] != undefined && brushList.includes(e[id_name_map[d.id]]['Item']))
-                                        return 'red'
+                            }
                             return 'black'
                         })
                         .style('stroke-width', function (d) {
@@ -252,8 +250,9 @@ function brushMap(brushList, mode) {
                                 return "bold"
                         });
                 }
+                type = $("input[type='radio'][name='gender']:checked").val();
                 // aggiorna mappa subito
-                updateMapColors()
+                updateMapColors(type)
                 updateLegend()
 
 
