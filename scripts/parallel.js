@@ -39,6 +39,8 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
     keys.sort(function (a, b) {
         return a - b;
     });
+
+
     dimensions = Array.from({ length: 20 }, (x, i) => 2001 + i);
 
     // For each dimension, I build a linear scale. I store all in a y object
@@ -47,7 +49,7 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
     for (i in dimensions) {
         _name = dimensions[i]
         y[_name] = d3.scaleLinear()
-            .domain([0, 40]) // --> Same axis range for each group
+            .domain([0, 100]) // --> Same axis range for each group
             // --> different axis range for each group --> .domain( [d3.extent(data, function(d) { return +d[name]; })] )
             .range([heightParallel, 0])
     }
@@ -105,10 +107,30 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         mouseout_scatter(d)
     }
 
+    function calc_max(dataset_dict){
+        var max = 0
+        for (var elem in dataset_dict) {
+            console.log(elem)
+            if (max<dataset_dict[elem][map_key])
+                max = dataset_dict[elem][map_key]
+        }
+        return max
+    }
     // The path function take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
+    var dict_dataset_dict = {}
+    var max = 0
+
+    dimensions.map(function (year) {
+        dict_dataset_dict[year] = change(data, aggregationType, year, "true")
+        var nuov_max = calc_max(dict_dataset_dict[year])
+        if (max<nuov_max)
+            max = nuov_max
+    })
+
     function path(d) {
         return d3.line()(dimensions.map(function (year) {
-            dataset_dict = change(data, aggregationType, year, "true")
+            dataset_dict = dict_dataset_dict[year]
+            y[year].domain([0, max+2])
             try {
                 return [x(year), y[year](dataset_dict[d][map_key])]
             }

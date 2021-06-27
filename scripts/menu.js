@@ -338,13 +338,6 @@ function mouseout_scatter(elem){
 
 
 function brushParallel(listBrush){
-    mtooltip.transition()
-            .duration(200)
-            .style("opacity", .9)
-    mtooltip.html(d)
-            .style("left", (d3.mouse(this)[0]) + "px")
-            .style("top", (d3.mouse(this)[1] - 25) + "px");
-
     var svgParallel = d3.select("#parallel")
 
         // first every group turns grey NOT WORKING
