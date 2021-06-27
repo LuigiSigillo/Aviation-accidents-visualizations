@@ -189,6 +189,7 @@ function brushMap(brushList, mode) {
                             if(document.getElementById("aggregationType").value == "Crash.Country") {
                                 createNameHtml(d)
                                 mouseon_mds(id_name_map[d.id])
+                                brushParallel([id_name_map[d.id]])
                                 mouse_on(id_name_map[d.id])
                                 mouseon_scatter(id_name_map[d.id])
                             }
@@ -200,6 +201,8 @@ function brushMap(brushList, mode) {
                                 $(this).attr("fill-opacity", "1.0");
                                 $("#tooltip-container").hide();
                                 mouseout_mds(id_name_map[d.id])
+                                unbrushParallel()
+
                                 mouseout_scatter(id_name_map[d.id])
                                 }
                         });
