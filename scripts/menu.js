@@ -6,7 +6,9 @@ function mouse_on(pippo) {
     //console.log('AGGREGATED YEAR: ', aggregated_by_year)
     var year = document.getElementById('slider').value
     //console.log('YEAR: ', year)
-
+    if (pippo.startsWith("par"))
+        year = 2020
+        pippo = pippo.replace("par","")
     if (pippo.startsWith("2")){
 
         d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
@@ -111,7 +113,8 @@ function mouse_on(pippo) {
                     .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
             }
         })
-    }else{
+    }
+    else {
     d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         dataset_dict = change(data, aggr, year, aggregated_by_year)
         //console.log("ciaoo", dataset_dict)

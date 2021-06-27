@@ -229,7 +229,14 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
         //console.log('CHIAMO CON X Y Z: ', X, Y, R)
         changing(aggregationType, X, Y, R, yearInput, aggregated_by_year)
         createMDS(yearInput, 0, 0, aggregated_by_year, aggregationType, mds_type_value)
+        d3.selectAll(".checkbox").each(function(d) {
+            cb = d3.select(this);
+            grp = cb.property("value")
+            if (cb.property("checked"))
+                map_key = grp
+            parallelCoord(aggregationType,map_key)
 
+        })
     }
     d3.select("#aggregationYear")
         .on("change", function () {
