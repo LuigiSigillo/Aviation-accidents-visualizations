@@ -29,7 +29,7 @@ function fuffa(d){
                 // d3.select(this).call(brushella.move,null)
     brushMap([], "unbrush")
     unbrush_mds()
-
+    unbrushParallel()
 }
 
 
@@ -691,7 +691,7 @@ function highlightBrushedBubbles() {
             brushMap(listanomi, "brush")
         }
         brush_mds(listanomi)
-
+        brushParallel(listanomi)
 
         
         //d3.selectAll('.selection').remove()
