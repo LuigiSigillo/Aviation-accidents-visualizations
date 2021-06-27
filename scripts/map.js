@@ -15,8 +15,8 @@ function brushMap(brushList, mode) {
         /* width: 960px;
         height: 500px;*/
         function scaling(width, height) {
-            maxWidth = 647.5
-            maxHeight = 309.5
+            maxWidth = 647.5 * 2
+            maxHeight = 309.5 * 2
             ratio = 1
             // Check if the current width is larger than the max
             if (width < maxWidth)
@@ -91,7 +91,7 @@ function brushMap(brushList, mode) {
             var mapSvg = d3version3.select("#canvas-svg")
                 .append("svg")
                 .attr("id", 'svgmappa')
-                .attr("viewBox", "0 0 1143 812")
+                // .attr("viewBox", "0 0 1143 812")
                 .attr("width", params.WIDTH + margin.left + margin.right)
                 .attr("height", params.HEIGHT + margin.top + margin.bottom);
             mapSvg = mapSvg.append("g")
