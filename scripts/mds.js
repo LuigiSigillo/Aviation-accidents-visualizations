@@ -129,17 +129,8 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
         for (var i = 0; i < size.length; i++) {
             dissM[i] = [];
             for (var j = 0; j < size.length; j++) {
-                var listaI = [filtered[size[i]]["VMC"], filtered[size[i]]["IMC"],
-                filtered[size[i]]["Minor_Damage"], filtered[size[i]]["Substantial_Damage"], filtered[size[i]]["Destroyed_Damage"],
-                filtered[size[i]]["MANEUVERING"], filtered[size[i]]["STANDING"], filtered[size[i]]["UNKNOWN"], filtered[size[i]]["TAKEOFF"],
-                filtered[size[i]]["APPROACH"], filtered[size[i]]["CLIMB"], filtered[size[i]]["CRUISE"], filtered[size[i]]["DESCENT"],
-                filtered[size[i]]["LANDING"], filtered[size[i]]["GOAROUND"], filtered[size[i]]["TAXI"]
-                ]//.map(x=>x/filtered[size[i]]["Total_Accidents"])
-                var listaJ = [filtered[size[j]]["VMC"], filtered[size[j]]["IMC"],
-                filtered[size[j]]["Minor_Damage"], filtered[size[j]]["Substantial_Damage"], filtered[size[j]]["Destroyed_Damage"],
-                filtered[size[j]]["MANEUVERING"], filtered[size[j]]["STANDING"], filtered[size[j]]["UNKNOWN"], filtered[size[j]]["TAKEOFF"],
-                filtered[size[j]]["APPROACH"], filtered[size[j]]["CLIMB"], filtered[size[j]]["CRUISE"], filtered[size[j]]["DESCENT"],
-                filtered[size[j]]["LANDING"], filtered[size[j]]["GOAROUND"], filtered[size[j]]["TAXI"]]//.map(x=>x/filtered[size[j]]["Total_Accidents"])
+                var listaI = [filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Fatal"], filtered[size[i]]["Serious"], filtered[size[i]]["Minor"]]
+                var listaJ = [filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Fatal"], filtered[size[j]]["Serious"], filtered[size[j]]["Minor"]]
 
                 dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
             }
@@ -454,15 +445,19 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                     brushMap([size2[d]["STATE"]], "mouseon")
                     if (aggreg == "Crash.Country"){
                         mouseon_scatter(size2[d]["STATE"])
+                        mouseonParallel(size2[d]["STATE"])
                     }
                     if(aggreg == "Broad.Phase.of.Flight"){
                         mouseon_scatter(size2[d]["PHASE"])
+                        mouseonParallel(size2[d]["PHASE"])
                     }
                     if(aggreg == "Event.Month"){
                         mouseon_scatter(size2[d]["MONTH"])
+                        mouseonParallel(size2[d]["MONTH"])
                     }
                     if(aggreg == "Make"){
                         mouseon_scatter(size2[d]["MAKE"])
+                        mouseonParallel(size2[d]["MAKE"])
                     }
                 }else{
                     mouse_on(d);
@@ -519,6 +514,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                 mouse_out();
                 if(flights == true){
                     brushMap([size2[d]["STATE"]], "mouseout")
+                    mouseoutParallel()
                     if (aggreg == "Crash.Country"){
                         mouseout_scatter(size2[d]["STATE"])
                     }
@@ -749,18 +745,22 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
             brushMap(brushed, "brush")
             if (aggreg == "Crash.Country"){
                 brushScatter(brushed, true)
+                brushParallel(brushed)
             }
             if(aggreg == "Broad.Phase.of.Flight"){
                 brushed_points.forEach(d => brushed.push(size2[d]["PHASE"]))
                 brushScatter(brushed, true)
+                brushParallel(brushed)
             }
             if(aggreg == "Event.Month"){
                 brushed_points.forEach(d => brushed.push(size2[d]["MONTH"]))
                 brushScatter(brushed, true)
+                brushParallel(brushed)
             }
             if(aggreg == "Make"){
                 brushed_points.forEach(d => brushed.push(size2[d]["MAKE"]))
                 brushScatter(brushed, true)
+                brushParallel(brushed)
             }
         }else{
             brushMap(brushed_points, "brush")
