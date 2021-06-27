@@ -30,6 +30,7 @@ function fuffa(d){
     brushMap([], "unbrush")
     unbrush_mds()
     unbrushParallel()
+    punti_in_brushing = []
 }
 
 
@@ -37,6 +38,8 @@ var brushella = d3.brush()
     .extent([[0, 0], [1000, 1000]])
     .on("brush", fuffa)
     .on("end", highlightBrushedBubbles); 
+
+var punti_in_brushing = []
 
 // svg.append("g")
 //     .call(brush);
@@ -617,17 +620,23 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 mouse_on(type);
                 mouseon_mds(type);
                 brushMap([type], "mouseon")
-                brushParallel([type])
+                mouseonParallel(type)
             })
                 .on("mouseout", function (type) {
                     d3.selectAll(".legendina")
                         .style("opacity", 1);
-                    d3.selectAll(".bubble")
-                        .style("opacity", 1);
+                    if(punti_in_brushing.length == 0)
+                        d3.selectAll(".bubble").style("opacity", 1)
+                    else{
+                        d3.selectAll(".bubble").style("opacity", 0.1)
+                        punti_in_brushing.forEach(d => d.style.opacity = '1')
+                    }
+                    // d3.selectAll(".bubble")
+                    //     .style("opacity", 1);
                     mouse_out()
                     mouseout_mds(type)
                     brushMap([type], "mouseout")
-                    unbrushParallel()
+                    mouseoutParallel()
                 });
 
 
@@ -674,7 +683,7 @@ function highlightBrushedBubbles() {
     if (d3.event.selection != null) {
         var brush_coords = d3.brushSelection(this);
         brushed = []
-            
+        punti_in_brushing = []
         console.log(brush_coords)
         listanomi = []
         bubbles.filter(function () {
@@ -685,9 +694,14 @@ function highlightBrushedBubbles() {
             if(isBrushed(brush_coords, cx, cy)){
                 //console.log(this.textContent)
                 listanomi.push(this.textContent)
+                punti_in_brushing.push(this)
             }
             return !isBrushed(brush_coords, cx, cy);
         }).style("opacity", 0.1)
+        // if(brushed.length<1){
+        //     bubbles.style("opacity", 1)
+        //     return
+        // }
         d3.select('.selection').style('display','none')
         var aggrtype = document.getElementById("aggregationType").value;
         if (aggrtype == "Crash.Country"){

@@ -325,8 +325,9 @@ function mouseout_scatter(elem){
     }
 };
 
-
+var brushed_par = []
 function brushParallel(listBrush){
+    brushed_par = listBrush
     var svgParallel = d3.select("#parallel")
 
         // first every group turns grey NOT WORKING
@@ -345,9 +346,10 @@ function brushParallel(listBrush){
 }
 
 function unbrushParallel(listBrush){
+    brushed_par = []
     svgParallel.selectAll("path")
             .transition().duration(200)
-            .style("stroke", "#2ca25f")
+            .style("stroke", "#2c7bb6")
             .style("opacity", "1")
         mtooltip.transition()
             .duration(500)
@@ -375,8 +377,20 @@ function mouseonParallel(d){
 function mouseoutParallel(d){
     svgParallel.selectAll("path")
             .transition().duration(200)
-            .style("stroke", "#2c7bb6")
-            .style("opacity", "1")
+            .style("stroke", function(d){
+                if (d!=null && brushed_par.includes(d))
+                    return "red"
+                if (brushed_par.length == 0)
+                    return "#2c7bb6"
+                return "lightgrey"
+                })
+            .style("opacity",function(d){
+                if (d!=null && brushed_par.includes(d))
+                    return "1"
+                if (brushed_par.length == 0)
+                    return "1"
+                return "0.2"
+                } )
         mtooltip.transition()
             .duration(500)
             .style("opacity", 0);
