@@ -27,7 +27,7 @@ function fuffa(d){
     d3.selectAll(".bubble")
                 .style("opacity", 1)
                 // d3.select(this).call(brushella.move,null)
-
+    brushMap([], "unbrush")
 }
 
 
@@ -673,6 +673,23 @@ function highlightBrushedBubbles() {
             return !isBrushed(brush_coords, cx, cy);
         }).style("opacity", 0.1)
         d3.select('.selection').style('display','none')
+        var aggrtype = document.getElementById("aggregationType").value;
+        if (aggrtype == "Crash.Country"){
+            listanomi = []
+            bubbles.filter(function () {
+                var cx = this.transform['animVal'][0]['matrix']['e'],
+                    cy = this.transform['animVal'][0]['matrix']['f'];
+                //console.log(brush_coords, cx, cy)
+                //console.log(this, isBrushed(brush_coords, cx, cy))
+                if(isBrushed(brush_coords, cx, cy)){
+                    //console.log(this.textContent)
+                    listanomi.push(this.textContent)
+                }
+            })
+            brushMap(listanomi, "brush")
+        }
+
+        
         //d3.selectAll('.selection').remove()
         // d3.select('.handle handle--n').remove()
         // d3.select('.handle handle--e').remove()
