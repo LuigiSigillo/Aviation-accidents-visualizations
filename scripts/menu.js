@@ -288,6 +288,43 @@ function mouseout_scatter(elem){
 };
 
 
+function brushParallel(listBrush){
+    mtooltip.transition()
+            .duration(200)
+            .style("opacity", .9)
+    mtooltip.html(d)
+            .style("left", (d3.mouse(this)[0]) + "px")
+            .style("top", (d3.mouse(this)[1] - 25) + "px");
+
+    var svgParallel = d3.select("#parallel")
+
+        // first every group turns grey NOT WORKING
+        svgParallel.selectAll("path")
+            .transition().duration(200)
+            .style("stroke", "lightgrey")
+            .style("opacity", "0.2")
+        listBrush.forEach(d => {
+        // Second the hovered specie takes its colorParallel
+        svgParallel.selectAll(".line" + d)
+        .transition().duration(200)
+        .style("stroke", "#f03b20")
+        .style("opacity", "1")
+        });
+
+}
+
+function unbrushParallel(listBrush){
+    svgParallel.selectAll("path")
+            .transition().duration(200)
+            .style("stroke", "#2ca25f")
+            .style("opacity", "1")
+        mtooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+
+}
+
+
 
 function preset_selection() {
     //var user = $("input[type='radio'][name='preset']:checked").val();
