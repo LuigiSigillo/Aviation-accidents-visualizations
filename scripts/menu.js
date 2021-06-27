@@ -226,25 +226,54 @@ function mouse_out() {
 
 
 function mouseon_mds(elem){
-    var svg = d3.select("#mds").select("svg");
-    svg.attr("clip-path", "url(#clip)")
-            .selectAll("circle").filter(function (d) {
-        if (elem == d){
-            return true
-        }
-        return false
-    })
-        .classed("mouseon", true);
+    if (!flights){
+        var svg = d3.select("#mds").select("svg");
+        svg.attr("clip-path", "url(#clip)")
+                .selectAll("circle").filter(function (d) {
+            if (elem == d){
+                return true
+            }
+            return false
+        })
+            .classed("mouseon", true);
+    }else{
+        var svg = d3.select("#mds").select("svg");
+        svg.attr("clip-path", "url(#clip)")
+                .selectAll("circle").filter(function (d) {
+                    if (aggreg == "Crash.Country"){
+                        if (elem == size2[d]["STATE"]){
+                            return true
+                        }
+                    }
+                    if(aggreg == "Broad.Phase.of.Flight"){
+                        if (elem == size2[d]["PHASE"]){
+                            return true
+                        }
+                    }
+                    if(aggreg == "Event.Month"){
+                        if (elem == size2[d]["MONTH"]){
+                            return true
+                        }
+                    }
+                    if(aggreg == "Make"){
+                        if (elem == size2[d]["MAKE"]){
+                            return true
+                        }
+                    }
+                    return false
+        })
+            .classed("mouseon", true);
+    }
+    
 };
 
 function mouseout_mds(elem){
     var svg = d3.select("#mds").select("svg");
     svg.attr("clip-path", "url(#clip)")
             .selectAll("circle").filter(function (d) {
-        if (elem == d){
+        
             return true
-        }
-        return false
+
     })
         .classed("mouseon", false);
 };
@@ -256,8 +285,28 @@ function brush_mds(elem){
         if (elem.includes(d)){
             return true
         }
+        if (aggreg == "Crash.Country"){
+            if (elem.includes(size2[d]["STATE"])){
+                return true
+            }
+        }
+        if(aggreg == "Broad.Phase.of.Flight"){
+            if (elem.includes(size2[d]["PHASE"])){
+                return true
+            }
+        }
+        if(aggreg == "Event.Month"){
+            if (elem.includes(size2[d]["MONTH"])){
+                return true
+            }
+        }
+        if(aggreg == "Make"){
+            if (elem.includes(size2[d]["MAKE"])){
+                return true
+            }
+        }
         return false
-    })
+})
         .classed("brushed", true)
 }
 
