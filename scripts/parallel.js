@@ -32,7 +32,7 @@ function parallelCoord (aggregationType,map_key) {
 d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
     // var yearInput = document.getElementById("slider").value
 
-    dataset_dict = change(data, aggregationType, 2001, "false")
+    dataset_dict = change(data, aggregationType, 2020, "false")
 
     var i
     keys = Object.keys(dataset_dict),

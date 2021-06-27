@@ -10,7 +10,6 @@ function mouse_on(pippo) {
         year = 2020
         pippo = pippo.replace("par","")
     if (pippo.startsWith("2")){
-
         d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
             dataset_dict = change(data, "Event.Id", year, aggregated_by_year)
             //console.log("ciaoo", dataset_dict)
@@ -22,11 +21,6 @@ function mouse_on(pippo) {
             html += "<span>";
             try {
                 html += d['Item'];
-                html += "</span><br>";
-                html += "<span>";
-                html += "<a>Total Accidents: "
-                html += (d["Total_Accidents"]);
-                html += "</a>";
                 html += "</span><br>";
                 html += "<span>";
                 html += "<a>Fatalities: "
@@ -49,19 +43,15 @@ function mouse_on(pippo) {
                 html += "</a>";
                 html += "</span><br>";
                 html += "<span>";
-                html += "<a>VMC: "
-                html += (d["VMC"]);
-                html += " IMC: "
-                html += (d["IMC"]);
+                html += "<a>State: "
+                html += (d["STATE"]);
                 html += "</a>";
                 html += "</span><br>";
                 html += "<span>";
-                html += "<a>Destroyed: "
-                html += (d["Destroyed_Damage"]);
-                html += " Substantial: "
-                html += (d["Substantial_Damage"]);
-                html += " Minor: "
-                html += (d["Minor_Damage"]);
+                html += "<a>Phase: "
+                html += (d["PHASE"]);
+                html += " Make :"
+                html += (d["MAKE"]);
             }
             catch (error) {
                 html += pippo;
@@ -118,7 +108,6 @@ function mouse_on(pippo) {
     d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         dataset_dict = change(data, aggr, year, aggregated_by_year)
         //console.log("ciaoo", dataset_dict)
-        console.log("sssa",pippo)
         d = dataset_dict[pippo]
         console.log(d)
         var html = "";
@@ -350,7 +339,7 @@ function brushParallel(listBrush){
         // Second the hovered specie takes its colorParallel
         svgParallel.selectAll(".line" + d)
         .transition().duration(200)
-        .style("stroke", "#f03b20")
+        .style("stroke", "black")
         .style("opacity", "1")
         });
 
@@ -390,7 +379,7 @@ function mouseoutParallel(d){
             .transition().duration(200)
             .style("stroke", function(d){
                 if (d!=null && brushed_par.includes(d))
-                    return "red"
+                    return "black"
                 if (brushed_par.length == 0)
                     return "#2c7bb6"
                 return "lightgrey"
