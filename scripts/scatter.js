@@ -424,12 +424,16 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .attr("class", "bubble")
                 .attr("transform", function (d) { return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")" })
                 .on("mouseover", function (d) {
+                    // this.style.strokeWidth = 2
+                    // this.childNodes[0].style.stroke = 'green'
                     mouse_on(d.Item);
                     mouseon_mds(d.Item);
                     brushMap([d.Item], "mouseon")
                     brushParallel([d.Item])
                 })
                 .on("mouseout", function (d) {
+                    // this.style.strokeWidth = 1
+                    // this.childNodes[0].style.stroke = 'blue'
                     mouse_out()
                     mouseout_mds(d.Item)
                     brushMap([d.Item], "mouseout")
@@ -616,7 +620,10 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 d3.selectAll(".bubble")
                     .style("opacity", 0.1)
                     .filter(function (d) { j++; return keys[j] == type; })
-                    .style("opacity", 1);
+                    .style("opacity", 1)
+                    // .style("stroke-width", 3)
+                    // .select(".circle_scatter")
+                    // .style("stroke", "green");
                 mouse_on(type);
                 mouseon_mds(type);
                 brushMap([type], "mouseon")
@@ -627,8 +634,14 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                         .style("opacity", 1);
                     if(punti_in_brushing.length == 0)
                         d3.selectAll(".bubble").style("opacity", 1)
+                        // .style("stroke-width", 1)
+                        // .select(".circle_scatter")
+                        // .style("stroke", "blue");
                     else{
                         d3.selectAll(".bubble").style("opacity", 0.1)
+                        // .style("stroke-width", 7)
+                        // .select(".circle_scatter")
+                        // .style("stroke", "blue");
                         punti_in_brushing.forEach(d => d.style.opacity = '1')
                     }
                     // d3.selectAll(".bubble")
