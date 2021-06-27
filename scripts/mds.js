@@ -369,6 +369,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                     brushed = []
                     brushed_points.forEach(d => brushed.push(size2[d]["STATE"]))
                     brushMap(brushed, "unbrush")
+                    unbrushParallel()
                     if (aggreg == "Crash.Country"){
                         brushScatter(brushed, false)
                     }
@@ -388,7 +389,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                 }else{
                     brushMap(brushed_points, "unbrush")
                     brushScatter(brushed_points, false)
-    
+                    unbrushParallel()
                 }
                 brushed_points.forEach(function (d) {
                     d3.select("#my_dataviz").selectAll('path').each(function (t) {
@@ -764,6 +765,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
         }else{
             brushMap(brushed_points, "brush")
             brushScatter(brushed_points, true)
+            brushParallel(brushed_points)
         }
         //Interaction with map vera
         brushed_points.forEach(function (d) {
