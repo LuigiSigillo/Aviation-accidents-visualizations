@@ -1,7 +1,7 @@
 /* Create HTML for mouseover */
 function mouse_on(pippo) {
     var aggr = document.getElementById("aggregationType").value;
-    //console.log('AGGR: ', aggr) 
+    console.log('AGGR: ', aggr) 
     var aggregated_by_year = document.getElementById("aggregationYear").value;
     //console.log('AGGREGATED YEAR: ', aggregated_by_year)
     var year = document.getElementById('slider').value

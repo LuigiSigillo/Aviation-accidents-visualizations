@@ -77,7 +77,7 @@ function change(data, subject, year, single_year) {
     } else{
         var res = d3version3.nest()
         .key(function (d) { return d[subject]; })
-        .rollup(function (v) {console.log("jjj", v[0]["Total.Fatal.Injuries"])
+        .rollup(function (v) {console.log("jjj", v[0]["Event.Date"].split("-")[1])
             return {
                 Item: v[0][subject],
                 Total_Accidents: 1,
@@ -103,7 +103,7 @@ function change(data, subject, year, single_year) {
                 TAXI: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "TAXI"; }),
                 STATE: v[0]["Crash.Country"],
                 PHASE: v[0]["Broad.Phase.of.Flight"],
-                MONTH: v[0]["Event.Date"].split("-")[1],
+                MONTH: v[0]["Event.Month"],
                 MAKE: v[0]["Make"]
             };
         })

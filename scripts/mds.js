@@ -365,6 +365,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                     id.style('stroke-width', '0.5');
                 }
                 if(flights == true){
+                    console.log("AAAAAA",aggreg)
                     brushed = []
                     brushed_points.forEach(d => brushed.push(size2[d]["STATE"]))
                     brushMap(brushed, "unbrush")
@@ -376,6 +377,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                         brushScatter(brushed, false)
                     }
                     if(aggreg == "Event.Month"){
+                        
                         brushed_points.forEach(d => brushed.push(size2[d]["MONTH"]))
                         brushScatter(brushed, false)
                     }
