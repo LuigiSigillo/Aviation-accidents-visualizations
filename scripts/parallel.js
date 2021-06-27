@@ -24,7 +24,8 @@ d3version3.selectAll(".checkbox").each(function(d) {
 })
 var aggregationType = document.getElementById("aggregationType").value
 
-function parallelCoord (aggregationType,map_key) {        
+function parallelCoord (aggregationType,map_key) {
+    console.log("vengo chiamata")        
     svgParallel.selectAll("path").remove()
     svgParallel.selectAll("g").remove()
 
@@ -84,7 +85,7 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         // // Second the hovered specie takes its colorParallel
         svgParallel.selectAll(".line" + d)
             .transition().duration(200)
-            .style("stroke", "#f03b20")
+            .style("stroke", "green")
             .style("opacity", "1")
     }
 
@@ -93,7 +94,7 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         
         svgParallel.selectAll("path")
             .transition().duration(200)
-            .style("stroke", "#2ca25f")
+            .style("stroke", "#2c7bb6")
             .style("opacity", "1")
         mtooltip.transition()
             .duration(500)
@@ -110,13 +111,11 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
     function calc_max(dataset_dict){
         var max = 0
         for (var elem in dataset_dict) {
-            console.log(elem)
             if (max<dataset_dict[elem][map_key])
                 max = dataset_dict[elem][map_key]
         }
         return max
     }
-    // The path function take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
     var dict_dataset_dict = {}
     var max = 0
 
@@ -126,6 +125,7 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         if (max<nuov_max)
             max = nuov_max
     })
+    // The path function take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
 
     function path(d) {
         return d3.line()(dimensions.map(function (year) {
@@ -149,7 +149,7 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         .attr("class", function (d) { return "line" + d })
         .attr("d", path)
         .style("fill", "none")
-        .style("stroke", "#2ca25f")
+        .style("stroke", "#2c7bb6")
         .style('stroke-width', "3")
         .style("opacity", 1)
         .on("mouseover", highlight)

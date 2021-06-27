@@ -366,6 +366,34 @@ function unbrushParallel(listBrush){
 
 }
 
+function mouseonParallel(d){
+    var svgParallel = d3.select("#parallel")
+
+        // first every group turns grey NOT WORKING
+        svgParallel.selectAll("path")
+            .transition().duration(200)
+            .style("stroke", "lightgrey")
+            .style("opacity", "0.2")
+        
+        // Second the hovered specie takes its colorParallel
+        svgParallel.selectAll(".line" + d)
+        .transition().duration(200)
+        .style("stroke", "green")
+        .style("opacity", "1")
+
+}
+
+function mouseoutParallel(d){
+    svgParallel.selectAll("path")
+            .transition().duration(200)
+            .style("stroke", "#2c7bb6")
+            .style("opacity", "1")
+        mtooltip.transition()
+            .duration(500)
+            .style("opacity", 0);
+
+}
+
 
 
 function preset_selection() {

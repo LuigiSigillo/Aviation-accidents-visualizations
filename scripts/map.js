@@ -172,7 +172,10 @@ function brushMap(brushList, mode) {
                         .style('stroke', function (d){
                             if (mode=="mouseon")
                                 if (e[id_name_map[d.id]] != undefined && brushList.includes(e[id_name_map[d.id]]['Item']))
-                                    return '#2c7bb6'
+                                    return 'green'
+                                if (mode=="brush")
+                                    if (e[id_name_map[d.id]] != undefined && brushList.includes(e[id_name_map[d.id]]['Item']))
+                                        return 'red'
                             return 'black'
                         })
                         .style('stroke-width', function (d) {
@@ -189,7 +192,8 @@ function brushMap(brushList, mode) {
                             if(document.getElementById("aggregationType").value == "Crash.Country") {
                                 createNameHtml(d)
                                 mouseon_mds(id_name_map[d.id])
-                                brushParallel([id_name_map[d.id]])
+                                mouseonParallel([id_name_map[d.id]])
+                                //brushParallel([id_name_map[d.id]])
                                 mouse_on(id_name_map[d.id])
                                 mouseon_scatter(id_name_map[d.id])
                             }
@@ -201,8 +205,8 @@ function brushMap(brushList, mode) {
                                 $(this).attr("fill-opacity", "1.0");
                                 $("#tooltip-container").hide();
                                 mouseout_mds(id_name_map[d.id])
-                                unbrushParallel()
-
+                                //unbrushParallel()
+                                mouseoutParallel()
                                 mouseout_scatter(id_name_map[d.id])
                                 }
                         });
@@ -283,9 +287,10 @@ function brushMap(brushList, mode) {
                         var aggregationType = document.getElementById("aggregationType").value
                         cb = d3version3.select(this);
                         grp = cb.property("value")
-                        if (cb.property("checked"))
+                        if (cb.property("checked")) {
                             updateMapColors(grp)
                             parallelCoord(aggregationType,grp)
+                        }
                         updateLegend()
                     })
                 }
