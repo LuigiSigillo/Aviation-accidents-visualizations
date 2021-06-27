@@ -15,16 +15,22 @@ var mtooltip = d3.select("#parallel").append("div")
     .attr("class", "mdsTooltip")
     .style("opacity", 0);
 // Parse the Data
+var map_key
+d3version3.selectAll(".checkbox").each(function(d) {
+    cb = d3.select(this);
+    grp = cb.property("value")
+    if (cb.property("checked"))
+        map_key = grp
+})
+var aggregationType = document.getElementById("aggregationType").value
+
+function parallelCoord (aggregationType,map_key) {        
+    svgParallel.selectAll("path").remove()
+    svgParallel.selectAll("g").remove()
+
 d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
-    var aggregationType = document.getElementById("aggregationType").value
-    var map_key
     // var yearInput = document.getElementById("slider").value
-    d3version3.selectAll(".checkbox").each(function(d) {
-        cb = d3.select(this);
-        grp = cb.property("value")
-        if (cb.property("checked"))
-            map_key = grp
-    })
+
     dataset_dict = change(data, aggregationType, 2001, "false")
 
     var i
@@ -53,6 +59,7 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
 
     // Highlight the specie that is hovered
     var highlight = function (d) {
+        //highlight
         mtooltip.transition()
             .duration(200)
             .style("opacity", .9)
@@ -60,6 +67,12 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
             .style("left", (d3.mouse(this)[0]) + "px")
             .style("top", (d3.mouse(this)[1] - 25) + "px");
 
+        // mouse on
+
+        mouseon_mds(d)
+        mouse_on("par"+d)
+        mouseon_scatter(d)
+        brushMap([d], "mouseon")
 
         // first every group turns grey NOT WORKING
         svgParallel.selectAll("path")
@@ -71,12 +84,11 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
             .transition().duration(200)
             .style("stroke", "#f03b20")
             .style("opacity", "1")
-            .text
     }
 
     // Unhighlight
     var doNotHighlight = function (d) {
-        console.log(d)
+        
         svgParallel.selectAll("path")
             .transition().duration(200)
             .style("stroke", "#2ca25f")
@@ -84,13 +96,19 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         mtooltip.transition()
             .duration(500)
             .style("opacity", 0);
+
+        mouse_out()
+        $(this).attr("fill-opacity", "1.0");
+        $("#tooltip-container").hide();
+        brushMap([d], "mouseout")
+        mouseout_mds(d)
+        mouseout_scatter(d)
     }
 
     // The path function take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
     function path(d) {
         return d3.line()(dimensions.map(function (year) {
             dataset_dict = change(data, aggregationType, year, "true")
-            console.log(map_key)
             try {
                 return [x(year), y[year](dataset_dict[d][map_key])]
             }
@@ -133,3 +151,6 @@ d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         .style("fill", "black")
 
 })
+}
+
+parallelCoord(aggregationType,map_key)

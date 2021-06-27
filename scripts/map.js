@@ -274,19 +274,21 @@ function brushMap(brushList, mode) {
                     }
                     );
 
-                function update() {
+                function updateCheckBox() {
                     // For each check box:
                     d3version3.selectAll(".checkbox").each(function (d) {
+                        var aggregationType = document.getElementById("aggregationType").value
                         cb = d3version3.select(this);
                         grp = cb.property("value")
                         if (cb.property("checked"))
                             updateMapColors(grp)
+                            parallelCoord(aggregationType,grp)
                         updateLegend()
                     })
                 }
 
                 // When a button change, I run the update function
-                d3version3.selectAll(".checkbox").on("change", update);
+                d3version3.selectAll(".checkbox").on("change", updateCheckBox);
 
                 window.onresize = function () {
                     width = window.innerWidth;
