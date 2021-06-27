@@ -330,7 +330,7 @@ function brushParallel(listBrush){
     brushed_par = listBrush
     var svgParallel = d3.select("#parallel")
 
-        // first every group turns grey NOT WORKING
+        // first every group turns grey 
         svgParallel.selectAll("path")
             .transition().duration(200)
             .style("stroke", "lightgrey")
@@ -348,6 +348,9 @@ function brushParallel(listBrush){
 function unbrushParallel(listBrush){
     brushed_par = []
     svgParallel.selectAll("path")
+    .filter(function (d,i) {
+        return d != null
+    })
             .transition().duration(200)
             .style("stroke", "#2c7bb6")
             .style("opacity", "1")
@@ -376,6 +379,9 @@ function mouseonParallel(d){
 
 function mouseoutParallel(d){
     svgParallel.selectAll("path")
+    .filter(function (d,i) {
+        return d != null
+    })
             .transition().duration(200)
             .style("stroke", function(d){
                 if (d!=null && brushed_par.includes(d))
