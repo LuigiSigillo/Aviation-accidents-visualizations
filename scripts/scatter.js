@@ -28,7 +28,7 @@ function fuffa(d){
                 .style("opacity", 1)
                 // d3.select(this).call(brushella.move,null)
     brushMap([], "unbrush")
-    brush_mds([], "unbrush")
+    unbrush_mds()
 
 }
 
@@ -683,7 +683,7 @@ function highlightBrushedBubbles() {
         if (aggrtype == "Crash.Country"){
             brushMap(listanomi, "brush")
         }
-        brush_mds(listanomi, "brush")
+        brush_mds(listanomi)
 
 
         
