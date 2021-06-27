@@ -360,7 +360,7 @@ function unbrushParallel(listBrush){
     brushed_par = []
     svgParallel.selectAll("path")
             .transition().duration(200)
-            .style("stroke", "#2ca25f")
+            .style("stroke", "#2c7bb6")
             .style("opacity", "1")
         mtooltip.transition()
             .duration(500)
