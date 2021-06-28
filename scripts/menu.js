@@ -214,7 +214,7 @@ function mouse_on(pippo) {
 }
 
 function mouse_out() {
-    d3.select('#tooltip-container-menu').style('display', 'none')
+    //d3.select('#tooltip-container-menu').style('display', 'none')
 }
 
 
