@@ -45,7 +45,7 @@
             <div id="menu_tendina" class="menu_tendina">
 
                 <div id="computation" class="custom-select">
-                    <label for="aggregationType"><b>Aggregation type:</b></label>
+                    <label for="aggregationType"><b>Aggregation:</b></label>
                     <select id='aggregationType'>
                         <option value="Event.Month">Month</option>
                         <option value="Crash.Country" selected>State</option>
@@ -58,7 +58,7 @@
                         <option value="false" selected>No</option>
 
                     </select>
-                    <label for="mdsType"><b>MDS type:</b></label>
+                    <label for="mdsType"><b>MDS:</b></label>
                     <select id='mdsType'>
                         <option value="std" selected>Incidents</option>
                         <option value="percentage">Incidents percentage</option>
@@ -74,6 +74,8 @@
                         <option value="user3">Military</option>
 
                     </select>
+                    <input type="checkbox" id="flights_checkbox" name="flights_checkbox" value="true">
+                    <label for="vehicle1"> Flights</label><br>
                     <script>
                         var mdsType = document.getElementById("presetType");
                         mdsType.onchange = preset_selection
