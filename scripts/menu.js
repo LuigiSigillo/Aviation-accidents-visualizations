@@ -404,7 +404,6 @@ function mouseoutParallel(d){
 }
 
 
-
 function preset_selection() {
     //var user = $("input[type='radio'][name='preset']:checked").val();
     var user = document.getElementById("presetType").value

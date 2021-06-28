@@ -5,7 +5,7 @@ var brushing = false;
 var brushed_points = [];
 
 var flights;
-var aggreg 
+var aggreg
 /*
     "Crash.Country",
     "Total.Fatal.Injuries",
@@ -91,76 +91,111 @@ Returns:    dissM-->    (map)       DissimilaritM
 */
 function chooseCharacteristic(data, year, aggr, keyword, subject) {
     var dissM = [];
-    if (keyword == "std") {
-        filtered = change(data, subject, year, aggr)
-        size = Object.keys(filtered)
-        size2 = filtered
-        for (var i = 0; i < size.length; i++) {
-            dissM[i] = [];
-            for (var j = 0; j < size.length; j++) {
-                var listaI = [filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Fatal"], filtered[size[i]]["Serious"], filtered[size[i]]["Minor"]]
-                var listaJ = [filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Fatal"], filtered[size[j]]["Serious"], filtered[size[j]]["Minor"]]
+    flights = document.getElementById("flights_checkbox").checked
+    if (!flights) {
+        if (keyword == "std") {
+            filtered = change(data, subject, year, aggr)
+            size = Object.keys(filtered)
+            size2 = filtered
+            for (var i = 0; i < size.length; i++) {
+                dissM[i] = [];
+                for (var j = 0; j < size.length; j++) {
+                    var listaI = [filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Fatal"], filtered[size[i]]["Serious"], filtered[size[i]]["Minor"]]
+                    var listaJ = [filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Fatal"], filtered[size[j]]["Serious"], filtered[size[j]]["Minor"]]
 
-                dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
+                    dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
+                }
+            }
+        }
+        else if (keyword == "percentage") {
+
+            filtered = change(data, subject, year, aggr)
+            console.log(filtered)
+            size = Object.keys(filtered)
+            size2 = filtered
+            for (var i = 0; i < size.length; i++) {
+                dissM[i] = [];
+                for (var j = 0; j < size.length; j++) {
+                    var listaI = [filtered[size[i]]["Fatal"] / filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Serious"] / filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Minor"] / filtered[size[i]]["Total_Accidents"]]
+                    var listaJ = [filtered[size[j]]["Fatal"] / filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Serious"] / filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Minor"] / filtered[size[j]]["Total_Accidents"]]
+
+                    dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
+                }
+            }
+        }
+        else if (keyword == "kind") {
+            filtered = change(data, subject, year, aggr)
+            console.log("COSA", filtered)
+            size = Object.keys(filtered)
+            size2 = filtered
+            for (var i = 0; i < size.length; i++) {
+                dissM[i] = [];
+                for (var j = 0; j < size.length; j++) {
+                    var listaI = [filtered[size[i]]["VMC"], filtered[size[i]]["IMC"],
+                    filtered[size[i]]["Minor_Damage"], filtered[size[i]]["Substantial_Damage"], filtered[size[i]]["Destroyed_Damage"],
+                    filtered[size[i]]["MANEUVERING"], filtered[size[i]]["STANDING"], filtered[size[i]]["UNKNOWN"], filtered[size[i]]["TAKEOFF"],
+                    filtered[size[i]]["APPROACH"], filtered[size[i]]["CLIMB"], filtered[size[i]]["CRUISE"], filtered[size[i]]["DESCENT"],
+                    filtered[size[i]]["LANDING"], filtered[size[i]]["GOAROUND"], filtered[size[i]]["TAXI"]
+                    ]//.map(x=>x/filtered[size[i]]["Total_Accidents"])
+                    var listaJ = [filtered[size[j]]["VMC"], filtered[size[j]]["IMC"],
+                    filtered[size[j]]["Minor_Damage"], filtered[size[j]]["Substantial_Damage"], filtered[size[j]]["Destroyed_Damage"],
+                    filtered[size[j]]["MANEUVERING"], filtered[size[j]]["STANDING"], filtered[size[j]]["UNKNOWN"], filtered[size[j]]["TAKEOFF"],
+                    filtered[size[j]]["APPROACH"], filtered[size[j]]["CLIMB"], filtered[size[j]]["CRUISE"], filtered[size[j]]["DESCENT"],
+                    filtered[size[j]]["LANDING"], filtered[size[j]]["GOAROUND"], filtered[size[j]]["TAXI"]]//.map(x=>x/filtered[size[j]]["Total_Accidents"])
+
+                    dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
+                }
             }
         }
     }
-    else if (keyword == "percentage") {
-        
-        filtered = change(data, subject, year, aggr)
-        console.log(filtered)
-        size = Object.keys(filtered)
-        size2 = filtered
-        for (var i = 0; i < size.length; i++) {
-            dissM[i] = [];
-            for (var j = 0; j < size.length; j++) {
-                var listaI = [filtered[size[i]]["Fatal"] / filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Serious"] / filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Minor"] / filtered[size[i]]["Total_Accidents"]]
-                var listaJ = [filtered[size[j]]["Fatal"] / filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Serious"] / filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Minor"] / filtered[size[j]]["Total_Accidents"]]
-
-                dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
-            }
-        }
-    }else if (keyword == "flights") {
-        
+    else{
         filtered = change(data, "Event.Id", year, aggr)
-        console.log(filtered)
         size = Object.keys(filtered)
         size2 = filtered
-        for (var i = 0; i < size.length; i++) {
-            dissM[i] = [];
-            for (var j = 0; j < size.length; j++) {
-                var listaI = [filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Fatal"], filtered[size[i]]["Serious"], filtered[size[i]]["Minor"]]
-                var listaJ = [filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Fatal"], filtered[size[j]]["Serious"], filtered[size[j]]["Minor"]]
+        if (keyword == "std") {
+            for (var i = 0; i < size.length; i++) {
+                dissM[i] = [];
+                for (var j = 0; j < size.length; j++) {
+                    var listaI = [filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Fatal"], filtered[size[i]]["Serious"], filtered[size[i]]["Minor"]]
+                    var listaJ = [filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Fatal"], filtered[size[j]]["Serious"], filtered[size[j]]["Minor"]]
 
-                dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
+                    dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
+                }
+            }
+        }
+        else if (keyword == "percentage") {
+
+            for (var i = 0; i < size.length; i++) {
+                dissM[i] = [];
+                for (var j = 0; j < size.length; j++) {
+                    var listaI = [filtered[size[i]]["Fatal"] / filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Serious"] / filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Minor"] / filtered[size[i]]["Total_Accidents"]]
+                    var listaJ = [filtered[size[j]]["Fatal"] / filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Serious"] / filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Minor"] / filtered[size[j]]["Total_Accidents"]]
+
+                    dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
+                }
+            }
+        }
+        else if (keyword == "kind") {
+            for (var i = 0; i < size.length; i++) {
+                dissM[i] = [];
+                for (var j = 0; j < size.length; j++) {
+                    var listaI = [filtered[size[i]]["VMC"], filtered[size[i]]["IMC"],
+                    filtered[size[i]]["Minor_Damage"], filtered[size[i]]["Substantial_Damage"], filtered[size[i]]["Destroyed_Damage"],
+                    filtered[size[i]]["MANEUVERING"], filtered[size[i]]["STANDING"], filtered[size[i]]["UNKNOWN"], filtered[size[i]]["TAKEOFF"],
+                    filtered[size[i]]["APPROACH"], filtered[size[i]]["CLIMB"], filtered[size[i]]["CRUISE"], filtered[size[i]]["DESCENT"],
+                    filtered[size[i]]["LANDING"], filtered[size[i]]["GOAROUND"], filtered[size[i]]["TAXI"]
+                    ]//.map(x=>x/filtered[size[i]]["Total_Accidents"])
+                    var listaJ = [filtered[size[j]]["VMC"], filtered[size[j]]["IMC"],
+                    filtered[size[j]]["Minor_Damage"], filtered[size[j]]["Substantial_Damage"], filtered[size[j]]["Destroyed_Damage"],
+                    filtered[size[j]]["MANEUVERING"], filtered[size[j]]["STANDING"], filtered[size[j]]["UNKNOWN"], filtered[size[j]]["TAKEOFF"],
+                    filtered[size[j]]["APPROACH"], filtered[size[j]]["CLIMB"], filtered[size[j]]["CRUISE"], filtered[size[j]]["DESCENT"],
+                    filtered[size[j]]["LANDING"], filtered[size[j]]["GOAROUND"], filtered[size[j]]["TAXI"]]//.map(x=>x/filtered[size[j]]["Total_Accidents"])
+
+                    dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
+                }
             }
         }
     }
-    else if (keyword == "kind") {
-        filtered = change(data, subject, year, aggr)
-        console.log("COSA", filtered)
-        size = Object.keys(filtered)
-        size2 = filtered
-        for (var i = 0; i < size.length; i++) {
-            dissM[i] = [];
-            for (var j = 0; j < size.length; j++) {
-                var listaI = [filtered[size[i]]["VMC"], filtered[size[i]]["IMC"],
-                filtered[size[i]]["Minor_Damage"], filtered[size[i]]["Substantial_Damage"], filtered[size[i]]["Destroyed_Damage"],
-                filtered[size[i]]["MANEUVERING"], filtered[size[i]]["STANDING"], filtered[size[i]]["UNKNOWN"], filtered[size[i]]["TAKEOFF"],
-                filtered[size[i]]["APPROACH"], filtered[size[i]]["CLIMB"], filtered[size[i]]["CRUISE"], filtered[size[i]]["DESCENT"],
-                filtered[size[i]]["LANDING"], filtered[size[i]]["GOAROUND"], filtered[size[i]]["TAXI"]
-                ]//.map(x=>x/filtered[size[i]]["Total_Accidents"])
-                var listaJ = [filtered[size[j]]["VMC"], filtered[size[j]]["IMC"],
-                filtered[size[j]]["Minor_Damage"], filtered[size[j]]["Substantial_Damage"], filtered[size[j]]["Destroyed_Damage"],
-                filtered[size[j]]["MANEUVERING"], filtered[size[j]]["STANDING"], filtered[size[j]]["UNKNOWN"], filtered[size[j]]["TAKEOFF"],
-                filtered[size[j]]["APPROACH"], filtered[size[j]]["CLIMB"], filtered[size[j]]["CRUISE"], filtered[size[j]]["DESCENT"],
-                filtered[size[j]]["LANDING"], filtered[size[j]]["GOAROUND"], filtered[size[j]]["TAXI"]]//.map(x=>x/filtered[size[j]]["Total_Accidents"])
-
-                dissM[i][j] = ~~(euclidean_distance(listaI, listaJ));
-            }
-        }
-    }
-
     return dissM
 
 }
@@ -256,11 +291,6 @@ Params:     element-->  (d3 elements)   points
 Returns:    //
 */
 function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
-    if (document.getElementById("mdsType").value == "flights"){
-        flights = true
-    }else{
-        flights = false
-    }
     aggreg = document.getElementById("aggregationType").value;
     params = params || {};
     var padding = params.padding || 32,
@@ -355,29 +385,29 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                     });
                     id.style('stroke-width', '0.5');
                 }
-                if(flights == true){
-                    console.log("AAAAAA",aggreg)
+                if (flights == true) {
+                    console.log("AAAAAA", aggreg)
                     brushed = []
                     brushed_points.forEach(d => brushed.push(size2[d]["STATE"]))
                     brushMap(brushed, "unbrush")
                     unbrushParallel()
-                    if (aggreg == "Crash.Country"){
+                    if (aggreg == "Crash.Country") {
                         brushScatter(brushed, false)
                     }
-                    if(aggreg == "Broad.Phase.of.Flight"){
+                    if (aggreg == "Broad.Phase.of.Flight") {
                         brushed_points.forEach(d => brushed.push(size2[d]["PHASE"]))
                         brushScatter(brushed, false)
                     }
-                    if(aggreg == "Event.Month"){
-                        
+                    if (aggreg == "Event.Month") {
+
                         brushed_points.forEach(d => brushed.push(size2[d]["MONTH"]))
                         brushScatter(brushed, false)
                     }
-                    if(aggreg == "Make"){
+                    if (aggreg == "Make") {
                         brushed_points.forEach(d => brushed.push(size2[d]["MAKE"]))
                         brushScatter(brushed, false)
                     }
-                }else{
+                } else {
                     brushMap(brushed_points, "unbrush")
                     brushScatter(brushed_points, false)
                     unbrushParallel()
@@ -414,7 +444,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
         var mtooltip = element.append("div")
             .attr("class", "mdsTooltip")
             .style("opacity", 0);
-        
+
         console.log(labels, "aaaa")
         var nodes = svg.attr("clip-path", "url(#clip)")
             .selectAll("circle")
@@ -440,35 +470,35 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                         return terName == d;
                     });
                     id.style('stroke-width', '2');
-                if(flights == true){
-                    mouse_on(d)
-                    brushMap([size2[d]["STATE"]], "mouseon")
-                    if (aggreg == "Crash.Country"){
-                        mouseon_scatter(size2[d]["STATE"])
-                        mouseonParallel(size2[d]["STATE"])
+                    if (flights == true) {
+                        mouse_on(d)
+                        brushMap([size2[d]["STATE"]], "mouseon")
+                        if (aggreg == "Crash.Country") {
+                            mouseon_scatter(size2[d]["STATE"])
+                            mouseonParallel(size2[d]["STATE"])
+                        }
+                        if (aggreg == "Broad.Phase.of.Flight") {
+                            mouseon_scatter(size2[d]["PHASE"])
+                            mouseonParallel(size2[d]["PHASE"])
+                        }
+                        if (aggreg == "Event.Month") {
+                            mouseon_scatter(size2[d]["MONTH"])
+                            mouseonParallel(size2[d]["MONTH"])
+                        }
+                        if (aggreg == "Make") {
+                            mouseon_scatter(size2[d]["MAKE"])
+                            mouseonParallel(size2[d]["MAKE"])
+                        }
+                    } else {
+                        mouse_on(d);
+                        mouseon_scatter(d)
+                        brushMap([d], "mouseon")
+                        mouseonParallel(d)
                     }
-                    if(aggreg == "Broad.Phase.of.Flight"){
-                        mouseon_scatter(size2[d]["PHASE"])
-                        mouseonParallel(size2[d]["PHASE"])
-                    }
-                    if(aggreg == "Event.Month"){
-                        mouseon_scatter(size2[d]["MONTH"])
-                        mouseonParallel(size2[d]["MONTH"])
-                    }
-                    if(aggreg == "Make"){
-                        mouseon_scatter(size2[d]["MAKE"])
-                        mouseonParallel(size2[d]["MAKE"])
-                    }
-                }else{
-                    mouse_on(d);
-                    mouseon_scatter(d)
-                    brushMap([d], "mouseon")
-                    mouseonParallel(d)
-                }
                     // style brushed circles
                     nodes.selectAll("circle").filter(function (r) {
                         console.log(r)
-                        if (r== d)
+                        if (r == d)
                             return true
 
                         return false
@@ -512,23 +542,23 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
             })
             .on("mouseout", function (d) {
                 mouse_out();
-                if(flights == true){
+                if (flights == true) {
                     brushMap([size2[d]["STATE"]], "mouseout")
                     mouseoutParallel()
-                    if (aggreg == "Crash.Country"){
+                    if (aggreg == "Crash.Country") {
                         mouseout_scatter(size2[d]["STATE"])
                     }
-                    if(aggreg == "Broad.Phase.of.Flight"){
+                    if (aggreg == "Broad.Phase.of.Flight") {
                         mouseout_scatter(size2[d]["PHASE"])
                     }
-                    if(aggreg == "Event.Month"){
+                    if (aggreg == "Event.Month") {
                         mouseout_scatter(size2[d]["MONTH"])
                     }
-                    if(aggreg == "Make"){
+                    if (aggreg == "Make") {
                         mouseout_scatter(size2[d]["MAKE"])
                     }
-                }else{
-    
+                } else {
+
                     brushMap([d], "mouseout")
                     //brushScatter([d], false)
                     mouseout_scatter(d)
@@ -739,30 +769,30 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
         }
         //INTERACTIONS WITH PC
         MDS_PC_LOCK = true
-        if(flights == true){
+        if (flights == true) {
             brushed = []
             brushed_points.forEach(d => brushed.push(size2[d]["STATE"]))
             brushMap(brushed, "brush")
-            if (aggreg == "Crash.Country"){
+            if (aggreg == "Crash.Country") {
                 brushScatter(brushed, true)
                 brushParallel(brushed)
             }
-            if(aggreg == "Broad.Phase.of.Flight"){
+            if (aggreg == "Broad.Phase.of.Flight") {
                 brushed_points.forEach(d => brushed.push(size2[d]["PHASE"]))
                 brushScatter(brushed, true)
                 brushParallel(brushed)
             }
-            if(aggreg == "Event.Month"){
+            if (aggreg == "Event.Month") {
                 brushed_points.forEach(d => brushed.push(size2[d]["MONTH"]))
                 brushScatter(brushed, true)
                 brushParallel(brushed)
             }
-            if(aggreg == "Make"){
+            if (aggreg == "Make") {
                 brushed_points.forEach(d => brushed.push(size2[d]["MAKE"]))
                 brushScatter(brushed, true)
                 brushParallel(brushed)
             }
-        }else{
+        } else {
             brushMap(brushed_points, "brush")
             brushScatter(brushed_points, true)
             brushParallel(brushed_points)
