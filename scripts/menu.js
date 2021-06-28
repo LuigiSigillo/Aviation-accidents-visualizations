@@ -352,7 +352,9 @@ function unbrushParallel(listBrush){
         return d != null
     })
             .transition().duration(200)
-            .style("stroke", "#2c7bb6")
+            .style("stroke", function (d) {if (d =="AVG")
+            return "red"
+            return "#2c7bb6"})
             .style("opacity", "1")
         mtooltip.transition()
             .duration(500)
@@ -386,8 +388,11 @@ function mouseoutParallel(d){
             .style("stroke", function(d){
                 if (d!=null && brushed_par.includes(d))
                     return "black"
-                if (brushed_par.length == 0)
+                if (brushed_par.length == 0) {
+                    if (d =="AVG")
+                        return "red"
                     return "#2c7bb6"
+                }
                 return "lightgrey"
                 })
             .style("opacity",function(d){

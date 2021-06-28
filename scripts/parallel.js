@@ -97,7 +97,10 @@ function parallelCoord(aggregationType, map_key) {
                     return d != null
                 })
                 .transition().duration(200)
-                .style("stroke", "#2c7bb6")
+                .style("stroke", function(d){ if (d =="AVG")
+                return "red"
+                return "#2c7bb6"
+            })
                 .style("opacity", "1")
             mtooltip.transition()
                 .duration(500)
@@ -113,18 +116,27 @@ function parallelCoord(aggregationType, map_key) {
 
         function calc_max(dataset_dict) {
             var max = 0
+            var count = 0
+            var i = 0
             for (var elem in dataset_dict) {
+                count += dataset_dict[elem][map_key]
                 if (max < dataset_dict[elem][map_key])
                     max = dataset_dict[elem][map_key]
+                i+=1
             }
-            return max
+            return [max,count/i]
         }
         var dict_dataset_dict = {}
         var max = 0
-
+        var dict_avg = {}
         dimensions.map(function (year) {
             dict_dataset_dict[year] = change(data, aggregationType, year, "true")
-            var nuov_max = calc_max(dict_dataset_dict[year])
+            var results = calc_max(dict_dataset_dict[year])
+            var nuov_max = results[0]
+            var avg = results[1]
+
+            dict_dataset_dict[year]["AVG"] = {"Item": "AVG"}
+            dict_dataset_dict[year]["AVG"][map_key] = avg
             if (max < nuov_max)
                 max = nuov_max
         })
@@ -133,6 +145,7 @@ function parallelCoord(aggregationType, map_key) {
         function path(d) {
             return d3.line()(dimensions.map(function (year) {
                 dataset_dict = dict_dataset_dict[year]
+
                 y[year].domain([0, max + 2])
                 try {
                     return [x(year), y[year](dataset_dict[d][map_key])]
@@ -143,6 +156,7 @@ function parallelCoord(aggregationType, map_key) {
             }));
         }
 
+        keys.push("AVG")
         // Draw the lines
         svgParallel
             .selectAll("myPath")
@@ -152,11 +166,16 @@ function parallelCoord(aggregationType, map_key) {
             .attr("class", function (d) { return "line" + d })
             .attr("d", path)
             .style("fill", "none")
-            .style("stroke", "#2c7bb6")
+            .style("stroke", function (d) {
+                if (d =="AVG")
+                    return "red"
+                else
+                    return "#2c7bb6"})
             .style('stroke-width', "3")
             .style("opacity", 1)
             .on("mouseover", highlight)
             .on("mouseleave", doNotHighlight)
+
 
         // Draw the axis:
         svgParallel.selectAll("myAxis")

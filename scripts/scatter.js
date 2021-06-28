@@ -430,7 +430,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     mouse_on(d.Item);
                     mouseon_mds(d.Item);
                     brushMap([d.Item], "mouseon")
-                    brushParallel([d.Item])
+                    mouseonParallel(d.Item)
                 })
                 .on("mouseout", function (d) {
                     // this.style.strokeWidth = 1
@@ -438,7 +438,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     mouse_out()
                     mouseout_mds(d.Item)
                     brushMap([d.Item], "mouseout")
-                    unbrushParallel()
+                    mouseoutParallel()
                     /* $(this).attr("fill-opacity", "1.0");
                     $("#tooltip-container-scatter").hide(); */
                 });
