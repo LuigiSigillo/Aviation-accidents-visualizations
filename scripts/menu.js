@@ -479,6 +479,7 @@ function preset_selection() {
     brushMap([],"preset "+yearInput+" "+aggregated_by_year+" "+type_map)
     createMDS(yearInput, 0, 0, aggregated_by_year, aggregationType, mds_type_value)
     changing(aggregationType, X, Y, R, yearInput, aggregated_by_year)
+    parallelCoord(aggregationType, type_map)
     // update on HTML
     document.getElementById("slider").value =  yearInput
     document.getElementById("aggregationYear").value = aggregated_by_year
