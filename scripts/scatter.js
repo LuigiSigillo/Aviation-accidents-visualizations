@@ -35,7 +35,7 @@ function fuffa(d){
 
 
 var brushella = d3.brush()
-    .extent([[0, 0], [1000, 1000]])
+    .extent([[0, 0], [1300, 1300]])
     .on("brush", fuffa)
     .on("end", highlightBrushedBubbles); 
 
