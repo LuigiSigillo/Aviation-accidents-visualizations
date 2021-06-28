@@ -15,7 +15,7 @@ function mouse_on(pippo) {
             d = dataset_dict[pippo]
             console.log(d)
             var html = "";
-            html += "<div>";
+            html += "<div style= 'text-align: center;'>";
             html += "<span>";
             html += "<p style='background-color: yellow'><b>"
             try {
