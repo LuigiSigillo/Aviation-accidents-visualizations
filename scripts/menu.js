@@ -1,81 +1,82 @@
 /* Create HTML for mouseover */
 function mouse_on(pippo) {
     var aggr = document.getElementById("aggregationType").value;
-    console.log('AGGR: ', aggr) 
     var aggregated_by_year = document.getElementById("aggregationYear").value;
     //console.log('AGGREGATED YEAR: ', aggregated_by_year)
     var year = document.getElementById('slider').value
     //console.log('YEAR: ', year)
-    if (pippo.startsWith("par"))
-        year = 2020
+    if (pippo.startsWith("par")) {
         pippo = pippo.replace("par","")
+    }
     if (pippo.startsWith("2")){
         d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
             dataset_dict = change(data, "Event.Id", year, aggregated_by_year)
             //console.log("ciaoo", dataset_dict)
-            console.log("sssa",pippo)
             d = dataset_dict[pippo]
             console.log(d)
             var html = "";
             html += "<div>";
             html += "<span>";
+            html += "<p style='background-color: yellow'><b>"
             try {
                 html += d['Item'];
+                html+= "</b></p>"
                 html += "</span><br>";
                 html += "<span>";
-                html += "<a>Fatalities: "
+                html += "<a><b>Fatalities:</b> "
                 html += (d["Fatal"]);
                 html += "</a>";
                 html += "</span><br>";
                 html += "<span>";
-                html += "<a>Serious Injuries: "
+                html += "<a><b>Serious Injuries:</b>  "
                 html += (d["Serious"]);
                 html += "</a>";
                 html += "</span><br>";
                 html += "<span>";
-                html += "<a>Minor Injuries: "
+                html += "<a><b>Minor Injuries:</b>  "
                 html += (d["Minor"]);
                 html += "</a>";
                 html += "</span><br>";
                 html += "<span>";
-                html += "<a>Uninjured: "
+                html += "<a><b>Uninjured:</b>  "
                 html += (d["Uninjured"]);
                 html += "</a>";
                 html += "</span><br>";
                 html += "<span>";
-                html += "<a>State: "
+                html += "<a><b>State:</b> "
                 html += (d["STATE"]);
                 html += "</a>";
                 html += "</span><br>";
                 html += "<span>";
-                html += "<a>Phase: "
+                html += "<a><b>Phase:</b> "
                 html += (d["PHASE"]);
-                html += " Make :"
+                html += " <b>Make :</b>"
                 html += (d["MAKE"]);
             }
             catch (error) {
                 html += pippo;
+                html += "</b></p>"
                 html += "</span><br>";
                 html += "<span>";
                 // html += "<a>Total Accidents: "
                 // html = html.replace("<a>Total Accidents: ", "")
-                html += "<a>Total Accidents: 0"
+                html += "<a><b>Total Accidents:</b>  0 "
                 html += "</a>";
                 html += "</span><br>";
                 html += "<span>";
-                html += "<a>Fatalities: 0"
+                html += "<a><b>Fatalities:</b> 0 "
                 html += "</a>";
                 html += "</span><br>";
                 html += "<span>";
-                html += "<a>Serious Injuries: 0"
+                html += "<a><b>Serious Injuries:</b>0  "
                 html += "</a>";
                 html += "</span><br>";
                 html += "<span>";
-                html += "<a>Minor Injuries: 0"
+                html += "<a><b>Minor Injuries:</b> 0  "
                 html += "</a>";
                 html += "</span><br>";
                 html += "<span>";
-                html += "<a>Uninjured: 0"
+                html += "<a><b>Uninjured:</b> 0 "
             }
             html += "</a>";
             html += "</span><br>";
@@ -111,74 +112,77 @@ function mouse_on(pippo) {
         d = dataset_dict[pippo]
         console.log(d)
         var html = "";
-        html += "<div>";
+        html += "<div style= 'text-align: center;'>";
         html += "<span>";
+        html += "<p style='background-color: yellow'><b>"
         try {
-            html += d['Item'];
+            html+= d['Item'];
+            html+= "</b></p>"
             html += "</span><br>";
             html += "<span>";
-            html += "<a>Total Accidents: "
+            html += "<a><b>Total Accidents:</b> "
             html += (d["Total_Accidents"]);
             html += "</a>";
             html += "</span><br>";
             html += "<span>";
-            html += "<a>Fatalities: "
+            html += "<a><b>Fatalities:</b> "
             html += (d["Fatal"]);
             html += "</a>";
             html += "</span><br>";
             html += "<span>";
-            html += "<a>Serious Injuries: "
+            html += "<a><b>Serious Injuries:</b>  "
             html += (d["Serious"]);
             html += "</a>";
             html += "</span><br>";
             html += "<span>";
-            html += "<a>Minor Injuries: "
+            html += "<a><b>Minor Injuries:</b>  "
             html += (d["Minor"]);
             html += "</a>";
             html += "</span><br>";
             html += "<span>";
-            html += "<a>Uninjured: "
+            html += "<a><b>Uninjured:</b>  "
             html += (d["Uninjured"]);
             html += "</a>";
             html += "</span><br>";
             html += "<span>";
-            html += "<a>VMC: "
+            html += "<a><b>VMC:</b>  "
             html += (d["VMC"]);
-            html += " IMC: "
+            html += "<b> IMC: </b> "
             html += (d["IMC"]);
             html += "</a>";
             html += "</span><br>";
             html += "<span>";
-            html += "<a>Destroyed: "
+            html += "<a><b>Destroyed: </b> "
             html += (d["Destroyed_Damage"]);
-            html += " Substantial: "
+            html += " <b>Substantial:</b>  "
             html += (d["Substantial_Damage"]);
-            html += " Minor: "
+            html += " <b>Minor:</b> "
             html += (d["Minor_Damage"]);
         }
         catch (error) {
             html += pippo;
+            html += "</b></p>"
             html += "</span><br>";
             html += "<span>";
             // html += "<a>Total Accidents: "
             // html = html.replace("<a>Total Accidents: ", "")
-            html += "<a>Total Accidents: 0"
+            html += "<a><b>Total Accidents:</b>  0 "
             html += "</a>";
             html += "</span><br>";
             html += "<span>";
-            html += "<a>Fatalities: 0"
+            html += "<a><b>Fatalities:</b> 0 "
             html += "</a>";
             html += "</span><br>";
             html += "<span>";
-            html += "<a>Serious Injuries: 0"
+            html += "<a><b>Serious Injuries:</b>0  "
             html += "</a>";
             html += "</span><br>";
             html += "<span>";
-            html += "<a>Minor Injuries: 0"
+            html += "<a><b>Minor Injuries:</b> 0  "
             html += "</a>";
             html += "</span><br>";
             html += "<span>";
-            html += "<a>Uninjured: 0"
+            html += "<a><b>Uninjured:</b> 0 "
         }
         html += "</a>";
         html += "</span><br>";
