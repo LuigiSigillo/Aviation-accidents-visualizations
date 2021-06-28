@@ -334,7 +334,7 @@ function brushParallel(listBrush){
         svgParallel.selectAll("path")
             .transition().duration(200)
             .style("stroke", "lightgrey")
-            .style("opacity", "0.2")
+            .style("opacity", "0.1")
         listBrush.forEach(d => {
         // Second the hovered specie takes its colorParallel
         svgParallel.selectAll(".line" + d)
@@ -369,7 +369,7 @@ function mouseonParallel(d){
         svgParallel.selectAll("path")
             .transition().duration(200)
             .style("stroke", "lightgrey")
-            .style("opacity", "0.2")
+            .style("opacity", "0.1")
         
         // Second the hovered specie takes its colorParallel
         svgParallel.selectAll(".line" + d)
@@ -400,7 +400,7 @@ function mouseoutParallel(d){
                     return "1"
                 if (brushed_par.length == 0)
                     return "1"
-                return "0.2"
+                return "0.1"
                 } )
         mtooltip.transition()
             .duration(500)

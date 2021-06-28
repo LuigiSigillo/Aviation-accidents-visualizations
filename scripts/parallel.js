@@ -81,7 +81,7 @@ function parallelCoord(aggregationType, map_key) {
             svgParallel.selectAll("path")
                 .transition().duration(200)
                 .style("stroke", "lightgrey")
-                .style("opacity", "0.2")
+                .style("opacity", "0.1")
             // // Second the hovered specie takes its colorParallel
             svgParallel.selectAll(".line" + d)
                 .transition().duration(200)

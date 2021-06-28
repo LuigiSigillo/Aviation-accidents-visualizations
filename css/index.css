@@ -1,7 +1,8 @@
 html, body { 
     margin: 0;     
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+    background-image: url('https://arttrip.it/wp-content/uploads/2016/12/la-scuola-di-atene-raffaello-sanzio.jpg');
+  }
+
 
 .block {
     position:fixed;
@@ -22,7 +23,7 @@ html, body {
 
 #menublock { top:0%;   left:0%; width: 50%; height: 10%; background-color: darkgrey;}
 #sliderblock { top:5%;  left:0%; width: 50%; height: 6%;  border:3px solid transparent;}
-#yearblock { top:4%;  left:40%; width: 50%; height: 6%;  border:3px solid transparent;}
+#yearblock { top:4%;  left:40%; width: 50%; height: 6%;  border:3px solid transparent; }
 
 #playb { top:5%;   left:45%; height: 5%; border:3px solid transparent; }
 
