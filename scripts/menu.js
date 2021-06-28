@@ -6,12 +6,12 @@ function mouse_on(pippo) {
     var year = document.getElementById('slider').value
     //console.log('YEAR: ', year)
     if (pippo.startsWith("par")) {
-        pippo = pippo.replace("par","")
+        //year = 2020
+        pippo = pippo.replace("par", "")
     }
-    if (pippo.startsWith("2")){
+    if (pippo.startsWith("2")) {
         d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
             dataset_dict = change(data, "Event.Id", year, aggregated_by_year)
-            //console.log("ciaoo", dataset_dict)
             d = dataset_dict[pippo]
             console.log(d)
             var html = "";
@@ -20,8 +20,8 @@ function mouse_on(pippo) {
             html += "<p style='background-color: yellow'><b>"
             try {
                 html += d['Item'];
-                html+= "</b></p>"
-                html += "</span><br>";
+                html += "</b></p>"
+                html += "</span>";
                 html += "<span>";
                 html += "<a><b>Fatalities:</b> "
                 html += (d["Fatal"]);
@@ -56,7 +56,7 @@ function mouse_on(pippo) {
             catch (error) {
                 html += pippo;
                 html += "</b></p>"
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
                 // html += "<a>Total Accidents: "
                 // html = html.replace("<a>Total Accidents: ", "")
@@ -84,15 +84,15 @@ function mouse_on(pippo) {
             $("#tooltip-container-menu").html(html);
             $(this).attr("fill-opacity", "0.8");
             $("#tooltip-container-menu").show();
-    
+
             //quello commentato ha senso, ma scaja
             //var map_width = document.getElementById('scatter').getBoundingClientRect().width;
             var map_width = $('scatter')[0].getBoundingClientRect().width;
             console.log($('scatter'))
-    
+
             console.log('LAYER X ' + d3.event.layerX)
             console.log('LAYER Y ' + d3.event.layerY)
-    
+
             if (d3.event.layerX < map_width / 2) {
                 d3.select("#tooltip-container-menu")
                     .style("top", (d3.event.layerY + 15) + "px")
@@ -106,110 +106,109 @@ function mouse_on(pippo) {
         })
     }
     else {
-    d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
-        dataset_dict = change(data, aggr, year, aggregated_by_year)
-        //console.log("ciaoo", dataset_dict)
-        d = dataset_dict[pippo]
-        console.log(d)
-        var html = "";
-        html += "<div style= 'text-align: center;'>";
-        html += "<span>";
-        html += "<p style='background-color: yellow'><b>"
-        try {
-            html+= d['Item'];
-            html+= "</b></p>"
-            html += "</span><br>";
+        d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
+            dataset_dict = change(data, aggr, year, aggregated_by_year)
+            //console.log("ciaoo", dataset_dict)
+            d = dataset_dict[pippo]
+            var html = "";
+            html += "<div style= 'text-align: center;'>";
             html += "<span>";
-            html += "<a><b>Total Accidents:</b> "
-            html += (d["Total_Accidents"]);
+            html += "<p style='background-color: yellow'><b>"
+            try {
+                html += d['Item'];
+                html += "</b></p>"
+                html += "</span>";
+                html += "<span>";
+                html += "<a><b>Total Accidents:</b> "
+                html += (d["Total_Accidents"]);
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span>";
+                html += "<a><b>Fatalities:</b> "
+                html += (d["Fatal"]);
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span>";
+                html += "<a><b>Serious Injuries:</b>  "
+                html += (d["Serious"]);
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span>";
+                html += "<a><b>Minor Injuries:</b>  "
+                html += (d["Minor"]);
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span>";
+                html += "<a><b>Uninjured:</b>  "
+                html += (d["Uninjured"]);
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span>";
+                html += "<a><b>VMC:</b>  "
+                html += (d["VMC"]);
+                html += "<b> IMC: </b> "
+                html += (d["IMC"]);
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span>";
+                html += "<a><b>Destroyed: </b> "
+                html += (d["Destroyed_Damage"]);
+                html += " <b>Substantial:</b>  "
+                html += (d["Substantial_Damage"]);
+                html += " <b>Minor:</b> "
+                html += (d["Minor_Damage"]);
+            }
+            catch (error) {
+                html += pippo;
+                html += "</b></p>"
+                html += "</span>";
+                html += "<span>";
+                // html += "<a>Total Accidents: "
+                // html = html.replace("<a>Total Accidents: ", "")
+                html += "<a><b>Total Accidents:</b>  0 "
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span>";
+                html += "<a><b>Fatalities:</b> 0 "
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span>";
+                html += "<a><b>Serious Injuries:</b>0  "
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span>";
+                html += "<a><b>Minor Injuries:</b> 0  "
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span>";
+                html += "<a><b>Uninjured:</b> 0 "
+            }
             html += "</a>";
             html += "</span><br>";
-            html += "<span>";
-            html += "<a><b>Fatalities:</b> "
-            html += (d["Fatal"]);
-            html += "</a>";
-            html += "</span><br>";
-            html += "<span>";
-            html += "<a><b>Serious Injuries:</b>  "
-            html += (d["Serious"]);
-            html += "</a>";
-            html += "</span><br>";
-            html += "<span>";
-            html += "<a><b>Minor Injuries:</b>  "
-            html += (d["Minor"]);
-            html += "</a>";
-            html += "</span><br>";
-            html += "<span>";
-            html += "<a><b>Uninjured:</b>  "
-            html += (d["Uninjured"]);
-            html += "</a>";
-            html += "</span><br>";
-            html += "<span>";
-            html += "<a><b>VMC:</b>  "
-            html += (d["VMC"]);
-            html += "<b> IMC: </b> "
-            html += (d["IMC"]);
-            html += "</a>";
-            html += "</span><br>";
-            html += "<span>";
-            html += "<a><b>Destroyed: </b> "
-            html += (d["Destroyed_Damage"]);
-            html += " <b>Substantial:</b>  "
-            html += (d["Substantial_Damage"]);
-            html += " <b>Minor:</b> "
-            html += (d["Minor_Damage"]);
-        }
-        catch (error) {
-            html += pippo;
-            html += "</b></p>"
-            html += "</span><br>";
-            html += "<span>";
-            // html += "<a>Total Accidents: "
-            // html = html.replace("<a>Total Accidents: ", "")
-            html += "<a><b>Total Accidents:</b>  0 "
-            html += "</a>";
-            html += "</span><br>";
-            html += "<span>";
-            html += "<a><b>Fatalities:</b> 0 "
-            html += "</a>";
-            html += "</span><br>";
-            html += "<span>";
-            html += "<a><b>Serious Injuries:</b>0  "
-            html += "</a>";
-            html += "</span><br>";
-            html += "<span>";
-            html += "<a><b>Minor Injuries:</b> 0  "
-            html += "</a>";
-            html += "</span><br>";
-            html += "<span>";
-            html += "<a><b>Uninjured:</b> 0 "
-        }
-        html += "</a>";
-        html += "</span><br>";
-        html += "</div>";
-        $("#tooltip-container-menu").html(html);
-        $(this).attr("fill-opacity", "0.8");
-        $("#tooltip-container-menu").show();
+            html += "</div>";
+            $("#tooltip-container-menu").html(html);
+            $(this).attr("fill-opacity", "0.8");
+            $("#tooltip-container-menu").show();
 
-        //quello commentato ha senso, ma scaja
-        //var map_width = document.getElementById('scatter').getBoundingClientRect().width;
-        var map_width = $('scatter')[0].getBoundingClientRect().width;
-        console.log($('scatter'))
+            //quello commentato ha senso, ma scaja
+            //var map_width = document.getElementById('scatter').getBoundingClientRect().width;
+            var map_width = $('scatter')[0].getBoundingClientRect().width;
+            console.log($('scatter'))
 
-        console.log('LAYER X ' + d3.event.layerX)
-        console.log('LAYER Y ' + d3.event.layerY)
+            console.log('LAYER X ' + d3.event.layerX)
+            console.log('LAYER Y ' + d3.event.layerY)
 
-        if (d3.event.layerX < map_width / 2) {
-            d3.select("#tooltip-container-menu")
-                .style("top", (d3.event.layerY + 15) + "px")
-                .style("left", (d3.event.layerX + 15) + "px");
-        } else {
-            var tooltip_width = $("#tooltip-container-menu").width();
-            d3.select("#tooltip-container-menu")
-                .style("top", (d3.event.layerY + 15) + "px")
-                .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
-        }
-    })
+            if (d3.event.layerX < map_width / 2) {
+                d3.select("#tooltip-container-menu")
+                    .style("top", (d3.event.layerY + 15) + "px")
+                    .style("left", (d3.event.layerX + 15) + "px");
+            } else {
+                var tooltip_width = $("#tooltip-container-menu").width();
+                d3.select("#tooltip-container-menu")
+                    .style("top", (d3.event.layerY + 15) + "px")
+                    .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
+            }
+        })
     }
 }
 
@@ -218,197 +217,206 @@ function mouse_out() {
 }
 
 
-function mouseon_mds(elem){
-    if (!flights){
+function mouseon_mds(elem) {
+    if (!flights) {
         var svg = d3.select("#mds").select("svg");
         svg.attr("clip-path", "url(#clip)")
-                .selectAll("circle").filter(function (d) {
-            if (elem == d){
-                return true
-            }
-            return false
-        })
+            .selectAll("circle").filter(function (d) {
+                if (elem == d) {
+                    return true
+                }
+                return false
+            })
             .classed("mouseon", true);
-    }else{
+    } else {
         var svg = d3.select("#mds").select("svg");
         svg.attr("clip-path", "url(#clip)")
-                .selectAll("circle").filter(function (d) {
-                    if (aggreg == "Crash.Country"){
-                        if (elem == size2[d]["STATE"]){
-                            return true
-                        }
+            .selectAll("circle").filter(function (d) {
+                if (aggreg == "Crash.Country") {
+                    if (elem == size2[d]["STATE"]) {
+                        return true
                     }
-                    if(aggreg == "Broad.Phase.of.Flight"){
-                        if (elem == size2[d]["PHASE"]){
-                            return true
-                        }
+                }
+                if (aggreg == "Broad.Phase.of.Flight") {
+                    if (elem == size2[d]["PHASE"]) {
+                        return true
                     }
-                    if(aggreg == "Event.Month"){
-                        if (elem == size2[d]["MONTH"]){
-                            return true
-                        }
+                }
+                if (aggreg == "Event.Month") {
+                    if (elem == size2[d]["MONTH"]) {
+                        return true
                     }
-                    if(aggreg == "Make"){
-                        if (elem == size2[d]["MAKE"]){
-                            return true
-                        }
+                }
+                if (aggreg == "Make") {
+                    if (elem == size2[d]["MAKE"]) {
+                        return true
                     }
-                    return false
-        })
+                }
+                return false
+            })
             .classed("mouseon", true);
     }
-    
+
 };
 
-function mouseout_mds(elem){
+function mouseout_mds(elem) {
     var svg = d3.select("#mds").select("svg");
     svg.attr("clip-path", "url(#clip)")
-            .selectAll("circle").filter(function (d) {
-        
+        .selectAll("circle").filter(function (d) {
+
             return true
 
-    })
+        })
         .classed("mouseon", false);
 };
 
-function brush_mds(elem){
+function brush_mds(elem) {
     var svg = d3.select("#mds").select("svg");
     svg.attr("clip-path", "url(#clip)")
-            .selectAll("circle").filter(function (d) {
-        if (elem.includes(d)){
-            return true
-        }
-        if (aggreg == "Crash.Country"){
-            if (elem.includes(size2[d]["STATE"])){
+        .selectAll("circle").filter(function (d) {
+            if (elem.includes(d)) {
                 return true
             }
-        }
-        if(aggreg == "Broad.Phase.of.Flight"){
-            if (elem.includes(size2[d]["PHASE"])){
-                return true
+            if (aggreg == "Crash.Country") {
+                if (elem.includes(size2[d]["STATE"])) {
+                    return true
+                }
             }
-        }
-        if(aggreg == "Event.Month"){
-            if (elem.includes(size2[d]["MONTH"])){
-                return true
+            if (aggreg == "Broad.Phase.of.Flight") {
+                if (elem.includes(size2[d]["PHASE"])) {
+                    return true
+                }
             }
-        }
-        if(aggreg == "Make"){
-            if (elem.includes(size2[d]["MAKE"])){
-                return true
+            if (aggreg == "Event.Month") {
+                if (elem.includes(size2[d]["MONTH"])) {
+                    return true
+                }
             }
-        }
-        return false
-})
+            if (aggreg == "Make") {
+                if (elem.includes(size2[d]["MAKE"])) {
+                    return true
+                }
+            }
+            return false
+        })
         .classed("brushed", true)
 }
 
-function unbrush_mds(){
-var svg = d3.select("#mds").select("svg");
-svg.attr("clip-path", "url(#clip)")
-            .selectAll("circle")
-            .classed("brushed", false)
+function unbrush_mds() {
+    var svg = d3.select("#mds").select("svg");
+    svg.attr("clip-path", "url(#clip)")
+        .selectAll("circle")
+        .classed("brushed", false)
 }
 
 
-function mouseon_scatter(elem){
+function mouseon_scatter(elem) {
     d3.selectAll(".bubble")
-                .style("opacity", 0.1)
-                .filter(function (d) { return d.Item ==elem })
-                .style("opacity", 1);
+        .style("opacity", 0.1)
+        .filter(function (d) { return d.Item == elem })
+        .style("opacity", 1);
 };
 
-function mouseout_scatter(elem){
-    if(brushed_countries.length == 0)
+function mouseout_scatter(elem) {
+    if (brushed_countries.length == 0)
         d3.selectAll(".bubble").style("opacity", 1)
     else {
         d3.selectAll(".bubble")
-                .style("opacity", 0.1)
-                .filter(function (d) { return brushed_countries.includes(d.Item)})
-                .style("opacity", 1);
+            .style("opacity", 0.1)
+            .filter(function (d) { return brushed_countries.includes(d.Item) })
+            .style("opacity", 1);
     }
 };
 
 var brushed_par = []
-function brushParallel(listBrush){
+function brushParallel(listBrush) {
     brushed_par = listBrush
+
     var svgParallel = d3.select("#parallel")
 
-        // first every group turns grey 
-        svgParallel.selectAll("path")
-            .transition().duration(200)
-            .style("stroke", "lightgrey")
-            .style("opacity", "0.1")
-        listBrush.forEach(d => {
+    // first every group turns grey 
+    svgParallel.selectAll("path")
+        .filter(function (d, i) {
+            return d != null
+        })
+        .transition().duration(200)
+        .style("stroke", "lightgrey")
+        .style("opacity", "0.1")
+    listBrush.forEach(d => {
         // Second the hovered specie takes its colorParallel
         svgParallel.selectAll(".line" + d)
-        .transition().duration(200)
-        .style("stroke", "black")
-        .style("opacity", "1")
-        });
+            .transition().duration(200)
+            .style("stroke", "black")
+            .style("opacity", "1")
+    });
 
 }
 
-function unbrushParallel(listBrush){
+function unbrushParallel(listBrush) {
     brushed_par = []
     svgParallel.selectAll("path")
-    .filter(function (d,i) {
-        return d != null
-    })
-            .transition().duration(200)
-            .style("stroke", function (d) {if (d =="AVG")
-            return "red"
-            return "#2c7bb6"})
-            .style("opacity", "1")
-        mtooltip.transition()
-            .duration(500)
-            .style("opacity", 0);
+        .filter(function (d, i) {
+            return d != null
+        })
+        .transition().duration(200)
+        .style("stroke", function (d) {
+            if (d == "AVG")
+                return "red"
+            return "#2c7bb6"
+        })
+        .style("opacity", "1")
+    mtooltip.transition()
+        .duration(500)
+        .style("opacity", 0);
 
 }
 
-function mouseonParallel(d){
+function mouseonParallel(d) {
     var svgParallel = d3.select("#parallel")
 
-        // first every group turns grey NOT WORKING
-        svgParallel.selectAll("path")
-            .transition().duration(200)
-            .style("stroke", "lightgrey")
-            .style("opacity", "0.1")
-        
-        // Second the hovered specie takes its colorParallel
-        svgParallel.selectAll(".line" + d)
+    // first every group turns grey NOT WORKING
+    svgParallel.selectAll("path")
+        .transition().duration(200)
+        .filter(function (d, i) {
+            return d != null
+        })
+        .style("stroke", "lightgrey")
+        .style("opacity", "0.1")
+
+    // Second the hovered specie takes its colorParallel
+    svgParallel.selectAll(".line" + d)
         .transition().duration(200)
         .style("stroke", "green")
         .style("opacity", "1")
 
 }
 
-function mouseoutParallel(d){
+function mouseoutParallel(d) {
     svgParallel.selectAll("path")
-    .filter(function (d,i) {
-        return d != null
-    })
-            .transition().duration(200)
-            .style("stroke", function(d){
-                if (d!=null && brushed_par.includes(d))
-                    return "black"
-                if (brushed_par.length == 0) {
-                    if (d =="AVG")
-                        return "red"
-                    return "#2c7bb6"
-                }
-                return "lightgrey"
-                })
-            .style("opacity",function(d){
-                if (d!=null && brushed_par.includes(d))
-                    return "1"
-                if (brushed_par.length == 0)
-                    return "1"
-                return "0.1"
-                } )
-        mtooltip.transition()
-            .duration(500)
-            .style("opacity", 0);
+        .filter(function (d, i) {
+            return d != null
+        })
+        .transition().duration(200)
+        .style("stroke", function (d) {
+            if (d != null && brushed_par.includes(d))
+                return "black"
+            if (brushed_par.length == 0) {
+                if (d == "AVG")
+                    return "red"
+                return "#2c7bb6"
+            }
+            return "lightgrey"
+        })
+        .style("opacity", function (d) {
+            if (d != null && brushed_par.includes(d))
+                return "1"
+            if (brushed_par.length == 0)
+                return "1"
+            return "0.1"
+        })
+    mtooltip.transition()
+        .duration(500)
+        .style("opacity", 0);
 
 }
 
@@ -428,8 +436,8 @@ function preset_selection() {
         - Bubble: Group by manufacturer e nelle assi incidents e altro parametro a piacere per classificare i manufacturer in base alle fatalities/meteo/distruzione o altro. Stessa cosa col mese/state.
         - MDS: supporto al bubble ma con diverse prospettive di idee, dai ancora piu senso alle cose di prima. bubble + mds = TOP
 */
-    if(user=="user1") {
-        yearInput = 2020 
+    if (user == "user1") {
+        yearInput = 2020
         aggregated_by_year = "false"
         aggregationType = "Make"
         mds_type_value = "percentage"
@@ -439,19 +447,19 @@ function preset_selection() {
         type_map = "Uninjured"
     }
 
-/*
-    USER 2:
-    Description 2:
-        Tizio dell'azienda che produce velivoli vede che tipo di incidenti fanno i propri velivoli per capire cosa migliorare: ex se so fatal deve capi come non fa stira gente, oppure se so sotto la pioggia migliora la resistenza alle intemperie,
-    Analitica 2:
-        - Mappa: ___
-        - Bubble: aggregazione per marca puo confrontare la sua azienda con le altre, capendo dove si posiziona la propria. Mesi so utili per vedere resistenza freddo col meteo pure(?).
-            Dati utili: tipologia incidente, meteo, periodo, fase del volo (ex se me scaja l aereo mentre decollo devo migliora quella fase).
-        - MDS: simil bubble, ci da info che rafforzano concetto.
-    Non sappiamo come correlare phase e manufcaturer in modo pulito
-*/
+    /*
+        USER 2:
+        Description 2:
+            Tizio dell'azienda che produce velivoli vede che tipo di incidenti fanno i propri velivoli per capire cosa migliorare: ex se so fatal deve capi come non fa stira gente, oppure se so sotto la pioggia migliora la resistenza alle intemperie,
+        Analitica 2:
+            - Mappa: ___
+            - Bubble: aggregazione per marca puo confrontare la sua azienda con le altre, capendo dove si posiziona la propria. Mesi so utili per vedere resistenza freddo col meteo pure(?).
+                Dati utili: tipologia incidente, meteo, periodo, fase del volo (ex se me scaja l aereo mentre decollo devo migliora quella fase).
+            - MDS: simil bubble, ci da info che rafforzano concetto.
+        Non sappiamo come correlare phase e manufcaturer in modo pulito
+    */
     if (user == "user2") {
-        yearInput = 2020 
+        yearInput = 2020
         aggregated_by_year = "false"
         aggregationType = "Broad.Phase.of.Flight"
         mds_type_value = "percentage"
@@ -460,44 +468,43 @@ function preset_selection() {
         R = "Fatal"
         type_map = "Fatal"
     }
-/*
-    USER 3
-    Description:
-        Aeronautica militare vuole avere una visione a tutto tondo degli incidenti per considerare nuove traiettorie, nuovi miglioramenti etc.
-    Analitica 3:
-        - Mappa: stessa funzione dello user 1
-        - Bubble: utilita per tutto
-        - MDS: simil bubble, ci da info che rafforzano concetto.
-*/
+    /*
+        USER 3
+        Description:
+            Aeronautica militare vuole avere una visione a tutto tondo degli incidenti per considerare nuove traiettorie, nuovi miglioramenti etc.
+        Analitica 3:
+            - Mappa: stessa funzione dello user 1
+            - Bubble: utilita per tutto
+            - MDS: simil bubble, ci da info che rafforzano concetto.
+    */
     if (user == "user3") {
-        yearInput = 2020 
+        yearInput = 2020
         aggregated_by_year = "false"
         aggregationType = "Crash.Country"
         mds_type_value = "std"
         X = "Total_Accidents"
         Y = "Fatal"
         R = "Destroyed_Damage"
-        type_map = "Fatal" 
+        type_map = "Fatal"
     }
 
-    brushMap([],"preset "+yearInput+" "+aggregated_by_year+" "+type_map)
+    brushMap([], "preset " + yearInput + " " + aggregated_by_year + " " + type_map)
     createMDS(yearInput, 0, 0, aggregated_by_year, aggregationType, mds_type_value)
     changing(aggregationType, X, Y, R, yearInput, aggregated_by_year)
     parallelCoord(aggregationType, type_map)
     // update on HTML
-    document.getElementById("slider").value =  yearInput
+    document.getElementById("slider").value = yearInput
     document.getElementById("aggregationYear").value = aggregated_by_year
-    document.getElementById("aggregationType").value = aggregationType 
-    document.getElementById("mdsType").value = mds_type_value 
+    document.getElementById("aggregationType").value = aggregationType
+    document.getElementById("mdsType").value = mds_type_value
     document.getElementById("X_axis").value = X
     document.getElementById("Y_axis").value = Y
     document.getElementById("R_axis").value = R
     document.getElementById("demo").innerHTML = yearInput;
     /* var $radios = $('input:radio[name=gender]');
     $radios.filter('[value='+type_map+']').prop('checked', true); */
-    console.log("AO",yearInput, aggregated_by_year, aggregationType, mds_type_value, X, Y, R, type_map)
 
-    
+
 
 
 }
