@@ -43,7 +43,27 @@ function parallelCoord(aggregationType, map_key) {
 
 
         dimensions = Array.from({ length: 20 }, (x, i) => 2001 + i);
-
+        //dimensions = []Total_Accidents: d3.sum(v, function (d) { return 1; }),
+                // Fatal 
+                // Serious
+                // Minor
+                // Uninjured
+                // VMC
+                // IMC
+                // Minor_Damage
+                // Substantial_Damage
+                // Destroyed_Damage
+                // MANEUVERING
+                // STANDING
+                // UNKNOWN
+                // TAKEOFF
+                // APPROACH
+                // CLIMB
+                // CRUISE
+                // DESCENT
+                // LANDING
+                // GOAROUND
+                // TAXI
         // For each dimension, I build a linear scale. I store all in a y object
         var y = {}
 
