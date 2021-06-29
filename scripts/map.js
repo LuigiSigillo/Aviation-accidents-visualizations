@@ -304,7 +304,8 @@ function brushMap(brushList, mode) {
                         grp = cb.property("value")
                         if (cb.property("checked")) {
                             updateMapColors(grp)
-                            parallelCoord(aggregationType,grp)
+                            if (!valerione)
+                                parallelCoord(aggregationType,grp)
                         }
                         updateLegend()
                     })
