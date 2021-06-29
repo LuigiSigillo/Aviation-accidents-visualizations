@@ -1,5 +1,5 @@
 // set the dimensions and marginParallels of the graph
-var marginParallel = { top: 5, right: -230, bottom: 190, left: 70 };
+var marginParallel = { top: 20, right: -230, bottom: 190, left: 70 };
 var widthParallel = document.getElementById("parallel").clientWidth + marginParallel.left + marginParallel.right
 var heightParallel = document.getElementById("parallel").clientHeight - marginParallel.top - marginParallel.bottom
 // append the svg object to the body of the page
