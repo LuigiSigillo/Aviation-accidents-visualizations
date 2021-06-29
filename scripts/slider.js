@@ -50,7 +50,7 @@ function change(data, subject, year, single_year) {
                 Survival_Rate:  100 - (d3.sum(v, function (d) { return d["Total.Fatal.Injuries"]; }) / (d3.sum(v, function (d) {return d["Total.Fatal.Injuries"]; }) +
                 d3.sum(v, function (d) { return d["Total.Serious.Injuries"]; }) +
                 d3.sum(v, function (d) { return d["Total.Minor.Injuries"]; }) + 
-                d3.sum(v, function (d) { return d["Total.Uninjured"]; }))*100c),
+                d3.sum(v, function (d) { return d["Total.Uninjured"]; }))*100),
                 Fatal: d3.sum(v, function (d) { return d["Total.Fatal.Injuries"]; }),
                 Serious: d3.sum(v, function (d) { return d["Total.Serious.Injuries"]; }),
                 Minor: d3.sum(v, function (d) { return d["Total.Minor.Injuries"]; }),

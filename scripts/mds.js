@@ -100,6 +100,7 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
             for (var i = 0; i < size.length; i++) {
                 dissM[i] = [];
                 for (var j = 0; j < size.length; j++) {
+                    console.log(filtered[size[i]]["Survival_Rate"])
                     var listaI = [filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Fatal"], filtered[size[i]]["Serious"], filtered[size[i]]["Minor"]]
                     var listaJ = [filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Fatal"], filtered[size[j]]["Serious"], filtered[size[j]]["Minor"]]
 
