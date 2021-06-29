@@ -46,7 +46,11 @@ function change(data, subject, year, single_year) {
                 Death_Rate:  d3.sum(v, function (d) { return d["Total.Fatal.Injuries"]; }) / (d3.sum(v, function (d) {return d["Total.Fatal.Injuries"]; }) +
                 d3.sum(v, function (d) { return d["Total.Serious.Injuries"]; }) +
                 d3.sum(v, function (d) { return d["Total.Minor.Injuries"]; }) + 
-                d3.sum(v, function (d) { return d["Total.Uninjured"]; })),
+                d3.sum(v, function (d) { return d["Total.Uninjured"]; })) * 100,
+                Survival_Rate:  100 - (d3.sum(v, function (d) { return d["Total.Fatal.Injuries"]; }) / (d3.sum(v, function (d) {return d["Total.Fatal.Injuries"]; }) +
+                d3.sum(v, function (d) { return d["Total.Serious.Injuries"]; }) +
+                d3.sum(v, function (d) { return d["Total.Minor.Injuries"]; }) + 
+                d3.sum(v, function (d) { return d["Total.Uninjured"]; }))*100c),
                 Fatal: d3.sum(v, function (d) { return d["Total.Fatal.Injuries"]; }),
                 Serious: d3.sum(v, function (d) { return d["Total.Serious.Injuries"]; }),
                 Minor: d3.sum(v, function (d) { return d["Total.Minor.Injuries"]; }),
@@ -79,8 +83,7 @@ function change(data, subject, year, single_year) {
                 October: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "10" }),
                 November: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "11" }),
                 December: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "12" }),
-                SURVIVAL_RATE:   +v[0]["Total.Fatal.Injuries"] / d3.sum(v, function (d) { return 1; })
-            };
+                };
         })
         .map(filtered_map)
     } else{
