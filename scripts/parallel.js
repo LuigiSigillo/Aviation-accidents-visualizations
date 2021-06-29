@@ -1,5 +1,5 @@
 // set the dimensions and marginParallels of the graph
-var marginParallel = { top: 25, right: -230, bottom: 160, left: 70 };
+var marginParallel = { top: 5, right: -230, bottom: 190, left: 70 };
 var widthParallel = document.getElementById("parallel").clientWidth + marginParallel.left + marginParallel.right
 var heightParallel = document.getElementById("parallel").clientHeight - marginParallel.top - marginParallel.bottom
 // append the svg object to the body of the page
@@ -27,6 +27,7 @@ var aggregationType = document.getElementById("aggregationType").value
 function parallelCoord(aggregationType, map_key) {
     svgParallel.selectAll("path").remove()
     svgParallel.selectAll("g").remove()
+    var year_checkbox = document.getElementById("year_normalized_checkbox").checked
 
     d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         // var yearInput = document.getElementById("slider").value
@@ -91,8 +92,12 @@ function parallelCoord(aggregationType, map_key) {
             // // Second the hovered specie takes its colorParallel
             svgParallel.selectAll(".line" + d)
                 .transition().duration(200)
-                .style("stroke", "green")
+                .style("stroke", function(d){
+                    d3.select(this).raise().classed("active", true);
+                    return "green"
+                })
                 .style("opacity", "1")
+
         }
 
         // Unhighlight
@@ -146,13 +151,13 @@ function parallelCoord(aggregationType, map_key) {
         }
         var dict_dataset_dict = {}
         var max = 0
-        var dict_avg = {}
+        var max_dict = {}
         dimensions.map(function (year) {
             dict_dataset_dict[year] = change(data, aggregationType, year, "true")
             var results = calc_max(dict_dataset_dict[year])
             var nuov_max = results[0]
             var avg = results[1]
-
+            max_dict[year] = nuov_max
             dict_dataset_dict[year]["AVG"] = { "Item": "AVG" }
             dict_dataset_dict[year]["AVG"][map_key] = avg
             if (max < nuov_max)
@@ -163,15 +168,18 @@ function parallelCoord(aggregationType, map_key) {
         function path(d) {
             return d3.line()(dimensions.map(function (year) {
                 dataset_dict = dict_dataset_dict[year]
+                if (year_checkbox)
+                    y[year].domain([0, max + 2])
+                else
+                    y[year].domain([0, max_dict[year]+ 2])
 
-                y[year].domain([0, max + 2])
                 try {
                     return [x(year), y[year](dataset_dict[d][map_key])]
                 }
                 catch (error) {
                     return [x(year), y[year](0)]
                 }
-            }));
+            }))
         }
 
         keys.push("AVG")
@@ -284,4 +292,3 @@ function between(x, _min, _max) {
   }
 
 parallelCoord(aggregationType, map_key)
-var actives = []

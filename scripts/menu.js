@@ -386,7 +386,10 @@ function mouseonParallel(d) {
     // Second the hovered specie takes its colorParallel
     svgParallel.selectAll(".line" + d)
         .transition().duration(200)
-        .style("stroke", "green")
+        .style("stroke", function(d){
+            d3.select(this).raise().classed("active", true);
+            return "green"
+        })
         .style("opacity", "1")
 
 }
