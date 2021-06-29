@@ -1,5 +1,5 @@
 // set the dimensions and marginParallels of the graph
-var marginParallel = { top: 20, right: -230, bottom: 190, left: 70 };
+var marginParallel = { top: 20, right: -100, bottom: 190, left: 25 };
 var widthParallel = document.getElementById("parallel").clientWidth + marginParallel.left + marginParallel.right
 var heightParallel = document.getElementById("parallel").clientHeight - marginParallel.top - marginParallel.bottom
 // append the svg object to the body of the page
@@ -28,6 +28,7 @@ function parallelCoord(aggregationType, map_key) {
     svgParallel.selectAll("path").remove()
     svgParallel.selectAll("g").remove()
     var year_checkbox = document.getElementById("year_normalized_checkbox").checked
+    valerione = document.getElementById("others_checkbox").checked
 
     d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         // var yearInput = document.getElementById("slider").value
@@ -41,29 +42,9 @@ function parallelCoord(aggregationType, map_key) {
             return a - b;
         });
 
-
         dimensions = Array.from({ length: 20 }, (x, i) => 2001 + i);
-        //dimensions = []Total_Accidents: d3.sum(v, function (d) { return 1; }),
-                // Fatal 
-                // Serious
-                // Minor
-                // Uninjured
-                // VMC
-                // IMC
-                // Minor_Damage
-                // Substantial_Damage
-                // Destroyed_Damage
-                // MANEUVERING
-                // STANDING
-                // UNKNOWN
-                // TAKEOFF
-                // APPROACH
-                // CLIMB
-                // CRUISE
-                // DESCENT
-                // LANDING
-                // GOAROUND
-                // TAXI
+        if (valerione)
+            dimensions = ["Total_Accidents","Fatal", "Serious", "Minor", "Uninjured", "VMC", "IMC", "Minor_Damage", "Substantial_Damage", "Destroyed_Damage", "MANEUVERING", "STANDING", "UNKNOWN", "TAKEOFF", "APPROACH", "CLIMB", "CRUISE", "DESCENT", "LANDING", "GOAROUND", "TAXI"]
         // For each dimension, I build a linear scale. I store all in a y object
         var y = {}
 
@@ -157,50 +138,92 @@ function parallelCoord(aggregationType, map_key) {
             mouseout_scatter(d)
         }
 
-        function calc_max(dataset_dict) {
+        function calc_max(dataset_dict,m_k=map_key) {
             var max = 0
             var count = 0
             var i = 0
             for (var elem in dataset_dict) {
-                count += dataset_dict[elem][map_key]
-                if (max < dataset_dict[elem][map_key])
-                    max = dataset_dict[elem][map_key]
+                count += dataset_dict[elem][m_k]
+                if (max < dataset_dict[elem][m_k])
+                    max = dataset_dict[elem][m_k]
                 i += 1
             }
+            console.log(count,i,"DIO")
             return [max, count / i]
         }
+        
         var dict_dataset_dict = {}
         var max = 0
         var max_dict = {}
-        dimensions.map(function (year) {
-            dict_dataset_dict[year] = change(data, aggregationType, year, "true")
-            var results = calc_max(dict_dataset_dict[year])
-            var nuov_max = results[0]
-            var avg = results[1]
-            max_dict[year] = nuov_max
-            dict_dataset_dict[year]["AVG"] = { "Item": "AVG" }
-            dict_dataset_dict[year]["AVG"][map_key] = avg
-            if (max < nuov_max)
-                max = nuov_max
-        })
-        // The path function take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
+        if (!valerione) {
+            dimensions.map(function (year) {
+                dict_dataset_dict[year] = change(data, aggregationType, year, "true")
+                var results = calc_max(dict_dataset_dict[year])
+                var nuov_max = results[0]
+                var avg = results[1]
+                max_dict[year] = nuov_max
+                dict_dataset_dict[year]["AVG"] = { "Item": "AVG" }
+                dict_dataset_dict[year]["AVG"][map_key] = avg
+                if (max < nuov_max)
+                    max = nuov_max
+            })
+
+            function path(d) {
+                return d3.line()(dimensions.map(function (year) {
+                    dataset_dict = dict_dataset_dict[year]
+                    if (year_checkbox)
+                        y[year].domain([0, max + 2])
+                    else
+                        y[year].domain([0, max_dict[year]+ 2])
+
+                    try {
+                        return [x(year), y[year](dataset_dict[d][map_key])]
+                    }
+                    catch (error) {
+                        return [x(year), y[year](0)]
+                    }
+                }))
+            }
+    }
+        else {
+            var year = document.getElementById('slider').value
+            var aggregated_by_year = document.getElementById("aggregationYear").value;
+
+            dimensions.map(function (cosa) {//cosa = IMC VMC ETC.
+                dict_dataset_dict[cosa] = change(data, aggregationType, year, aggregated_by_year)
+
+                var results = calc_max(dict_dataset_dict[cosa],cosa)
+                var nuov_max = results[0]
+                var avg = results[1]
+                max_dict[cosa] = nuov_max
+                dict_dataset_dict[cosa]["AVG"] = { "Item": "AVG" }
+                dict_dataset_dict[cosa]["AVG"][cosa] = avg
+                console.log(dict_dataset_dict[cosa]["AVG"])
+                if (max < nuov_max)
+                    max = nuov_max
+            })
+            
+        dataset_dict_giusto = change(data, aggregationType, year, aggregated_by_year)
 
         function path(d) {
-            return d3.line()(dimensions.map(function (year) {
-                dataset_dict = dict_dataset_dict[year]
+            return d3.line()(dimensions.map(function (cosa) {
                 if (year_checkbox)
-                    y[year].domain([0, max + 2])
-                else
-                    y[year].domain([0, max_dict[year]+ 2])
-
+                    y[cosa].domain([0, max + 2])
+                else {
+                    y[cosa].domain([0, max_dict[cosa]+ 2])
+                }
                 try {
-                    return [x(year), y[year](dataset_dict[d][map_key])]
+                    return [x(cosa), y[cosa](dataset_dict_giusto[d][cosa])]
                 }
                 catch (error) {
-                    return [x(year), y[year](0)]
+                    return [x(cosa), y[cosa](0)]
                 }
             }))
         }
+    }
+        // The path function take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
+
+
 
         keys.push("AVG")
         // Draw the lines

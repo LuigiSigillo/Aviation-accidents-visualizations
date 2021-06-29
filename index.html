@@ -240,8 +240,13 @@
 
 
         <div id="parallel" class="block">
-            <input type="checkbox" id="year_normalized_checkbox" name="year_normalized_checkbox" value="true" onclick = "check_selection_year()">
-            <label for="vehicle1"> <b>Year normalized</b></label><br>
+            <div style="display: -webkit-flex" >
+                <input type="checkbox" id="year_normalized_checkbox" name="year_normalized_checkbox" value="true" onclick = "check_selection_year()">
+                <label for="vehicle1"> <b> X axis normalized</b></label><br>
+                <input type="checkbox" id="others_checkbox" name="others_checkbox" value="true" onclick = "check_selection_year()">
+                <label for="Others"> <b>Others</b></label><br>
+                
+            </div>
             <script>
                 function check_selection_year() {
                     var aggregationType = document.getElementById("aggregationType").value

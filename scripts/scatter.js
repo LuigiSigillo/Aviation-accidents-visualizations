@@ -662,9 +662,16 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
         d3.select("#slider")
             .on("change", function () {
                 yearInput = +d3.select(this).node().value
-
+                var map_key
+                d3version3.selectAll(".checkbox").each(function (d) {
+                    cb = d3.select(this);
+                    grp = cb.property("value")
+                    if (cb.property("checked"))
+                        map_key = grp
+                })
                 createMDS(yearInput, 0, 0, aggregated_by_year, aggregationType, mds_type_value)
-
+                if (valerione = document.getElementById("others_checkbox").checked)
+                    parallelCoord(aggregationType,map_key)
                 scatter_visualization(yearInput, aggregationType)
                 /*
                                 d3.selectAll('circle') // move the circles
