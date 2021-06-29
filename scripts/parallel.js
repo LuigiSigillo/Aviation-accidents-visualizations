@@ -45,8 +45,8 @@ function parallelCoord(aggregationType, map_key) {
         dimensions = Array.from({ length: 20 }, (x, i) => 2001 + i);
         if (valerione)
             dimensions = ["Total_Accidents","Fatal", "Serious", "Minor", "Uninjured", "VMC", "IMC", "Minor_Damage", "Substantial_Damage", "Destroyed_Damage", "MANEUVER", "STANDING", "UNKNOWN", "TAKEOFF", "APPROACH", "CLIMB", "CRUISE", "DESCENT", "LANDING", "GOAROUND", "TAXI"]
-        else
-            keys.push("AVG")
+        
+        keys.push("AVG")
 
             // For each dimension, I build a linear scale. I store all in a y object
         var y = {}
@@ -202,7 +202,12 @@ function parallelCoord(aggregationType, map_key) {
                 var avg = results[1]
                 max_dict[cosa] = nuov_max
                 dict_dataset_dict[cosa]["AVG"] = { "Item": "AVG" }
+                
+                console.log(avg,cosa)
+
                 dict_dataset_dict[cosa]["AVG"][cosa] = avg
+                console.log(dict_dataset_dict[cosa]["AVG"])
+
                 if (max < nuov_max)
                     max = nuov_max
             })
@@ -219,7 +224,6 @@ function parallelCoord(aggregationType, map_key) {
                     return [x(cosa), y[cosa](dataset_dict_giusto[d][cosa])]
                 }
                 catch (error) {
-                    console.log(cosa,"E")
                     return [x(cosa), y[cosa](0)]
                 }
             }))
