@@ -51,7 +51,8 @@ function mouse_on(pippo) {
                 html += "<a><b>Phase:</b> "
                 html += (d["PHASE"]);
                 html += " <b>Make :</b>"
-                html += (d["MAKE"]);
+                html += (d["MAKE"])
+                ;
             }
             catch (error) {
                 html += pippo;
@@ -156,7 +157,14 @@ function mouse_on(pippo) {
                 html += " <b>Substantial:</b>  "
                 html += (d["Substantial_Damage"]);
                 html += " <b>Minor:</b> "
-                html += (d["Minor_Damage"]);
+                html += (d["Minor_Damage"])
+                html += "</span><br>";
+                html += "<span>"
+                html += " <b>Survival Rate: </b>"
+                html += (d["Survival_Rate"].toFixed(2) + '%')
+                html += " <b>Death Rate: </b>"
+                html += (d["Death_Rate"].toFixed(2)+ '%')
+                html += "</span>";
             }
             catch (error) {
                 html += pippo;
@@ -182,6 +190,13 @@ function mouse_on(pippo) {
                 html += "</span><br>";
                 html += "<span>";
                 html += "<a><b>Uninjured:</b> 0 "
+                html += "</span><br>";
+                html += "<span>"
+                html += " <b>Survival Rate: </b>"
+                html += ('0%')
+                html += " <b>Death Rate: </b>"
+                html += ('0%')
+                html += "</span>";
             }
             html += "</a>";
             html += "</span><br>";
