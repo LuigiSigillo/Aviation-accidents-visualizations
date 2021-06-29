@@ -261,7 +261,7 @@ function parallelCoord(aggregationType, map_key) {
             .append("text")
             .style("text-anchor", "middle")
             .attr("y", -9)
-            .text(function (d) { return d; })
+            .text(function (d) { return d.toString().replace("_Damage",""); })
             .style("fill", "black")
             
 
