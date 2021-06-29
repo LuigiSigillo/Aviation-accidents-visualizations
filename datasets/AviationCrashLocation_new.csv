@@ -886,7 +886,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20150417X20434,2015-04-17,"Diboll, TX",Substantial,CESSNA,Personal,0.0,1.0,2.0,0.0,IMC,TAKEOFF,"31.166666999999997,-94.791666",Texas,April
 20150414X13623,2015-04-14,"Hilo, HI",Substantial,CESSNA,Instructional,0.0,3.0,0.0,0.0,VMC,TAKEOFF,"19.724723,-155.053333",Hawaii,April
 20150415X25713,2015-04-14,"Whittier, AK",Substantial,CESSNA,Personal,1.0,0.0,0.0,0.0,IMC,DESCENT,"60.707221999999994,-148.103611",Unknown,April
-20150414X80139,2015-04-13,"Shelter Island, NY",Substantial,CESSNA AIRCRAFT CO,Personal,0.0,1.0,0.0,0.0,VMC,TAKEOFF,"41.055833,-72.360833",New York,April
+20150414X80139,2015-04-13,"Shelter Island, NY",Substantial,CESSNA,Personal,0.0,1.0,0.0,0.0,VMC,TAKEOFF,"41.055833,-72.360833",New York,April
 20150412X71847,2015-04-12,"Fort Lauderdale, FL",Destroyed,PIPER,Personal,4.0,0.0,0.0,0.0,VMC,APPROACH,"26.201667,-80.1775",Florida,April
 20150411X00127,2015-04-10,"Challis, ID",Substantial,CESSNA,Personal,4.0,0.0,0.0,0.0,VMC,TAKEOFF,"44.593889000000004,-114.81833400000001",Idaho,April
 20150407X70528,2015-04-07,"Bloomington, IL",Substantial,CESSNA,Personal,7.0,0.0,0.0,0.0,IMC,GO-AROUND,"40.496111,-88.86805600000001",Illinois,April
@@ -984,7 +984,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20140927X22122,2014-09-27,"Lancaster, NY",Destroyed,CESSNA,Personal,2.0,0.0,0.0,2.0,VMC,MANEUVERING,"42.898333,-78.580556",New York,September
 20140921X40740,2014-09-20,"Saratoga, WY",Substantial,PIPER,Personal,2.0,0.0,0.0,0.0,VMC,TAKEOFF,"41.432223,-106.84138899999999",Wyoming,September
 20140923X92146,2014-09-20,"Clarion, PA",Substantial,BARGER JERRY L,Personal,0.0,1.0,0.0,0.0,VMC,TAKEOFF,"41.221389,-79.438611",Pennsylvania,September
-20140920X61806,2014-09-19,"Borrego Springs, CA",Substantial,CESSNA AIRCRAFT CO,Personal,1.0,0.0,0.0,0.0,VMC,MANEUVERING,"33.236666,-116.224723",California,September
+20140920X61806,2014-09-19,"Borrego Springs, CA",Substantial,CESSNA,Personal,1.0,0.0,0.0,0.0,VMC,MANEUVERING,"33.236666,-116.224723",California,September
 20140919X90350,2014-09-19,"Alton, VA",Destroyed,NORTH AMERICAN,Personal,2.0,0.0,0.0,0.0,VMC,MANEUVERING,"36.558611,-79.2075",Virginia,September
 20140919X14845,2014-09-19,"Okmulgee, OK",Substantial,CESSNA,Personal,1.0,0.0,0.0,0.0,IMC,MANEUVERING,"35.714166999999996,-95.973056",Oklahoma,September
 20140924X82224,2014-09-16,"Fort Gaines, GA",Substantial,PIPER,Personal,2.0,0.0,0.0,0.0,VMC,UNKNOWN,"31.555556,-85.049722",Georgia,September
@@ -1106,7 +1106,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20140324X50849,2014-03-23,"Kill Devil Hills, NC",Substantial,FANTASY AIR SRO,Personal,0.0,2.0,0.0,0.0,VMC,APPROACH,"36.017778,-75.669445",North Carolina,March
 20140322X60839,2014-03-22,"Safety Harbor, FL",Substantial,PIPER,Personal,2.0,1.0,0.0,0.0,VMC,APPROACH,"28.000278,-82.708889",Florida,March
 20140322X03239,2014-03-22,"Ridgway, CO",Substantial,SOCATA,Personal,5.0,0.0,0.0,0.0,VMC,APPROACH,"38.218056,-107.745277",Colorado,March
-20140322X60437,2014-03-21,"Palatka, FL",Substantial,CESSNA AIRCRAFT CO,Personal,1.0,1.0,0.0,0.0,VMC,GO-AROUND,"29.658056,-81.673056",Florida,March
+20140322X60437,2014-03-21,"Palatka, FL",Substantial,CESSNA,Personal,1.0,1.0,0.0,0.0,VMC,GO-AROUND,"29.658056,-81.673056",Florida,March
 20140820X23242,2014-03-19,"Lamar, CO",Substantial,MOONEY,Personal,0.0,1.0,1.0,1.0,VMC,TAKEOFF,"38.211389000000004,-102.600833",Colorado,March
 20140318X41646,2014-03-18,"Greenwood, IN",Substantial,CESSNA,Instructional,0.0,1.0,1.0,0.0,VMC,MANEUVERING,"39.636389,-86.055278",Indiana,March
 20140309X30405,2014-03-08,"Carson City, NV",Destroyed,CESSNA,Personal,1.0,0.0,0.0,0.0,UNK,CLIMB,"39.098055,-119.665",Nevada,March
@@ -1485,7 +1485,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20120315X14443,2012-03-14,"Goble, OR",Substantial,CESSNA,Instructional,2.0,0.0,0.0,0.0,IMC,MANEUVERING,"46.025278,-122.920278",Oregon,March
 20120307X13644,2012-03-06,"Fallon, NV",Destroyed,ISRAEL AIRCRAFT INDUSTRIES,Public Aircraft - Federal,1.0,0.0,0.0,0.0,IMC,APPROACH,"39.417778000000006,-118.69861100000001",Nevada,March
 20120306X22101,2012-03-05,"Brockton, MT",Substantial,BELLANCA,Personal,1.0,1.0,0.0,0.0,VMC,MANEUVERING,"47.989722,-104.718334",Montana,March
-20120303X31233,2012-03-02,"Salisburry, NC",Destroyed,CESSNA AIRCRAFT CO,Personal,2.0,0.0,0.0,0.0,IMC,CLIMB,"35.636944,-80.29083299999999",North Carolina,March
+20120303X31233,2012-03-02,"Salisburry, NC",Destroyed,CESSNA,Personal,2.0,0.0,0.0,0.0,IMC,CLIMB,"35.636944,-80.29083299999999",North Carolina,March
 20120303X71045,2012-03-02,"Bedminster, NJ",Substantial,CHAMPION,Instructional,0.0,1.0,1.0,0.0,VMC,GO-AROUND,"40.626945,-74.675278",New Jersey,March
 20120307X80412,2012-03-01,0,Substantial,CESSNA,Personal,1.0,0.0,0.0,0.0,VMC,UNKNOWN,"26.291665999999996,-79.653611",Unknown,March
 20120229X12019,2012-02-29,"Melbourne, FL",Substantial,CIRRUS,Personal,3.0,0.0,0.0,0.0,VMC,APPROACH,"28.092777,-80.659722",Florida,February
