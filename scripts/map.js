@@ -78,10 +78,21 @@ function brushMap(brushList, mode) {
 
         function colorMapping(numero) {
             //var legendText = ["0-1","1-2","3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
-            if (numero == 0)
-                res = 0
-            else
-                res = Math.floor(Math.log2(numero))
+            
+            if ($("input[type='radio'][name='gender']:checked").val() == "Survival_Rate" ||
+            $("input[type='radio'][name='gender']:checked").val() == "Death_Rate"){
+                if (numero == 0)
+                    res = 0
+                else
+                    res = Math.floor((numero -1) / 10) - 1
+            }
+            else {
+                if (numero == 0)
+                    res = 0
+                else
+                    res = Math.floor(Math.log2(numero))
+                
+            }
             return colors[res+1].getColors().r
         }
 
@@ -213,8 +224,13 @@ function brushMap(brushList, mode) {
                 function updateLegend() {
                     //var legendText = ["0-1", "1-2", "3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
                     var grp = $("input[type='radio'][name='gender']:checked").val();
-                    var mappa = { "Total_Accidents": "Accidents", "Fatal": "Fatalities", "Serious": "Serious injuries", "Minor": "Minor injuries", "Uninjured": "Uninjured" }
+                    var mappa = { "Total_Accidents": "Accidents", "Fatal": "Fatalities", "Serious": "Serious injuries", "Minor": "Minor injuries", "Uninjured": "Uninjured", "Death_Rate": "Death Rate", "Survival_Rate": "Survival Rate" }
+                    console.log("AAAAAAAA", grp)
+                    if(grp == "Survival_Rate" || grp == "Death_Rate"){
+                        var legendText = ["# " + mappa[grp], "0-11", "12-22", "23-33", "34-44", "45-55", "56-66", "67-77", "78-88", "89-100"];
+                    }else{
                     var legendText = ["# " + mappa[grp], "0-1", "1-2", "3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
+                    }
                     var legendsvg = d3version3.select("#legenda-svg")
                     legendsvg.selectAll(".legend").remove();
                     var legend = legendsvg.append("svg")
