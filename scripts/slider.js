@@ -35,10 +35,18 @@ function change(data, subject, year, single_year) {
     if(subject != "Event.Id"){
     var res = d3version3.nest()
         .key(function (d) { return d[subject]; })
-        .rollup(function (v) {
+        .rollup(function (v) {console.log("AAAA", )
             return {
                 Item: v[0][subject],
                 Total_Accidents: d3.sum(v, function (d) { return 1; }),
+                Total_Passangers: d3.sum(v, function (d) { return d["Total.Fatal.Injuries"]; }) +
+                d3.sum(v, function (d) { return d["Total.Serious.Injuries"]; }) +
+                d3.sum(v, function (d) { return d["Total.Minor.Injuries"]; }) + 
+                d3.sum(v, function (d) { return d["Total.Uninjured"]; }),
+                Death_Rate:  d3.sum(v, function (d) { return d["Total.Fatal.Injuries"]; }) / (d3.sum(v, function (d) {return d["Total.Fatal.Injuries"]; }) +
+                d3.sum(v, function (d) { return d["Total.Serious.Injuries"]; }) +
+                d3.sum(v, function (d) { return d["Total.Minor.Injuries"]; }) + 
+                d3.sum(v, function (d) { return d["Total.Uninjured"]; })),
                 Fatal: d3.sum(v, function (d) { return d["Total.Fatal.Injuries"]; }),
                 Serious: d3.sum(v, function (d) { return d["Total.Serious.Injuries"]; }),
                 Minor: d3.sum(v, function (d) { return d["Total.Minor.Injuries"]; }),
@@ -70,14 +78,15 @@ function change(data, subject, year, single_year) {
                 September: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "09" }),
                 October: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "10" }),
                 November: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "11" }),
-                December: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "12" })
+                December: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "12" }),
+                SURVIVAL_RATE:   +v[0]["Total.Fatal.Injuries"] / d3.sum(v, function (d) { return 1; })
             };
         })
         .map(filtered_map)
     } else{
         var res = d3version3.nest()
         .key(function (d) { return d[subject]; })
-        .rollup(function (v) {console.log("jjj", v[0]["Event.Date"].split("-")[1])
+        .rollup(function (v) {
             return {
                 Item: v[0][subject],
                 Total_Accidents: 1,
@@ -101,14 +110,17 @@ function change(data, subject, year, single_year) {
                 LANDING: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "LANDING"; }),
                 GOAROUND: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "GO-AROUND"; }),
                 TAXI: d3.sum(v, function (d) { return d["Broad.Phase.of.Flight"] == "TAXI"; }),
+                VMC: d3.sum(v, function (d) { return d["Weather.Condition"] == "VMC"; }),
+                IMC: d3.sum(v, function (d) { return d["Weather.Condition"] == "IMC"; }),
                 STATE: v[0]["Crash.Country"],
                 PHASE: v[0]["Broad.Phase.of.Flight"],
                 MONTH: v[0]["Event.Month"],
                 MAKE: v[0]["Make"]
-            };
+                };
         })
         .map(filtered_map)
     }
+    console.log()
     return res;
 
 }
