@@ -13,7 +13,6 @@ function mouse_on(pippo) {
         d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
             dataset_dict = change(data, "Event.Id", year, aggregated_by_year)
             d = dataset_dict[pippo]
-            console.log(d)
             var html = "";
             html += "<div style= 'text-align: center;'>";
             html += "<span>";
@@ -89,7 +88,6 @@ function mouse_on(pippo) {
             //quello commentato ha senso, ma scaja
             //var map_width = document.getElementById('scatter').getBoundingClientRect().width;
             var map_width = $('scatter')[0].getBoundingClientRect().width;
-            console.log($('scatter'))
 
             console.log('LAYER X ' + d3.event.layerX)
             console.log('LAYER Y ' + d3.event.layerY)
@@ -351,9 +349,12 @@ function brushParallel(listBrush) {
 
     // first every group turns grey 
     svgParallel.selectAll("path")
-        .filter(function (d, i) {
-            return d != null
-        })
+    .filter(function (d, i) {
+        if (d== null)
+            return false
+        else
+            return (d!="AVG")
+    })
         .transition().duration(200)
         .style("stroke", "lightgrey")
         .style("opacity", "0.1")
@@ -393,7 +394,10 @@ function mouseonParallel(d) {
     svgParallel.selectAll("path")
         .transition().duration(200)
         .filter(function (d, i) {
-            return d != null
+            if (d== null)
+                return false
+            else
+                return (d!="AVG")
         })
         .style("stroke", "lightgrey")
         .style("opacity", "0.1")
@@ -442,7 +446,6 @@ function mouseoutParallel(d) {
 function preset_selection() {
     //var user = $("input[type='radio'][name='preset']:checked").val();
     var user = document.getElementById("presetType").value
-    console.log("user", user)
     var yearInput, aggregated_by_year, aggregationType, mds_type_value, X, Y, R, type_map
     /*  
     User 1:

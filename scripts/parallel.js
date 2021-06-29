@@ -45,7 +45,10 @@ function parallelCoord(aggregationType, map_key) {
         dimensions = Array.from({ length: 20 }, (x, i) => 2001 + i);
         if (valerione)
             dimensions = ["Total_Accidents","Fatal", "Serious", "Minor", "Uninjured", "VMC", "IMC", "Minor_Damage", "Substantial_Damage", "Destroyed_Damage", "MANEUVER", "STANDING", "UNKNOWN", "TAKEOFF", "APPROACH", "CLIMB", "CRUISE", "DESCENT", "LANDING", "GOAROUND", "TAXI"]
-        // For each dimension, I build a linear scale. I store all in a y object
+        else
+            keys.push("AVG")
+
+            // For each dimension, I build a linear scale. I store all in a y object
         var y = {}
 
         for (i in dimensions) {
@@ -85,7 +88,10 @@ function parallelCoord(aggregationType, map_key) {
             // first every group turns grey NOT WORKING
             svgParallel.selectAll("path")
                 .filter(function (d, i) {
-                    return d != null
+                    if (d== null)
+                        return false
+                    else
+                        return (d!="AVG")
                 })
                 .transition().duration(200)
                 .style("stroke", "lightgrey")
@@ -187,10 +193,10 @@ function parallelCoord(aggregationType, map_key) {
         else {
             var year = document.getElementById('slider').value
             var aggregated_by_year = document.getElementById("aggregationYear").value;
+            var dataset_dict_giusto = change(data, aggregationType, year, aggregated_by_year)
 
             dimensions.map(function (cosa) {//cosa = IMC VMC ETC.
                 dict_dataset_dict[cosa] = change(data, aggregationType, year, aggregated_by_year)
-
                 var results = calc_max(dict_dataset_dict[cosa],cosa)
                 var nuov_max = results[0]
                 var avg = results[1]
@@ -201,7 +207,6 @@ function parallelCoord(aggregationType, map_key) {
                     max = nuov_max
             })
             
-        dataset_dict_giusto = change(data, aggregationType, year, aggregated_by_year)
 
         function path(d) {
             return d3.line()(dimensions.map(function (cosa) {
@@ -214,6 +219,7 @@ function parallelCoord(aggregationType, map_key) {
                     return [x(cosa), y[cosa](dataset_dict_giusto[d][cosa])]
                 }
                 catch (error) {
+                    console.log(cosa,"E")
                     return [x(cosa), y[cosa](0)]
                 }
             }))
@@ -223,7 +229,6 @@ function parallelCoord(aggregationType, map_key) {
 
 
 
-        keys.push("AVG")
         // Draw the lines
         svgParallel
             .selectAll("myPath")
