@@ -193,7 +193,7 @@ function parallelCoord(aggregationType, map_key) {
         else {
             var year = document.getElementById('slider').value
             var aggregated_by_year = document.getElementById("aggregationYear").value;
-            var dataset_dict_giusto = change(data, aggregationType, year, aggregated_by_year)
+            //var dataset_dict_giusto = change(data, aggregationType, year, aggregated_by_year)
 
             dimensions.map(function (cosa) {//cosa = IMC VMC ETC.
                 dict_dataset_dict[cosa] = change(data, aggregationType, year, aggregated_by_year)
@@ -203,10 +203,8 @@ function parallelCoord(aggregationType, map_key) {
                 max_dict[cosa] = nuov_max
                 dict_dataset_dict[cosa]["AVG"] = { "Item": "AVG" }
                 
-                console.log(avg,cosa)
 
                 dict_dataset_dict[cosa]["AVG"][cosa] = avg
-                console.log(dict_dataset_dict[cosa]["AVG"])
 
                 if (max < nuov_max)
                     max = nuov_max
@@ -215,17 +213,22 @@ function parallelCoord(aggregationType, map_key) {
 
         function path(d) {
             return d3.line()(dimensions.map(function (cosa) {
+                dataset_dict = dict_dataset_dict[cosa]
+
                 if (year_checkbox)
                     y[cosa].domain([0, max + 2])
                 else {
                     y[cosa].domain([0, max_dict[cosa]+ 2])
                 }
-                try {
-                    return [x(cosa), y[cosa](dataset_dict_giusto[d][cosa])]
+
+                try
+                {
+                    y_elem = dataset_dict[d][cosa]
                 }
-                catch (error) {
-                    return [x(cosa), y[cosa](0)]
+                catch(error){
+                    y_elem = 0
                 }
+                    return [x(cosa), y[cosa](y_elem)]
             }))
         }
     }

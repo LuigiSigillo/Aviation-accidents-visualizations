@@ -100,7 +100,6 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
             for (var i = 0; i < size.length; i++) {
                 dissM[i] = [];
                 for (var j = 0; j < size.length; j++) {
-                    console.log(filtered[size[i]]["Survival_Rate"])
                     var listaI = [filtered[size[i]]["Total_Accidents"], filtered[size[i]]["Fatal"], filtered[size[i]]["Serious"], filtered[size[i]]["Minor"]]
                     var listaJ = [filtered[size[j]]["Total_Accidents"], filtered[size[j]]["Fatal"], filtered[size[j]]["Serious"], filtered[size[j]]["Minor"]]
 
@@ -111,7 +110,6 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
         else if (keyword == "percentage") {
 
             filtered = change(data, subject, year, aggr)
-            console.log(filtered)
             size = Object.keys(filtered)
             size2 = filtered
             for (var i = 0; i < size.length; i++) {
@@ -126,7 +124,6 @@ function chooseCharacteristic(data, year, aggr, keyword, subject) {
         }
         else if (keyword == "kind") {
             filtered = change(data, subject, year, aggr)
-            console.log("COSA", filtered)
             size = Object.keys(filtered)
             size2 = filtered
             for (var i = 0; i < size.length; i++) {
@@ -387,7 +384,6 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                     id.style('stroke-width', '0.5');
                 }
                 if (flights == true) {
-                    console.log("AAAAAA", aggreg)
                     brushed = []
                     brushed_points.forEach(d => brushed.push(size2[d]["STATE"]))
                     brushMap(brushed, "unbrush")
@@ -446,7 +442,6 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
             .attr("class", "mdsTooltip")
             .style("opacity", 0);
 
-        console.log(labels, "aaaa")
         var nodes = svg.attr("clip-path", "url(#clip)")
             .selectAll("circle")
             .data(labels)
@@ -498,7 +493,6 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                     }
                     // style brushed circles
                     nodes.selectAll("circle").filter(function (r) {
-                        console.log(r)
                         if (r == d)
                             return true
 
@@ -581,7 +575,6 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                         var id = d3.select('#mapReg').selectAll('path').filter(function (t) {
                             var terName = d3.select('#' + this['id']).attr('name');
 
-                            console.log("eccoci");
                             return terName == d;
                         });
                         // id.style('stroke', oldSt);
