@@ -90,8 +90,8 @@ function parallelCoord(aggregationType, map_key) {
                 .transition().duration(200)
                 .style("stroke", "lightgrey")
                 .style("opacity", "0.1")
-            // // Second the hovered specie takes its colorParallel
-            svgParallel.selectAll(".line" + d)
+            // Second the hovered specie takes its colorParallel
+            svgParallel.selectAll(".line" + d.replace(/ /g, ''))
                 .transition().duration(200)
                 .style("stroke", function(d){
                     d3.select(this).raise().classed("active", true);
@@ -148,7 +148,6 @@ function parallelCoord(aggregationType, map_key) {
                     max = dataset_dict[elem][m_k]
                 i += 1
             }
-            console.log(count,i,"DIO")
             return [max, count / i]
         }
         
@@ -198,7 +197,6 @@ function parallelCoord(aggregationType, map_key) {
                 max_dict[cosa] = nuov_max
                 dict_dataset_dict[cosa]["AVG"] = { "Item": "AVG" }
                 dict_dataset_dict[cosa]["AVG"][cosa] = avg
-                console.log(dict_dataset_dict[cosa]["AVG"])
                 if (max < nuov_max)
                     max = nuov_max
             })
@@ -232,7 +230,7 @@ function parallelCoord(aggregationType, map_key) {
             .data(keys)
             .enter()
             .append("path")
-            .attr("class", function (d) { return "line" + d })
+            .attr("class", function (d) { return "line" + d.replace(/ /g, '') })
             .attr("d", path)
             .style("fill", "none")
             .style("stroke", function (d) {
@@ -287,7 +285,7 @@ function parallelCoord(aggregationType, map_key) {
                 // Second the hovered specie takes its colorParallel
                 brushed_par.forEach(d => {
                     // Second the hovered specie takes its colorParallel
-                    svgParallel.selectAll(".line" + d)
+                    svgParallel.selectAll(".line" + d.replace(/ /g, ''))
                         .transition().duration(200)
                         .style("stroke", "black")
                         .style("opacity", "1")

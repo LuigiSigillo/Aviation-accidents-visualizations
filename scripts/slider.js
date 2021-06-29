@@ -35,7 +35,7 @@ function change(data, subject, year, single_year) {
     if(subject != "Event.Id"){
     var res = d3version3.nest()
         .key(function (d) { return d[subject]; })
-        .rollup(function (v) {console.log("AAAA", )
+        .rollup(function (v) {
             return {
                 Item: v[0][subject],
                 Total_Accidents: d3.sum(v, function (d) { return 1; }),

@@ -359,7 +359,7 @@ function brushParallel(listBrush) {
         .style("opacity", "0.1")
     listBrush.forEach(d => {
         // Second the hovered specie takes its colorParallel
-        svgParallel.selectAll(".line" + d)
+        svgParallel.selectAll(".line" + d.replace(/ /g, ''))
             .transition().duration(200)
             .style("stroke", "black")
             .style("opacity", "1")
@@ -399,7 +399,7 @@ function mouseonParallel(d) {
         .style("opacity", "0.1")
 
     // Second the hovered specie takes its colorParallel
-    svgParallel.selectAll(".line" + d)
+    svgParallel.selectAll(".line" + d.replace(/ /g, ''))
         .transition().duration(200)
         .style("stroke", function(d){
             d3.select(this).raise().classed("active", true);
