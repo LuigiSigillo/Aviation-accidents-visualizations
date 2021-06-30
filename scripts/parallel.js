@@ -87,12 +87,14 @@ function parallelCoord(aggregationType, map_key) {
 
             // first every group turns grey NOT WORKING
             svgParallel.selectAll("path")
-                .filter(function (d, i) {
-                    if (d== null)
+            .filter(function (d, i) {
+                if (d== null)
+                    return false
+                else
+                    if (d == "AVG")
                         return false
-                    else
-                        return (d!="AVG")
-                })
+                return !brushed_par.includes(d) 
+            })
                 .transition().duration(200)
                 .style("stroke", "lightgrey")
                 .style("opacity", "0.1")
@@ -116,16 +118,18 @@ function parallelCoord(aggregationType, map_key) {
                 })
                 .transition().duration(200)
                 .style("stroke", function (d) {
+                    if (d == "AVG")
+                        return "red"
                     if (d != null && brushed_par.includes(d))
                         return "black"
                     if (brushed_par.length == 0) {
-                        if (d == "AVG")
-                            return "red"
                         return "#2c7bb6"
                     }
                     return "lightgrey"
                 })
                 .style("opacity", function (d) {
+                    if (d == "AVG")
+                        return "1"
                     if (d != null && brushed_par.includes(d))
                         return "1"
                     if (brushed_par.length == 0)
