@@ -43,7 +43,7 @@ function parallelCoord(aggregationType, map_key) {
 
         dimensions = Array.from({ length: 20 }, (x, i) => 2001 + i);
         if (valerione)
-            dimensions = ["Total_Accidents","Fatal", "Serious", "Minor", "Uninjured", "VMC", "IMC", "Minor_Damage", "Substantial_Damage", "Destroyed_Damage", "MANEUVER", "STANDING", "UNKNOWN", "TAKEOFF", "APPROACH", "CLIMB", "CRUISE", "DESCENT", "LANDING", "GOAROUND", "TAXI"]
+            dimensions = ["Total_Accidents","Fatal", "Serious", "Minor", "Uninjured", "VMC", "IMC", "Minor_Damage", "Substantial_Damage", "Destroyed_Damage", "Death_Rate","Survival_Rate"]
         
         keys.push("AVG")
 
@@ -272,7 +272,7 @@ function parallelCoord(aggregationType, map_key) {
             .each(function (d) { d3.select(this).call(y[d].brush); d3.select(this).call(d3.axisLeft().ticks(5).scale(y[d])); })
             // Add axis title
             .append("text")
-            .style("text-anchor", "start")
+            .style("text-anchor", "middle")
             .attr("y", -9)
             .text(function (d) {
                 d3.select(this).style("font-size", 10)
