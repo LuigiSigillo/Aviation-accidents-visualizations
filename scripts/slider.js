@@ -123,13 +123,16 @@ function change(data, subject, year, single_year) {
         })
         .map(filtered_map)
     }
-    
-    if (remove_outliers) {
+    console.log(remove_outliers)
+    if (remove_outliers && !single_year) {
         var result = {}
         for (elem in res) {
             if (res[elem]['Total_Accidents']>5) {
                 result[elem] = res[elem]
             }
+        }
+        if(Object.keys(result).length<2) {
+            result = res
         }
     }
     else result = res
