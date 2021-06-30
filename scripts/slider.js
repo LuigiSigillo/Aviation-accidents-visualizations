@@ -123,7 +123,6 @@ function change(data, subject, year, single_year) {
         })
         .map(filtered_map)
     }
-    console.log(remove_outliers)
     if ((remove_outliers && single_year=="false")) {
         var result = {}
         for (elem in res) {
