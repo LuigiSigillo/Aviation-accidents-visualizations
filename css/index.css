@@ -78,7 +78,7 @@ html, body {
 /*---------*/
 .menu_tendina {
     display: table;
-    width: 95%;
+    width: 100%;
     margin-top: 0%;
     margin-left: 0.5%;
     table-layout: fixed;
