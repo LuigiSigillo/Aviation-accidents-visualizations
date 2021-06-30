@@ -21,7 +21,7 @@ html, body {
 
 
 
-#menublock { top:0%;   left:0%; width: 50%; height: 10%; background-color: darkgrey;}
+#menublock { top:0%;   left:0%; width: 50%; height: 10%; background-color: darkgrey;padding:0.2em}
 #sliderblock { top:5%;  left:0%; width: 50%; height: 6%;  border:3px solid transparent;}
 #yearblock { top:4%;  left:40%; width: 50%; height: 6%;  border:3px solid transparent; }
 
@@ -80,12 +80,12 @@ html, body {
     display: table;
     width: 100%;
     margin-top: 0%;
-    margin-left: 0.5%;
+    margin-left: 0.1%;
     table-layout: fixed;
-    border-spacing: 10px;
+    border-spacing: 5px;
     border-style: outset;
     background-color: lightgrey;
-    border-radius: 10px;
+    border-radius: 5px;
     
   }
 

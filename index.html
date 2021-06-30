@@ -75,9 +75,9 @@
 
                     </select>
                     <input type="checkbox" id="remove_outliers" name="remove_outliers" value="true" onclick = "check_outliers()">
-                    <label for="vehicle1"> <b>Remove outliers</b></label><br>
+                    <label for="vehicle1"> <b>Incid.>5</b></label>
                     <input type="checkbox" id="flights_checkbox" name="flights_checkbox" value="true" onclick = "check_selection()">
-                    <label for="vehicle1"> <b>Single flights</b></label><br>
+                    <label for="vehicle1"> <b>Single flights</b></label>
 
                     <script>
                         var remove_outliers = false
@@ -94,6 +94,11 @@
 
                         function check_outliers(){
                             remove_outliers = document.getElementById("remove_outliers").checked
+                            var aggregationType = document.getElementById("aggregationType").value
+                            map_key= $("input[type='radio'][name='gender']:checked").val();
+
+                            parallelCoord(aggregationType,map_key)
+                            
                             triggeraSlider()
                         }
                     </script>

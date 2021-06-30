@@ -23,7 +23,6 @@ d3version3.selectAll(".checkbox").each(function (d) {
         map_key = grp
 })
 var aggregationType = document.getElementById("aggregationType").value
-
 function parallelCoord(aggregationType, map_key) {
     svgParallel.selectAll("path").remove()
     svgParallel.selectAll("g").remove()
