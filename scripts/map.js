@@ -7,7 +7,7 @@ function brushMap(brushList, mode) {
             brushed_countries = brushList
         if (mode =="unbrush")
             brushed_countries = []
-        var margin = { top: 50, right: 15, bottom: 15, left: 100 }
+        var margin = { top: 50, right: 15, bottom: 15, left: 180 }
         var width = document.getElementById("map").clientWidth + margin.left + margin.right
         var height = document.getElementById("map").clientHeight - margin.top - margin.bottom;
 
@@ -15,8 +15,8 @@ function brushMap(brushList, mode) {
         /* width: 960px;
         height: 500px;*/
         function scaling(width, height) {
-            maxWidth = 647.5 * 2
-            maxHeight = 309.5 * 2
+            maxWidth = 647.5 * 1.5
+            maxHeight = 309.5 * 1.6
             ratio = 1
             // Check if the current width is larger than the max
             if (width < maxWidth)

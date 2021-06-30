@@ -35,6 +35,9 @@ html, body {
 #mds { top:60%; left:0;  width: 50%; height: 40%; background-color: darkgrey; }
 
 #map { top:0%;   left:50%;   width: 50%; height: 45%;background-color: darkgrey;}
+
+#menumappa{ top:41%;   left:50%;   width: 50%; height: 100%;border: transparent;}
+
 #parallel { top:45%;   left:50%;   width: 50%; height: 45%;background-color: darkgrey; }
 
 #menu { top:80%; left:50%;   width: 50%; height: 20%;background-color: darkgrey; }  
