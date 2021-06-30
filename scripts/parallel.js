@@ -269,10 +269,13 @@ function parallelCoord(aggregationType, map_key) {
             .each(function (d) { d3.select(this).call(y[d].brush); d3.select(this).call(d3.axisLeft().ticks(5).scale(y[d])); })
             // Add axis title
             .append("text")
-            .style("text-anchor", "middle")
+            .style("text-anchor", "start")
             .attr("y", -9)
-            .text(function (d) { return d.toString().replace("_Damage",""); })
+            .text(function (d) {
+                d3.select(this).style("font-size", 10)
+                return d.toString().replace("_Damage",""); })
             .style("fill", "black")
+
             
 
             function brushPar(year) {

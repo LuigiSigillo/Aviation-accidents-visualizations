@@ -225,7 +225,6 @@ function brushMap(brushList, mode) {
                     //var legendText = ["0-1", "1-2", "3-6", "7-14", "15-30", "31-62", "63-126", "127-254", "255-510"];
                     var grp = $("input[type='radio'][name='gender']:checked").val();
                     var mappa = { "Total_Accidents": "Accidents", "Fatal": "Fatalities", "Serious": "Serious injuries", "Minor": "Minor injuries", "Uninjured": "Uninjured", "Death_Rate": "Death Rate", "Survival_Rate": "Survival Rate" }
-                    console.log("AAAAAAAA", grp)
                     if(grp == "Survival_Rate" || grp == "Death_Rate"){
                         var legendText = ["# " + mappa[grp], "0-11", "12-22", "23-33", "34-44", "45-55", "56-66", "67-77", "78-88", "89-100"];
                     }else{

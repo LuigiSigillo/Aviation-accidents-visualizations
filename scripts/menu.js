@@ -205,22 +205,21 @@ function mouse_on(pippo) {
 
             //quello commentato ha senso, ma scaja
             //var map_width = document.getElementById('scatter').getBoundingClientRect().width;
-            var map_width = $('scatter')[0].getBoundingClientRect().width;
-            console.log($('scatter'))
+            //var map_width = $('scatter')[0].getBoundingClientRect().width;
 
-            console.log('LAYER X ' + d3.event.layerX)
-            console.log('LAYER Y ' + d3.event.layerY)
+            //console.log('LAYER X ' + d3.event.layerX)
+            //console.log('LAYER Y ' + d3.event.layerY)
 
-            if (d3.event.layerX < map_width / 2) {
-                d3.select("#tooltip-container-menu")
-                    .style("top", (d3.event.layerY + 15) + "px")
-                    .style("left", (d3.event.layerX + 15) + "px");
-            } else {
-                var tooltip_width = $("#tooltip-container-menu").width();
-                d3.select("#tooltip-container-menu")
-                    .style("top", (d3.event.layerY + 15) + "px")
-                    .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
-            }
+            // if (d3.event.layerX < map_width / 2) {
+            //     d3.select("#tooltip-container-menu")
+            //         .style("top", (d3.event.layerY + 15) + "px")
+            //         .style("left", (d3.event.layerX + 15) + "px");
+            // } else {
+            //     var tooltip_width = $("#tooltip-container-menu").width();
+            //     d3.select("#tooltip-container-menu")
+            //         .style("top", (d3.event.layerY + 15) + "px")
+            //         .style("left", (d3.event.layerX - tooltip_width - 30) + "px");
+            // }
         })
     }
 }
@@ -397,7 +396,9 @@ function mouseonParallel(d) {
             if (d== null)
                 return false
             else
-                return (d!="AVG")
+                if (d == "AVG")
+                    return false
+            return !brushed_par.includes(d) 
         })
         .style("stroke", "lightgrey")
         .style("opacity", "0.1")
@@ -420,16 +421,18 @@ function mouseoutParallel(d) {
         })
         .transition().duration(200)
         .style("stroke", function (d) {
+            if (d == "AVG")
+                return "red"
             if (d != null && brushed_par.includes(d))
                 return "black"
             if (brushed_par.length == 0) {
-                if (d == "AVG")
-                    return "red"
                 return "#2c7bb6"
             }
             return "lightgrey"
         })
         .style("opacity", function (d) {
+            if (d == "AVG")
+                return "1"
             if (d != null && brushed_par.includes(d))
                 return "1"
             if (brushed_par.length == 0)
