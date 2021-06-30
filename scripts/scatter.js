@@ -583,7 +583,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
             var legend = div.selectAll(".legenda")
                 //.data(color.domain().sort(function (a, b) { return dataset_dict[b].r - dataset_dict[a].r }))
-                .data(legendlist)
+                .data(legendlist.slice(0, 32))
                 .enter().append("g")
                 .attr("class", "legendina")
                 .attr("transform", function (d, i) { return "translate(20," + i * 14 + ")"; });
