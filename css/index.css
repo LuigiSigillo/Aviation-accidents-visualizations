@@ -1,6 +1,8 @@
 html, body { 
     margin: 0;     
     background-image: url('https://arttrip.it/wp-content/uploads/2016/12/la-scuola-di-atene-raffaello-sanzio.jpg');
+    font-size: 16px;
+
   }
 
 
@@ -23,7 +25,7 @@ html, body {
 
 #menublock { top:0%;   left:0%; width: 50%; height: 10%; background-color: darkgrey;padding:0.2em}
 #sliderblock { top:5%;  left:0%; width: 50%; height: 6%;  border:3px solid transparent;}
-#yearblock { top:4%;  left:40%; width: 50%; height: 6%;  border:3px solid transparent; }
+#yearblock { top:4%;  left:40%; width: 50%; height: 6%;  border:3px solid transparent; font-size: 22px; }
 
 #playb { top:5%;   left:33%; height: 8%; border:3px solid transparent; }
 
@@ -36,7 +38,7 @@ html, body {
 
 #map { top:0%;   left:50%;   width: 50%; height: 45%;background-color: darkgrey;}
 
-#menumappa{ top:41%;   left:50%;   width: 50%; height: 100%;border: transparent;}
+#menumappa{ top:41%;   left:50%;   width: 50%; height: 100%;border: transparent;font-size: 19px; }
 
 #parallel { top:45%;   left:50%;   width: 50%; height: 45%;background-color: darkgrey; }
 

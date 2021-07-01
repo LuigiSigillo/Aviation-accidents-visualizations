@@ -1,5 +1,5 @@
   .label {
-    font-size: 15px;
+    font-size: 19px;
   }
   .legenda{
     overflow:visible;
@@ -11,9 +11,13 @@
     overflow-y:scroll;
   }
 
-  .legendina text,
+  .legendina text {
+    font-size: 19px;
+    fill: #333;
+
+  }
   .axis text {
-    font-size: 13px;
+    font-size: 12px;
     fill: #333;
   }
 
