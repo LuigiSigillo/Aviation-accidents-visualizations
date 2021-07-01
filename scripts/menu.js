@@ -606,7 +606,4 @@ function preset_selection() {
     $radios.filter('[value='+type_map+']').prop('checked', true);
     check_selection()
     check_outliers()
-
-
-
 }
