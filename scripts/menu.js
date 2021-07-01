@@ -473,14 +473,16 @@ function preset_selection() {
         - MDS: supporto al bubble ma con diverse prospettive di idee, dai ancora piu senso alle cose di prima. bubble + mds = TOP
 */
     if (user == "user1") {
+        document.getElementById("flights_checkbox").checked = false
+        document.getElementById("remove_outliers").checked = false
         yearInput = 2020
         aggregated_by_year = "false"
-        aggregationType = "Make"
-        mds_type_value = "percentage"
+        aggregationType = "Event.Month"
+        mds_type_value = "std"
         X = "Total_Accidents"
-        Y = "Uninjured"
-        R = "Minor"
-        type_map = "Uninjured"
+        Y = "IMC"
+        R = "Destroyed_Damage"
+        type_map = "Fatal"
     }
 
     /*
@@ -495,14 +497,16 @@ function preset_selection() {
         Non sappiamo come correlare phase e manufcaturer in modo pulito
     */
     if (user == "user2") {
+        document.getElementById("flights_checkbox").checked = false
+        document.getElementById("remove_outliers").checked = true
         yearInput = 2020
         aggregated_by_year = "false"
-        aggregationType = "Broad.Phase.of.Flight"
+        aggregationType = "Crash.Country"
         mds_type_value = "percentage"
-        X = "Destroyed_Damage"
-        Y = "IMC"
-        R = "Fatal"
-        type_map = "Fatal"
+        X = "Total_Accidents"
+        Y = "Fatal"
+        R = "Destroyed_Damage"
+        type_map = "Survival_Rate"
     }
     /*
         USER 3
@@ -514,15 +518,72 @@ function preset_selection() {
             - MDS: simil bubble, ci da info che rafforzano concetto.
     */
     if (user == "user3") {
-        yearInput = 2020
-        aggregated_by_year = "false"
-        aggregationType = "Crash.Country"
+        document.getElementById("flights_checkbox").checked = true
+        document.getElementById("remove_outliers").checked = true
+        yearInput = 2011
+        aggregated_by_year = "true"
+        //aggregationType = "Broad.Phase.of.Flight"
+        aggregationType = "Make"
         mds_type_value = "std"
         X = "Total_Accidents"
         Y = "Fatal"
         R = "Destroyed_Damage"
-        type_map = "Fatal"
+        type_map = "Serious"
     }
+
+    if (user == "user4") {
+        document.getElementById("flights_checkbox").checked = false
+        document.getElementById("remove_outliers").checked = true
+        yearInput = 2020
+        aggregated_by_year = "false"
+        //aggregationType = "Broad.Phase.of.Flight"
+        aggregationType = "Make"
+        mds_type_value = "percentage"
+        X = "Total_Accidents"
+        Y = "Death_Rate"
+        R = "Fatal"
+        type_map = "Death_Rate"
+    }
+
+    if (user == "user5") {
+        document.getElementById("flights_checkbox").checked = false
+        document.getElementById("remove_outliers").checked = false
+        yearInput = 2020
+        aggregated_by_year = "false"
+        aggregationType = "Broad.Phase.of.Flight"
+        mds_type_value = "percentage"
+        X = "Death_Rate"
+        Y = "Total_Accidents"
+        R = "Destroyed_Damage"
+        type_map = "Death_Rate"
+    }
+    if (user == "user6") {
+        document.getElementById("flights_checkbox").checked = true
+        document.getElementById("remove_outliers").checked = true
+        yearInput = 2011
+        aggregated_by_year = "true"
+        //aggregationType = "Broad.Phase.of.Flight"
+        aggregationType = "Make"
+        mds_type_value = "std"
+        X = "Total_Accidents"
+        Y = "Fatal"
+        R = "Destroyed_Damage"
+        type_map = "Serious"
+    }
+    if (user == "user7") {
+        document.getElementById("flights_checkbox").checked = true
+        document.getElementById("remove_outliers").checked = true
+        yearInput = 2011
+        aggregated_by_year = "true"
+        //aggregationType = "Broad.Phase.of.Flight"
+        aggregationType = "Make"
+        mds_type_value = "std"
+        X = "Total_Accidents"
+        Y = "Fatal"
+        R = "Destroyed_Damage"
+        type_map = "Serious"
+    }
+
 
     brushMap([], "preset " + yearInput + " " + aggregated_by_year + " " + type_map)
     createMDS(yearInput, 0, 0, aggregated_by_year, aggregationType, mds_type_value)
@@ -537,8 +598,8 @@ function preset_selection() {
     document.getElementById("Y_axis").value = Y
     document.getElementById("R_axis").value = R
     document.getElementById("demo").innerHTML = yearInput;
-    /* var $radios = $('input:radio[name=gender]');
-    $radios.filter('[value='+type_map+']').prop('checked', true); */
+    var $radios = $('input:radio[name=gender]');
+    $radios.filter('[value='+type_map+']').prop('checked', true);
 
 
 
