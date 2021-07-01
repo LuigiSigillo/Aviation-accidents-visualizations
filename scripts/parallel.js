@@ -37,7 +37,7 @@ function parallelCoord(aggregationType, map_key) {
     svgParallel.selectAll("g").remove()
     var year_checkbox = document.getElementById("year_normalized_checkbox").checked
     valerione = document.getElementById("others_checkbox").checked
-
+    percentage = document.getElementById("percentage_checkbox").checked
     d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         // var yearInput = document.getElementById("slider").value
 
@@ -53,7 +53,9 @@ function parallelCoord(aggregationType, map_key) {
         dimensions = Array.from({ length: 20 }, (x, i) => 2001 + i);
         if (valerione)
             dimensions = ["Total_Accidents","Fatal", "Serious", "Minor", "Uninjured", "VMC", "IMC", "Minor_Damage", "Substantial_Damage", "Destroyed_Damage"]
-        
+        if (valerione && percentage)
+            dimensions = ["Total_Accidents","Fatal", "Serious", "Minor", "Uninjured", "VMC", "IMC", "Minor_Damage", "Substantial_Damage", "Destroyed_Damage","Death_Rate","Survival_Rate"]
+
         keys.push("AVG")
 
             // For each dimension, I build a linear scale. I store all in a y object
@@ -175,6 +177,9 @@ function parallelCoord(aggregationType, map_key) {
         if (!valerione) {
             dimensions.map(function (year) {
                 dict_dataset_dict[year] = change(data, aggregationType, year, "true")
+                if (percentage){
+                    dict_dataset_dict[year] = convert_to_percentage(dict_dataset_dict[year])
+                }
                 var results = calc_max(dict_dataset_dict[year])
                 var nuov_max = results[0]
                 var avg = results[1]
@@ -209,6 +214,9 @@ function parallelCoord(aggregationType, map_key) {
 
             dimensions.map(function (cosa) {//cosa = IMC VMC ETC.
                 dict_dataset_dict[cosa] = change(data, aggregationType, year, aggregated_by_year)
+                if (percentage){
+                    dict_dataset_dict[cosa] = convert_to_percentage(dict_dataset_dict[cosa])
+                }
                 var results = calc_max(dict_dataset_dict[cosa],cosa)
                 var nuov_max = results[0]
                 var avg = results[1]
@@ -246,7 +254,23 @@ function parallelCoord(aggregationType, map_key) {
     }
         // The path function take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
 
+        function convert_to_percentage(dataset_dict) {
+            for (elem in dataset_dict) {
+                for (v in dataset_dict[elem]){
+                    if(v=="Total_Accidents" || v =="Serious" || v =="Fatal" || v =="Uninjured"||v =="Minor") {
+                        dataset_dict[elem][v] = +(+dataset_dict[elem][v] / +dataset_dict[elem]["Total_Passangers"]) * 100;
+                    }
+                    else if (v=="Death_Rate" || v=="Survival_Rate") {
+                        continue
+                    }
+                    else {
+                        dataset_dict[elem][v] = +(+dataset_dict[elem][v] / +dataset_dict[elem]["Total_Accidents"]) * 100;
+                    }
 
+                }
+            }
+            return dataset_dict
+        }
 
         // Draw the lines
         svgParallel
