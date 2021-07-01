@@ -475,6 +475,8 @@ function preset_selection() {
     if (user == "user1") {
         document.getElementById("flights_checkbox").checked = false
         document.getElementById("remove_outliers").checked = false
+        check_selection()
+        check_outliers()
         yearInput = 2020
         aggregated_by_year = "false"
         aggregationType = "Event.Month"
@@ -499,6 +501,8 @@ function preset_selection() {
     if (user == "user2") {
         document.getElementById("flights_checkbox").checked = false
         document.getElementById("remove_outliers").checked = true
+        check_selection()
+        check_outliers()
         yearInput = 2020
         aggregated_by_year = "false"
         aggregationType = "Crash.Country"
@@ -520,6 +524,8 @@ function preset_selection() {
     if (user == "user3") {
         document.getElementById("flights_checkbox").checked = true
         document.getElementById("remove_outliers").checked = true
+        check_selection()
+        check_outliers()
         yearInput = 2011
         aggregated_by_year = "true"
         //aggregationType = "Broad.Phase.of.Flight"
@@ -534,6 +540,8 @@ function preset_selection() {
     if (user == "user4") {
         document.getElementById("flights_checkbox").checked = false
         document.getElementById("remove_outliers").checked = true
+        check_selection()
+        check_outliers()
         yearInput = 2020
         aggregated_by_year = "false"
         //aggregationType = "Broad.Phase.of.Flight"
@@ -548,6 +556,8 @@ function preset_selection() {
     if (user == "user5") {
         document.getElementById("flights_checkbox").checked = false
         document.getElementById("remove_outliers").checked = false
+        check_selection()
+        check_outliers()
         yearInput = 2020
         aggregated_by_year = "false"
         aggregationType = "Broad.Phase.of.Flight"
@@ -560,6 +570,8 @@ function preset_selection() {
     if (user == "user6") {
         document.getElementById("flights_checkbox").checked = true
         document.getElementById("remove_outliers").checked = true
+        check_selection()
+        check_outliers()
         yearInput = 2011
         aggregated_by_year = "true"
         //aggregationType = "Broad.Phase.of.Flight"
@@ -573,6 +585,8 @@ function preset_selection() {
     if (user == "user7") {
         document.getElementById("flights_checkbox").checked = true
         document.getElementById("remove_outliers").checked = true
+        check_selection()
+        check_outliers()
         yearInput = 2011
         aggregated_by_year = "true"
         //aggregationType = "Broad.Phase.of.Flight"
