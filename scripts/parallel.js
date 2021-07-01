@@ -14,6 +14,12 @@ var svgParallel = d3.select("#parallel")
 var mtooltip = d3.select("#parallel").append("div")
     .attr("class", "mdsTooltip")
     .style("opacity", 0);
+
+    
+function between(x, _min, _max) {
+    return x >= _min && x <= _max;
+  }
+
 // Parse the Data
 var map_key
 d3version3.selectAll(".checkbox").each(function (d) {
@@ -23,6 +29,9 @@ d3version3.selectAll(".checkbox").each(function (d) {
         map_key = grp
 })
 var aggregationType = document.getElementById("aggregationType").value
+
+var brushed_par = []
+
 function parallelCoord(aggregationType, map_key) {
     svgParallel.selectAll("path").remove()
     svgParallel.selectAll("g").remove()
@@ -43,7 +52,7 @@ function parallelCoord(aggregationType, map_key) {
 
         dimensions = Array.from({ length: 20 }, (x, i) => 2001 + i);
         if (valerione)
-            dimensions = ["Total_Accidents","Fatal", "Serious", "Minor", "Uninjured", "VMC", "IMC", "Minor_Damage", "Substantial_Damage", "Destroyed_Damage", "Death_Rate","Survival_Rate"]
+            dimensions = ["Total_Accidents","Fatal", "Serious", "Minor", "Uninjured", "VMC", "IMC", "Minor_Damage", "Substantial_Damage", "Destroyed_Damage"]
         
         keys.push("AVG")
 
@@ -251,11 +260,20 @@ function parallelCoord(aggregationType, map_key) {
             .style("stroke", function (d) {
                 if (d == "AVG")
                     return "red"
-                else
-                    return "#2c7bb6"
+                if (brushed_par.includes(d))
+                    return "black"
+                return "#2c7bb6"
             })
             .style('stroke-width', "3")
-            .style("opacity", 1)
+            .style("opacity", function (d) {
+                if (d == "AVG")
+                    return "1"
+                if (d != null && brushed_par.includes(d))
+                    return "1"
+                if (brushed_par.length == 0)
+                    return "1"
+                return "0.1"
+            })
             .on("mouseover", highlight)
             .on("mouseleave", doNotHighlight)
 
@@ -272,7 +290,7 @@ function parallelCoord(aggregationType, map_key) {
             .each(function (d) { d3.select(this).call(y[d].brush); d3.select(this).call(d3.axisLeft().ticks(5).scale(y[d])); })
             // Add axis title
             .append("text")
-            .style("text-anchor", "middle")
+            .style("text-anchor", "end")
             .attr("y", -9)
             .text(function (d) {
                 d3.select(this).style("font-size", 10)
@@ -282,20 +300,27 @@ function parallelCoord(aggregationType, map_key) {
             
 
             function brushPar(year) {
-                //console.log(high,year)
                 var anno = dict_dataset_dict[year]
+                brushed_par = []
+
                 var brushed_area = d3.brushSelection(this)
 
                 // filter brushed extents
                 for (var d in anno) {
-                    var _y = y[year](anno[d][map_key])
+                    if(valerione)
+                        var _y = y[year](anno[d][year])
+                    else
+                        var _y = y[year](anno[d][map_key])
                     if (between(_y,Math.min(...brushed_area),Math.max(...brushed_area) ) )
-                    brushed_par.push(d)
+                        brushed_par.push(d)
                 }
                 // first every group turns grey NOT WORKI
                 svgParallel.selectAll("path")
                     .filter(function (d, i) {
+                        if (d == "AVG")
+                            return false
                         return d != null && ! brushed_par.includes(d)
+
                     })
                     .transition().duration(200)
                     .style("stroke", "lightgrey")
@@ -305,7 +330,10 @@ function parallelCoord(aggregationType, map_key) {
                     // Second the hovered specie takes its colorParallel
                     svgParallel.selectAll(".line" + d.replace(/ /g, ''))
                         .transition().duration(200)
-                        .style("stroke", "black")
+                        .style("stroke", function(d){
+                            d3.select(this).raise().classed("active", true);
+                            return "black"
+                        })
                         .style("opacity", "1")
                 });
 
@@ -345,9 +373,5 @@ function parallelCoord(aggregationType, map_key) {
 
 
 }
-
-function between(x, _min, _max) {
-    return x >= _min && x <= _max;
-  }
 
 parallelCoord(aggregationType, map_key)

@@ -256,7 +256,7 @@
             <div style="display: -webkit-flex" >
                 <input type="checkbox" id="year_normalized_checkbox" name="year_normalized_checkbox" value="true" onclick = "check_selection_year()">
                 <label for="vehicle1"> <b> Y axis same</b></label><br>
-                <input type="checkbox" id="others_checkbox" name="others_checkbox" value="true" onclick = "check_selection_year()">
+                <input type="checkbox" id="others_checkbox" name="others_checkbox" value="true" onclick = "check_selection_others()">
                 <label for="Others"> <b>Others</b></label><br>
                 
             </div>
@@ -270,6 +270,19 @@
                         if (cb.property("checked"))
                             map_key_ = grp
                     })
+                    parallelCoord(aggregationType, map_key_)
+
+                }
+                function check_selection_others() {
+                    var aggregationType = document.getElementById("aggregationType").value
+                    var map_key_
+                    d3version3.selectAll(".checkbox").each(function (d) {
+                        cb = d3.select(this);
+                        grp = cb.property("value")
+                        if (cb.property("checked"))
+                            map_key_ = grp
+                    })
+                    brushed_par = []
                     parallelCoord(aggregationType, map_key_)
 
                 }

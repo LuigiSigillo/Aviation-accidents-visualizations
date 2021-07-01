@@ -51,7 +51,17 @@ function mouse_on(pippo) {
                 html += (d["PHASE"]);
                 html += " <b>Make :</b>"
                 html += (d["MAKE"])
-                ;
+                html+= "<br>"
+                if (d['VMC'] == 1)
+                    html += " <b>VMC</b>"
+                else
+                    html += " <b>IMC</b>"
+                if (d['Destroyed_Damage'] == 1)
+                    html += " <b>Destroyed</b>"
+                else if (d['Substantial_Damage'] == 1)
+                    html += " <b>Substantial</b>"
+                else
+                html += " <b>Minor</b>";
             }
             catch (error) {
                 html += pippo;
@@ -340,7 +350,6 @@ function mouseout_scatter(elem) {
     }
 };
 
-var brushed_par = []
 function brushParallel(listBrush) {
     brushed_par = listBrush
 
@@ -361,7 +370,10 @@ function brushParallel(listBrush) {
         // Second the hovered specie takes its colorParallel
         svgParallel.selectAll(".line" + d.replace(/ /g, ''))
             .transition().duration(200)
-            .style("stroke", "black")
+            .style("stroke", function(d){
+                d3.select(this).raise().classed("active", true);
+                return "black"
+            })
             .style("opacity", "1")
     });
 
