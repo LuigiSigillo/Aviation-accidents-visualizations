@@ -30,6 +30,7 @@ function fuffa(d){
     brushMap([], "unbrush")
     unbrush_mds()
     unbrushParallel()
+    unbrush_legendina()
     punti_in_brushing = []
 }
 
@@ -691,6 +692,20 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 }
 changing(aggregationType, X, Y, R, yearInput, aggregated_by_year)
 
+function brush_legendina(listanomi){
+    var legendina = d3.selectAll(".legendina")
+    //console.log(legendina)
+    //console.log(listanomi)
+    legendina.style("opacity", 1)
+    legendina.filter(function(){
+        return !(listanomi.includes(this.textContent))
+    }).style("opacity", 0.1)
+}
+
+function unbrush_legendina(){
+    d3.selectAll(".legendina").style("opacity", 1)
+}
+
 // roba per il brush
 function isBrushed(brush_coords, cx, cy) {
     var x0 = brush_coords[0][0],
@@ -730,7 +745,7 @@ function highlightBrushedBubbles() {
         }
         brush_mds(listanomi)
         brushParallel(listanomi)
-
+        brush_legendina(listanomi)
         
         //d3.selectAll('.selection').remove()
         // d3.select('.handle handle--n').remove()

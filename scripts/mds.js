@@ -388,6 +388,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                     brushed_points.forEach(d => brushed.push(size2[d]["STATE"]))
                     brushMap(brushed, "unbrush")
                     unbrushParallel()
+                    unbrush_legendina()
                     if (aggreg == "Crash.Country") {
                         brushScatter(brushed, false)
                     }
@@ -405,6 +406,7 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                         brushScatter(brushed, false)
                     }
                 } else {
+                    unbrush_legendina()
                     brushMap(brushed_points, "unbrush")
                     brushScatter(brushed_points, false)
                     unbrushParallel()
@@ -770,26 +772,36 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
             if (aggreg == "Crash.Country") {
                 brushScatter(brushed, true)
                 brushParallel(brushed)
+                brush_legendina(brushed)
+
             }
             if (aggreg == "Broad.Phase.of.Flight") {
                 brushed_points.forEach(d => brushed.push(size2[d]["PHASE"]))
                 brushScatter(brushed, true)
                 brushParallel(brushed)
+                brush_legendina(brushed)
+
             }
             if (aggreg == "Event.Month") {
                 brushed_points.forEach(d => brushed.push(size2[d]["MONTH"]))
                 brushScatter(brushed, true)
                 brushParallel(brushed)
+                brush_legendina(brushed)
+
             }
             if (aggreg == "Make") {
                 brushed_points.forEach(d => brushed.push(size2[d]["MAKE"]))
                 brushScatter(brushed, true)
                 brushParallel(brushed)
+                brush_legendina(brushed)
+
             }
         } else {
             brushMap(brushed_points, "brush")
             brushScatter(brushed_points, true)
             brushParallel(brushed_points)
+            brush_legendina(brushed_points)
+
         }
         //Interaction with map vera
         brushed_points.forEach(function (d) {

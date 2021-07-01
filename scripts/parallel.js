@@ -364,6 +364,7 @@ function parallelCoord(aggregationType, map_key) {
                 brush_mds(brushed_par)
                 brushScatter(brushed_par, true)
                 brushMap(brushed_par, "brush")
+                brush_legendina(brushed_par)
 
 
             }
@@ -382,6 +383,7 @@ function parallelCoord(aggregationType, map_key) {
                 .style("opacity", "1")
             brushMap([], "unbrush")
             unbrush_mds()
+            unbrush_legendina()
             brushScatter(brushed_points, false)
 
             brushed_par = []
