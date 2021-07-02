@@ -455,6 +455,11 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
             .attr("r", pointRadius)
             .attr("cx", function (d, i) { return xScale(xPos[i]); })
             .attr("cy", function (d, i) { return yScale(yPos[i]); })
+            .on("click", function(d){
+                brushScatter([d], true)
+                brush_mds([d])
+                brushParallel([d])
+            })
             .on("mouseover", function (d, i) {
                 mtooltip.transition()
                     .duration(200)
