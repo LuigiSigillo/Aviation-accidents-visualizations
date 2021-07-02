@@ -442,7 +442,11 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     mouseoutParallel()
                     /* $(this).attr("fill-opacity", "1.0");
                     $("#tooltip-container-scatter").hide(); */
+                })
+                .on("click", function (d){
+                    console.log(d)
                 });
+
 
             var j = -1
             var color = d3.scaleOrdinal(d3.schemeCategory20)
