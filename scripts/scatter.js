@@ -444,7 +444,9 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     $("#tooltip-container-scatter").hide(); */
                 })
                 .on("click", function (d){
-                    console.log(d)
+                    brushScatter([d.Item],true)
+                    brush_mds([d.Item])
+                    brushParallel([d.Item])
                 });
 
 
