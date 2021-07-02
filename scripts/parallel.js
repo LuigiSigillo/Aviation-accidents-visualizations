@@ -194,9 +194,9 @@ function parallelCoord(aggregationType, map_key) {
                 return d3.line()(dimensions.map(function (year) {
                     dataset_dict = dict_dataset_dict[year]
                     if (year_checkbox)
-                        y[year].domain([0, max + 2])
+                        y[year].domain([0, max])
                     else
-                        y[year].domain([0, max_dict[year]+ 2])
+                        y[year].domain([0, max_dict[year]])
 
                     try {
                         return [x(year), y[year](dataset_dict[d][map_key])]

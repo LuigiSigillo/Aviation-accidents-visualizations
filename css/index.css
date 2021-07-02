@@ -33,16 +33,16 @@ html, body {
 
 #scatter { top:10%;   left:0%; width: 50%; height: 50%;  background-color: darkgrey;}
 
-
 #mds { top:60%; left:0;  width: 50%; height: 40%; background-color: darkgrey; }
 
-#map { top:0%;   left:50%;   width: 50%; height: 45%;background-color: darkgrey;}
+#menu { top:0%; left:50%;   width: 50%; height: 20%;background-color: darkgrey; padding: 0; }  
 
-#menumappa{ top:41%;   left:50%;   width: 50%; height: 100%;border: transparent;font-size: 19px; }
+#map { top:15%;   left:50%;   width: 50%; height: 55%;background-color: darkgrey;}
 
-#parallel { top:45%;   left:50%;   width: 50%; height: 45%;background-color: darkgrey; }
+#menumappa{ top:61%;  left:50%;   width: 50%; height: 100%;border: transparent;font-size: 19px; }
 
-#menu { top:80%; left:50%;   width: 50%; height: 20%;background-color: darkgrey; }  
+#parallel { top: 65%;   left:50%;   width: 50%; height: 45%;background-color: darkgrey; }
+
 
 
 .slider {
