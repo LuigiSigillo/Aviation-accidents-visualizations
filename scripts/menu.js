@@ -438,8 +438,10 @@ function mouseoutParallel(d) {
         .style("stroke", function (d) {
             if (d == "AVG")
                 return "red"
-            if (d == "AVG_BRUSH")
+            if (d == "AVG_BRUSH" && brushed_par.length != 0)
                 return "orange"
+            if (d == "AVG_BRUSH" && brushed_par.length == 0)
+                return "transparent"
             if (d != null && brushed_par.includes(d))
                 return "black"
             if (brushed_par.length == 0) {
