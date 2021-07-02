@@ -40,7 +40,7 @@ function fuffa(d){
 
 var brushella = d3.brush()
     .extent([[0, 0], [1300, 1300]])
-    .on("brush", fuffa)
+    //.on("brush", fuffa)
     .on("end", highlightBrushedBubbles); 
 
 var punti_in_brushing = []
