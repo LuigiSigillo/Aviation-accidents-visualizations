@@ -293,6 +293,9 @@ function mouseout_mds(elem) {
 };
 
 function brush_mds(elem) {
+    brushing = true
+    console.log(elem)
+    brushed_points = elem
     var svg = d3.select("#mds").select("svg");
     svg.attr("clip-path", "url(#clip)")
         .selectAll("circle").filter(function (d) {
@@ -329,6 +332,8 @@ function unbrush_mds() {
     svg.attr("clip-path", "url(#clip)")
         .selectAll("circle")
         .classed("brushed", false)
+    brushed_points = []
+    brushing = false
 }
 
 
