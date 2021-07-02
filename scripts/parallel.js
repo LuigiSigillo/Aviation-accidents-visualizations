@@ -31,6 +31,7 @@ d3version3.selectAll(".checkbox").each(function (d) {
 var aggregationType = document.getElementById("aggregationType").value
 
 var brushed_par = []
+var dict_dataset_dict = {}
 
 function parallelCoord(aggregationType, map_key) {
     svgParallel.selectAll("path").remove()
@@ -56,7 +57,10 @@ function parallelCoord(aggregationType, map_key) {
         if (valerione && percentage)
             dimensions = ["Total_Accidents","Fatal", "Serious", "Minor", "Uninjured", "VMC", "IMC", "Minor_Damage", "Substantial_Damage", "Destroyed_Damage","Death_Rate","Survival_Rate"]
 
+        console.log(aggregationType)
         keys.push("AVG")
+        if (brushed_par.length!=0)
+            keys.push("AVG_BRUSH")
 
             // For each dimension, I build a linear scale. I store all in a y object
         var y = {}
@@ -101,7 +105,7 @@ function parallelCoord(aggregationType, map_key) {
                 if (d== null)
                     return false
                 else
-                    if (d == "AVG")
+                    if (d == "AVG" || d =="AVG_BRUSH")
                         return false
                 return !brushed_par.includes(d) 
             })
@@ -130,6 +134,10 @@ function parallelCoord(aggregationType, map_key) {
                 .style("stroke", function (d) {
                     if (d == "AVG")
                         return "red"
+                    if (d == "AVG_BRUSH" && brushed_par.length != 0)
+                        return "orange"
+                    if (d == "AVG_BRUSH" && brushed_par.length == 0)
+                        return "transparent"
                     if (d != null && brushed_par.includes(d))
                         return "black"
                     if (brushed_par.length == 0) {
@@ -138,7 +146,7 @@ function parallelCoord(aggregationType, map_key) {
                     return "lightgrey"
                 })
                 .style("opacity", function (d) {
-                    if (d == "AVG")
+                    if (d == "AVG" || d == "AVG_BRUSH")
                         return "1"
                     if (d != null && brushed_par.includes(d))
                         return "1"
@@ -168,10 +176,25 @@ function parallelCoord(aggregationType, map_key) {
                     max = dataset_dict[elem][m_k]
                 i += 1
             }
-            return [max, count / i]
+            return [max, count / keys.length]
         }
         
-        var dict_dataset_dict = {}
+    function calculateAVGDynamic(dataset_dict,m_k=map_key) {
+        var count = 0
+        var i = 0
+        for (var elem in dataset_dict) {
+            if(brushed_par.includes(elem)) {
+                count += dataset_dict[elem][m_k]
+                i += 1
+            }
+        }
+        res = count/brushed_par.length
+        if (!Number.isNaN(res))
+            return res
+        else
+            return 0
+    }
+        dict_dataset_dict = {}
         var max = 0
         var max_dict = {}
         if (!valerione) {
@@ -179,6 +202,11 @@ function parallelCoord(aggregationType, map_key) {
                 dict_dataset_dict[year] = change(data, aggregationType, year, "true")
                 if (percentage){
                     dict_dataset_dict[year] = convert_to_percentage(dict_dataset_dict[year])
+                }
+                if(brushed_par.length!=0){
+                    avg_brush = calculateAVGDynamic(dict_dataset_dict[year])
+                    dict_dataset_dict[year]["AVG_BRUSH"] = { "Item": "AVG_BRUSH" }
+                    dict_dataset_dict[year]["AVG_BRUSH"][map_key] = avg_brush
                 }
                 var results = calc_max(dict_dataset_dict[year])
                 var nuov_max = results[0]
@@ -217,6 +245,12 @@ function parallelCoord(aggregationType, map_key) {
                 if (percentage){
                     dict_dataset_dict[cosa] = convert_to_percentage(dict_dataset_dict[cosa])
                 }
+                if(brushed_par.length!=0){
+                    avg_brush = calculateAVGDynamic(dict_dataset_dict[cosa],cosa)
+                    dict_dataset_dict[cosa]["AVG_BRUSH"] = { "Item": "AVG_BRUSH" }
+                    dict_dataset_dict[cosa]["AVG_BRUSH"][cosa] = avg_brush
+
+                }
                 var results = calc_max(dict_dataset_dict[cosa],cosa)
                 var nuov_max = results[0]
                 var avg = results[1]
@@ -228,6 +262,7 @@ function parallelCoord(aggregationType, map_key) {
 
                 if (max < nuov_max)
                     max = nuov_max
+                console.log("aas",dict_dataset_dict[cosa])
             })
             
 
@@ -236,9 +271,9 @@ function parallelCoord(aggregationType, map_key) {
                 dataset_dict = dict_dataset_dict[cosa]
 
                 if (year_checkbox)
-                    y[cosa].domain([0, max + 2])
+                    y[cosa].domain([0, max])
                 else {
-                    y[cosa].domain([0, max_dict[cosa]+ 2])
+                    y[cosa].domain([0, max_dict[cosa]])
                 }
 
                 try
@@ -284,13 +319,18 @@ function parallelCoord(aggregationType, map_key) {
             .style("stroke", function (d) {
                 if (d == "AVG")
                     return "red"
+                if (d == "AVG_BRUSH")
+                    return "orange"
                 if (brushed_par.includes(d))
                     return "black"
+                    //return "yellow"
                 return "#2c7bb6"
             })
             .style('stroke-width', "3")
             .style("opacity", function (d) {
                 if (d == "AVG")
+                    return "1"
+                if (d == "AVG_BRUSH")
                     return "1"
                 if (d != null && brushed_par.includes(d))
                     return "1"
@@ -341,7 +381,7 @@ function parallelCoord(aggregationType, map_key) {
                 // first every group turns grey NOT WORKI
                 svgParallel.selectAll("path")
                     .filter(function (d, i) {
-                        if (d == "AVG")
+                        if (d == "AVG" || d =="AVG_BRUSH")
                             return false
                         return d != null && ! brushed_par.includes(d)
 
@@ -361,6 +401,7 @@ function parallelCoord(aggregationType, map_key) {
                         .style("opacity", "1")
                 });
 
+                parallelCoord(aggregationType,map_key)
                 brush_mds(brushed_par)
                 brushScatter(brushed_par, true)
                 brushMap(brushed_par, "brush")
@@ -378,6 +419,8 @@ function parallelCoord(aggregationType, map_key) {
                 .style("stroke", function (d) {
                     if (d == "AVG")
                         return "red"
+                    if (d == "AVG_BRUSH")
+                        return "orange"
                     return "#2c7bb6"
                 })
                 .style("opacity", "1")
@@ -401,3 +444,4 @@ function parallelCoord(aggregationType, map_key) {
 }
 
 parallelCoord(aggregationType, map_key)
+

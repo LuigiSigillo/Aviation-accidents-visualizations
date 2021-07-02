@@ -352,8 +352,8 @@ function mouseout_scatter(elem) {
 
 function brushParallel(listBrush) {
     brushed_par = listBrush
-
     var svgParallel = d3.select("#parallel")
+    parallelCoord(document.getElementById("aggregationType").value,map_key)
 
     // first every group turns grey 
     svgParallel.selectAll("path")
@@ -361,8 +361,8 @@ function brushParallel(listBrush) {
         if (d== null)
             return false
         else
-            return (d!="AVG")
-    })
+            return (!d.startsWith("AVG"))
+    })  
         .transition().duration(200)
         .style("stroke", "lightgrey")
         .style("opacity", "0.1")
@@ -374,7 +374,7 @@ function brushParallel(listBrush) {
                 d3.select(this).raise().classed("active", true);
                 return "black"
             })
-            .style("opacity", "1")
+            .style("opacity",  1)
     });
 
 }
@@ -387,8 +387,11 @@ function unbrushParallel(listBrush) {
         })
         .transition().duration(200)
         .style("stroke", function (d) {
+            console.log("AA",d)
             if (d == "AVG")
                 return "red"
+            if (d=="AVG_BRUSH")
+                return "transparent"
             return "#2c7bb6"
         })
         .style("opacity", "1")
@@ -408,7 +411,7 @@ function mouseonParallel(d) {
             if (d== null)
                 return false
             else
-                if (d == "AVG")
+                if (d == "AVG" || d =="AVG_BRUSH")
                     return false
             return !brushed_par.includes(d) 
         })
@@ -435,6 +438,8 @@ function mouseoutParallel(d) {
         .style("stroke", function (d) {
             if (d == "AVG")
                 return "red"
+            if (d == "AVG_BRUSH")
+                return "orange"
             if (d != null && brushed_par.includes(d))
                 return "black"
             if (brushed_par.length == 0) {
@@ -443,7 +448,7 @@ function mouseoutParallel(d) {
             return "lightgrey"
         })
         .style("opacity", function (d) {
-            if (d == "AVG")
+            if (d == "AVG" || d == "AVG_BRUSH")
                 return "1"
             if (d != null && brushed_par.includes(d))
                 return "1"
