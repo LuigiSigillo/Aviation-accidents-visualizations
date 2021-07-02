@@ -620,6 +620,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .text(function (d) { return d; });
 
             legend.on("mouseover", function (type) {
+                console.log(type)
                 j = -1
                 d3.selectAll(".legendina")
                     .style("opacity", 0.1);
@@ -658,7 +659,16 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     mouseout_mds(type)
                     brushMap([type], "mouseout")
                     mouseoutParallel()
-                });
+                })
+                .on("click", function (d){
+                    console.log(d)
+                    brushScatter([d],true)
+                    brush_mds([d])
+                    brushParallel([d])
+                })
+                
+                
+                ;
 
 
         }
