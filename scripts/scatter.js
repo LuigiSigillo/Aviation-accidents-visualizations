@@ -444,7 +444,9 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     $("#tooltip-container-scatter").hide(); */
                 })
                 .on("click", function (d){
-                    console.log(d)
+                    brushScatter([d.Item],true)
+                    brush_mds([d.Item])
+                    brushParallel([d.Item])
                 });
 
 
@@ -618,6 +620,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .text(function (d) { return d; });
 
             legend.on("mouseover", function (type) {
+                console.log(type)
                 j = -1
                 d3.selectAll(".legendina")
                     .style("opacity", 0.1);
@@ -656,7 +659,16 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     mouseout_mds(type)
                     brushMap([type], "mouseout")
                     mouseoutParallel()
-                });
+                })
+                .on("click", function (d){
+                    console.log(d)
+                    brushScatter([d],true)
+                    brush_mds([d])
+                    brushParallel([d])
+                })
+                
+                
+                ;
 
 
         }
@@ -665,7 +677,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
         scatter_visualization(year, aggregationType)
         //get input from slider
         d3.select("#slider")
-            .on("change", function () {
+            .on("input", function () {
                 yearInput = +d3.select(this).node().value
                 var map_key
                 d3version3.selectAll(".checkbox").each(function (d) {
