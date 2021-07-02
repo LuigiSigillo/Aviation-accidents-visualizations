@@ -14,9 +14,9 @@ function mouse_on(pippo) {
             dataset_dict = change(data, "Event.Id", year, aggregated_by_year)
             d = dataset_dict[pippo]
             var html = "";
-            html += "<div style= 'text-align: center; padding = 0px;'>";
+            html += "<div style= 'text-align: center; padding = 0px; border-color: green;'>";
             html += "<span>";
-            html += "<div class ='menu_tendina'><b>"
+            html += "<div class ='menu_tendina' style='border-spacing: 1px;'><b>"
             try {
                 html += d['Item'];
                 html += "</b></div>"
@@ -122,7 +122,7 @@ function mouse_on(pippo) {
             var html = "";
             html += "<div style= 'text-align: center; padding = 0px'>";
             html += "<span>";
-            html += "<div class = 'menu_tendina';><b>"
+            html += "<div class = 'menu_tendina' style='border-spacing: 1px;'><b>"
             try {
                 html += d['Item'];
                 html += "</b></div>"
