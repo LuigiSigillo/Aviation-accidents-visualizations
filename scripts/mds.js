@@ -421,7 +421,6 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
                     })
                 })
                 brushed_points = []
-
             })
             .call(brush);
 
@@ -455,11 +454,11 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
             .attr("r", pointRadius)
             .attr("cx", function (d, i) { return xScale(xPos[i]); })
             .attr("cy", function (d, i) { return yScale(yPos[i]); })
-            .on("click", function(d){
-                brushScatter([d], true)
-                brush_mds([d])
-                brushParallel([d])
-            })
+            // .on("click", function(d){
+            //     brushScatter([d], true)
+            //     brush_mds([d])
+            //     brushParallel([d])
+            // })
             .on("mouseover", function (d, i) {
                 mtooltip.transition()
                     .duration(200)
@@ -640,18 +639,18 @@ function drawD3ScatterPlot(element, xPos, yPos, labels, params, mouseon) {
             .style("font", "14px times")  // Font size
             .style("visibility", "hidden")
 
-        if (!brushing || changedVisualization) {
+        if(!brushing){
             d3.selectAll("circle").classed("brushed", false)
             MDS_PC_LOCK = false;
-            brushed_points = []
+            //brushed_points = []
             d3.select("#my_dataviz").selectAll('path').each(function (t) {
                 if (d3.select(this).attr("name") != null) {
                     d3.select(this).style("stroke", "#2c7bb6")
                 }
             })
 
-            changedVisualization = false;
         }
+        
         else {
             d3.selectAll("circle").each(function (d) {
                 if (brushed_points.includes(d3.select(this).data()[0])) {

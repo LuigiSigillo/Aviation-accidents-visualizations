@@ -31,7 +31,10 @@ function fuffa(d){
     unbrush_mds()
     unbrushParallel()
     unbrush_legendina()
+    brushScatter(brushed_points, false)
     punti_in_brushing = []
+    brushed_points = []
+    brushing = false
 }
 
 
@@ -443,11 +446,20 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     /* $(this).attr("fill-opacity", "1.0");
                     $("#tooltip-container-scatter").hide(); */
                 })
-                .on("click", function (d){
-                    brushScatter([d.Item],true)
-                    brush_mds([d.Item])
-                    brushParallel([d.Item])
-                });
+            svg.selectAll("g.bubble").filter(function(d){
+                if(brushed_points.length != 0){
+                    console.log(brushed_points)
+                    return !brushed_points.includes(d.Item);
+                }
+                else
+                    return NaN
+            }).style('opacity',0.1)
+                // .on("click", function (d){
+                //     brushScatter([d.Item],true)
+                //     brush_mds([d.Item])
+                //     brushParallel([d.Item])
+                //     brushMap([d.Item],'brush')
+                // });
 
 
             var j = -1
@@ -660,12 +672,12 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     brushMap([type], "mouseout")
                     mouseoutParallel()
                 })
-                .on("click", function (d){
-                    console.log(d)
-                    brushScatter([d],true)
-                    brush_mds([d])
-                    brushParallel([d])
-                })
+                // .on("click", function (d){
+                //     console.log(d)
+                //     brushScatter([d],true)
+                //     brush_mds([d])
+                //     brushParallel([d])
+                // })
                 
                 
                 ;
@@ -732,10 +744,10 @@ function isBrushed(brush_coords, cx, cy) {
 }
 function highlightBrushedBubbles() {
     var bubbles = d3.selectAll(".bubble")
+    punti_in_brushing = []
     if (d3.event.selection != null) {
         var brush_coords = d3.brushSelection(this);
         brushed = []
-        punti_in_brushing = []
         console.log(brush_coords)
         listanomi = []
         bubbles.filter(function () {
