@@ -283,7 +283,18 @@ function brushMap(brushList, mode) {
                 }
 
                 d3version3.select("#slider")
-                    .on("change", function () {
+                    // .on("change", function () {
+                    //     var yearInput = +d3version3.select(this).node().value;
+                    //     console.log("anno slider", yearInput)
+
+                    //     e = change(data, "Crash.Country", yearInput, aggregationYear)
+                    //     grp = $("input[type='radio'][name='gender']:checked").val();
+                    //     updateMapColors(grp)
+                    //     updateLegend()
+
+                    // }
+                    // )
+                    .on("input", function(){
                         var yearInput = +d3version3.select(this).node().value;
                         console.log("anno slider", yearInput)
 
@@ -291,9 +302,21 @@ function brushMap(brushList, mode) {
                         grp = $("input[type='radio'][name='gender']:checked").val();
                         updateMapColors(grp)
                         updateLegend()
+                    })
+                    // .on("mouseup", function () {
 
-                    }
-                    );
+                    //     var yearInput = +d3version3.select(this).node().value;
+                    //     console.log("anno slider", yearInput)
+
+                    //     e = change(data, "Crash.Country", yearInput, aggregationYear)
+                    //     grp = $("input[type='radio'][name='gender']:checked").val();
+                    //     updateMapColors(grp)
+                    //     updateLegend()
+
+                    // }
+                    // )
+                    
+                    //.on("mousemove", function() {console.log('draggando');});
 
                 function updateCheckBox() {
                     // For each check box:

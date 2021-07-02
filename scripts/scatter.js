@@ -677,7 +677,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
         scatter_visualization(year, aggregationType)
         //get input from slider
         d3.select("#slider")
-            .on("change", function () {
+            .on("input", function () {
                 yearInput = +d3.select(this).node().value
                 var map_key
                 d3version3.selectAll(".checkbox").each(function (d) {

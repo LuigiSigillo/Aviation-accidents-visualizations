@@ -15,7 +15,7 @@ function rec_play() {
     slider.value = +slider.value + 1
     output.innerHTML = slider.value;
     var evt = document.createEvent("HTMLEvents");
-    evt.initEvent("change", false, true);
+    evt.initEvent("input", false, true);
     slider.dispatchEvent(evt)
     console.log('slider ', slider.value)
 }
