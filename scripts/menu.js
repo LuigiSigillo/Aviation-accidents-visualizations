@@ -14,42 +14,42 @@ function mouse_on(pippo) {
             dataset_dict = change(data, "Event.Id", year, aggregated_by_year)
             d = dataset_dict[pippo]
             var html = "";
-            html += "<div style= 'text-align: center;'>";
+            html += "<div style= 'text-align: center; padding = 0px;'>";
             html += "<span>";
-            html += "<p style='background-color: yellow'><b>"
+            html += "<div class ='menu_tendina'><b>"
             try {
                 html += d['Item'];
-                html += "</b></p>"
+                html += "</b></div>"
                 html += "</span>";
                 html += "<span>";
                 html += "<a><b>Fatalities:</b> "
                 html += (d["Fatal"]);
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
-                html += "<a><b>Serious Injuries:</b>  "
+                html += "<a><b> Serious Injuries:</b>  "
                 html += (d["Serious"]);
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
-                html += "<a><b>Minor Injuries:</b>  "
+                html += "<a><b> Minor Injuries:</b>  "
                 html += (d["Minor"]);
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
-                html += "<a><b>Uninjured:</b>  "
+                html += "<a><b> Uninjured:</b>  "
                 html += (d["Uninjured"]);
                 html += "</a>";
-                html += "</span><br>";
-                html += "<span>";
-                html += "<a><b>State:</b> "
+                html += "</span>";
+                html += "<span><br>";
+                html += "<a><b> State:</b> "
                 html += (d["STATE"]);
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
-                html += "<a><b>Phase:</b> "
+                html += "<a><b> Phase:</b> "
                 html += (d["PHASE"]);
-                html += " <b>Make :</b>"
+                html += " <b> Make :</b>"
                 html += (d["MAKE"])
                 html+= "<br>"
                 if (d['VMC'] == 1)
@@ -65,31 +65,31 @@ function mouse_on(pippo) {
             }
             catch (error) {
                 html += pippo;
-                html += "</b></p>"
+                html += "</b></div>"
                 html += "</span>";
                 html += "<span>";
                 // html += "<a>Total Accidents: "
                 // html = html.replace("<a>Total Accidents: ", "")
-                html += "<a><b>Total Accidents:</b>  0 "
+                html += "<a><b> Total Accidents:</b>  0 "
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
-                html += "<a><b>Fatalities:</b> 0 "
+                html += "<a><b> Fatalities:</b> 0 "
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
-                html += "<a><b>Serious Injuries:</b>0  "
+                html += "<a><b> Serious Injuries:</b>0  "
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
-                html += "<a><b>Minor Injuries:</b> 0  "
+                html += "<a><b> Minor Injuries:</b> 0  "
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
-                html += "<a><b>Uninjured:</b> 0 "
+                html += "<a><b> Uninjured:</b> 0 "
             }
             html += "</a>";
-            html += "</span><br>";
+            html += "</span>";
             html += "</div>";
             $("#tooltip-container-menu").html(html);
             $(this).attr("fill-opacity", "0.8");
@@ -120,85 +120,85 @@ function mouse_on(pippo) {
             //console.log("ciaoo", dataset_dict)
             d = dataset_dict[pippo]
             var html = "";
-            html += "<div style= 'text-align: center;'>";
+            html += "<div style= 'text-align: center; padding = 0px'>";
             html += "<span>";
-            html += "<p style='background-color: yellow'><b>"
+            html += "<div class = 'menu_tendina';><b>"
             try {
                 html += d['Item'];
-                html += "</b></p>"
+                html += "</b></div>"
                 html += "</span>";
                 html += "<span>";
-                html += "<a><b>Total Accidents:</b> "
+                html += "<a><b> Total Accidents:</b> "
                 html += (d["Total_Accidents"]);
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
-                html += "<a><b>Fatalities:</b> "
+                html += "<a><b> Fatalities:</b> "
                 html += (d["Fatal"]);
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
-                html += "<a><b>Serious Injuries:</b>  "
+                html += "<a><b> Serious Injuries:</b>  "
                 html += (d["Serious"]);
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
-                html += "<a><b>Minor Injuries:</b>  "
+                html += "<a><b> Minor Injuries:</b>  "
                 html += (d["Minor"]);
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
-                html += "<a><b>Uninjured:</b>  "
+                html += "<a><b> Uninjured:</b>  "
                 html += (d["Uninjured"]);
                 html += "</a>";
                 html += "</span><br>";
                 html += "<span>";
-                html += "<a><b>VMC:</b>  "
+                html += "<a><b> VMC:</b>  "
                 html += (d["VMC"]);
                 html += "<b> IMC: </b> "
                 html += (d["IMC"]);
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
-                html += "<a><b>Destroyed: </b> "
+                html += "<a><b> Destroyed: </b> "
                 html += (d["Destroyed_Damage"]);
-                html += " <b>Substantial:</b>  "
+                html += " <b> Substantial:</b>  "
                 html += (d["Substantial_Damage"]);
                 html += " <b>Minor:</b> "
                 html += (d["Minor_Damage"])
                 html += "</span><br>";
                 html += "<span>"
-                html += " <b>Survival Rate: </b>"
+                html += " <b> Survival Rate: </b>"
                 html += (d["Survival_Rate"].toFixed(2) + '%')
-                html += " <b>Death Rate: </b>"
+                html += " <b> Death Rate: </b>"
                 html += (d["Death_Rate"].toFixed(2)+ '%')
                 html += "</span>";
             }
             catch (error) {
                 html += pippo;
-                html += "</b></p>"
+                html += "</b></div>"
                 html += "</span>";
                 html += "<span>";
                 // html += "<a>Total Accidents: "
                 // html = html.replace("<a>Total Accidents: ", "")
                 html += "<a><b>Total Accidents:</b>  0 "
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
                 html += "<a><b>Fatalities:</b> 0 "
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
                 html += "<a><b>Serious Injuries:</b>0  "
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
                 html += "<a><b>Minor Injuries:</b> 0  "
                 html += "</a>";
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>";
                 html += "<a><b>Uninjured:</b> 0 "
-                html += "</span><br>";
+                html += "</span>";
                 html += "<span>"
                 html += " <b>Survival Rate: </b>"
                 html += ('0%')
@@ -207,7 +207,7 @@ function mouse_on(pippo) {
                 html += "</span>";
             }
             html += "</a>";
-            html += "</span><br>";
+            html += "</span>";
             html += "</div>";
             $("#tooltip-container-menu").html(html);
             $(this).attr("fill-opacity", "0.8");
