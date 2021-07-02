@@ -22,26 +22,26 @@ html, body {
   position:relative}
 
 
-
-#menublock { top:0%;   left:0%; width: 50%; height: 10%; background-color: white;padding:0.2em}
+/*snow, ivory, pearl, paper, corn silk, seashell, linen, cream and alabaster.*/
+#menublock { top:0%;   left:0%; width: 50%; height: 10%; background-color: ivory;padding:0.2em}
 #sliderblock { top:5%;  left:0%; width: 50%; height: 6%;  border:3px solid transparent;}
 #yearblock { top:4%;  left:40%; width: 50%; height: 6%;  border:3px solid transparent; font-size: 22px; }
 
 #playb { top:5%;   left:33%; height: 8%; border:3px solid transparent; }
 
-#presetblock { top:0%;   left:42%; border:3px solid transparent; background-color: white;}
+#presetblock { top:0%;   left:42%; border:3px solid transparent; background-color: ivory;}
 
-#scatter { top:10%;   left:0%; width: 50%; height: 50%;  background-color: white;}
+#scatter { top:10%;   left:0%; width: 50%; height: 50%;  background-color: ivory;}
 
-#mds { top:60%; left:0;  width: 50%; height: 40%; background-color: white; }
+#mds { top:60%; left:0;  width: 50%; height: 40%; background-color: ivory; }
 
-#menu { top:0%; left:50%;   width: 50%; height: 10%;background-color: white; padding: 0; }  
+#menu { top:0%; left:50%;   width: 50%; height: 10%;background-color: ivory; padding: 0; }  
 
 #map { top:10%;   left:50%;   width: 50%; height: 50%;background-color: lightblue;}
 
 #menumappa{ top:55%;  left:50%;   width: 50%; height: 100%;border: transparent;font-size: 19px; }
 
-#parallel { top: 60%;   left:50%;   width: 50%; height: 50%;background-color: white; }
+#parallel { top: 60%;   left:50%;   width: 50%; height: 50%;background-color: ivory; }
 
 
 
