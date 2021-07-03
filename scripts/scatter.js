@@ -669,6 +669,13 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                         // .select(".circle_scatter")
                         // .style("stroke", "blue");
                         punti_in_brushing.forEach(d => d.style.opacity = '1')
+                        d3.selectAll(".legendina").filter(function(d){
+                            if(brushed_points.includes(this.textContent))
+                                this.style.opacity = 1
+                            else
+                                this.style.opacity = 0.1
+
+                        })
                     }
                     // d3.selectAll(".bubble")
                     //     .style("opacity", 1);
