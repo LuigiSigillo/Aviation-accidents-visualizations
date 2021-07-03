@@ -275,9 +275,9 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
             //console.log("ciao",e)
             //e = change(yearInput);
             var i
-            keys = Object.keys(dataset_dict),
-                i, len = keys.length;
-            keys.sort(function (a, b) {
+            keys_scatter = Object.keys(dataset_dict),
+                i, len = keys_scatter.length;
+            keys_scatter.sort(function (a, b) {
                 return a - b;
             });
             //console.log('CHIAVI: ' + keys)
@@ -531,24 +531,24 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .style("fill", function (d) {
                     aggrtype = document.getElementById("aggregationType").value
                     j++
-                    color(keys[j]);
-                    legendlist.push(keys[j])
+                    color(keys_scatter[j]);
+                    legendlist.push(keys_scatter[j])
                     if(aggrtype == 'Crash.Country' || aggrtype == 'Make'){
                         
-                        //console.log(angryRainbow(hashStr(keys[j])),color(keys[j]))
-                        return angryRainbow(hashStr(keys[j]));
+                        //console.log(angryRainbow(hashStr(keys_scatter[j])),color(keys_scatter[j]))
+                        return angryRainbow(hashStr(keys_scatter[j]));
                     }
                     else if (aggrtype == 'Event.Month') {
                         //12
-                        mapping_zozzo[keys[j]] = qualitative_colors[j]
+                        mapping_zozzo[keys_scatter[j]] = qualitative_colors[j]
                         return qualitative_colors[j]
                     }
                     else if (aggrtype == 'Broad.Phase.of.Flight') {
                         //11
-                        mapping_zozzo[keys[j]] = qualitative_colors[j]
+                        mapping_zozzo[keys_scatter[j]] = qualitative_colors[j]
                         return qualitative_colors[j]
                     }
-                    //return color(angryRainbow(hashStr(keys[j])));
+                    //return color(angryRainbow(hashStr(keys_scatter[j])));
                 })
                 .attr("class", "circle_scatter")
 
@@ -573,7 +573,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     j++
                     //console.log(d)
                     //return zuppa(d);
-                    return keys[j];
+                    return keys_scatter[j];
                 });
 
             svg.append("text")
@@ -644,7 +644,8 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     .style("opacity", 1);
                 d3.selectAll(".bubble")
                     .style("opacity", 0.1)
-                    .filter(function (d) { j++; return keys[j] == type; })
+                    //.filter(function (d) {console.log(keys_scatter, j+1,keys_scatter[j+1],type); j++; return keys_scatter[j] == type; })
+                    .filter(function (d) { j++; return keys_scatter[j] == type; })
                     .style("opacity", 1)
                     // .style("stroke-width", 3)
                     // .select(".circle_scatter")
