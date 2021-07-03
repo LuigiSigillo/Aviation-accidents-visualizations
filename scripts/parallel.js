@@ -44,8 +44,7 @@ function parallelCoord(aggregationType, map_key) {
         // var yearInput = document.getElementById("slider").value
 
         dataset_dict = change(data, aggregationType, 2020, "false")
-
-        var i
+        var i = 0
         keys = Object.keys(dataset_dict),
             i, len = keys.length;
         keys.sort(function (a, b) {
@@ -177,7 +176,10 @@ function parallelCoord(aggregationType, map_key) {
                     max = dataset_dict[elem][m_k]
                 i += 1
             }
-            return [max, count / keys.length]
+            res = count / keys.length
+            if (m_k.includes("Rate") || percentage)
+                res = count/i
+            return [max,res ]
         }
         
     function calculateAVGDynamic(dataset_dict,m_k=map_key) {
@@ -243,7 +245,6 @@ function parallelCoord(aggregationType, map_key) {
 
             dimensions.map(function (cosa) {//cosa = IMC VMC ETC.
                 dict_dataset_dict[cosa] = change(data, aggregationType, year, aggregated_by_year)
-                console.log(remove_outliers,dict_dataset_dict)
                 if (percentage){
                     dict_dataset_dict[cosa] = convert_to_percentage(dict_dataset_dict[cosa])
                 }
@@ -293,16 +294,15 @@ function parallelCoord(aggregationType, map_key) {
         function convert_to_percentage(dataset_dict) {
             for (elem in dataset_dict) {
                 for (v in dataset_dict[elem]){
-                    if(v=="Total_Accidents" || v =="Serious" || v =="Fatal" || v =="Uninjured"||v =="Minor") {
-                        dataset_dict[elem][v] = +(+dataset_dict[elem][v] / +dataset_dict[elem]["Total_Passangers"]) * 100;
-                    }
-                    else if (v=="Death_Rate" || v=="Survival_Rate") {
+                    if (v=="Death_Rate" || v=="Survival_Rate") 
                         continue
-                    }
-                    else {
-                        dataset_dict[elem][v] = +(+dataset_dict[elem][v] / +dataset_dict[elem]["Total_Accidents"]) * 100;
-                    }
-
+                    if(v =="Serious" || v =="Fatal" || v =="Uninjured"||v =="Minor") 
+                        dataset_dict[elem][v] = +(+dataset_dict[elem][v] / +dataset_dict[elem]["Total_Passangers"]) * 100;
+                    if(v=="Total_Accidents")
+                        continue
+                    else
+                        dataset_dict[elem][v] = (dataset_dict[elem][v] / dataset_dict[elem]["Total_Accidents"]) * 100;
+                        
                 }
             }
             return dataset_dict
