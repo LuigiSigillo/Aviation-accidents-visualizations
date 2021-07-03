@@ -206,16 +206,15 @@ function parallelCoord(aggregationType, map_key) {
                 }
                 if(brushed_par.length!=0){
                     avg_brush = calculateAVGDynamic(dict_dataset_dict[year])
-                    json_media_brush[map_key] = avg_brush
-                    dict_dataset_dict[year]["AVG_BRUSH"] = json_media_brush
-
+                    dict_dataset_dict[year]["AVG_BRUSH"] = { "Item": "AVG_BRUSH" }
+                    dict_dataset_dict[year]["AVG_BRUSH"][map_key] = avg_brush
                 }
                 var results = calc_max(dict_dataset_dict[year])
                 var nuov_max = results[0]
                 var avg = results[1]
                 max_dict[year] = nuov_max
-                json_media[map_key] = avg
-                dict_dataset_dict[year]["AVG"] = json_media
+                dict_dataset_dict[year]["AVG"] = { "Item": "AVG" }
+                dict_dataset_dict[year]["AVG"][map_key] = avg
                 if (max < nuov_max)
                     max = nuov_max
             })
@@ -250,18 +249,18 @@ function parallelCoord(aggregationType, map_key) {
                 }
                 if(brushed_par.length!=0){
                     avg_brush = calculateAVGDynamic(dict_dataset_dict[cosa],cosa)
-                    json_media_brush[cosa] = avg_brush
-                    dict_dataset_dict[cosa]["AVG_BRUSH"] = json_media_brush
+                    dict_dataset_dict[cosa]["AVG_BRUSH"] = { "Item": "AVG_BRUSH" }
+                    dict_dataset_dict[cosa]["AVG_BRUSH"][cosa] = avg_brush
 
                 }
                 var results = calc_max(dict_dataset_dict[cosa],cosa)
                 var nuov_max = results[0]
                 var avg = results[1]
-                max_dict[cosa] = nuov_max                
-                json_media[cosa] = avg
+                max_dict[cosa] = nuov_max
+                dict_dataset_dict[cosa]["AVG"] = { "Item": "AVG" }
                 
-                dict_dataset_dict[cosa]["AVG"] = json_media
 
+                dict_dataset_dict[cosa]["AVG"][cosa] = avg
 
                 if (max < nuov_max)
                     max = nuov_max
