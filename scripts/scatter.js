@@ -199,7 +199,11 @@ function brushScatter(brushed_points, highlighting) {
             brushedPoints = brushed_points
             d3.selectAll(".bubble")
                 .style("opacity", 0.1)
-                .filter(function (d) { return brushed_points.includes(d.Item); })
+                .filter(function (d) { 
+                    if(brushed_points.includes(d.Item)){
+                        punti_in_brushing.push(this)
+                    }
+                    return brushed_points.includes(d.Item); })
                 .style("opacity", 1);
         }
         else {
@@ -651,6 +655,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 mouseonParallel(type)
             })
                 .on("mouseout", function (type) {
+                    console.log(punti_in_brushing)
                     d3.selectAll(".legendina")
                         .style("opacity", 1);
                     if(punti_in_brushing.length == 0)
