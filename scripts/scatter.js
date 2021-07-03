@@ -435,6 +435,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .on("mouseover", function (d) {
                     // this.style.strokeWidth = 2
                     // this.childNodes[0].style.stroke = 'green'
+                    mouseon_scatter(d.Item)
                     mouse_on(d.Item);
                     mouseon_mds(d.Item);
                     brushMap([d.Item], "mouseon")
@@ -447,6 +448,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     mouseout_mds(d.Item)
                     brushMap([d.Item], "mouseout")
                     mouseoutParallel()
+                    mouseout_scatter()
                     /* $(this).attr("fill-opacity", "1.0");
                     $("#tooltip-container-scatter").hide(); */
                 })
