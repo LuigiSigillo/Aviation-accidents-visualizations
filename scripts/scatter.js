@@ -173,10 +173,10 @@ function createMousoverHtml(d) {
     //quello commentato ha senso, ma scaja
     //var map_width = document.getElementById('scatter').getBoundingClientRect().width;
     var map_width = $('scatter')[0].getBoundingClientRect().width;
-    console.log($('scatter'))
+    //console.log($('scatter'))
 
-    console.log('LAYER X ' + d3.event.layerX)
-    console.log('LAYER Y ' + d3.event.layerY)
+    //console.log('LAYER X ' + d3.event.layerX)
+    //console.log('LAYER Y ' + d3.event.layerY)
 
     if (d3.event.layerX < map_width / 2) {
         d3.select("#tooltip-container-scatter")
@@ -253,7 +253,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
     d3.select("#aggregationYear")
         .on("change", function () {
             var year_bool = d3.select(this).node().value;
-            console.log("scatter", year_bool)
+            //console.log("scatter", year_bool)
             changing(aggregationType, X, Y, R, yearInput, year_bool)
             createMDS(yearInput, 0, 0, year_bool, aggregationType, mds_type_value)
 
@@ -341,7 +341,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     if (dataset_dict[elem][axis] > xmax)
                         xmax = +dataset_dict[elem][axis]
                 }
-                console.log('MAX: ' + xmax)
+                //console.log('MAX: ' + xmax)
                 if (axis == "r")
                     return xmax
                 return xmax + 10
@@ -349,8 +349,8 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
             function yChange() {
                 Y = this.value // get the new y value
-                console.log('NUOVA Y: ' + Y)
-                console.log('VECCHIA X: ' + X)
+                //console.log('NUOVA Y: ' + Y)
+                //console.log('VECCHIA X: ' + X)
                 yscale.domain([0, returnRange(Y, "y")]).nice()
                 yAxis.scale(yscale) // change the yScale
                 d3.select('#yAxis') // redraw the yAxis
@@ -370,8 +370,8 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
             function xChange() {
 
                 X = this.value // get the new y value
-                console.log('NUOVA X: ' + X)
-                console.log('VECCHIA Y: ' + Y)
+                //console.log('NUOVA X: ' + X)
+                //console.log('VECCHIA Y: ' + Y)
                 xscale.domain([0, returnRange(X, "x")]).nice()
                 xAxis.scale(xscale) // change the yScale
                 d3.select('#xAxis') // redraw the yAxis
@@ -391,7 +391,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
             function rChange() {
                 R = this.value // get the new y value
-                console.log('NUOVA R: ' + R)
+                //console.log('NUOVA R: ' + R)
                 radius.domain([0, returnRange(R, "r")]).nice()
 
                 d3.selectAll('.circle_scatter') // move the circles
@@ -452,7 +452,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 })
             svg.selectAll("g.bubble").filter(function(d){
                 if(brushed_points.length != 0){
-                    console.log(brushed_points)
+                    //console.log(brushed_points)
                     return !brushed_points.includes(d.Item);
                 }
                 else
@@ -636,7 +636,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .text(function (d) { return d; });
 
             legend.on("mouseover", function (type) {
-                console.log(type)
+                //console.log(type)
                 j = -1
                 d3.selectAll(".legendina")
                     .style("opacity", 0.1);
@@ -655,7 +655,6 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 mouseonParallel(type)
             })
                 .on("mouseout", function (type) {
-                    console.log(punti_in_brushing)
                     d3.selectAll(".legendina")
                         .style("opacity", 1);
                     if(punti_in_brushing.length == 0)
@@ -789,7 +788,6 @@ function highlightBrushedBubbles() {
     if (d3.event.selection != null) {
         var brush_coords = d3.brushSelection(this);
         brushed = []
-        console.log(brush_coords)
         listanomi = []
         bubbles.filter(function () {
             var cx = this.transform['animVal'][0]['matrix']['e'],
