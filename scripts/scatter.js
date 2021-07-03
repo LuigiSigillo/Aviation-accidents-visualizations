@@ -716,7 +716,36 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                                     .transition().duration(1000)
                                     .call(yAxis)*/
             })
+            d3.select("#slider")
+            .on("change", function () {
+                yearInput = +d3.select(this).node().value
+                var map_key
+                d3version3.selectAll(".checkbox").each(function (d) {
+                    cb = d3.select(this);
+                    grp = cb.property("value")
+                    if (cb.property("checked"))
+                        map_key = grp
+                })
+                createMDS(yearInput, 0, 0, aggregated_by_year, aggregationType, mds_type_value)
+                if (valerione = document.getElementById("others_checkbox").checked)
+                    parallelCoord(aggregationType,map_key)
+                scatter_visualization(yearInput, aggregationType)
+                /*
+                                d3.selectAll('circle') // move the circles
+                                    .transition().duration(1000)
+                                    .attr("r", function (d) { return radius(d.r) * 0; })
+                                    .on("end", function (d) {
+                                        scatter_visualization(yearInput, aggregationType)
+                                    });
+                                d3.select('#xAxis') // redraw the xAxis
+                                    .transition().duration(1000)
+                                    .call(xAxis)
+                                d3.select('#yAxis') // redraw the yAxis
+                                    .transition().duration(1000)
+                                    .call(yAxis)*/
+            })
     });
+    
 }
 changing(aggregationType, X, Y, R, yearInput, aggregated_by_year)
 
