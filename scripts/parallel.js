@@ -32,7 +32,8 @@ var aggregationType = document.getElementById("aggregationType").value
 
 var brushed_par = []
 var dict_dataset_dict = {}
-
+var json_media = { "Item": "AVG", "Total_Accidents":NaN,"Fatal":NaN,"Serious":NaN,"Minor":NaN,"Uninjured":NaN,"VMC":NaN,"IMC":NaN,"Destroyed_Damage":NaN,"Substantial_Damage":NaN,"Minor_Damage":NaN,"Survival_Rate":NaN,"Death_Rate":NaN}
+var json_media_brush = { "Item": "AVG_BRUSH", "Total_Accidents":NaN,"Fatal":NaN,"Serious":NaN,"Minor":NaN,"Uninjured":NaN,"VMC":NaN,"IMC":NaN,"Destroyed_Damage":NaN,"Substantial_Damage":NaN,"Minor_Damage":NaN,"Survival_Rate":NaN,"Death_Rate":NaN}
 function parallelCoord(aggregationType, map_key) {
     svgParallel.selectAll("path").remove()
     svgParallel.selectAll("g").remove()
@@ -205,15 +206,16 @@ function parallelCoord(aggregationType, map_key) {
                 }
                 if(brushed_par.length!=0){
                     avg_brush = calculateAVGDynamic(dict_dataset_dict[year])
-                    dict_dataset_dict[year]["AVG_BRUSH"] = { "Item": "AVG_BRUSH" }
-                    dict_dataset_dict[year]["AVG_BRUSH"][map_key] = avg_brush
+                    json_media_brush[map_key] = avg_brush
+                    dict_dataset_dict[year]["AVG_BRUSH"] = json_media_brush
+
                 }
                 var results = calc_max(dict_dataset_dict[year])
                 var nuov_max = results[0]
                 var avg = results[1]
                 max_dict[year] = nuov_max
-                dict_dataset_dict[year]["AVG"] = { "Item": "AVG" }
-                dict_dataset_dict[year]["AVG"][map_key] = avg
+                json_media[map_key] = avg
+                dict_dataset_dict[year]["AVG"] = json_media
                 if (max < nuov_max)
                     max = nuov_max
             })
@@ -242,27 +244,27 @@ function parallelCoord(aggregationType, map_key) {
 
             dimensions.map(function (cosa) {//cosa = IMC VMC ETC.
                 dict_dataset_dict[cosa] = change(data, aggregationType, year, aggregated_by_year)
+                console.log(remove_outliers,dict_dataset_dict)
                 if (percentage){
                     dict_dataset_dict[cosa] = convert_to_percentage(dict_dataset_dict[cosa])
                 }
                 if(brushed_par.length!=0){
                     avg_brush = calculateAVGDynamic(dict_dataset_dict[cosa],cosa)
-                    dict_dataset_dict[cosa]["AVG_BRUSH"] = { "Item": "AVG_BRUSH" }
-                    dict_dataset_dict[cosa]["AVG_BRUSH"][cosa] = avg_brush
+                    json_media_brush[cosa] = avg_brush
+                    dict_dataset_dict[cosa]["AVG_BRUSH"] = json_media_brush
 
                 }
                 var results = calc_max(dict_dataset_dict[cosa],cosa)
                 var nuov_max = results[0]
                 var avg = results[1]
-                max_dict[cosa] = nuov_max
-                dict_dataset_dict[cosa]["AVG"] = { "Item": "AVG" }
+                max_dict[cosa] = nuov_max                
+                json_media[cosa] = avg
                 
+                dict_dataset_dict[cosa]["AVG"] = json_media
 
-                dict_dataset_dict[cosa]["AVG"][cosa] = avg
 
                 if (max < nuov_max)
                     max = nuov_max
-                console.log("aas",dict_dataset_dict[cosa])
             })
             
 

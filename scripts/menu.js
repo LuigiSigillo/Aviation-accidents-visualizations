@@ -118,7 +118,20 @@ function mouse_on(pippo) {
         d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
             dataset_dict = change(data, aggr, year, aggregated_by_year)
             //console.log("ciaoo", dataset_dict)
-            d = dataset_dict[pippo]
+            if (pippo==("AVG"))
+                d = json_media
+            else
+                if (pippo ==("AVG_BRUSH"))
+                    d = json_media_brush
+            else    
+                d = dataset_dict[pippo]
+            if(pippo.startsWith("AVG")){
+                Object.keys(d).map(function(key, index) {
+                    if(typeof d[key] == 'number' && !key.includes("Rate"))
+                        d[key] = d[key].toFixed(2);
+                    
+                  });
+            }
             var html = "";
             html += "<div style= 'text-align: center; padding = 0px; background-color: ivory;'>";
             html += "<span>";
@@ -175,6 +188,7 @@ function mouse_on(pippo) {
                 html += "</span>";
             }
             catch (error) {
+                console.log(error)
                 html += pippo;
                 html += "</b></div>"
                 html += "</span>";
@@ -392,7 +406,6 @@ function unbrushParallel(listBrush) {
         })
         .transition().duration(200)
         .style("stroke", function (d) {
-            console.log("AA",d)
             if (d == "AVG")
                 return "red"
             if (d=="AVG_BRUSH")

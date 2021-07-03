@@ -98,10 +98,11 @@
                             remove_outliers = document.getElementById("remove_outliers").checked
                             var aggregationType = document.getElementById("aggregationType").value
                             map_key= $("input[type='radio'][name='gender']:checked").val();
-
                             parallelCoord(aggregationType,map_key)
-                            
+                            console.log("EO")
                             triggeraSlider()
+                            console.log("AO")
+
                         }
                     </script>
                 </div>
@@ -286,7 +287,7 @@
                         if (cb.property("checked"))
                             map_key_ = grp
                     })
-                    brushed_par = []
+                    //brushed_par = []
                     parallelCoord(aggregationType, map_key_)
 
                 }
