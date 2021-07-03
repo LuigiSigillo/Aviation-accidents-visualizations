@@ -173,10 +173,10 @@ function createMousoverHtml(d) {
     //quello commentato ha senso, ma scaja
     //var map_width = document.getElementById('scatter').getBoundingClientRect().width;
     var map_width = $('scatter')[0].getBoundingClientRect().width;
-    console.log($('scatter'))
+    //console.log($('scatter'))
 
-    console.log('LAYER X ' + d3.event.layerX)
-    console.log('LAYER Y ' + d3.event.layerY)
+    //console.log('LAYER X ' + d3.event.layerX)
+    //console.log('LAYER Y ' + d3.event.layerY)
 
     if (d3.event.layerX < map_width / 2) {
         d3.select("#tooltip-container-scatter")
@@ -199,7 +199,11 @@ function brushScatter(brushed_points, highlighting) {
             brushedPoints = brushed_points
             d3.selectAll(".bubble")
                 .style("opacity", 0.1)
-                .filter(function (d) { return brushed_points.includes(d.Item); })
+                .filter(function (d) { 
+                    if(brushed_points.includes(d.Item)){
+                        punti_in_brushing.push(this)
+                    }
+                    return brushed_points.includes(d.Item); })
                 .style("opacity", 1);
         }
         else {
@@ -249,7 +253,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
     d3.select("#aggregationYear")
         .on("change", function () {
             var year_bool = d3.select(this).node().value;
-            console.log("scatter", year_bool)
+            //console.log("scatter", year_bool)
             changing(aggregationType, X, Y, R, yearInput, year_bool)
             createMDS(yearInput, 0, 0, year_bool, aggregationType, mds_type_value)
 
@@ -271,9 +275,9 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
             //console.log("ciao",e)
             //e = change(yearInput);
             var i
-            keys = Object.keys(dataset_dict),
-                i, len = keys.length;
-            keys.sort(function (a, b) {
+            keys_scatter = Object.keys(dataset_dict),
+                i, len = keys_scatter.length;
+            keys_scatter.sort(function (a, b) {
                 return a - b;
             });
             //console.log('CHIAVI: ' + keys)
@@ -337,7 +341,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     if (dataset_dict[elem][axis] > xmax)
                         xmax = +dataset_dict[elem][axis]
                 }
-                console.log('MAX: ' + xmax)
+                //console.log('MAX: ' + xmax)
                 if (axis == "r")
                     return xmax
                 return xmax + 10
@@ -345,8 +349,8 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
             function yChange() {
                 Y = this.value // get the new y value
-                console.log('NUOVA Y: ' + Y)
-                console.log('VECCHIA X: ' + X)
+                //console.log('NUOVA Y: ' + Y)
+                //console.log('VECCHIA X: ' + X)
                 yscale.domain([0, returnRange(Y, "y")]).nice()
                 yAxis.scale(yscale) // change the yScale
                 d3.select('#yAxis') // redraw the yAxis
@@ -366,8 +370,8 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
             function xChange() {
 
                 X = this.value // get the new y value
-                console.log('NUOVA X: ' + X)
-                console.log('VECCHIA Y: ' + Y)
+                //console.log('NUOVA X: ' + X)
+                //console.log('VECCHIA Y: ' + Y)
                 xscale.domain([0, returnRange(X, "x")]).nice()
                 xAxis.scale(xscale) // change the yScale
                 d3.select('#xAxis') // redraw the yAxis
@@ -387,7 +391,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
             function rChange() {
                 R = this.value // get the new y value
-                console.log('NUOVA R: ' + R)
+                //console.log('NUOVA R: ' + R)
                 radius.domain([0, returnRange(R, "r")]).nice()
 
                 d3.selectAll('.circle_scatter') // move the circles
@@ -431,6 +435,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .on("mouseover", function (d) {
                     // this.style.strokeWidth = 2
                     // this.childNodes[0].style.stroke = 'green'
+                    mouseon_scatter(d.Item)
                     mouse_on(d.Item);
                     mouseon_mds(d.Item);
                     brushMap([d.Item], "mouseon")
@@ -443,12 +448,13 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     mouseout_mds(d.Item)
                     brushMap([d.Item], "mouseout")
                     mouseoutParallel()
+                    mouseout_scatter()
                     /* $(this).attr("fill-opacity", "1.0");
                     $("#tooltip-container-scatter").hide(); */
                 })
             svg.selectAll("g.bubble").filter(function(d){
                 if(brushed_points.length != 0){
-                    console.log(brushed_points)
+                    //console.log(brushed_points)
                     return !brushed_points.includes(d.Item);
                 }
                 else
@@ -527,24 +533,24 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .style("fill", function (d) {
                     aggrtype = document.getElementById("aggregationType").value
                     j++
-                    color(keys[j]);
-                    legendlist.push(keys[j])
+                    color(keys_scatter[j]);
+                    legendlist.push(keys_scatter[j])
                     if(aggrtype == 'Crash.Country' || aggrtype == 'Make'){
                         
-                        //console.log(angryRainbow(hashStr(keys[j])),color(keys[j]))
-                        return angryRainbow(hashStr(keys[j]));
+                        //console.log(angryRainbow(hashStr(keys_scatter[j])),color(keys_scatter[j]))
+                        return angryRainbow(hashStr(keys_scatter[j]));
                     }
                     else if (aggrtype == 'Event.Month') {
                         //12
-                        mapping_zozzo[keys[j]] = qualitative_colors[j]
+                        mapping_zozzo[keys_scatter[j]] = qualitative_colors[j]
                         return qualitative_colors[j]
                     }
                     else if (aggrtype == 'Broad.Phase.of.Flight') {
                         //11
-                        mapping_zozzo[keys[j]] = qualitative_colors[j]
+                        mapping_zozzo[keys_scatter[j]] = qualitative_colors[j]
                         return qualitative_colors[j]
                     }
-                    //return color(angryRainbow(hashStr(keys[j])));
+                    //return color(angryRainbow(hashStr(keys_scatter[j])));
                 })
                 .attr("class", "circle_scatter")
 
@@ -569,7 +575,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     j++
                     //console.log(d)
                     //return zuppa(d);
-                    return keys[j];
+                    return keys_scatter[j];
                 });
 
             svg.append("text")
@@ -632,7 +638,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                 .text(function (d) { return d; });
 
             legend.on("mouseover", function (type) {
-                console.log(type)
+                //console.log(type)
                 j = -1
                 d3.selectAll(".legendina")
                     .style("opacity", 0.1);
@@ -640,7 +646,8 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                     .style("opacity", 1);
                 d3.selectAll(".bubble")
                     .style("opacity", 0.1)
-                    .filter(function (d) { j++; return keys[j] == type; })
+                    //.filter(function (d) {console.log(keys_scatter, j+1,keys_scatter[j+1],type); j++; return keys_scatter[j] == type; })
+                    .filter(function (d) { j++; return keys_scatter[j] == type; })
                     .style("opacity", 1)
                     // .style("stroke-width", 3)
                     // .select(".circle_scatter")
@@ -664,6 +671,13 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
                         // .select(".circle_scatter")
                         // .style("stroke", "blue");
                         punti_in_brushing.forEach(d => d.style.opacity = '1')
+                        d3.selectAll(".legendina").filter(function(d){
+                            if(brushed_points.includes(this.textContent))
+                                this.style.opacity = 1
+                            else
+                                this.style.opacity = 0.1
+
+                        })
                     }
                     // d3.selectAll(".bubble")
                     //     .style("opacity", 1);
@@ -777,7 +791,6 @@ function highlightBrushedBubbles() {
     if (d3.event.selection != null) {
         var brush_coords = d3.brushSelection(this);
         brushed = []
-        console.log(brush_coords)
         listanomi = []
         bubbles.filter(function () {
             var cx = this.transform['animVal'][0]['matrix']['e'],
