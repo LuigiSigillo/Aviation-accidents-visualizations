@@ -57,7 +57,6 @@ function parallelCoord(aggregationType, map_key) {
         if (valerione && percentage)
             dimensions = ["Total_Accidents","Fatal", "Serious", "Minor", "Uninjured", "VMC", "IMC", "Minor_Damage", "Substantial_Damage", "Destroyed_Damage","Death_Rate","Survival_Rate"]
 
-        console.log(aggregationType)
         keys.push("AVG")
         if (brushed_par.length!=0)
             keys.push("AVG_BRUSH")

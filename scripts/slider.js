@@ -83,6 +83,10 @@ function change(data, subject, year, single_year) {
                 October: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "10" }),
                 November: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "11" }),
                 December: d3.sum(v, function (d) { return d["Event.Date"].split("-")[1] == "12" }),
+                STATE: v[0]["Crash.Country"],
+                PHASE: v[0]["Broad.Phase.of.Flight"],
+                MONTH: v[0]["Event.Month"],
+                MAKE: v[0]["Make"]
                 };
         })
         .map(filtered_map)

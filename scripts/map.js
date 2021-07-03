@@ -11,7 +11,8 @@ function brushMap(brushList, mode) {
         var width = document.getElementById("map").clientWidth + margin.left + margin.right
         var height = document.getElementById("map").clientHeight - margin.top - margin.bottom;
 
-        
+        var brushed_c = []
+
         /* width: 960px;
         height: 500px;*/
         function scaling(width, height) {
@@ -206,9 +207,23 @@ function brushMap(brushList, mode) {
                                 mouse_on(id_name_map[d.id])
                                 mouseon_scatter(id_name_map[d.id])
                             }
+                            else {
+                                createNameHtml(d)
+                            
+                            // d_e = change(data, document.getElementById("aggregationType").value, yearInput, aggregationYear)
+                            //     for (var elem in d_e) {
+                            //         if(d_e[elem]['STATE'] == id_name_map[d.id])
+                            //             brushed_c.push(d_e[elem]['Item'])
+                            //         //console.log(id_name_map[d.id],d_e[elem]['STATE'])
+                            //     }
+                            //     brushScatter(brushed_c, true)
+                            //     brushParallel(brushed_c)
+                            //     console.log(brushed_c)
+                            }
                         })
                         .on("mouseout", function (d) {
                             //brushMap(id_name_map[d.id],"mouseout")
+                            brushed_c = []
                             if(document.getElementById("aggregationType").value == "Crash.Country") {
                                 mouse_out()
                                 $(this).attr("fill-opacity", "1.0");
@@ -218,6 +233,11 @@ function brushMap(brushList, mode) {
                                 mouseoutParallel()
                                 mouseout_scatter(id_name_map[d.id])
                                 }
+                            else{
+                                $(this).attr("fill-opacity", "1.0");
+                                $("#tooltip-container").hide();
+                                //unbrushParallel()
+                            }
                         });
                 }
 
