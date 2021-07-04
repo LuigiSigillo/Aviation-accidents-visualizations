@@ -59,13 +59,7 @@
                         <option value="false" selected>No</option>
 
                     </select>
-                    <label for="mdsType"><b>MDS:</b></label>
-                    <select id='mdsType'>
-                        <option value="std" selected>Incidents</option>
-                        <option value="percentage">Incidents percentage</option>
-                        <option value="kind">Tipology</option>
 
-                    </select>
                     <label for="presetType"><b>Preset:</b></label>
                     <select id='presetType'>
                         <option disabled selected value> -- select an option -- </option>
@@ -77,9 +71,8 @@
 
                     </select>
                     <input type="checkbox" id="remove_outliers" name="remove_outliers" value="true" onclick = "check_outliers()">
-                    <label for="vehicle1"> <b>Incid.>5</b></label>
-                    <input type="checkbox" id="flights_checkbox" name="flights_checkbox" value="true" onclick = "check_selection()">
-                    <label for="vehicle1"> <b>Single flights</b></label>
+                    <label for="vehicle1"> <b>Accidents>5</b></label>
+                    
 
                     <script>
                         var remove_outliers = false
@@ -250,7 +243,15 @@
         <!--html for MDS-->
         <div id="mds" class="block">
 
+            <label for="mdsType"><b>MDS:</b></label>
+            <select id='mdsType'>
+                <option value="std" selected>Incidents</option>
+                <option value="percentage">Incidents percentage</option>
+                <option value="kind">Tipology</option>
 
+            </select>
+            <input type="checkbox" id="flights_checkbox" name="flights_checkbox" value="true" onclick = "check_selection()">
+                    <label for="vehicle1"> <b>Single flights</b></label>
         </div>
         <!--html for MENU -->
 
