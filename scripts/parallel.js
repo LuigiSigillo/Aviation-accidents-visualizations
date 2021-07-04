@@ -32,8 +32,8 @@ var aggregationType = document.getElementById("aggregationType").value
 
 var brushed_par = []
 var dict_dataset_dict = {}
-var json_media = { "Item": "AVG", "Total_Accidents":NaN,"Fatal":NaN,"Serious":NaN,"Minor":NaN,"Uninjured":NaN,"VMC":NaN,"IMC":NaN,"Destroyed_Damage":NaN,"Substantial_Damage":NaN,"Minor_Damage":NaN,"Survival_Rate":NaN,"Death_Rate":NaN}
-var json_media_brush = { "Item": "AVG_BRUSH", "Total_Accidents":NaN,"Fatal":NaN,"Serious":NaN,"Minor":NaN,"Uninjured":NaN,"VMC":NaN,"IMC":NaN,"Destroyed_Damage":NaN,"Substantial_Damage":NaN,"Minor_Damage":NaN,"Survival_Rate":NaN,"Death_Rate":NaN}
+// var json_media = { "Item": "AVG", "Total_Accidents":NaN,"Fatal":NaN,"Serious":NaN,"Minor":NaN,"Uninjured":NaN,"VMC":NaN,"IMC":NaN,"Destroyed_Damage":NaN,"Substantial_Damage":NaN,"Minor_Damage":NaN,"Survival_Rate":NaN,"Death_Rate":NaN}
+// var json_media_brush = { "Item": "AVG_BRUSH", "Total_Accidents":NaN,"Fatal":NaN,"Serious":NaN,"Minor":NaN,"Uninjured":NaN,"VMC":NaN,"IMC":NaN,"Destroyed_Damage":NaN,"Substantial_Damage":NaN,"Minor_Damage":NaN,"Survival_Rate":NaN,"Death_Rate":NaN}
 function parallelCoord(aggregationType, map_key) {
     svgParallel.selectAll("path").remove()
     svgParallel.selectAll("g").remove()
@@ -57,9 +57,7 @@ function parallelCoord(aggregationType, map_key) {
         if (valerione && percentage)
             dimensions = ["Total_Accidents","Fatal", "Serious", "Minor", "Uninjured", "VMC", "IMC", "Minor_Damage", "Substantial_Damage", "Destroyed_Damage","Death_Rate","Survival_Rate"]
 
-        keys.push("AVG")
-        if (brushed_par.length!=0)
-            keys.push("AVG_BRUSH")
+
 
             // For each dimension, I build a linear scale. I store all in a y object
         var y = {}
@@ -207,14 +205,14 @@ function parallelCoord(aggregationType, map_key) {
                 }
                 if(brushed_par.length!=0){
                     avg_brush = calculateAVGDynamic(dict_dataset_dict[year])
-                    dict_dataset_dict[year]["AVG_BRUSH"] = json_media_brush
+                    dict_dataset_dict[year]["AVG_BRUSH"] = { "Item": "AVG_BRUSH", "Total_Accidents":NaN,"Fatal":NaN,"Serious":NaN,"Minor":NaN,"Uninjured":NaN,"VMC":NaN,"IMC":NaN,"Destroyed_Damage":NaN,"Substantial_Damage":NaN,"Minor_Damage":NaN,"Survival_Rate":NaN,"Death_Rate":NaN}
                     dict_dataset_dict[year]["AVG_BRUSH"][map_key] = avg_brush
                 }
                 var results = calc_max(dict_dataset_dict[year])
                 var nuov_max = results[0]
                 var avg = results[1]
                 max_dict[year] = nuov_max
-                dict_dataset_dict[year]["AVG"] = json_media
+                dict_dataset_dict[year]["AVG"] = { "Item": "AVG", "Total_Accidents":NaN,"Fatal":NaN,"Serious":NaN,"Minor":NaN,"Uninjured":NaN,"VMC":NaN,"IMC":NaN,"Destroyed_Damage":NaN,"Substantial_Damage":NaN,"Minor_Damage":NaN,"Survival_Rate":NaN,"Death_Rate":NaN}
                 dict_dataset_dict[year]["AVG"][map_key] = avg
                 if (max < nuov_max)
                     max = nuov_max
@@ -229,6 +227,8 @@ function parallelCoord(aggregationType, map_key) {
                         y[year].domain([0, max_dict[year]])
 
                     try {
+                        console.log(year,dataset_dict[d][map_key],d)
+                        
                         return [x(year), y[year](dataset_dict[d][map_key])]
                     }
                     catch (error) {
@@ -249,7 +249,7 @@ function parallelCoord(aggregationType, map_key) {
                 }
                 if(brushed_par.length!=0){
                     avg_brush = calculateAVGDynamic(dict_dataset_dict[cosa],cosa)
-                    dict_dataset_dict[cosa]["AVG_BRUSH"] = json_media_brush
+                    dict_dataset_dict[cosa]["AVG_BRUSH"] = { "Item": "AVG_BRUSH", "Total_Accidents":NaN,"Fatal":NaN,"Serious":NaN,"Minor":NaN,"Uninjured":NaN,"VMC":NaN,"IMC":NaN,"Destroyed_Damage":NaN,"Substantial_Damage":NaN,"Minor_Damage":NaN,"Survival_Rate":NaN,"Death_Rate":NaN}
                     dict_dataset_dict[cosa]["AVG_BRUSH"][cosa] = avg_brush
 
                 }
@@ -257,7 +257,7 @@ function parallelCoord(aggregationType, map_key) {
                 var nuov_max = results[0]
                 var avg = results[1]
                 max_dict[cosa] = nuov_max
-                dict_dataset_dict[cosa]["AVG"] = json_media
+                dict_dataset_dict[cosa]["AVG"] = { "Item": "AVG", "Total_Accidents":NaN,"Fatal":NaN,"Serious":NaN,"Minor":NaN,"Uninjured":NaN,"VMC":NaN,"IMC":NaN,"Destroyed_Damage":NaN,"Substantial_Damage":NaN,"Minor_Damage":NaN,"Survival_Rate":NaN,"Death_Rate":NaN}
                 
 
                 dict_dataset_dict[cosa]["AVG"][cosa] = avg
@@ -291,7 +291,10 @@ function parallelCoord(aggregationType, map_key) {
         // The path function take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
 
         function convert_to_percentage(dataset_dict) {
+
             for (elem in dataset_dict) {
+                console.log(dataset_dict)
+
                 for (v in dataset_dict[elem]){
                     if (v=="Death_Rate" || v=="Survival_Rate") 
                         continue
@@ -304,9 +307,13 @@ function parallelCoord(aggregationType, map_key) {
                         
                 }
             }
+            console.log(dataset_dict)
             return dataset_dict
         }
 
+        keys.push("AVG")
+        if (brushed_par.length!=0)
+            keys.push("AVG_BRUSH")
         // Draw the lines
         svgParallel
             .selectAll("myPath")
