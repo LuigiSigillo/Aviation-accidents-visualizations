@@ -170,6 +170,11 @@ function brushMap(brushList, mode) {
                 par = mode.split(" ")
                 yearInput = par[1]
                 aggregationYear = par[2] 
+                if (aggregationYear=="false")
+                    aggregationYear = false
+                else
+                    aggregationYear = true
+
                 type = par[3]
             }
             e = change(data, "Crash.Country", yearInput, aggregationYear)

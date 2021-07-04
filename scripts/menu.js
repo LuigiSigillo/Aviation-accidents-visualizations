@@ -505,7 +505,7 @@ function preset_selection() {
         X = "Total_Accidents"
         Y = "IMC"
         R = "Destroyed_Damage"
-        type_map = "Fatal"
+        type_map = "Death_Rate"
     }
 
     /*

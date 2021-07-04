@@ -78,6 +78,9 @@
 
                         function aggregated_by_year_selection(){
                             var year_bool = document.getElementById("aggregationYear").checked;
+                            var aggregationType = document.getElementById("aggregationType").value
+                            var yearInput = document.getElementById("slider").value
+                            var mds_type_value = document.getElementById("mdsType").value
                             console.log("scatter", year_bool)
                             changing(aggregationType, X, Y, R, yearInput, year_bool)
                             createMDS(yearInput, 0, 0, year_bool, aggregationType, mds_type_value)
