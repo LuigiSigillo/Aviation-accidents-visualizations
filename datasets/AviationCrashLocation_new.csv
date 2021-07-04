@@ -2624,7 +2624,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20010417X00765,2001-04-09,"Vero Beach, FL",Destroyed,PIPER,Personal,2.0,0.0,0.0,0.0,VMC,TAKEOFF,"27.649721999999997,-80.439166",Florida,April
 20010206X00396,2001-01-24,"Nashville, TN",Destroyed,BEECH,Business,4.0,0.0,0.0,0.0,VMC,TAKEOFF,"36.13,-86.653889",Tennessee,January
 20010119X00328,2001-01-14,"Troy, AL",Destroyed,LEARJET,Executive/Corporate,0.0,2.0,0.0,0.0,VMC,LANDING,"31.866667,-86.016667",Alabama,January
-20200502X81549,2020-05-02,"PALMYRA, IL",Destroyed,Yakovlev,Personal,1.0,0.0,0.0,0.0,VMC,MANEUVER,"39.408889,-89.990277",District of Columbia,May
+20200502X81549,2020-05-02,"PALMYRA, IL",Destroyed,Yakovlev,Personal,1.0,0.0,0.0,0.0,VMC,MANEUVER,"39.408889,-89.990277",Unknown,May
 20200502X81549,2020-05-02,"PALMYRA, IL",Destroyed,Yakovlev,Personal,1.0,0.0,0.0,0.0,VMC,MANEUVER,"39.408889,-89.990277",Unknown,May
 20200502X81549,2020-05-02,"PALMYRA, IL",Destroyed,Yakovlev,Personal,1.0,0.0,0.0,0.0,VMC,MANEUVER,"39.408889,-89.990277",Unknown,May
 20200502X81549,2020-05-02,"PALMYRA, IL",Destroyed,Yakovlev,Personal,1.0,0.0,0.0,0.0,VMC,MANEUVER,"39.408889,-89.990277",Unknown,May

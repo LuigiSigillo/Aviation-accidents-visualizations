@@ -207,14 +207,14 @@ function parallelCoord(aggregationType, map_key) {
                 }
                 if(brushed_par.length!=0){
                     avg_brush = calculateAVGDynamic(dict_dataset_dict[year])
-                    dict_dataset_dict[year]["AVG_BRUSH"] = { "Item": "AVG_BRUSH" }
+                    dict_dataset_dict[year]["AVG_BRUSH"] = json_media_brush
                     dict_dataset_dict[year]["AVG_BRUSH"][map_key] = avg_brush
                 }
                 var results = calc_max(dict_dataset_dict[year])
                 var nuov_max = results[0]
                 var avg = results[1]
                 max_dict[year] = nuov_max
-                dict_dataset_dict[year]["AVG"] = { "Item": "AVG" }
+                dict_dataset_dict[year]["AVG"] = json_media
                 dict_dataset_dict[year]["AVG"][map_key] = avg
                 if (max < nuov_max)
                     max = nuov_max
@@ -249,7 +249,7 @@ function parallelCoord(aggregationType, map_key) {
                 }
                 if(brushed_par.length!=0){
                     avg_brush = calculateAVGDynamic(dict_dataset_dict[cosa],cosa)
-                    dict_dataset_dict[cosa]["AVG_BRUSH"] = { "Item": "AVG_BRUSH" }
+                    dict_dataset_dict[cosa]["AVG_BRUSH"] = json_media_brush
                     dict_dataset_dict[cosa]["AVG_BRUSH"][cosa] = avg_brush
 
                 }
@@ -257,7 +257,7 @@ function parallelCoord(aggregationType, map_key) {
                 var nuov_max = results[0]
                 var avg = results[1]
                 max_dict[cosa] = nuov_max
-                dict_dataset_dict[cosa]["AVG"] = { "Item": "AVG" }
+                dict_dataset_dict[cosa]["AVG"] = json_media
                 
 
                 dict_dataset_dict[cosa]["AVG"][cosa] = avg
@@ -323,14 +323,11 @@ function parallelCoord(aggregationType, map_key) {
                     return "orange"
                 if (brushed_par.includes(d))
                     return "black"
-                    //return "yellow"
                 return "#2c7bb6"
             })
             .style('stroke-width', "3")
             .style("opacity", function (d) {
-                if (d == "AVG")
-                    return "1"
-                if (d == "AVG_BRUSH")
+                if (d == "AVG" || d == "AVG_BRUSH")
                     return "1"
                 if (d != null && brushed_par.includes(d))
                     return "1"
@@ -444,4 +441,3 @@ function parallelCoord(aggregationType, map_key) {
 }
 
 parallelCoord(aggregationType, map_key)
-
