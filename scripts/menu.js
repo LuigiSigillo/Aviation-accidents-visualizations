@@ -134,13 +134,13 @@ function mouse_on(pippo) {
                             d[key] = d[key].toFixed(2);
 
                     });
-            }
+                }
             }
             var html = "";
             html += "<div style= 'text-align: center; padding = 0px; background-color: ivory;'>";
             html += "<span>";
             html += "<div class = 'menu_tendina' style='border-spacing: 1px;'><b>"
-        if(!(pippo.startsWith("AVG"))|| ! document.getElementById("others_checkbox").checked ){
+        if(!(pippo.startsWith("AVG")) ){
             try {
                 html += d['Item'];
                 html += "</b></div>"
@@ -227,7 +227,7 @@ function mouse_on(pippo) {
                 html += "</span>";
             }
         }
-        else {
+        else if (document.getElementById("others_checkbox").checked){
                 html += pippo;
                 html += "</b></div>"
                 html += "</span>";
@@ -287,6 +287,93 @@ function mouse_on(pippo) {
                 }
             
 
+        }
+        else {
+            try {
+                html += d['Item'];
+                html += "</b></div>"
+                html += "</span>";
+                html += "<span>";
+                html += "<a><b> Total Accidents:</b> "
+                html += (d["Total_Accidents"]);
+                html += "</a>";
+                html += "</span>";
+                html += "<span>";
+                html += "<a><b> Fatalities:</b> "
+                html += (d["Fatal"]);
+                html += "</a>";
+                html += "</span>";
+                html += "<span>";
+                html += "<a><b> Serious Injuries:</b>  "
+                html += (d["Serious"]);
+                html += "</a>";
+                html += "</span>";
+                html += "<span>";
+                html += "<a><b> Minor Injuries:</b>  "
+                html += (d["Minor"]);
+                html += "</a>";
+                html += "</span>";
+                html += "<span>";
+                html += "<a><b> Uninjured:</b>  "
+                html += (d["Uninjured"]);
+                html += "</a>";
+                html += "</span><br>";
+                html += "<span>";
+                html += "<a><b> VMC:</b>  "
+                html += (d["VMC"]);
+                html += "<b> IMC: </b> "
+                html += (d["IMC"]);
+                html += "</a>";
+                html += "</span>";
+                html += "<span>";
+                html += "<a><b> Destroyed: </b> "
+                html += (d["Destroyed_Damage"]);
+                html += " <b> Substantial:</b>  "
+                html += (d["Substantial_Damage"]);
+                html += " <b>Minor:</b> "
+                html += (d["Minor_Damage"])
+                html += "</span><br>";
+                html += "<span>"
+                html += " <b> Survival Rate: </b>"
+                html += (d["Survival_Rate"].toFixed(2) + '%')
+                html += " <b> Death Rate: </b>"
+                html += (d["Death_Rate"].toFixed(2) + '%')
+                html += "</span>";
+            }
+            
+            catch (error) {
+                console.log(error)
+                html += pippo;
+                html += "</b></div>"
+                html += "</span>";
+                html += "<span>";
+                // html += "<a>Total Accidents: "
+                // html = html.replace("<a>Total Accidents: ", "")
+                html += "<a><b>Total Accidents:</b>  0 "
+                html += "</a>";
+                html += "</span>";
+                html += "<span>";
+                html += "<a><b>Fatalities:</b> 0 "
+                html += "</a>";
+                html += "</span>";
+                html += "<span>";
+                html += "<a><b>Serious Injuries:</b>0  "
+                html += "</a>";
+                html += "</span>";
+                html += "<span>";
+                html += "<a><b>Minor Injuries:</b> 0  "
+                html += "</a>";
+                html += "</span>";
+                html += "<span>";
+                html += "<a><b>Uninjured:</b> 0 "
+                html += "</span>";
+                html += "<span>"
+                html += " <b>Survival Rate: </b>"
+                html += ('0%')
+                html += " <b>Death Rate: </b>"
+                html += ('0%')
+                html += "</span>";
+            }
         }
             html += "</a>";
             html += "</span>";
