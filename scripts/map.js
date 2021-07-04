@@ -138,16 +138,16 @@ function brushMap(brushList, mode) {
 
                 var map_width = $('.states-choropleth')[0].getBoundingClientRect().width;
 
-                if (d3version3.event.layerX < map_width / 2) {
-                    d3version3.select("#tooltip-container")
-                        .style("top", (d3version3.event.layerY + 15) + "px")
-                        .style("left", (d3version3.event.layerX + 15) + "px");
-                } else {
+                // if (d3version3.event.layerX < map_width / 2) {
+                //     d3version3.select("#tooltip-container")
+                //         .style("top", (d3version3.event.layerY + 15) + "px")
+                //         .style("left", (d3version3.event.layerX + 15) + "px");
+                // } else {
                     var tooltip_width = $("#tooltip-container").width();
                     d3version3.select("#tooltip-container")
                         .style("top", (d3version3.event.layerY + 15) + "px")
                         .style("left", (d3version3.event.layerX - tooltip_width - 30) + "px");
-                }
+                //}
 
                 mapSvg.selectAll("path")
                 .style('stroke-width', function (da) {
@@ -211,8 +211,8 @@ function brushMap(brushList, mode) {
                         .attr("d", path)
                         .on("mousemove", function (d) {
                             //brushMap(id_name_map[d.id],"mouseon")
+                            createNameHtml(d)
                             if(document.getElementById("aggregationType").value == "Crash.Country") {
-                                createNameHtml(d)
                                 mouseon_mds(id_name_map[d.id])
                                 mouseonParallel(id_name_map[d.id])
                                 //brushParallel([id_name_map[d.id]])
@@ -220,7 +220,6 @@ function brushMap(brushList, mode) {
                                 mouseon_scatter(id_name_map[d.id])
                             }
                             else {
-                                createNameHtml(d)
                             
                             // d_e = change(data, document.getElementById("aggregationType").value, yearInput, aggregationYear)
                             //     for (var elem in d_e) {
