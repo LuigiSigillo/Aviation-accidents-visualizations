@@ -227,7 +227,6 @@ function parallelCoord(aggregationType, map_key) {
                         y[year].domain([0, max_dict[year]])
 
                     try {
-                        console.log(year,dataset_dict[d][map_key],d)
                         
                         return [x(year), y[year](dataset_dict[d][map_key])]
                     }
@@ -293,7 +292,6 @@ function parallelCoord(aggregationType, map_key) {
         function convert_to_percentage(dataset_dict) {
 
             for (elem in dataset_dict) {
-                console.log(dataset_dict)
 
                 for (v in dataset_dict[elem]){
                     if (v=="Death_Rate" || v=="Survival_Rate") 
@@ -307,7 +305,6 @@ function parallelCoord(aggregationType, map_key) {
                         
                 }
             }
-            console.log(dataset_dict)
             return dataset_dict
         }
 
