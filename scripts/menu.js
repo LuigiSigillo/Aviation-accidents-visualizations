@@ -51,7 +51,7 @@ function mouse_on(pippo) {
                 html += (d["PHASE"]);
                 html += " <b> Make :</b>"
                 html += (d["MAKE"])
-                html += "<br>"
+                html+= "<br>"
                 if (d['VMC'] == 1)
                     html += " <b>VMC</b>"
                 else
@@ -61,7 +61,7 @@ function mouse_on(pippo) {
                 else if (d['Substantial_Damage'] == 1)
                     html += " <b>Substantial</b>"
                 else
-                    html += " <b>Minor</b>";
+                html += " <b>Minor</b>";
             }
             catch (error) {
                 html += pippo;
@@ -118,29 +118,24 @@ function mouse_on(pippo) {
         d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
             dataset_dict = change(data, aggr, year, aggregated_by_year)
             //console.log("ciaoo", dataset_dict)
-            if (document.getElementById("others_checkbox").checked) {
-                if (pippo == ("AVG") || pippo == ("AVG_BRUSH"))
-                    d = dict_dataset_dict
-            }
-            else {
-                if (pippo == ("AVG") || pippo == ("AVG_BRUSH"))
-                    d = dict_dataset_dict[year][pippo]
-                else
-                    d = dataset_dict[pippo]
-            
-                if (pippo.startsWith("AVG")) {
-                    Object.keys(d).map(function (key, index) {
-                        if (typeof d[key] == 'number' && !key.includes("Rate"))
-                            d[key] = d[key].toFixed(2);
-
-                    });
-                }
+            if (pippo==("AVG"))
+                d = json_media
+            else
+                if (pippo ==("AVG_BRUSH"))
+                    d = json_media_brush
+            else    
+                d = dataset_dict[pippo]
+            if(pippo.startsWith("AVG")){
+                Object.keys(d).map(function(key, index) {
+                    if(typeof d[key] == 'number' && !key.includes("Rate"))
+                        d[key] = d[key].toFixed(2);
+                    
+                  });
             }
             var html = "";
             html += "<div style= 'text-align: center; padding = 0px; background-color: ivory;'>";
             html += "<span>";
             html += "<div class = 'menu_tendina' style='border-spacing: 1px;'><b>"
-        if(!(pippo.startsWith("AVG")) ){
             try {
                 html += d['Item'];
                 html += "</b></div>"
@@ -189,10 +184,9 @@ function mouse_on(pippo) {
                 html += " <b> Survival Rate: </b>"
                 html += (d["Survival_Rate"].toFixed(2) + '%')
                 html += " <b> Death Rate: </b>"
-                html += (d["Death_Rate"].toFixed(2) + '%')
+                html += (d["Death_Rate"].toFixed(2)+ '%')
                 html += "</span>";
             }
-            
             catch (error) {
                 console.log(error)
                 html += pippo;
@@ -226,155 +220,6 @@ function mouse_on(pippo) {
                 html += ('0%')
                 html += "</span>";
             }
-        }
-        else if (document.getElementById("others_checkbox").checked){
-                html += pippo;
-                html += "</b></div>"
-                html += "</span>";
-                html += "<span>";
-                html += "<a><b> Total Accidents:</b> "
-                html += (d["Total_Accidents"][pippo]["Total_Accidents"].toFixed(2));
-                html += "</a>";
-                html += "</span>";
-                html += "<span>";
-                html += "<a><b> Fatalities:</b> "
-                html += (d["Fatal"][pippo]["Fatal"].toFixed(2));
-                html += "</a>";
-                html += "</span>";
-                html += "<span>";
-                html += "<a><b> Serious Injuries:</b>  "
-                html += (d["Serious"][pippo]["Serious"].toFixed(2));
-                html += "</a>";
-                html += "</span>";
-                html += "<span>";
-                html += "<a><b> Minor Injuries:</b>  "
-                html += (d["Minor"][pippo]["Minor"].toFixed(2));
-                html += "</a>";
-                html += "</span>";
-                html += "<span>";
-                html += "<a><b> Uninjured:</b>  "
-                html += (d["Uninjured"][pippo]["Uninjured"].toFixed(2));
-                html += "</a>";
-                html += "</span><br>";
-                html += "<span>";
-                html += "<a><b> VMC:</b>  "
-                html += (d["VMC"][pippo]["VMC"].toFixed(2));
-                html += "<b> IMC: </b> "
-                html += (d["IMC"][pippo]["IMC"].toFixed(2));
-                html += "</a>";
-                html += "</span>";
-                html += "<span>";
-                html += "<a><b> Destroyed: </b> "
-                html += (d["Destroyed_Damage"][pippo]["Destroyed_Damage"].toFixed(2));
-                html += " <b> Substantial:</b>  "
-                html += (d["Substantial_Damage"][pippo]["Substantial_Damage"].toFixed(2));
-                html += " <b>Minor:</b> "
-                html += (d["Minor_Damage"][pippo]["Minor_Damage"].toFixed(2))
-                html += "</span><br>";
-                try {
-                html += "<span>"
-                html += " <b> Survival Rate: </b>"
-                html += (d["Survival_Rate"][pippo].toFixed(2) + '%')
-                html += " <b> Death Rate: </b>"
-                html += (d["Death_Rate"][pippo].toFixed(2) + '%')
-                html += "</span>";
-                }
-                catch {
-                    html += ('0%')
-                    html += " <b>Death Rate: </b>"
-                    html += ('0%')
-                    html += "</span>";
-                }
-            
-
-        }
-        else {
-            try {
-                html += d['Item'];
-                html += "</b></div>"
-                html += "</span>";
-                html += "<span>";
-                html += "<a><b> Total Accidents:</b> "
-                html += (d["Total_Accidents"]);
-                html += "</a>";
-                html += "</span>";
-                html += "<span>";
-                html += "<a><b> Fatalities:</b> "
-                html += (d["Fatal"]);
-                html += "</a>";
-                html += "</span>";
-                html += "<span>";
-                html += "<a><b> Serious Injuries:</b>  "
-                html += (d["Serious"]);
-                html += "</a>";
-                html += "</span>";
-                html += "<span>";
-                html += "<a><b> Minor Injuries:</b>  "
-                html += (d["Minor"]);
-                html += "</a>";
-                html += "</span>";
-                html += "<span>";
-                html += "<a><b> Uninjured:</b>  "
-                html += (d["Uninjured"]);
-                html += "</a>";
-                html += "</span><br>";
-                html += "<span>";
-                html += "<a><b> VMC:</b>  "
-                html += (d["VMC"]);
-                html += "<b> IMC: </b> "
-                html += (d["IMC"]);
-                html += "</a>";
-                html += "</span>";
-                html += "<span>";
-                html += "<a><b> Destroyed: </b> "
-                html += (d["Destroyed_Damage"]);
-                html += " <b> Substantial:</b>  "
-                html += (d["Substantial_Damage"]);
-                html += " <b>Minor:</b> "
-                html += (d["Minor_Damage"])
-                html += "</span><br>";
-                html += "<span>"
-                html += " <b> Survival Rate: </b>"
-                html += (d["Survival_Rate"].toFixed(2) + '%')
-                html += " <b> Death Rate: </b>"
-                html += (d["Death_Rate"].toFixed(2) + '%')
-                html += "</span>";
-            }
-            
-            catch (error) {
-                console.log(error)
-                html += pippo;
-                html += "</b></div>"
-                html += "</span>";
-                html += "<span>";
-                // html += "<a>Total Accidents: "
-                // html = html.replace("<a>Total Accidents: ", "")
-                html += "<a><b>Total Accidents:</b>  0 "
-                html += "</a>";
-                html += "</span>";
-                html += "<span>";
-                html += "<a><b>Fatalities:</b> 0 "
-                html += "</a>";
-                html += "</span>";
-                html += "<span>";
-                html += "<a><b>Serious Injuries:</b>0  "
-                html += "</a>";
-                html += "</span>";
-                html += "<span>";
-                html += "<a><b>Minor Injuries:</b> 0  "
-                html += "</a>";
-                html += "</span>";
-                html += "<span>";
-                html += "<a><b>Uninjured:</b> 0 "
-                html += "</span>";
-                html += "<span>"
-                html += " <b>Survival Rate: </b>"
-                html += ('0%')
-                html += " <b>Death Rate: </b>"
-                html += ('0%')
-                html += "</span>";
-            }
-        }
             html += "</a>";
             html += "</span>";
             html += "</div>";
@@ -527,16 +372,16 @@ function mouseout_scatter(elem) {
 function brushParallel(listBrush) {
     brushed_par = listBrush
     var svgParallel = d3.select("#parallel")
-    parallelCoord(document.getElementById("aggregationType").value, map_key)
+    parallelCoord(document.getElementById("aggregationType").value,map_key)
 
     // first every group turns grey 
     svgParallel.selectAll("path")
-        .filter(function (d, i) {
-            if (d == null)
-                return false
-            else
-                return (!d.startsWith("AVG"))
-        })
+    .filter(function (d, i) {
+        if (d== null)
+            return false
+        else
+            return (!d.startsWith("AVG"))
+    })  
         .transition().duration(200)
         .style("stroke", "lightgrey")
         .style("opacity", "0.1")
@@ -544,11 +389,11 @@ function brushParallel(listBrush) {
         // Second the hovered specie takes its colorParallel
         svgParallel.selectAll(".line" + d.replace(/ /g, ''))
             .transition().duration(200)
-            .style("stroke", function (d) {
+            .style("stroke", function(d){
                 d3.select(this).raise().classed("active", true);
                 return "black"
             })
-            .style("opacity", 1)
+            .style("opacity",  1)
     });
 
 }
@@ -563,7 +408,7 @@ function unbrushParallel(listBrush) {
         .style("stroke", function (d) {
             if (d == "AVG")
                 return "red"
-            if (d == "AVG_BRUSH")
+            if (d=="AVG_BRUSH")
                 return "transparent"
             return "#2c7bb6"
         })
@@ -581,12 +426,12 @@ function mouseonParallel(d) {
     svgParallel.selectAll("path")
         .transition().duration(200)
         .filter(function (d, i) {
-            if (d == null)
+            if (d== null)
                 return false
             else
-                if (d == "AVG" || d == "AVG_BRUSH")
+                if (d == "AVG" || d =="AVG_BRUSH")
                     return false
-            return !brushed_par.includes(d)
+            return !brushed_par.includes(d) 
         })
         .style("stroke", "lightgrey")
         .style("opacity", "0.1")
@@ -594,7 +439,7 @@ function mouseonParallel(d) {
     // Second the hovered specie takes its colorParallel
     svgParallel.selectAll(".line" + d.replace(/ /g, ''))
         .transition().duration(200)
-        .style("stroke", function (d) {
+        .style("stroke", function(d){
             d3.select(this).raise().classed("active", true);
             return "green"
         })
@@ -670,7 +515,7 @@ function preset_selection() {
         Description 2:
             Tizio dell'azienda che produce velivoli vede che tipo di incidenti fanno i propri velivoli per capire cosa migliorare: ex se so fatal deve capi come non fa stira gente, oppure se so sotto la pioggia migliora la resistenza alle intemperie,
         Analitica 2:
-            - Mappa: ___
+            - Mappa: _
             - Bubble: aggregazione per marca puo confrontare la sua azienda con le altre, capendo dove si posiziona la propria. Mesi so utili per vedere resistenza freddo col meteo pure(?).
                 Dati utili: tipologia incidente, meteo, periodo, fase del volo (ex se me scaja l aereo mentre decollo devo migliora quella fase).
             - MDS: simil bubble, ci da info che rafforzano concetto.
@@ -767,7 +612,7 @@ function preset_selection() {
         R = "Destroyed_Damage"
         type_map = "Serious"
     }
-
+    
 
     brushMap([], "preset " + yearInput + " " + aggregated_by_year + " " + type_map)
     createMDS(yearInput, 0, 0, aggregated_by_year, aggregationType, mds_type_value)
@@ -783,7 +628,7 @@ function preset_selection() {
     document.getElementById("R_axis").value = R
     document.getElementById("demo").innerHTML = yearInput;
     var $radios = $('input:radio[name=gender]');
-    $radios.filter('[value=' + type_map + ']').prop('checked', true);
+    $radios.filter('[value='+type_map+']').prop('checked', true);
     check_selection()
     check_outliers()
 }
