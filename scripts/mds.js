@@ -28,7 +28,7 @@ Returns:    //
         if (lastWidth == widthNow) return;
         lastWidth = widthNow;
         d3.select("#regions").selectAll("*").remove()
-        createMDS(2001, 0, 0, "false", "Crash.Country", "std")
+        createMDS(2001, 0, 0, false, "Crash.Country", "std")
     }
     setInterval(pollZoomFireEvent, 100);
 })();
@@ -43,7 +43,6 @@ function createMDS(year, visibleLabel, evolutionMode, aggr_by_year, aggr_type, m
 
     d3.text(dataset_path, function (raw) {
         var data = d3.csv(dataset_path, function (error, data) {
-
             //---------------------------------------------Computing  default dissimilarity matrix------------------------------------------------
             var matrix = chooseCharacteristic(data, year, aggr_by_year, mds_type_value, aggr_type)
             //---------------------------------------------Visualization------------------------------------------------

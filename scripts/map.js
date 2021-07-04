@@ -148,11 +148,23 @@ function brushMap(brushList, mode) {
                         .style("top", (d3version3.event.layerY + 15) + "px")
                         .style("left", (d3version3.event.layerX - tooltip_width - 30) + "px");
                 }
-            }
+
+                mapSvg.selectAll("path")
+                .style('stroke-width', function (da) {
+                    if (d==da)
+                        return '8'
+                })
+                .style('stroke', function (da){
+                    if (d==da)
+                        return 'green'
+                    else
+                        return "black"
+            })
+        }
 
             //var aggregationYear = "false"
             var yearInput = +d3version3.select("#slider").node().value;
-            var aggregationYear = document.getElementById("aggregationYear").value;
+            var aggregationYear = document.getElementById("aggregationYear").checked;
             var type = "Fatal"
             if (mode.startsWith("preset")) {
                 par = mode.split(" ")
@@ -232,6 +244,9 @@ function brushMap(brushList, mode) {
                                 //unbrushParallel()
                                 mouseoutParallel()
                                 mouseout_scatter(id_name_map[d.id])
+                                mapSvg.selectAll("path")
+                                    .style('stroke-width',1)
+                                    .style('stroke',"black")
                                 }
                             else{
                                 $(this).attr("fill-opacity", "1.0");
@@ -291,16 +306,17 @@ function brushMap(brushList, mode) {
                 updateLegend()
 
 
-                var year_bool = document.getElementById("aggregationYear");
-                year_bool.onchange = function () {
-                    console.log("cambiato mappa")
-                    aggregationYear = year_bool.value
-                    e = change(data, "Crash.Country", yearInput, aggregationYear)
-                    grp = $("input[type='radio'][name='gender']:checked").val();
+                // d3.select("#aggregationYear")
+                // .on("click", function () {
+                //     aggregationYear = document.getElementById("aggregationYear").checked;
+                //     console.log("cambiato mappa", aggregationYear)
 
-                    updateMapColors(grp)
-                    updateLegend()
-                }
+                //     e = change(data, "Crash.Country", yearInput, aggregationYear)
+                //     grp = $("input[type='radio'][name='gender']:checked").val();
+
+                //     updateMapColors(grp)
+                //     updateLegend()
+                // })
 
                 d3version3.select("#slider")
                     // .on("change", function () {

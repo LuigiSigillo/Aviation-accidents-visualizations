@@ -226,7 +226,7 @@ var X = document.getElementById("X_axis").value
 var Y = document.getElementById("Y_axis").value
 var R = document.getElementById("R_axis").value
 var yearInput = document.getElementById("slider").value
-var aggregated_by_year = document.getElementById("aggregationYear").value
+var aggregated_by_year = document.getElementById("aggregationYear").checked
 var mds_type_value = document.getElementById("mdsType").value
 function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
@@ -250,14 +250,7 @@ function changing(aggregationType, X, Y, R, year, aggregated_by_year) {
 
         })
     }
-    d3.select("#aggregationYear")
-        .on("change", function () {
-            var year_bool = d3.select(this).node().value;
-            //console.log("scatter", year_bool)
-            changing(aggregationType, X, Y, R, yearInput, year_bool)
-            createMDS(yearInput, 0, 0, year_bool, aggregationType, mds_type_value)
 
-        })
 
     var mdsType = document.getElementById("mdsType");
     mdsType.onchange = function () {

@@ -43,7 +43,7 @@ function parallelCoord(aggregationType, map_key) {
     d3.csv("datasets/AviationCrashLocation_new.csv", function (error, data) {
         // var yearInput = document.getElementById("slider").value
 
-        dataset_dict = change(data, aggregationType, 2020, "false")
+        dataset_dict = change(data, aggregationType, 2020, false)
         var i = 0
         keys = Object.keys(dataset_dict),
             i, len = keys.length;
@@ -201,7 +201,7 @@ function parallelCoord(aggregationType, map_key) {
         var max_dict = {}
         if (!valerione) {
             dimensions.map(function (year) {
-                dict_dataset_dict[year] = change(data, aggregationType, year, "true")
+                dict_dataset_dict[year] = change(data, aggregationType, year, true)
                 if (percentage){
                     dict_dataset_dict[year] = convert_to_percentage(dict_dataset_dict[year])
                 }
@@ -239,7 +239,7 @@ function parallelCoord(aggregationType, map_key) {
     }
         else {
             var year = document.getElementById('slider').value
-            var aggregated_by_year = document.getElementById("aggregationYear").value;
+            var aggregated_by_year = document.getElementById("aggregationYear").checked;
             //var dataset_dict_giusto = change(data, aggregationType, year, aggregated_by_year)
 
             dimensions.map(function (cosa) {//cosa = IMC VMC ETC.

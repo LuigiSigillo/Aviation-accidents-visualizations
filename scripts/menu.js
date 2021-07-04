@@ -1,7 +1,7 @@
 /* Create HTML for mouseover */
 function mouse_on(pippo) {
     var aggr = document.getElementById("aggregationType").value;
-    var aggregated_by_year = document.getElementById("aggregationYear").value;
+    var aggregated_by_year = document.getElementById("aggregationYear").checked;
     //console.log('AGGREGATED YEAR: ', aggregated_by_year)
     var year = document.getElementById('slider').value
     //console.log('YEAR: ', year)
@@ -501,7 +501,7 @@ function preset_selection() {
         document.getElementById("flights_checkbox").checked = false
         document.getElementById("remove_outliers").checked = false
         yearInput = 2020
-        aggregated_by_year = "false"
+        aggregated_by_year = false
         aggregationType = "Event.Month"
         mds_type_value = "std"
         X = "Total_Accidents"
@@ -525,7 +525,7 @@ function preset_selection() {
         document.getElementById("flights_checkbox").checked = false
         document.getElementById("remove_outliers").checked = true
         yearInput = 2020
-        aggregated_by_year = "false"
+        aggregated_by_year = false
         aggregationType = "Crash.Country"
         mds_type_value = "percentage"
         X = "Total_Accidents"
@@ -546,7 +546,7 @@ function preset_selection() {
         document.getElementById("flights_checkbox").checked = true
         document.getElementById("remove_outliers").checked = true
         yearInput = 2011
-        aggregated_by_year = "true"
+        aggregated_by_year = true
         //aggregationType = "Broad.Phase.of.Flight"
         aggregationType = "Make"
         mds_type_value = "std"
@@ -560,7 +560,7 @@ function preset_selection() {
         document.getElementById("flights_checkbox").checked = false
         document.getElementById("remove_outliers").checked = true
         yearInput = 2020
-        aggregated_by_year = "false"
+        aggregated_by_year = false
         //aggregationType = "Broad.Phase.of.Flight"
         aggregationType = "Make"
         mds_type_value = "percentage"
@@ -574,7 +574,7 @@ function preset_selection() {
         document.getElementById("flights_checkbox").checked = false
         document.getElementById("remove_outliers").checked = false
         yearInput = 2020
-        aggregated_by_year = "false"
+        aggregated_by_year = false
         aggregationType = "Broad.Phase.of.Flight"
         mds_type_value = "percentage"
         X = "Death_Rate"
@@ -582,36 +582,7 @@ function preset_selection() {
         R = "Destroyed_Damage"
         type_map = "Death_Rate"
     }
-    if (user == "user6") {
-        document.getElementById("flights_checkbox").checked = true
-        document.getElementById("remove_outliers").checked = true
-        check_selection()
-        check_outliers()
-        yearInput = 2011
-        aggregated_by_year = "true"
-        //aggregationType = "Broad.Phase.of.Flight"
-        aggregationType = "Make"
-        mds_type_value = "std"
-        X = "Total_Accidents"
-        Y = "Fatal"
-        R = "Destroyed_Damage"
-        type_map = "Serious"
-    }
-    if (user == "user7") {
-        document.getElementById("flights_checkbox").checked = true
-        document.getElementById("remove_outliers").checked = true
-        check_selection()
-        check_outliers()
-        yearInput = 2011
-        aggregated_by_year = "true"
-        //aggregationType = "Broad.Phase.of.Flight"
-        aggregationType = "Make"
-        mds_type_value = "std"
-        X = "Total_Accidents"
-        Y = "Fatal"
-        R = "Destroyed_Damage"
-        type_map = "Serious"
-    }
+
     
 
     brushMap([], "preset " + yearInput + " " + aggregated_by_year + " " + type_map)
@@ -620,7 +591,7 @@ function preset_selection() {
     parallelCoord(aggregationType, type_map)
     // update on HTML
     document.getElementById("slider").value = yearInput
-    document.getElementById("aggregationYear").value = aggregated_by_year
+    document.getElementById("aggregationYear").checked = aggregated_by_year
     document.getElementById("aggregationType").value = aggregationType
     document.getElementById("mdsType").value = mds_type_value
     document.getElementById("X_axis").value = X
