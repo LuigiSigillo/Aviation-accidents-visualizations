@@ -255,7 +255,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20180720X93110,2018-07-20,"Sheboygan, WI",Destroyed,De Havilland,Personal,1.0,2.0,0.0,0.0,VMC,TAKEOFF,"43.760833,-87.835",Wisconsin,July
 20180717X22901,2018-07-17,"Truckee, CA",Substantial,Ryan,Personal,2.0,1.0,0.0,0.0,VMC,TAKEOFF,"39.301944,-120.12527800000001",California,July
 20180717X95107,2018-07-17,"Fort Rice, ND",Substantial,CESSNA,Aerial Observation,1.0,0.0,0.0,0.0,VMC,MANEUVER,"46.528334,-100.567223",North Dakota,July
-20180716X93947,2018-07-14,"Arecibo, PR",Substantial,QUICKSILVER,Personal,0.0,1.0,0.0,0.0,VMC,GO-AROUND,"18.455278,-66.66305600000001",Puerto Rico,July
+20180716X93947,2018-07-14,"Arecibo, PR",Substantial,QUICKSILVER,Personal,0.0,1.0,0.0,0.0,VMC,GO-AROUND,"18.455278,-66.66305600000001",Unknown,July
 20180713X54012,2018-07-13,"Deer Park, WA",Substantial,CESSNA,Instructional,3.0,0.0,0.0,0.0,VMC,MANEUVER,"47.941111,-117.62638899999999",Washington,July
 20180713X85947,2018-07-13,"Geneseo, NY",Substantial,CESSNA,Other Work Use,0.0,1.0,2.0,0.0,VMC,TAKEOFF,"42.798611,-77.8425",New York,July
 20180713X00848,2018-07-13,"Bismarck, IL",Substantial,AIR TRACTOR,Aerial Application,0.0,1.0,0.0,0.0,VMC,MANEUVER,"40.2425,-87.567223",Illinois,July
@@ -281,7 +281,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20180615X31415,2018-06-15,"Rotan, TX",Destroyed,CESSNA,Aerial Observation,2.0,0.0,0.0,0.0,VMC,MANEUVER,"32.911944,-100.54083299999999",Texas,June
 20180614X33947,2018-06-14,"Eureka Springs, AR",Substantial,AERONCA,Personal,0.0,1.0,0.0,0.0,VMC,TAKEOFF,"36.429722999999996,-93.695555",Arkansas,June
 20180613X43853,2018-06-13,"Springfield Township, NJ",Destroyed,RAYTHEON,Positioning,2.0,0.0,0.0,0.0,IMC,CLIMB,"40.026111,-74.755556",New Jersey,June
-20180610X02032,2018-06-10,"ARECIBO, PR",Substantial,CESSNA,Skydiving,0.0,1.0,4.0,0.0,VMC,TAKEOFF,"18.27,-66.4",Puerto Rico,June
+20180610X02032,2018-06-10,"ARECIBO, PR",Substantial,CESSNA,Skydiving,0.0,1.0,4.0,0.0,VMC,TAKEOFF,"18.27,-66.4",Unknown,June
 20180610X42028,2018-06-10,"Monroe, WI",Destroyed,CESSNA,Personal,4.0,0.0,0.0,0.0,IMC,GO-AROUND,"42.627778,-89.5975",Wisconsin,June
 20180611X23020,2018-06-09,"Sitka, AK",Substantial,PIPER,Business,2.0,0.0,0.0,0.0,UNK,MANEUVER,"57.17166700000001,-135.276667",Unknown,June
 20180607X32839,2018-06-07,"Uvalde, TX",Destroyed,BEECH,Personal,0.0,1.0,0.0,0.0,VMC,CRUISE,"29.454444,-99.69416600000001",Texas,June
@@ -346,7 +346,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20171215X23646,2017-12-14,"Valley Springs, CA",Substantial,CESSNA,Personal,0.0,2.0,0.0,0.0,VMC,LANDING,"38.086110999999995,-120.75861100000002",California,December
 20171210X70535,2017-12-10,"Miami, FL",Destroyed,SMITH,Personal,1.0,0.0,0.0,0.0,VMC,APPROACH,"25.644444,-80.455833",Florida,December
 20171210X74756,2017-12-10,"Maunaloa, HI",Destroyed,CESSNA,Personal,2.0,0.0,0.0,0.0,IMC,APPROACH,"21.133056,-157.149722",Hawaii,December
-20171207X11110,2017-12-07,"St. Croix, VI",Destroyed,BEECH,Personal,5.0,0.0,0.0,0.0,VMC,APPROACH,"17.7,-64.8175",Virgin Islands of the United States,December
+20171207X11110,2017-12-07,"St. Croix, VI",Destroyed,BEECH,Personal,5.0,0.0,0.0,0.0,VMC,APPROACH,"17.7,-64.8175",Unknown,December
 20171207X64827,2017-12-06,"Chesterfield, MO",Destroyed,RAYTHEON,Personal,1.0,0.0,0.0,0.0,VMC,APPROACH,"38.4,-90.37",Missouri,December
 20171205X23358,2017-12-04,"Rockford, IL",Substantial,BEECH,Personal,0.0,2.0,2.0,0.0,VMC,APPROACH,"42.203056,-89.0825",Illinois,December
 20171127X03747,2017-11-26,"Palmyra, WI",Substantial,PIPER,Personal,0.0,2.0,0.0,0.0,VMC,APPROACH,"42.883889,-88.585",Wisconsin,November
@@ -372,7 +372,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20171007X53946,2017-10-07,"Front Royal, VA",Destroyed,PIPER,Glider Tow,1.0,0.0,0.0,0.0,VMC,TAKEOFF,"38.920278,-78.263056",Virginia,October
 20171005X93025,2017-10-05,"Hillsboro, OR",Substantial,PIPER,Instructional,0.0,2.0,0.0,0.0,VMC,LANDING,"45.428334,-122.942222",Oregon,October
 20171004X92434,2017-10-04,"Salters, SC",Destroyed,CESSNA,Personal,2.0,0.0,0.0,0.0,VMC,MANEUVER,"33.496389,-79.957222",South Carolina,October
-20171002X24023,2017-10-02,"San Juan, PR",Substantial,CESSNA,Personal,1.0,1.0,0.0,0.0,VMC,APPROACH,"18.456667000000003,-66.098333",Puerto Rico,October
+20171002X24023,2017-10-02,"San Juan, PR",Substantial,CESSNA,Personal,1.0,1.0,0.0,0.0,VMC,APPROACH,"18.456667000000003,-66.098333",Unknown,October
 20171002X44715,2017-10-01,"Klamath Falls, OR",Destroyed,CIRRUS,Personal,2.0,0.0,0.0,0.0,IMC,CRUISE,"42.253611,-122.265556",Oregon,October
 20170926X23016,2017-09-25,"Cleburne, TX",Destroyed,Eris E. Ervin,Personal,1.0,0.0,0.0,0.0,VMC,TAKEOFF,"32.409721999999995,-97.387222",Texas,September
 20170925X25031,2017-09-24,"Camden, AR",Destroyed,BEECH,Personal,2.0,0.0,0.0,0.0,VMC,TAKEOFF,"33.453610999999995,-92.75805600000001",Arkansas,September
@@ -594,7 +594,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20160816X05940,2016-08-10,"Sandusky, MI",Substantial,PIPER,Personal,0.0,1.0,1.0,0.0,VMC,LANDING,"43.452222,-82.8425",Michigan,August
 20160808X65051,2016-08-08,"Hickory Ridge, AR",Substantial,AIR TRACTOR,Aerial Application,1.0,0.0,0.0,0.0,VMC,MANEUVER,"35.399165999999994,-91.001944",Arkansas,August
 20160809X40455,2016-08-08,"Iliamna, AK",Substantial,DE HAVILLAND,Other Work Use,0.0,4.0,3.0,0.0,VMC,TAKEOFF,"59.204722,-154.970278",Alaska,August
-20160808X90911,2016-08-07,"St. Croix, VI",Destroyed,DIAMOND,Instructional,0.0,2.0,0.0,0.0,VMC,LANDING,"17.700833,-64.80111099999999",Virgin Islands of the United States,August
+20160808X90911,2016-08-07,"St. Croix, VI",Destroyed,DIAMOND,Instructional,0.0,2.0,0.0,0.0,VMC,LANDING,"17.700833,-64.80111099999999",Unknown,August
 20160808X23924,2016-08-05,"Indianola, IA",Destroyed,PIPER,Personal,2.0,0.0,0.0,0.0,VMC,CLIMB,"41.415278,-93.561389",Iowa,August
 20160803X34325,2016-08-02,"Flagstaff, AZ",Destroyed,PIPER,Personal,1.0,0.0,0.0,0.0,VMC,CLIMB,"35.106389,-111.724167",Arizona,August
 20160802X92043,2016-08-02,"Van Nuys, CA",Substantial,ARION AIRCRAFT LLC,Personal,1.0,0.0,0.0,0.0,VMC,TAKEOFF,"34.198055,-118.485277",California,August
@@ -1399,7 +1399,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20120727X80121,2012-07-27,"Valentine, NE",Substantial,Harold H. Smith,Personal,1.0,0.0,1.0,0.0,VMC,LANDING,"42.856667,-100.548889",Nebraska,July
 20120726X31600,2012-07-26,"Sedona, AZ",Destroyed,BEECH,Personal,3.0,0.0,0.0,0.0,VMC,TAKEOFF,"34.842222,-111.79666599999999",Arizona,July
 20120726X04932,2012-07-26,"Plainville, CT",Substantial,CESSNA,Personal,1.0,0.0,0.0,0.0,VMC,APPROACH,"41.694444,-72.86416700000001",Connecticut,July
-20120726X21557,2012-07-25,"San Juan, PR",Substantial,CESSNA,Personal,1.0,0.0,0.0,0.0,VMC,APPROACH,"18.455278,-66.104722",Puerto Rico,July
+20120726X21557,2012-07-25,"San Juan, PR",Substantial,CESSNA,Personal,1.0,0.0,0.0,0.0,VMC,APPROACH,"18.455278,-66.104722",Unknown,July
 20120721X65721,2012-07-21,"Snohomish, WA",Substantial,REPUBLIC,Personal,0.0,1.0,0.0,0.0,VMC,TAKEOFF,"47.904722,-122.1025",Washington,July
 20120723X13217,2012-07-21,"Miami, TX",Substantial,BEECH,Personal,0.0,1.0,0.0,0.0,VMC,APPROACH,"35.761111,-100.751944",Texas,July
 20120721X55541,2012-07-21,"Walsenburg, CO",Substantial,NANCHANG CHINA,Personal,2.0,0.0,0.0,0.0,VMC,APPROACH,"37.695,-104.796389",Colorado,July
@@ -1904,7 +1904,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20100427X81628,2010-04-27,"Bear Branch, KY",Substantial,BEECH,Personal,2.0,0.0,0.0,0.0,IMC,DESCENT,"37.191389,-83.5125",Kentucky,April
 20100419X01601,2010-04-18,"Zellwood, FL",Substantial,MAULE,Positioning,1.0,0.0,0.0,0.0,VMC,MANEUVER,"28.7225,-81.65916700000001",Florida,April
 20100419X02620,2010-04-16,"Archer, FL",Substantial,CESSNA,Personal,1.0,0.0,0.0,0.0,VMC,MANEUVER,"29.617223,-82.505278",Florida,April
-20100412X03459,2010-04-11,"Arecibo, PR",Substantial,BEECH,Personal,0.0,2.0,0.0,0.0,VMC,APPROACH,"18.451110999999997,-66.675556",Puerto Rico,April
+20100412X03459,2010-04-11,"Arecibo, PR",Substantial,BEECH,Personal,0.0,2.0,0.0,0.0,VMC,APPROACH,"18.451110999999997,-66.675556",Unknown,April
 20100411X73253,2010-04-11,"Millbrook, NY",Destroyed,CZECH,Personal,0.0,1.0,0.0,0.0,VMC,TAKEOFF,"41.707221999999994,-73.73777700000001",New York,April
 20100412X90049,2010-04-08,"Lawton, OK",Substantial,CESSNA,Personal,0.0,1.0,1.0,0.0,VMC,LANDING,"34.567223,-98.409722",Oklahoma,April
 20100407X74648,2010-04-06,"Louisville, KY",Substantial,PIPER,Personal,0.0,1.0,0.0,0.0,VMC,APPROACH,"38.192221999999994,-85.74",Kentucky,April
@@ -2172,7 +2172,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20081126X30503,2008-11-25,"Monterey, CA",Substantial,PIPER,Personal,0.0,1.0,1.0,0.0,VMC,DESCENT,"36.586944,-121.842777",California,November
 20081124X30428,2008-11-24,"Whites Creek, TN",Destroyed,BEECH,Business,3.0,0.0,0.0,0.0,IMC,APPROACH,"36.289722,-86.843055",Tennessee,November
 20081123X12804,2008-11-22,"Marshfield, WI",Destroyed,PIPER,Personal,3.0,0.0,0.0,0.0,VMC,APPROACH,"44.651944,-90.19694399999999",Wisconsin,November
-20081117X94058,2008-11-17,"Smithfield, RI",Substantial,PIPER,Personal,2.0,0.0,0.0,0.0,VMC,APPROACH,"41.905556,-71.485555",Rhode Island,November
+20081117X94058,2008-11-17,"Smithfield, RI",Substantial,PIPER,Personal,2.0,0.0,0.0,0.0,VMC,APPROACH,"41.905556,-71.485555",Unknown,November
 20081114X10103,2008-11-14,"Naples, FL",Substantial,AMERICAN GENERAL ACFT CORP,Personal,0.0,1.0,3.0,0.0,VMC,TAKEOFF,"26.116945,-81.701944",Florida,November
 20081113X00625,2008-11-13,"Sedona, AZ",Destroyed,PIPER,Personal,3.0,0.0,0.0,0.0,VMC,MANEUVER,"34.876111,-111.689444",Arizona,November
 20081113X13150,2008-11-13,"Tallahassee, FL",Substantial,CIRRUS,Personal,2.0,1.0,2.0,0.0,IMC,APPROACH,"30.398611,-84.3025",Florida,November
@@ -2222,7 +2222,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20080903X01361,2008-08-31,"Camarillo, CA",Substantial,PIPER,Banner Tow,1.0,0.0,0.0,0.0,VMC,TAKEOFF,"34.215833,-119.07944499999999",California,August
 20080903X01364,2008-08-31,"Angle Fire, NM",Destroyed,CESSNA,Personal,0.0,0.0,1.0,0.0,VMC,APPROACH,"36.421945,-105.289722",New Mexico,August
 20080914X01458,2008-08-30,"Lawrenceburg, TN",Substantial,MOONEY,Personal,1.0,1.0,0.0,0.0,VMC,MANEUVER,"35.249722,-87.249166",Tennessee,August
-20081003X17832,2008-08-30,"Barceloneta, PR",Substantial,Quicksilver,Instructional,0.0,1.0,0.0,0.0,VMC,GO-AROUND,"18.467778,-66.6525",Puerto Rico,August
+20081003X17832,2008-08-30,"Barceloneta, PR",Substantial,Quicksilver,Instructional,0.0,1.0,0.0,0.0,VMC,GO-AROUND,"18.467778,-66.6525",Unknown,August
 20080914X01459,2008-08-30,"Elizabethtown, KY",Substantial,CESSNA,Skydiving,0.0,0.0,0.0,1.0,VMC,MANEUVER,"37.679722999999996,-85.94027700000001",Kentucky,August
 20080904X01376,2008-08-28,"Las Vegas, NV",Substantial,PIPER,Other Work Use,1.0,0.0,1.0,0.0,VMC,CLIMB,"36.211389000000004,-115.224723",Nevada,August
 20081007X93827,2008-08-28,"Albuquerque, NM",Substantial,CESSNA,Personal,0.0,1.0,1.0,0.0,VMC,APPROACH,"35.140555,-106.790277",New Mexico,August
@@ -2249,7 +2249,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20080812X01222,2008-08-05,"Brownsboro, AL",Substantial,PIPER,Personal,2.0,0.0,0.0,0.0,VMC,TAKEOFF,"34.75,-86.46777800000001",Alabama,August
 20080808X01194,2008-08-04,"Gearhart, OR",Destroyed,CESSNA,Personal,5.0,3.0,0.0,0.0,IMC,TAKEOFF,"46.026945,-123.92444499999999",Oregon,August
 20080912X01444,2008-08-04,"Big Sping, TX",Substantial,Collard,Personal,0.0,1.0,0.0,0.0,VMC,APPROACH,"32.2125,-101.525",Texas,August
-20080808X01187,2008-08-02,"West Kingston, RI",Substantial,PIPER,Personal,0.0,0.0,0.0,4.0,VMC,LANDING,"41.489444,-71.62055600000001",Rhode Island,August
+20080808X01187,2008-08-02,"West Kingston, RI",Substantial,PIPER,Personal,0.0,0.0,0.0,4.0,VMC,LANDING,"41.489444,-71.62055600000001",Unknown,August
 20080810X01199,2008-07-29,"Highlands, NC",Substantial,PIPER,Personal,2.0,0.0,0.0,0.0,VMC,MANEUVER,"35.0075,-83.210278",North Carolina,July
 20080814X01245,2008-07-28,"Maple Lake, MN",Substantial,Evektor-Aerotechnik AS,Instructional,0.0,0.0,0.0,2.0,VMC,LANDING,"45.235833,-93.985555",Minnesota,July
 20080731X01132,2008-07-27,"McMurray, WA",Substantial,CESSNA,Personal,3.0,0.0,0.0,0.0,IMC,CRUISE,"48.301667,-122.109167",Washington,July
@@ -2274,7 +2274,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20080710X01006,2008-07-07,"Big Creek, ID",Substantial,MOONEY,Personal,0.0,2.0,0.0,0.0,VMC,TAKEOFF,"45.133055999999996,-115.32166699999999",Idaho,July
 20080710X01008,2008-07-06,"East Carbon, UT",Substantial,PIPER,Personal,0.0,2.0,0.0,0.0,VMC,LANDING,"39.647222,-110.71888899999999",Utah,July
 20080715X01052,2008-07-05,"Rossville, TN",Destroyed,CESSNA,Personal,1.0,0.0,0.0,0.0,VMC,UNKNOWN,"35.008333,-89.5575",Tennessee,July
-20080709X01002,2008-07-03,"Middletown, RI",Substantial,PIPER,Instructional,2.0,1.0,0.0,0.0,VMC,TAKEOFF,"41.524445,-71.284444",Rhode Island,July
+20080709X01002,2008-07-03,"Middletown, RI",Substantial,PIPER,Instructional,2.0,1.0,0.0,0.0,VMC,TAKEOFF,"41.524445,-71.284444",Unknown,July
 20080722X01099,2008-07-03,"Stotesbury, MO",Destroyed,GRUMMAN,Aerial Application,0.0,0.0,0.0,1.0,VMC,CRUISE,"38.090277,-94.583889",Missouri,July
 20080709X00996,2008-07-02,"Piru, CA",Destroyed,CESSNA,Aerial Observation,1.0,0.0,0.0,0.0,VMC,MANEUVER,"34.384166,-118.814167",California,July
 20080711X01020,2008-06-29,"Jasper, AL",Destroyed,BEECH,Personal,4.0,0.0,0.0,0.0,IMC,TAKEOFF,"33.903611,-87.3375",Alabama,June
@@ -2506,7 +2506,7 @@ Event.Id,Event.Date,Location,Aircraft.Damage,Make,Purpose.of.Flight,Total.Fatal.
 20070212X00169,2007-02-02,"Dartmouth, MA",Destroyed,SOCATA,Executive/Corporate,3.0,0.0,0.0,0.0,IMC,GO-AROUND,"41.6675,-78.976111",Pennsylvania,February
 20070215X00196,2007-02-02,"Bessemer, AL",Substantial,CESSNA,Personal,2.0,0.0,0.0,0.0,IMC,CRUISE,"33.415,-87.14361099999999",Alabama,February
 20070910X01348,2007-01-26,"Sebring, FL",Substantial,Airborne Windsports LTD,Instructional,0.0,1.0,1.0,0.0,VMC,TAKEOFF,"27.456389,-81.34222199999999",Florida,January
-20070131X00121,2007-01-15,"Adjuntas, PR",Substantial,Partenavia,Personal,2.0,0.0,0.0,0.0,IMC,DESCENT,"18.147222,-66.798333",Puerto Rico,January
+20070131X00121,2007-01-15,"Adjuntas, PR",Substantial,Partenavia,Personal,2.0,0.0,0.0,0.0,IMC,DESCENT,"18.147222,-66.798333",Unknown,January
 20070123X00077,2007-01-14,"El Centro, CA",Substantial,NAVION,Personal,0.0,2.0,0.0,0.0,VMC,GO-AROUND,"32.788889000000005,-115.529445",California,January
 20070103X00002,2006-12-22,"Greenhead, FL",Destroyed,CESSNA,Personal,5.0,0.0,0.0,0.0,IMC,CRUISE,"30.470556,-85.648611",Florida,December
 20070202X00132,2006-12-13,"Williamson, GA",Substantial,PIPER,Personal,0.0,1.0,0.0,0.0,VMC,CLIMB,"33.195277000000004,-84.37138900000001",Georgia,December
