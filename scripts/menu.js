@@ -558,6 +558,8 @@ function preset_selection() {
     if (user == "user4") {
         document.getElementById("flights_checkbox").checked = false
         document.getElementById("remove_outliers").checked = true
+        document.getElementById("percentage_checkbox").checked = true
+
         yearInput = 2020
         aggregated_by_year = false
         //aggregationType = "Broad.Phase.of.Flight"
@@ -597,8 +599,9 @@ function preset_selection() {
     document.getElementById("Y_axis").value = Y
     document.getElementById("R_axis").value = R
     document.getElementById("demo").innerHTML = yearInput;
+
     var $radios = $('input:radio[name=gender]');
     $radios.filter('[value='+type_map+']').prop('checked', true);
-    check_selection()
-    check_outliers()
+    // check_selection()
+    // check_outliers()
 }
