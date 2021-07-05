@@ -5,6 +5,7 @@ Project for the visual analytics course 2020-21 at Sapienza University of Rome. 
 We decided to focus on USA aircraft accidents because an analysis of this data can be useful to different kind of users that want to have insights about aircraft crashes. In order to do that, we needed to find a way to represent information such that accidents could be easily plotted, analyzed and understood, supporting NTSB (National Transportation Safety Board) authorities inmonitoring the situation and, if necessary, conceiving plan of actions.
 
 Also pilots that want to buy a new aircraft can be helped in the decision by the different kind of visual-izations: in particular the information on manufacturers (i.e.  Fatalities, Weather Conditions, Death Rate,etc.) could be very useful when deciding which aircraft to buy.Therefore, we realized four types of visualization.
+![Contribution guidelines for this project](legacy/all.jpg)
 
 ### Aircraft Crashes Maps
 Aircraft Crashes Maps used to understand the geographic aircraft crashes distribution, identifyinghotspots, and highlight states with different death rate and fatalities.  Once a particular area has beendetected, a more precise study can be carried on by analyzing the description in the upper right sideof the page.
