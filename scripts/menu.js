@@ -499,6 +499,8 @@ function preset_selection() {
         document.getElementById("flights_checkbox").checked = false
         document.getElementById("remove_outliers").checked = false
         document.getElementById("year_normalized_checkbox").checked = true
+        document.getElementById("percentage_checkbox").checked = true
+
         yearInput = 2020
         aggregated_by_year = false
         aggregationType = "Event.Month"
