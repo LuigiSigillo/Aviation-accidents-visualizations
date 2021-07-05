@@ -555,6 +555,8 @@ function preset_selection() {
         Y = "Fatal"
         R = "Destroyed_Damage"
         type_map = "Serious"
+        document.getElementById("percentage_checkbox").checked = true
+
     }
 
     if (user == "user4") {
@@ -584,6 +586,8 @@ function preset_selection() {
         Y = "Total_Accidents"
         R = "Destroyed_Damage"
         type_map = "Death_Rate"
+        document.getElementById("percentage_checkbox").checked = true
+
     }
 
     
