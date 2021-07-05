@@ -546,6 +546,7 @@ function preset_selection() {
     if (user == "user3") {
         document.getElementById("flights_checkbox").checked = true
         document.getElementById("remove_outliers").checked = true
+        document.getElementById("others_checkbox").checked = true
         yearInput = 2011
         aggregated_by_year = true
         //aggregationType = "Broad.Phase.of.Flight"
@@ -553,7 +554,7 @@ function preset_selection() {
         mds_type_value = "std"
         X = "Total_Accidents"
         Y = "Fatal"
-        R = "Destroyed_Damage"
+        R = "Minor"
         type_map = "Serious"
         document.getElementById("percentage_checkbox").checked = true
 
