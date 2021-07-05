@@ -1,5 +1,7 @@
 # Aviation-accidents-visualizations
-Project for the visual analytics course 2020-21 at Sapienza University of Rome. A demo of the project is hosted [here](https://luigisigillo.github.io/Aviation-accidents-visualizations/)
+Project for the visual analytics course 2020-21 at Sapienza University of Rome. A demo of the project is hosted [here](https://luigisigillo.github.io/Aviation-accidents-visualizations/).
+
+A complete report is available [here](legacy/Report.pdf), while a overview of the project is in [this presentation](legacy/USAaviationcrashes.pdf)
 
 ## Introduction
 We decided to focus on USA aircraft accidents because an analysis of this data can be useful to different kind of users that want to have insights about aircraft crashes. In order to do that, we needed to find a way to represent information such that accidents could be easily plotted, analyzed and understood, supporting NTSB (National Transportation Safety Board) authorities inmonitoring the situation and, if necessary, conceiving plan of actions.
