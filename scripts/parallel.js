@@ -174,7 +174,7 @@ function parallelCoord(aggregationType, map_key) {
                 i += 1
             }
             res = count / keys.length
-            if (m_k.includes("Rate") || percentage)
+            if (m_k.includes("Rate") || percentage || aggregationType =="Make")
                 res = count/i
             return [max,res ]
         }
@@ -290,7 +290,7 @@ function parallelCoord(aggregationType, map_key) {
         // The path function take a row of the csv as input, and return x and y coordinates of the line to draw for this raw.
 
         function convert_to_percentage(dataset_dict) {
-
+            var count = 0
             for (elem in dataset_dict) {
 
                 for (v in dataset_dict[elem]){
@@ -299,10 +299,17 @@ function parallelCoord(aggregationType, map_key) {
                     if(v =="Serious" || v =="Fatal" || v =="Uninjured"||v =="Minor") 
                         dataset_dict[elem][v] = +(+dataset_dict[elem][v] / +dataset_dict[elem]["Total_Passangers"]) * 100;
                     if(v=="Total_Accidents")
-                        continue
+                        count+= dataset_dict[elem]["Total_Accidents"]
                     else
                         dataset_dict[elem][v] = (dataset_dict[elem][v] / dataset_dict[elem]["Total_Accidents"]) * 100;
                         
+                }
+            }
+            for (elem in dataset_dict) {
+
+                for (v in dataset_dict[elem]){
+                    if(v=="Total_Accidents")
+                        dataset_dict[elem][v] = (dataset_dict[elem][v] / count) * 100;
                 }
             }
             return dataset_dict
