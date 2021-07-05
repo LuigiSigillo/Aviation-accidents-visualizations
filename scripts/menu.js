@@ -357,12 +357,12 @@ function mouseon_scatter(elem) {
 };
 
 function mouseout_scatter(elem) {
-    if (brushed_countries.length == 0)
+    if (brushed_points.length == 0)
         d3.selectAll(".bubble").style("opacity", 1)
     else {
         d3.selectAll(".bubble")
             .style("opacity", 0.1)
-            .filter(function (d) { return brushed_countries.includes(d.Item) })
+            .filter(function (d) { return brushed_points.includes(d.Item) })
             .style("opacity", 1);
     }
 };
