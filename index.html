@@ -78,6 +78,9 @@
 
                         function aggregated_by_year_selection(){
                             var year_bool = document.getElementById("aggregationYear").checked;
+                            var aggregationType = document.getElementById("aggregationType").value
+                            var yearInput = document.getElementById("slider").value
+                            var mds_type_value = document.getElementById("mdsType").value
                             console.log("scatter", year_bool)
                             changing(aggregationType, X, Y, R, yearInput, year_bool)
                             createMDS(yearInput, 0, 0, year_bool, aggregationType, mds_type_value)
@@ -92,12 +95,14 @@
                             var yearInput = document.getElementById("slider").value
                             var aggregated_by_year = document.getElementById("aggregationYear").checked
                             var mds_type_value = document.getElementById("mdsType").value
+                            console.log(mds_type_value)
                             createMDS(yearInput, 0, 0, aggregated_by_year, aggregationType, mds_type_value)
                         }
 
                         function check_outliers(){
                             remove_outliers = document.getElementById("remove_outliers").checked
                             var aggregationType = document.getElementById("aggregationType").value
+                            
                             map_key= $("input[type='radio'][name='gender']:checked").val();
                             parallelCoord(aggregationType,map_key)
                             triggeraSlider()

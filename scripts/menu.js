@@ -119,13 +119,11 @@ function mouse_on(pippo) {
             dataset_dict = change(data, aggr, year, aggregated_by_year)
             //console.log("ciaoo", dataset_dict)
             if (pippo==("AVG"))
-                d = json_media
-            else
-                if (pippo ==("AVG_BRUSH"))
-                    d = json_media_brush
+                d = dict_dataset_dict[year][pippo]
+
             else    
                 d = dataset_dict[pippo]
-            if(pippo.startsWith("AVG")){
+            if(pippo==("AVG")){
                 Object.keys(d).map(function(key, index) {
                     if(typeof d[key] == 'number' && !key.includes("Rate"))
                         d[key] = d[key].toFixed(2);
@@ -500,6 +498,7 @@ function preset_selection() {
     if (user == "user1") {
         document.getElementById("flights_checkbox").checked = false
         document.getElementById("remove_outliers").checked = false
+        document.getElementById("year_normalized_checkbox").checked = true
         yearInput = 2020
         aggregated_by_year = false
         aggregationType = "Event.Month"
@@ -507,7 +506,7 @@ function preset_selection() {
         X = "Total_Accidents"
         Y = "IMC"
         R = "Destroyed_Damage"
-        type_map = "Fatal"
+        type_map = "Death_Rate"
     }
 
     /*
