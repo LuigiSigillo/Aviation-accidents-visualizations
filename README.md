@@ -1,5 +1,7 @@
 # Aviation-accidents-visualizations
-Project for the visual analytics course 2020-21 at Sapienza University of Rome. A demo of the project is hosted [here](https://luigisigillo.github.io/Aviation-accidents-visualizations/).
+Project for the visual analytics course 2020-21 at Sapienza University of Rome. 
+
+A demo of the project is hosted [here](https://luigisigillo.github.io/Aviation-accidents-visualizations/).
 
 A complete report is available [here](legacy/Report.pdf), while a overview of the project is in [this presentation](legacy/USAaviationcrashes.pdf)
 
